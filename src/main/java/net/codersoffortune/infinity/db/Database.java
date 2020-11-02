@@ -1,6 +1,9 @@
 package net.codersoffortune.infinity.db;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Database {
     private static int currentVersion = 1;
@@ -22,7 +25,10 @@ public class Database {
     private int getVersion() throws SQLException {
         ResultSet resultSet = connection.createStatement().executeQuery(getVersionQuery);
         // TODO:: Check result count?
-        return resultSet.getInt("version");
+        while (resultSet.next())
+            return resultSet.getInt("version");
+        // TODO:: Should probably throw an exception here?
+        return 0;
     }
 
     private void setVersion() throws SQLException{
