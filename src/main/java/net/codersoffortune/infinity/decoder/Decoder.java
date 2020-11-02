@@ -1,8 +1,9 @@
 package net.codersoffortune.infinity.decoder;
 
 import net.codersoffortune.infinity.db.Database;
+import net.codersoffortune.infinity.metadata.Metadata;
 
-import java.sql.SQLException;
+import java.io.IOException;
 
 public class Decoder {
     /***
@@ -13,14 +14,15 @@ public class Decoder {
     private static Database db;
     static String driver = "org.apache.derby.jdbc.EmbeddedDriver";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        /*
         try {
             Class.forName(driver);
             db = Database.getInstance();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-        }
+        }*/
+        Metadata m = Metadata.loadMetadata();
         System.out.println("Hello");
-        System.out.println(java.lang.System.getProperty("java.class.path"));
     }
 }
