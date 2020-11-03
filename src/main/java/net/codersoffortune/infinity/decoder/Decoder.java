@@ -1,6 +1,7 @@
 package net.codersoffortune.infinity.decoder;
 
 import net.codersoffortune.infinity.db.Database;
+import net.codersoffortune.infinity.metadata.FactionList;
 import net.codersoffortune.infinity.metadata.Metadata;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ public class Decoder {
             e.printStackTrace();
         }*/
         Metadata m = Metadata.loadMetadata();
+        FactionList f = FactionList.loadFaction("909");
         System.out.println("Hello");
     }
 }

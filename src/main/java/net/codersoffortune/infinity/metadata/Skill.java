@@ -8,12 +8,6 @@ public class Skill {
     public Skill() {
     }
 
-    public Skill(int ID, String name, String wiki) {
-        setID(ID);
-        setName(name);
-        setWiki(wiki);
-    }
-
     public int getID() {
         return ID;
     }
