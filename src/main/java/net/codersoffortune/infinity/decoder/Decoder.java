@@ -1,10 +1,13 @@
 package net.codersoffortune.infinity.decoder;
 
 import net.codersoffortune.infinity.db.Database;
+import net.codersoffortune.infinity.metadata.Faction;
 import net.codersoffortune.infinity.metadata.FactionList;
 import net.codersoffortune.infinity.metadata.Metadata;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Decoder {
     /***
@@ -24,7 +27,12 @@ public class Decoder {
             e.printStackTrace();
         }*/
         Metadata m = Metadata.loadMetadata();
-        FactionList f = FactionList.loadFaction("909");
+        Map<Integer, FactionList> Factions = new HashMap<>();
+        for(Faction f: m.getFactions()) {
+            int id = f.getID();
+            if (id == 901) continue; // NA2 doesn't have a vanilla option
+            Factions.put(id, FactionList.loadFaction(String.valueOf(id)));
+        }
         System.out.println("Hello");
     }
 }

@@ -1,7 +1,10 @@
 package net.codersoffortune.infinity.metadata;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import net.codersoffortune.infinity.metadata.specops.Specops;
+import net.codersoffortune.infinity.metadata.specops.SpecopsNestedItem;
+import net.codersoffortune.infinity.metadata.specops.SpecopsNestedItemDeserializer;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,12 +14,15 @@ public class FactionList {
     private List<Unit> units;
     private FactionFilters filters;
     private List<Resume> resume;
-    private List<String> fireteams; // TODO:: Is this ever used?
-    private List<String> relations; // TODO:: Is this ever used?
+    private List<Fireteam> fireteams; // TODO:: Is this ever used?
+    private List<Relation> relations; // TODO:: Is this ever used?
     private Specops specops;
 
     public static FactionList loadFaction(String url) throws IOException {
         ObjectMapper om = new ObjectMapper();
+        SimpleModule sm = new SimpleModule();
+        sm.addDeserializer(SpecopsNestedItem.class, new SpecopsNestedItemDeserializer());
+        om.registerModule(sm);
         //data = om.readValue(new java.net.URL(url), Map.class);
         return om.readValue(FactionList.class.getResource("/" + url), FactionList.class);
     }
@@ -53,19 +59,19 @@ public class FactionList {
         this.resume = resume;
     }
 
-    public List<String> getRelations() {
+    public List<Relation> getRelations() {
         return relations;
     }
 
-    public void setRelations(List<String> relations) {
+    public void setRelations(List<Relation> relations) {
         this.relations = relations;
     }
 
-    public List<String> getFireteams() {
+    public List<Fireteam> getFireteams() {
         return fireteams;
     }
 
-    public void setFireteams(List<String> fireteams) {
+    public void setFireteams(List<Fireteam> fireteams) {
         this.fireteams = fireteams;
     }
 
