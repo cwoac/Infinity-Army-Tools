@@ -1,33 +1,31 @@
 package net.codersoffortune.infinity.metadata;
 
-public class Ammunition {
-    private int ID;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import java.io.Serializable;
+
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", resolver = AmmunitionResolver.class)
+public class Ammunition implements Serializable {
+    private int id;
     private String name;
     private String wiki;
 
-    public Ammunition() {
+
+    @Override
+    public String toString() {
+        return "Ammunition{" +
+                "ID=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 
-    ;
-
-    public Ammunition(int ID, String name) {
-        setID(ID);
-        setName(name);
+    public int getId() {
+        return id;
     }
 
-    public Ammunition(int ID, String name, String wiki) {
-        setID(ID);
-        setName(name);
-        setWiki(wiki);
-    }
-
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

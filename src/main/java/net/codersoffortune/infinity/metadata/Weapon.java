@@ -1,15 +1,20 @@
 package net.codersoffortune.infinity.metadata;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+
 import java.util.List;
 import java.util.Map;
 
+//@JsonInclude(JsonInclude.Include.NON_NULL)
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Weapon {
-    private int ID;
+    private int id;
     private String type;
     private String name;
     private String mode;
     private String wiki;
-    private int ammunition;
+    @JsonIdentityReference(alwaysAsId = true)
+    private Ammunition ammunition;
     private String burst;
     private String damage;
     private String saving;
@@ -17,20 +22,6 @@ public class Weapon {
     private Map<String, RangeBand> distance;
 
     public Weapon() {
-    }
-
-    public Weapon(int ID, String type, String name, String mode, String wiki, int ammunition, String burst, String damage, String saving, List<String> properties, Map<String, RangeBand> distance) {
-        setID(ID);
-        setType(type);
-        setName(name);
-        setMode(mode);
-        setWiki(wiki);
-        setAmmunition(ammunition);
-        setBurst(burst);
-        setDamage(damage);
-        setSaving(saving);
-        setProperties(properties);
-        setDistance(distance);
     }
 
     public Map<String, RangeBand> getDistance() {
@@ -73,11 +64,14 @@ public class Weapon {
         this.burst = burst;
     }
 
-    public int getAmmunition() {
+    public Ammunition getAmmunition() {
         return ammunition;
     }
 
-    public void setAmmunition(int ammunition) {
+    //  @JsonProperty("ammunition")
+    public void setAmmunition(Ammunition ammunition) {
+        // this.ammunition = new Ammunition();
+        //this.ammunition.setId(ID);
         this.ammunition = ammunition;
     }
 
@@ -97,12 +91,12 @@ public class Weapon {
         this.type = type;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMode() {

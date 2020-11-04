@@ -44,6 +44,7 @@ public class Metadata {
 
     public static Metadata loadMetadata() throws IOException {
         ObjectMapper om = new ObjectMapper();
+
         //data = om.readValue(new java.net.URL(url), Map.class);
         return om.readValue(Metadata.class.getResource("/metadata"), Metadata.class);
     }
