@@ -1,5 +1,7 @@
 package net.codersoffortune.infinity.metadata.unit;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -20,16 +22,51 @@ public class Unit {
     private String slug;
     private Map<String, List<Integer>> filters;
 
-    public CompactedUnit getUnit(final int group, final int option) throws IllegalArgumentException {
+    /**
+     * Handle the special case of a unit with the selected group being 0. This represents a paired group of valued units
+     * that you have to buy as pair.
+     *
+     * @param option the option of the setup to take (this applies to the first unit in all the cases I've seen so far
+     * @return Collection of the units included in this choice
+     * @throws IllegalArgumentException if an invalid option is specified
+     */
+    private Collection<CompactedUnit> get0GroupUnits(final int option) throws IllegalArgumentException {
+        Collection<CompactedUnit> result = new ArrayList<>();
+        ProfileOption po = getOptions().stream().filter(x -> x.getId() == option).findFirst().orElseThrow(IllegalArgumentException::new);
+
+        for (ProfileInclude pi : po.getIncludes()) {
+            Collection<CompactedUnit> includedUnit = getUnits(pi.getGroup(), pi.getOption());
+            for (int i = 0; i < pi.getQ(); i++)
+                result.addAll(includedUnit);
+        }
+
+        return result;
+    }
+
+    public Collection<CompactedUnit> getUnits(final int group, final int option) throws IllegalArgumentException {
+        if (group == 0) {
+            return get0GroupUnits(option);
+        }
+        Collection<CompactedUnit> result = new ArrayList<>();
+
         ProfileGroup pg = ProfileGroups.stream().filter(x -> x.getId() == group).findFirst().orElseThrow(IllegalArgumentException::new);
+        // Note: technically, the unit also has a List<Options>, however this is (currently!) used only for jazz+billie and scarface+cordelia,
+        // and maps directly to the options of profile1, and serves to provide the total cost of taking both of the unit.
         ProfileOption po = pg.getOptions().stream().filter(x -> x.getId() == option).findFirst().orElseThrow(IllegalArgumentException::new);
 
-        CompactedUnit result = new CompactedUnit();
-        result.setName(po.getName());
-        result.addEquipment(po.getEquip());
-        result.addSkills(po.getSkills());
-        result.addWeapons(po.getWeapons());
 
+        CompactedUnit unit = new CompactedUnit();
+        unit.setName(po.getName());
+        unit.addEquipment(po.getEquip());
+        unit.addSkills(po.getSkills());
+        unit.addWeapons(po.getWeapons());
+        result.add(unit);
+        // now check for included elements.
+        for (ProfileInclude pi : po.getIncludes()) {
+            Collection<CompactedUnit> includedUnit = getUnits(pi.getGroup(), pi.getOption());
+            for (int i = 0; i < pi.getQ(); i++)
+                result.addAll(includedUnit);
+        }
         return result;
     }
 

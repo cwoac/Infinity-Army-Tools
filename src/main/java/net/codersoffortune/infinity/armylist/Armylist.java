@@ -12,10 +12,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class Armylist {
     private String army_code;
@@ -45,9 +42,14 @@ public class Armylist {
         result.setFaction(readVLI(dataBuffer));
 
         // Not sure why they embed the faction name as well, but *shrug*
-        int faction_length = dataBuffer.get() & 0xffffff;
+        //int faction_length = dataBuffer.get() & 0xffffff;
+        int faction_length = readVLI(dataBuffer);
         byte[] faction_name_data = new byte[faction_length];
-        dataBuffer.get(faction_name_data, 0, faction_length);
+        try {
+            dataBuffer.get(faction_name_data, 0, faction_length);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         result.setFaction_name(new String(faction_name_data, StandardCharsets.UTF_8));
 
         // Get the army name, if set. Fun fact, the default army name is ' '.
@@ -83,34 +85,36 @@ public class Armylist {
                 Optional<Unit> maybeUnit = db.getUnitName(cgm.getId(), getFaction());
                 if (!maybeUnit.isPresent()) continue;
                 Unit unit = maybeUnit.get();
-                CompactedUnit cu = unit.getUnit(cgm.getProfile(), cgm.getOption());
-                sb.append(String.format("%s", cu.getName()));
-                // skills
-                List<String> unit_skills = new ArrayList<>();
-                for (ProfileItem skill : cu.getSkills()) {
-                    int s_id = skill.getId();
-                    Optional<Skill> s = skills.stream().filter(x -> x.getID() == s_id).findFirst();
-                    s.ifPresent(value -> unit_skills.add(value.getName()));
-                }
-                if (!unit_skills.isEmpty()) {
-                    sb.append(String.format(" (%s)", String.join(", ", unit_skills)));
-                }
-                // weapons+equipment
-                List<String> unit_things = new ArrayList<>();
-                for (ProfileItem weapon : cu.getWeapons()) {
-                    int w_id = weapon.getId();
-                    Optional<Weapon> w = weapons.stream().filter(x -> x.getId() == w_id).findFirst();
-                    w.ifPresent(value -> unit_things.add(value.getName()));
+                Collection<CompactedUnit> cus = unit.getUnits(cgm.getProfile(), cgm.getOption());
+                // TODO:: neaten this. Indents? Streams?
+                for (CompactedUnit cu : cus) {
+                    sb.append(String.format("%s", cu.getName()));
+                    // skills
+                    List<String> unit_skills = new ArrayList<>();
+                    for (ProfileItem skill : cu.getSkills()) {
+                        int s_id = skill.getId();
+                        Optional<Skill> s = skills.stream().filter(x -> x.getID() == s_id).findFirst();
+                        s.ifPresent(value -> unit_skills.add(value.getName()));
+                    }
+                    if (!unit_skills.isEmpty()) {
+                        sb.append(String.format(" (%s)", String.join(", ", unit_skills)));
+                    }
+                    // weapons+equipment
+                    List<String> unit_things = new ArrayList<>();
+                    for (ProfileItem weapon : cu.getWeapons()) {
+                        int w_id = weapon.getId();
+                        Optional<Weapon> w = weapons.stream().filter(x -> x.getId() == w_id).findFirst();
+                        w.ifPresent(value -> unit_things.add(value.getName()));
+                    }
+                    for (ProfileItem equip : cu.getEquipment()) {
+                        int w_id = equip.getId();
+                        Optional<Equipment> w = equipment.stream().filter(x -> x.getID() == w_id).findFirst();
+                        w.ifPresent(value -> unit_things.add(value.getName()));
 
-                }
-                for (ProfileItem equip : cu.getEquipment()) {
-                    int w_id = equip.getId();
-                    Optional<Equipment> w = equipment.stream().filter(x -> x.getID() == w_id).findFirst();
-                    w.ifPresent(value -> unit_things.add(value.getName()));
-
-                }
-                if (!unit_things.isEmpty()) {
-                    sb.append(String.format(" [%s]\n", String.join(", ", unit_things)));
+                    }
+                    if (!unit_things.isEmpty()) {
+                        sb.append(String.format(" [%s]\n", String.join(", ", unit_things)));
+                    }
                 }
             }
         }
