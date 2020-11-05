@@ -9,11 +9,11 @@ public class CombatGroupMember {
 
     public static CombatGroupMember fromCode(ByteBuffer data) {
         CombatGroupMember result = new CombatGroupMember();
-        data.get(); // always starts with 00 for some reason.
+        data.get(); // always starts with 00
         result.setId(Armylist.readVLI(data));
-        result.setProfile(data.get() & 0xff);
-        result.setOption(data.get() & 0xff);
-        data.get(); // always ends with 00 for some reason.
+        result.setProfile(Armylist.readVLI(data));
+        result.setOption(Armylist.readVLI(data));
+        data.get(); // always ends with 00
         return result;
     }
 

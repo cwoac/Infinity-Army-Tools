@@ -5,9 +5,11 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import net.codersoffortune.infinity.metadata.specops.Specops;
 import net.codersoffortune.infinity.metadata.specops.SpecopsNestedItem;
 import net.codersoffortune.infinity.metadata.specops.SpecopsNestedItemDeserializer;
+import net.codersoffortune.infinity.metadata.unit.Unit;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public class FactionList {
     private String version;
@@ -25,6 +27,10 @@ public class FactionList {
         om.registerModule(sm);
         //data = om.readValue(new java.net.URL(url), Map.class);
         return om.readValue(FactionList.class.getResource("/" + url), FactionList.class);
+    }
+
+    public Optional<Unit> getUnit(int id) {
+        return units.stream().filter(x -> x.getID() == id).findFirst();
     }
 
     public String getVersion() {

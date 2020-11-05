@@ -1,4 +1,4 @@
-package net.codersoffortune.infinity.metadata;
+package net.codersoffortune.infinity.metadata.unit;
 
 import java.util.List;
 import java.util.Map;
@@ -16,9 +16,22 @@ public class Unit {
     private String notes;
     private String name;
     private List<ProfileGroup> ProfileGroups;
-    private List<ProfileOption> options; // TODO:: Find a filled option. Is this the same as Profile::Options?
+    private List<ProfileOption> options;
     private String slug;
     private Map<String, List<Integer>> filters;
+
+    public CompactedUnit getUnit(final int group, final int option) throws IllegalArgumentException {
+        ProfileGroup pg = ProfileGroups.stream().filter(x -> x.getId() == group).findFirst().orElseThrow(IllegalArgumentException::new);
+        ProfileOption po = pg.getOptions().stream().filter(x -> x.getId() == option).findFirst().orElseThrow(IllegalArgumentException::new);
+
+        CompactedUnit result = new CompactedUnit();
+        result.setName(po.getName());
+        result.addEquipment(po.getEquip());
+        result.addSkills(po.getSkills());
+        result.addWeapons(po.getWeapons());
+
+        return result;
+    }
 
     public Map<String, List<Integer>> getFilters() {
         return filters;

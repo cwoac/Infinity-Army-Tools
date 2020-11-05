@@ -1,6 +1,6 @@
 package net.codersoffortune.infinity.metadata.specops;
 
-import net.codersoffortune.infinity.metadata.Unit;
+import net.codersoffortune.infinity.metadata.unit.Unit;
 
 import java.util.List;
 

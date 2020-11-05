@@ -1,9 +1,18 @@
 package net.codersoffortune.infinity.db;
 
+import net.codersoffortune.infinity.metadata.Faction;
+import net.codersoffortune.infinity.metadata.FactionList;
+import net.codersoffortune.infinity.metadata.Metadata;
+import net.codersoffortune.infinity.metadata.unit.Unit;
+
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 public class Database {
     private static int currentVersion = 1;
@@ -22,7 +31,12 @@ public class Database {
     private String getVersionQueryFmt = "SELECT version FROM versions WHERE thing='%s'";
     private String versionsSchema = "CREATE table versions(thing varchar(64) NOT NULL, version varchar(64), PRIMARY KEY(thing))";
 
-    private Database() throws SQLException {
+
+    // in memory structures
+    Metadata metadata;
+    Map<Integer, FactionList> factions;
+
+    private Database() throws SQLException, IOException {
         // block reflection
         if (dbSingleton != null) {
             throw new RuntimeException("Don't try and create Database directly");
@@ -37,7 +51,41 @@ public class Database {
             createSchemas();
         }
         System.out.println(getDBVersion());
+        metadata = Metadata.loadMetadata();
+        factions = new HashMap<>();
+        for (Faction f : metadata.getFactions()) {
+            int id = f.getID();
+            if (id == 901) continue; // NA2 doesn't have a vanilla option
+            factions.put(id, FactionList.loadFaction(String.valueOf(id)));
+        }
+    }
 
+    public static Database getInstance() throws SQLException, IOException {
+        if (dbSingleton == null) {
+            // thread safe
+            synchronized (Database.class) {
+                if (dbSingleton == null) {
+                    dbSingleton = new Database();
+                }
+            }
+        }
+        return dbSingleton;
+    }
+
+    public Metadata getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(Metadata metadata) {
+        this.metadata = metadata;
+    }
+
+    public Map<Integer, FactionList> getFactions() {
+        return factions;
+    }
+
+    public void setFactions(Map<Integer, FactionList> factions) {
+        this.factions = factions;
     }
 
     private Connection connection;
@@ -86,9 +134,6 @@ public class Database {
     }
 
     private void createSchemas() throws SQLException {
-        /**
-         * Create the database versions
-         */
         // first the versions
         connection.createStatement().execute(versionsSchema);
         setVersion();
@@ -100,23 +145,20 @@ public class Database {
         connection.createStatement().execute(vQuery);
     }
 
-
-    public static Database getInstance() throws SQLException {
-        if (dbSingleton == null) {
-            // thread safe
-            synchronized (Database.class) {
-                if (dbSingleton == null) {
-                    dbSingleton = new Database();
-                }
-            }
+    public Optional<Unit> getUnitName(int unit_id, int faction_id) {
+        FactionList f = factions.get(faction_id);
+        if (f == null) {
+            // TODO:: Throw exception?
+            return Optional.empty();
         }
-        return dbSingleton;
+
+        return f.getUnit(unit_id);
     }
 
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
-        if (connection!=null) {
+        if (connection != null) {
             connection.close();
             connection = null;
         }

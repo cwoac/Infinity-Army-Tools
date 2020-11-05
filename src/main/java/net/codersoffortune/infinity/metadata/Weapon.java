@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 //@JsonInclude(JsonInclude.Include.NON_NULL)
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "uuid", scope = Weapon.class)
 public class Weapon {
     private int id;
     private String type;
@@ -20,9 +20,6 @@ public class Weapon {
     private String saving;
     private List<String> properties;
     private Map<String, RangeBand> distance;
-
-    public Weapon() {
-    }
 
     public Map<String, RangeBand> getDistance() {
         return distance;

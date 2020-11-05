@@ -1,4 +1,6 @@
-package net.codersoffortune.infinity.metadata;
+package net.codersoffortune.infinity.metadata.unit;
+
+import net.codersoffortune.infinity.metadata.Peripheral;
 
 import java.util.List;
 

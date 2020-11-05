@@ -1,4 +1,4 @@
-package net.codersoffortune.infinity.metadata;
+package net.codersoffortune.infinity.metadata.unit;
 
 public class ProfileInclude {
     // {"q":1,"group":2,"option":1}

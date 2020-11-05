@@ -11,10 +11,9 @@ public class CombatGroup {
     public static CombatGroup fromCode(ByteBuffer data) {
         CombatGroup result = new CombatGroup();
         // first off, who are we?
-        result.setGroup_number(data.get() & 0xff);
+        result.setGroup_number(Armylist.readVLI(data));
         // and how big?
-        int group_size = data.get() & 0xff;
-
+        int group_size = Armylist.readVLI(data);
         for (int i = 0; i < group_size; i++) {
             result.addMember(CombatGroupMember.fromCode(data));
         }
