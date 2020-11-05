@@ -2,6 +2,9 @@ package net.codersoffortune.infinity.decoder;
 
 import net.codersoffortune.infinity.armylist.Armylist;
 import net.codersoffortune.infinity.db.Database;
+import net.codersoffortune.infinity.metadata.FactionList;
+import net.codersoffortune.infinity.metadata.MappedFactionFilters;
+import net.codersoffortune.infinity.metadata.Metadata;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -22,8 +25,10 @@ public class Decoder {
             "gMwPaW52aW5jaWJsZS1hcm15D0NvcmUgYW5kIGhhcnJpc4EsAgEJAICWAQsAAITvAQIAAITeAQMAAITeAQUAAHwBCQAAfAEBAAB8AQEAAHwBAQAAgJ8BAQACBACE6wEDAACE3AEEAACAogECAACAjgEBAA=="
 
     };*/
-    private static final String[] testcodes = {"gfUGbm9tYWRzASCBLAEBAQCGDwABAA==",
-            "gfUGbm9tYWRzASCBLAEBAQCGDwACAA==",
+    private static final String[] testcodes = {
+            "gMwPaW52aW5jaWJsZS1hcm15D0NvcmUgYW5kIGhhcnJpc4EsAgEJAICWAQsAAITvAQIAAITeAQMAAITeAQUAAHwBCQAAfAEBAAB8AQEAAHwBAQAAgJ8BAQACBACE6wEDAACE3AEEAACAogECAACAjgEBAA==",
+            //"gfUGbm9tYWRzASCBLAEBAQCGDwABAA==",
+            //"gfUGbm9tYWRzASCBLAEBAQCGDwACAA==",
             "g40Nd2hpdGUtY29tcGFueQEggSwBAQEAqDwBAQA=", // anaconda
             "g40Nd2hpdGUtY29tcGFueQEggSwBAQEAqIwAAwA=", //scarfaceb
             "gr8Kb3BlcmF0aW9ucwEggSwBAQIAglUBAQAAglUCAQA=",
@@ -32,12 +37,17 @@ public class Decoder {
 
     public static void main(String[] args) throws IOException, SQLException {
         //preload the db
-        Database.getInstance();
+        Database db = Database.getInstance();
+        Metadata m = db.getMetadata();
 
 
         for (String code : testcodes) {
             Armylist list = Armylist.fromArmyCode(code);
+            FactionList fl = db.getFactions().get(list.getFaction());
+            MappedFactionFilters filters = new MappedFactionFilters(fl.getFilters());
+            String moo = list.asJson(filters);
             list.pretty_print();
+
         }
     }
 }

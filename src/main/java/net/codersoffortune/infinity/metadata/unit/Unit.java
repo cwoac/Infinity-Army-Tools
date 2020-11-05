@@ -1,9 +1,14 @@
 package net.codersoffortune.infinity.metadata.unit;
 
+import net.codersoffortune.infinity.metadata.MappedFactionFilters;
+
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Unit {
     //"id":161,"idArmy":38,"canonical":201,"isc":"Yáozăo","iscAbbr":null,"notes":null,"name":"YÁOZĂO",
@@ -43,6 +48,31 @@ public class Unit {
         return result;
     }
 
+    private static String toJson(final CompactedUnit unit, final MappedFactionFilters filters) {
+        // TODO:: Log the failures properly;
+        try {
+            return String.format("%s\n%s", unit.getName(), unit.getTTSDescription(filters));
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    /**
+     * Get the units as a collection of json strings suitible for importing into TTS
+     *
+     * @param group   profile group selected (usually 1)
+     * @param option  profile choice selected
+     * @param filters Needed for mapping types, orders as they are stored in the faction data not meta data?
+     * @return collection of strings, one per model.
+     * @throws IllegalArgumentException on error.
+     */
+    public Collection<String> getUnitsForTTS(final int group, final int option, final MappedFactionFilters filters) throws IllegalArgumentException {
+        //TODO:: Handle pilots
+        Collection<CompactedUnit> units = getUnits(group, option);
+        return units.stream().map(unit -> toJson(unit, filters)).collect(Collectors.toList());
+    }
+
     public Collection<CompactedUnit> getUnits(final int group, final int option) throws IllegalArgumentException {
         if (group == 0) {
             return get0GroupUnits(option);
@@ -60,6 +90,14 @@ public class Unit {
         unit.addEquipment(po.getEquip());
         unit.addSkills(po.getSkills());
         unit.addWeapons(po.getWeapons());
+        List<Profile> profiles = pg.getProfiles();
+        if (profiles.isEmpty()) {
+            throw new IllegalArgumentException("Asked for Profile group with no profile");
+        }
+        if (profiles.size() > 1) {
+            System.out.println("moo");
+        }
+        unit.setProfile(profiles.get(0));
         result.add(unit);
         // now check for included elements.
         for (ProfileInclude pi : po.getIncludes()) {

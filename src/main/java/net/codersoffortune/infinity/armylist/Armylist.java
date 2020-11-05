@@ -2,17 +2,22 @@ package net.codersoffortune.infinity.armylist;
 
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.Equipment;
+import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.metadata.Skill;
 import net.codersoffortune.infinity.metadata.Weapon;
 import net.codersoffortune.infinity.metadata.unit.CompactedUnit;
 import net.codersoffortune.infinity.metadata.unit.ProfileItem;
 import net.codersoffortune.infinity.metadata.unit.Unit;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Armylist {
     private String army_code;
@@ -32,6 +37,16 @@ public class Armylist {
         return result;
     }
 
+    static String getResourceFileAsString(String fileName) throws IOException {
+        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        try (InputStream is = classLoader.getResourceAsStream(fileName)) {
+            if (is == null) return null;
+            try (InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
+                 BufferedReader reader = new BufferedReader(isr)) {
+                return reader.lines().collect(Collectors.joining(System.lineSeparator()));
+            }
+        }
+    }
 
     public static Armylist fromArmyCode(final String armyCode) {
         byte[] data = Base64.getDecoder().decode(armyCode);
@@ -119,6 +134,31 @@ public class Armylist {
             }
         }
         System.out.println(sb.toString());
+    }
+
+    /**
+     * Create a json representation suitible for use in TTS
+     *
+     * @return a String!
+     */
+    public String asJson(final MappedFactionFilters filters) throws IOException, SQLException {
+        Database db = Database.getInstance();
+
+        StringBuilder ud = new StringBuilder();
+        for (CombatGroup cg : getCombatGroups()) {
+            for (CombatGroupMember cgm : cg.getMembers()) {
+                Optional<Unit> maybeUnit = db.getUnitName(cgm.getId(), getFaction());
+                if (!maybeUnit.isPresent()) continue;
+                Unit unit = maybeUnit.get();
+                for (String s : unit.getUnitsForTTS(cgm.getProfile(), cgm.getOption(), filters))
+                    ud.append(s);
+            }
+        }
+        // now put them in the bag
+        String description = String.format("%s - %s", getFaction_name(), getArmy_name());
+        String bag_format = getResourceFileAsString("templates/bag_template");
+
+        return String.format(bag_format, description, ud.toString());
     }
 
     public void addCombatGroup(final CombatGroup combatGroup) {
