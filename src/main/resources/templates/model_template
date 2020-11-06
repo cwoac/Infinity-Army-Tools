@@ -11,8 +11,8 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "FUGAZI DRONBOT ● Flash",
-  "Description": "[b]REM[/b] ● [AAFFAA]Regular[-] ● Hackable \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 6-6\n[b]CC[/b]: 13\n[b]BS[/b]: 8\n[b]PH[/b]: 11\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 3\n[B]STR[/B]: 1\n[b]S[/b]: 3\n[ffdddd][sub]----------Weapons---------\n[/sub]\nFlash Pulse ● PARA CC Weapon (-3) [-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nRepeater [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nRemote Presence ● Courage ● Mimetism (-3) ● Immunity (Shock) [-]\n[000013][-]",
+  "Nickname": "%s",
+  "Description": "%s",
   "GMNotes": "",
   "ColorDiffuse": {
     "r": 0.854901969,
@@ -94,63 +94,6 @@
     }
   ],
   "States": {
-    "2": {
-      "Name": "Custom_Model",
-      "Transform": {
-        "posX": -43.0,
-        "posY": 0.9600001,
-        "posZ": 1.0,
-        "rotX": -1.14795112E-05,
-        "rotY": 269.998962,
-        "rotZ": -6.657278E-06,
-        "scaleX": 1.0,
-        "scaleY": 1.0,
-        "scaleZ": 1.0
-      },
-      "Nickname": "Silhouette 3",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
-      },
-      "Locked": false,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "MeasureMovement": false,
-      "DragSelectable": true,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomMesh": {
-        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/929303676573608371/35B6115843155E46391551B0AC37D029EF9F3C63/",
-        "DiffuseURL": "",
-        "NormalURL": "",
-        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1012689924693139824/21CD80D311A1DBEDC440F18367ACFA41039C0315/",
-        "Convex": true,
-        "MaterialIndex": 3,
-        "TypeIndex": 1,
-        "CustomShader": {
-          "SpecularColor": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0
-          },
-          "SpecularIntensity": 0.0,
-          "SpecularSharpness": 2.0,
-          "FresnelStrength": 0.0
-        },
-        "CastShadows": true
-      },
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "XmlUI": "",
-      "GUID": "ac1109"
-    }
+    %s
   }
 }

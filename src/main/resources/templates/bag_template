@@ -71,7 +71,7 @@
       "LuaScript": "",
       "LuaScriptState": "",
       "XmlUI": "",
-      "ContainedObjects" [
+      "ContainedObjects": [
       %s
       ],
       "GUID": "39c039"

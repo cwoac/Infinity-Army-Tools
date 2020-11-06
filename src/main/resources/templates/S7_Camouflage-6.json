@@ -1,0 +1,48 @@
+"2": {
+"Name": "Custom_Model",
+"Transform": {
+"posX": 31.1279621,
+"posY": 0.960000157,
+"posZ": -11.7061558,
+"rotX": -1.884076E-05,
+"rotY": 270.001068,
+"rotZ": -0.000352306553,
+"scaleX": 1.0,
+"scaleY": 1.0,
+"scaleZ": 1.0
+},
+"Nickname": "Camouflage (-6) S7",
+"Description": "",
+"GMNotes": "",
+"ColorDiffuse": {
+"r": 0.0,
+"g": 0.6901961,
+"b": 0.9490196
+},
+"Locked": false,
+"Grid": true,
+"Snap": true,
+"IgnoreFoW": false,
+"MeasureMovement": false,
+"DragSelectable": true,
+"Autoraise": true,
+"Sticky": true,
+"Tooltip": true,
+"GridProjection": false,
+"HideWhenFaceDown": false,
+"Hands": false,
+"CustomMesh": {
+"MeshURL": "http://cloud-3.steamusercontent.com/ugc/929303943738459507/34EE1AF3873E76E19912EDE95F2059647D9AB1D9/",
+"DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/",
+"NormalURL": "",
+"ColliderURL": "http://cloud-3.steamusercontent.com/ugc/929303943738459507/34EE1AF3873E76E19912EDE95F2059647D9AB1D9/",
+"Convex": true,
+"MaterialIndex": 3,
+"TypeIndex": 1,
+"CastShadows": true
+},
+"LuaScript": "",
+"LuaScriptState": "",
+"XmlUI": "",
+"GUID": "8a494f"
+}

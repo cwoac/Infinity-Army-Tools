@@ -1,0 +1,48 @@
+"2": {
+"Name": "Custom_Model",
+"Transform": {
+"posX": -13.0,
+"posY": 0.9599995,
+"posZ": -2.99999976,
+"rotX": 3.68291467E-06,
+"rotY": 270.026337,
+"rotZ": 2.25712847E-06,
+"scaleX": 1.0,
+"scaleY": 1.0,
+"scaleZ": 1.0
+},
+"Nickname": "Silhouette 5",
+"Description": "",
+"GMNotes": "",
+"ColorDiffuse": {
+"r": 0.0,
+"g": 0.6901961,
+"b": 0.9490196
+},
+"Locked": false,
+"Grid": true,
+"Snap": true,
+"IgnoreFoW": false,
+"MeasureMovement": false,
+"DragSelectable": true,
+"Autoraise": true,
+"Sticky": true,
+"Tooltip": true,
+"GridProjection": false,
+"HideWhenFaceDown": false,
+"Hands": false,
+"CustomMesh": {
+"MeshURL": "https://www.dropbox.com/s/dfec45v22g05hvw/Silhouette5.obj?dl=1",
+"DiffuseURL": "",
+"NormalURL": "",
+"ColliderURL": "https://www.dropbox.com/s/dfec45v22g05hvw/Silhouette5.obj?dl=1",
+"Convex": true,
+"MaterialIndex": 3,
+"TypeIndex": 1,
+"CastShadows": true
+},
+"LuaScript": "",
+"LuaScriptState": "",
+"XmlUI": "",
+"GUID": "913d0e"
+}
