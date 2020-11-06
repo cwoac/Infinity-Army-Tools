@@ -46,4 +46,12 @@ public class FilterItem {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "FilterItem{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

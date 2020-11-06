@@ -26,6 +26,8 @@ public class Decoder {
 
     };*/
     private static final String[] testcodes = {
+            "gr8Kb3BlcmF0aW9ucwEggSwBAQEAgkkBAgA=",
+            "g+oIc3Rhcm1hZGEDVEFHgSwCAQkAhe0BAgAAhacBBQAAhacBAQAAhacBBAAAhecBAgAAhfkBAwAAhbIBAgAAhbcBAQAAgMABAQACBgCFvQECAACFrgECAACFtQEEAACFtQEEAACGAAEGAACFuwEBAA==",
             "gMwPaW52aW5jaWJsZS1hcm15D0NvcmUgYW5kIGhhcnJpc4EsAgEJAICWAQsAAITvAQIAAITeAQMAAITeAQUAAHwBCQAAfAEBAAB8AQEAAHwBAQAAgJ8BAQACBACE6wEDAACE3AEEAACAogECAACAjgEBAA==",
             //"gfUGbm9tYWRzASCBLAEBAQCGDwABAA==",
             //"gfUGbm9tYWRzASCBLAEBAQCGDwACAA==",
@@ -47,7 +49,6 @@ public class Decoder {
             MappedFactionFilters filters = new MappedFactionFilters(fl.getFilters());
             String moo = list.asJson(filters);
             list.pretty_print();
-
         }
     }
 }

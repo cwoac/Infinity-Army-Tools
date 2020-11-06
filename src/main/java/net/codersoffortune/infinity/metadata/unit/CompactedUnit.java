@@ -29,6 +29,20 @@ public class CompactedUnit {
     }
 
     /**
+     * Checks whether to suppress a hidden information skill
+     *
+     * @param c skill number to check
+     * @return true iff this skill is good to print
+     */
+    static boolean skipSkills(final int c) {
+        // 119 - lt
+        // 69 strategos l1
+        // 70 strategos l2
+        // 26 chain of command
+        return !(c == 119 || c == 70 || c == 69 || c == 26);
+    }
+
+    /**
      * Build the description for use in TTS
      *
      * @return a string version of the description
@@ -63,9 +77,38 @@ public class CompactedUnit {
         Metadata m = db.getMetadata();
         //[b]REM[/b] ● [AAFFAA]Regular[-] ● Hackable \n
         String type = filters.getItem(FilterType.type, getProfile().getType()).getName();
-        List<String> chars = getProfile().getChars().stream().filter(CompactedUnit::skipCharacteristic).map(x -> filters.getItem(FilterType.chars, x)).map(FilterItem::getName).collect(Collectors.toList());
-        result.append(String.format("[b]%s[/b] ● [AAFFAA]%s\n", type, String.join(" ● ", chars)));
-
+        List<String> chars = getProfile().getChars().stream().filter(CompactedUnit::skipCharacteristic)
+                .map(x -> filters.getItem(FilterType.chars, x)).map(FilterItem::getName).collect(Collectors.toList());
+        result.append(String.format("[b]%s[/b] ● [AAFFAA]%s[-]\n", type, String.join(" ● ", chars)));
+        result.append("[sub]---------Attributes-------\n[/sub]\n");
+        // TODO:: Allow selecting inches.
+        result.append(String.format("[b]MOV[/b]: %s\n",
+                getProfile().getMove().stream().map(String::valueOf).collect(Collectors.joining("-"))));
+        result.append(String.format("[b]CC[/b]: %d\n", getProfile().getCc()));
+        result.append(String.format("[b]BS[/b]: %d\n", getProfile().getBs()));
+        result.append(String.format("[b]PH[/b]: %d\n", getProfile().getPh()));
+        result.append(String.format("[b]WIP[/b]: %d\n", getProfile().getWip()));
+        result.append(String.format("[b]ARM[/b]: %d\n", getProfile().getArm()));
+        result.append(String.format("[b]BTS[/b]: %d\n", getProfile().getBts()));
+        if (getProfile().isStr()) {
+            result.append(String.format("[B]STR[/B]: %d\n", getProfile().getW()));
+        } else {
+            result.append(String.format("[B]W[/B]: %d\n", getProfile().getW()));
+        }
+        result.append(String.format("[B]S[/B]: %d\n", getProfile().getS()));
+        // kit
+        result.append("[ffdddd][sub]----------Weapons---------\n[/sub]\n");
+        List<String> weapons = getWeapons().stream().map(x -> x.toString(filters, FilterType.weapons)).collect(Collectors.toList());
+        weapons.addAll(getProfile().getWeapons().stream().map(x -> x.toString(filters, FilterType.weapons)).collect(Collectors.toList()));
+        result.append(String.format("%s[-]\n", String.join(" ● ", weapons)));
+        result.append("[ddffdd][sub]---------Equipment--------\n[/sub]\n");
+        List<String> equipment = getEquipment().stream().map(x -> x.toString(filters, FilterType.equip)).collect(Collectors.toList());
+        equipment.addAll(getProfile().getEquip().stream().map(x -> x.toString(filters, FilterType.equip)).collect(Collectors.toList()));
+        result.append(String.format("%s[-]\n", String.join(" ● ", equipment)));
+        result.append("[ddddff][sub]----------Skills ---------\n[/sub]\n");
+        List<String> skills = getSkills().stream().filter(x -> skipSkills(x.getId())).map(x -> x.toString(filters, FilterType.skills)).collect(Collectors.toList());
+        skills.addAll(getProfile().getSkills().stream().filter(x -> skipSkills(x.getId())).map(x -> x.toString(filters, FilterType.skills)).collect(Collectors.toList()));
+        result.append(String.format("%s[-]\n[000013][-]", String.join(" ● ", skills)));
         return result.toString();
     }
 

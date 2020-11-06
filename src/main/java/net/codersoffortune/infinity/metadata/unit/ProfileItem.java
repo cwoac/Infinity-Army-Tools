@@ -1,15 +1,38 @@
 package net.codersoffortune.infinity.metadata.unit;
 
+import net.codersoffortune.infinity.metadata.FilterType;
+import net.codersoffortune.infinity.metadata.MappedFactionFilters;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProfileItem {
     // Can be a skill, weapon or piece of equipment
     //{"extra":[6],"id":28,"order":3}
     //{"q":1,"id":120,"order":1}
-    private int q; // TODO:: WHAT DOES THIS MEAN?
+    private int q; // quantity
     private List<Integer> extra;
     private int id;
     private int order;
+
+    /**
+     * Build a nicely formatted version, including the extras
+     * e.g. Heavy Machine Gun (+1 Burst)
+     *
+     * @param filters the filters to look up the text from
+     * @param type    the type of item this represents (yes, I know it's odd we don't store it in the object)
+     * @return A formatted string.
+     */
+    public String toString(final MappedFactionFilters filters, final FilterType type) {
+        StringBuilder result = new StringBuilder();
+        result.append(filters.getItem(type, getId()).getName());
+        if (getExtra() != null && !getExtra().isEmpty()) {
+            List<String> extras = extra.stream().map(x -> filters.getItem(FilterType.extras, x).getName())
+                    .collect(Collectors.toList());
+            result.append(String.format("(%s)", String.join(", ", extras)));
+        }
+        return result.toString();
+    }
 
     public int getOrder() {
         return order;
