@@ -1,5 +1,6 @@
 package net.codersoffortune.infinity.metadata.unit;
 
+import net.codersoffortune.infinity.armylist.Armylist;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 
 import java.io.IOException;
@@ -51,7 +52,11 @@ public class Unit {
     private static String toJson(final CompactedUnit unit, final MappedFactionFilters filters) {
         // TODO:: Log the failures properly;
         try {
-            return String.format("%s\n%s", unit.getName(), unit.getTTSDescription(filters));
+            // TODO:: Don't load this everytime
+            return String.format(Armylist.getResourceFileAsString("Templates/model_template"),
+                    unit.getTTSNickName(filters),
+                    unit.getTTSDescription(filters),
+                    unit.getTTSSilhouette());
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }

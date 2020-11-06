@@ -37,7 +37,7 @@ public class Armylist {
         return result;
     }
 
-    static String getResourceFileAsString(String fileName) throws IOException {
+    public static String getResourceFileAsString(String fileName) throws IOException {
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         try (InputStream is = classLoader.getResourceAsStream(fileName)) {
             if (is == null) return null;
@@ -144,21 +144,21 @@ public class Armylist {
     public String asJson(final MappedFactionFilters filters) throws IOException, SQLException {
         Database db = Database.getInstance();
 
-        StringBuilder ud = new StringBuilder();
+        List<String> units = new ArrayList<>();
         for (CombatGroup cg : getCombatGroups()) {
             for (CombatGroupMember cgm : cg.getMembers()) {
                 Optional<Unit> maybeUnit = db.getUnitName(cgm.getId(), getFaction());
                 if (!maybeUnit.isPresent()) continue;
                 Unit unit = maybeUnit.get();
-                for (String s : unit.getUnitsForTTS(cgm.getProfile(), cgm.getOption(), filters))
-                    ud.append(s);
+                units.addAll(unit.getUnitsForTTS(cgm.getProfile(), cgm.getOption(), filters));
             }
         }
+
         // now put them in the bag
         String description = String.format("%s - %s", getFaction_name(), getArmy_name());
         String bag_format = getResourceFileAsString("templates/bag_template");
-
-        return String.format(bag_format, description, ud.toString());
+        String unit_list = String.join(",\n", units);
+        return String.format(bag_format, description, unit_list);
     }
 
     public void addCombatGroup(final CombatGroup combatGroup) {
