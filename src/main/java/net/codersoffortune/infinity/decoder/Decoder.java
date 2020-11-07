@@ -47,7 +47,8 @@ public class Decoder {
             Armylist list = Armylist.fromArmyCode(code);
             FactionList fl = db.getFactions().get(list.getFaction());
             MappedFactionFilters filters = new MappedFactionFilters(fl.getFilters());
-            String moo = list.asJson(filters);
+            //TODO:: Load the right modelset
+            String moo = list.asJson(filters, null);
             list.pretty_print();
         }
     }

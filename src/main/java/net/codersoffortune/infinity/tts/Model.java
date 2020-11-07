@@ -14,6 +14,10 @@ public class Model {
     // Yes, this is monstrousity, the map is group->profile->option->[model]
     private Map<Integer, Map<Integer, Map<Integer, List<TTSModel>>>> items = new HashMap<>();
 
+    public List<TTSModel> getModel(int group, int profile, int option) {
+        return items.get(group).get(profile).get(option);
+    }
+
     public Model() {
     }
 

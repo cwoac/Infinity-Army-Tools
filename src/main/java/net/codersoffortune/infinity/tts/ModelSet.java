@@ -52,6 +52,16 @@ public class ModelSet {
         models.get(unit_idx).addMesh(profile_group, profile, option, decals, meshes);
     }
 
+    // TODO:: randomly select when multiple options are availiable?
+    public TTSModel getModel(int unit_idx, int group_idx, int profile_idx, int option_idx) {
+        try {
+            return models.get(unit_idx).getModel(group_idx, profile_idx, option_idx).get(0);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public int getFaction() {
         return faction;
     }

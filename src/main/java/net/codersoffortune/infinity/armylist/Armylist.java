@@ -8,6 +8,7 @@ import net.codersoffortune.infinity.metadata.Weapon;
 import net.codersoffortune.infinity.metadata.unit.CompactedUnit;
 import net.codersoffortune.infinity.metadata.unit.ProfileItem;
 import net.codersoffortune.infinity.metadata.unit.Unit;
+import net.codersoffortune.infinity.tts.ModelSet;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -141,8 +142,12 @@ public class Armylist {
      *
      * @return a String!
      */
-    public String asJson(final MappedFactionFilters filters) throws IOException, SQLException {
+    public String asJson(final MappedFactionFilters filters, final ModelSet modelSet) throws IOException, SQLException {
         Database db = Database.getInstance();
+
+        if (modelSet.getFaction() != getFaction()) {
+            throw new IllegalArgumentException("Modelset is of the wrong faction!");
+        }
 
         List<String> units = new ArrayList<>();
         for (CombatGroup cg : getCombatGroups()) {
@@ -150,7 +155,7 @@ public class Armylist {
                 Optional<Unit> maybeUnit = db.getUnitName(cgm.getId(), getFaction());
                 if (!maybeUnit.isPresent()) continue;
                 Unit unit = maybeUnit.get();
-                units.addAll(unit.getUnitsForTTS(cgm.getProfile(), cgm.getOption(), filters));
+                units.addAll(unit.getUnitsForTTS(cgm.getProfile(), cgm.getOption(), filters, modelSet));
             }
         }
 

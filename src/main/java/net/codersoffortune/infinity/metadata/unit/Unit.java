@@ -2,6 +2,8 @@ package net.codersoffortune.infinity.metadata.unit;
 
 import net.codersoffortune.infinity.armylist.Armylist;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
+import net.codersoffortune.infinity.tts.ModelSet;
+import net.codersoffortune.infinity.tts.TTSModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -49,13 +51,16 @@ public class Unit {
         return result;
     }
 
-    private static String toJson(final CompactedUnit unit, final MappedFactionFilters filters) {
+    private static String toJson(final CompactedUnit unit, final MappedFactionFilters filters, final ModelSet modelSet) {
         // TODO:: Log the failures properly;
         try {
+            TTSModel ttsModel = modelSet.getModel(unit.getUnit_idx(), unit.getGroup_idx(), unit.getProfile_idx(), unit.getOption_idx());
             // TODO:: Don't load this everytime
             return String.format(Armylist.getResourceFileAsString("Templates/model_template"),
                     unit.getTTSNickName(filters),
                     unit.getTTSDescription(filters),
+                    ttsModel.getMeshes(),
+                    ttsModel.getDecals(),
                     unit.getTTSSilhouette());
         } catch (SQLException | IOException e) {
             e.printStackTrace();
@@ -66,16 +71,17 @@ public class Unit {
     /**
      * Get the units as a collection of json strings suitible for importing into TTS
      *
-     * @param group   profile group selected (usually 1)
-     * @param option  profile choice selected
-     * @param filters Needed for mapping types, orders as they are stored in the faction data not meta data?
+     * @param group    profile group selected (usually 1)
+     * @param option   profile choice selected
+     * @param filters  Needed for mapping types, orders as they are stored in the faction data not meta data?
+     * @param modelSet the set of availiable models.
      * @return collection of strings, one per model.
      * @throws IllegalArgumentException on error.
      */
-    public Collection<String> getUnitsForTTS(final int group, final int option, final MappedFactionFilters filters) throws IllegalArgumentException {
+    public Collection<String> getUnitsForTTS(final int group, final int option, final MappedFactionFilters filters, final ModelSet modelSet) throws IllegalArgumentException {
         //TODO:: Handle pilots
         Collection<CompactedUnit> units = getUnits(group, option);
-        return units.stream().map(unit -> toJson(unit, filters)).collect(Collectors.toList());
+        return units.stream().map(unit -> toJson(unit, filters, modelSet)).collect(Collectors.toList());
     }
 
     public Collection<CompactedUnit> getUnits(final int group, final int option) throws IllegalArgumentException {
@@ -91,6 +97,9 @@ public class Unit {
 
 
         CompactedUnit unit = new CompactedUnit();
+        unit.setUnit_idx(getID());
+        unit.setGroup_idx(group);
+        unit.setOption_idx(option);
         unit.setName(po.getName());
         unit.addEquipment(po.getEquip());
         unit.addSkills(po.getSkills());
@@ -103,6 +112,7 @@ public class Unit {
             System.out.println("moo");
         }
         unit.setProfile(profiles.get(0));
+        unit.setProfile_idx(profiles.get(0).getId());
         result.add(unit);
         // now check for included elements.
         for (ProfileInclude pi : po.getIncludes()) {

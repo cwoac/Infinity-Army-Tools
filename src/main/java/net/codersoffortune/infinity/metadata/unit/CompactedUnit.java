@@ -20,8 +20,36 @@ public class CompactedUnit {
     private final List<ProfileItem> weapons = new ArrayList<>();
     private final List<ProfileItem> skills = new ArrayList<>();
     private final List<ProfileItem> equipment = new ArrayList<>();
+    private int unit_idx;
+    private int group_idx;
+    private int profile_idx;
+    private int option_idx;
     private Profile profile;
     private String name;
+
+    public int getGroup_idx() {
+        return group_idx;
+    }
+
+    public void setGroup_idx(int group_idx) {
+        this.group_idx = group_idx;
+    }
+
+    public int getProfile_idx() {
+        return profile_idx;
+    }
+
+    public void setProfile_idx(int profile_idx) {
+        this.profile_idx = profile_idx;
+    }
+
+    public int getOption_idx() {
+        return option_idx;
+    }
+
+    public void setOption_idx(int option_idx) {
+        this.option_idx = option_idx;
+    }
 
     // chars to ignore : 2,5
     static boolean skipCharacteristic(final int c) {
@@ -123,6 +151,7 @@ public class CompactedUnit {
         result.append("[ddddff][sub]----------Skills ---------\\n[/sub]\\n");
         List<String> skills = getSkills().stream().filter(x -> skipSkills(x.getId())).map(x -> x.toString(filters, FilterType.skills)).collect(Collectors.toList());
         skills.addAll(getProfile().getSkills().stream().filter(x -> skipSkills(x.getId())).map(x -> x.toString(filters, FilterType.skills)).collect(Collectors.toList()));
+        //TODO:: implement the reference code.
         result.append(String.format("%s[-]\\n[000013][-]", String.join(" ● ", skills)));
         return result.toString();
     }
@@ -166,5 +195,13 @@ public class CompactedUnit {
 
     public void setProfile(Profile profile) {
         this.profile = profile;
+    }
+
+    public int getUnit_idx() {
+        return unit_idx;
+    }
+
+    public void setUnit_idx(int unit_idx) {
+        this.unit_idx = unit_idx;
     }
 }

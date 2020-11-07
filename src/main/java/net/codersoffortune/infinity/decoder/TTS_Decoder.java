@@ -2,8 +2,10 @@ package net.codersoffortune.infinity.decoder;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.codersoffortune.infinity.armylist.Armylist;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.FactionList;
+import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.tts.ModelSet;
 
 import java.io.IOException;
@@ -15,6 +17,7 @@ import java.util.regex.Pattern;
 
 public class TTS_Decoder {
 
+    private final static String test_list = "ZQpwYW5vY2VhbmlhASCBLAEBCQABAQEAAAEBAgAAAQEDAAABAQQAAAEBBQAAAQEGAAABAQgAAAEBCQAAAQEBAA==";
 
     public static void main(String[] args) throws IOException, SQLException {
         Database db = Database.getInstance();
@@ -48,7 +51,11 @@ public class TTS_Decoder {
         ModelSet ms2 = om.readValue(output, ModelSet.class);
         String output2 = om.writeValueAsString(ms2);
         assert (output.equals(output2));
+        Armylist testList = Armylist.fromArmyCode(test_list);
+        MappedFactionFilters mff = new MappedFactionFilters(db.getFactions().get(101).getFilters());
+        String bag = testList.asJson(mff, ms2);
         System.out.println(jn.toString());
+
     }
 
 }

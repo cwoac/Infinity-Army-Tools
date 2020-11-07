@@ -31,68 +31,14 @@
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": false,
-  "CustomMesh": {
-    "MeshURL": "http://cloud-3.steamusercontent.com/ugc/925928630319000946/59207F2FCCEED4402B0E7406A59BFC34D1B1C687/",
-    "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/925928630323752078/3BA37DFB9028B061958A65178B3CF570B2E6FD03/",
-    "NormalURL": "",
-    "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1012689924693058973/F7E8C214C78B0CC828710C7097D7F64DA6C0F0F7/",
-    "Convex": false,
-    "MaterialIndex": 3,
-    "TypeIndex": 1,
-    "CustomShader": {
-      "SpecularColor": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
-      },
-      "SpecularIntensity": 0.0,
-      "SpecularSharpness": 2.0,
-      "FresnelStrength": 0.0
-    },
-    "CastShadows": true
-  },
+  "CustomMesh":
+  %s,
   "LuaScript": "",
   "LuaScriptState": "",
   "XmlUI": "",
-  "AttachedDecals": [
-    {
-      "Transform": {
-        "posX": -0.017812252,
-        "posY": 0.726654768,
-        "posZ": 0.102573395,
-        "rotX": 0.0,
-        "rotY": 90.0,
-        "rotZ": 0.0,
-        "scaleX": 1.97851372,
-        "scaleY": 1.2100004,
-        "scaleZ": 1.21000051
-      },
-      "CustomDecal": {
-        "Name": "Dronbot Fugazi",
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/866241622023413555/F36154E3D21996808AD355B3803E41359F655748/",
-        "Size": 1.0
-      }
-    },
-    {
-      "Transform": {
-        "posX": 0.0178122632,
-        "posY": 0.7173959,
-        "posZ": -0.0404863358,
-        "rotX": 1.58042121E-06,
-        "rotY": 270.0,
-        "rotZ": -3.24925168E-06,
-        "scaleX": 1.97851419,
-        "scaleY": 1.21000111,
-        "scaleZ": 1.21000147
-      },
-      "CustomDecal": {
-        "Name": "Dronbot Fugazi",
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/866241622023413555/F36154E3D21996808AD355B3803E41359F655748/",
-        "Size": 1.0
-      }
-    }
-  ],
+  "AttachedDecals":
+  %s,
   "States": {
     %s
-  }
+}
 }
