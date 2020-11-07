@@ -6,6 +6,7 @@ import net.codersoffortune.infinity.metadata.unit.Unit;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class ModelSet {
     private int faction;
@@ -39,13 +40,22 @@ public class ModelSet {
      * @param meshes            Json representing the meshes for this model
      */
     public void addModel(int unit_idx, int profile_array_idx, String decals, String meshes) {
+        Optional<Unit> maybeUnit = factionList.getUnit(unit_idx);
+        if (!maybeUnit.isPresent()) {
+            System.out.println(unit_idx);
+        }
         Unit unit = factionList.getUnit(unit_idx).orElseThrow(IllegalArgumentException::new);
         // TODO:: Handle the cases where it is not. E.g. proxies
         int profile_group = 1;
         // TODO:: Handle the cases where it is not. E.g. pilots
         // TODO:: Handle the Su Jian
         int profile = 1;
-        int option = unit.getProfileGroups().get(0).getOptions().get(profile_array_idx).getId();
+        int option = 1;
+        try {
+            option = unit.getProfileGroups().get(0).getOptions().get(profile_array_idx).getId();
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
         if (!models.containsKey(unit_idx)) {
             models.put(unit_idx, new Model(faction, unit_idx));
         }

@@ -1,8 +1,8 @@
 package net.codersoffortune.infinity.db;
 
 import net.codersoffortune.infinity.metadata.Faction;
-import net.codersoffortune.infinity.metadata.FactionList;
 import net.codersoffortune.infinity.metadata.Metadata;
+import net.codersoffortune.infinity.metadata.SectorialList;
 import net.codersoffortune.infinity.metadata.unit.Unit;
 
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class Database {
 
     // in memory structures
     Metadata metadata;
-    Map<Integer, FactionList> factions;
+    Map<Integer, SectorialList> factions;
 
     private Database() throws SQLException, IOException {
         // block reflection
@@ -56,7 +56,7 @@ public class Database {
         for (Faction f : metadata.getFactions()) {
             int id = f.getID();
             if (id == 901) continue; // NA2 doesn't have a vanilla option
-            factions.put(id, FactionList.loadFaction(String.valueOf(id)));
+            factions.put(id, SectorialList.loadFaction(String.valueOf(id)));
         }
     }
 
@@ -80,11 +80,11 @@ public class Database {
         this.metadata = metadata;
     }
 
-    public Map<Integer, FactionList> getFactions() {
+    public Map<Integer, SectorialList> getFactions() {
         return factions;
     }
 
-    public void setFactions(Map<Integer, FactionList> factions) {
+    public void setFactions(Map<Integer, SectorialList> factions) {
         this.factions = factions;
     }
 
@@ -146,7 +146,7 @@ public class Database {
     }
 
     public Optional<Unit> getUnitName(int unit_id, int faction_id) {
-        FactionList f = factions.get(faction_id);
+        SectorialList f = factions.get(faction_id);
         if (f == null) {
             // TODO:: Throw exception?
             return Optional.empty();

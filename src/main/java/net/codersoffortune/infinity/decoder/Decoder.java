@@ -2,9 +2,9 @@ package net.codersoffortune.infinity.decoder;
 
 import net.codersoffortune.infinity.armylist.Armylist;
 import net.codersoffortune.infinity.db.Database;
-import net.codersoffortune.infinity.metadata.FactionList;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.metadata.Metadata;
+import net.codersoffortune.infinity.metadata.SectorialList;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -45,7 +45,7 @@ public class Decoder {
 
         for (String code : testcodes) {
             Armylist list = Armylist.fromArmyCode(code);
-            FactionList fl = db.getFactions().get(list.getFaction());
+            SectorialList fl = db.getFactions().get(list.getFaction());
             MappedFactionFilters filters = new MappedFactionFilters(fl.getFilters());
             //TODO:: Load the right modelset
             String moo = list.asJson(filters, null);
