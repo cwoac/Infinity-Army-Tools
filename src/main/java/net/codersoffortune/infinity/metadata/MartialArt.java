@@ -11,8 +11,6 @@ public class MartialArt {
     public MartialArt() {
     }
 
-    ;
-
     public MartialArt(String opponent, String damage, String attack, String name, String burst) {
         setOpponent(opponent);
         setDamage(damage);

@@ -17,9 +17,9 @@ import java.util.stream.Collectors;
  * A compacted unit is the final profile got from taking a specific profile group / option combination on a unit.
  */
 public class CompactedUnit {
-    private List<ProfileItem> weapons = new ArrayList<>();
-    private List<ProfileItem> skills = new ArrayList<>();
-    private List<ProfileItem> equipment = new ArrayList<>();
+    private final List<ProfileItem> weapons = new ArrayList<>();
+    private final List<ProfileItem> skills = new ArrayList<>();
+    private final List<ProfileItem> equipment = new ArrayList<>();
     private Profile profile;
     private String name;
 

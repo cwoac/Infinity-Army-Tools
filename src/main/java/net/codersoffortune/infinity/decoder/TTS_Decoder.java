@@ -4,14 +4,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.FactionList;
-import net.codersoffortune.infinity.metadata.Model;
+import net.codersoffortune.infinity.tts.ModelSet;
 
 import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,8 +24,9 @@ public class TTS_Decoder {
         // Now get to the contents of the bag
         JsonNode contents = jn.findPath("ContainedObjects");
         Pattern idPattern = Pattern.compile("(?<opt>[\\dA-Fa-f])(?<unit>[\\dA-Fa-f]{5})");
-        List<Model> models = new ArrayList<>();
+        //List<Model> models = new ArrayList<>();
         FactionList panO = db.getFactions().get(101);
+        ModelSet ms = new ModelSet(panO, 101);
         for (JsonNode child : contents) {
             String[] descLines = child.get("Description").asText().split("\n");
             String name = child.get("Nickname").asText();
@@ -42,11 +41,13 @@ public class TTS_Decoder {
             int unitIdx = Integer.parseInt(matcher.group("unit"), 16);
             String decals = child.get("AttachedDecals").toString();
             String meshes = child.get("CustomMesh").toString();
-
-            models.add(new Model(panO, unitIdx, optionIdx, decals, meshes));
+            ms.addModel(unitIdx, optionIdx, decals, meshes);
             System.out.println(String.format("[%d,%d] %s - %s", unitIdx, optionIdx, name, code));
         }
-        String output = om.writeValueAsString(models);
+        String output = om.writeValueAsString(ms);
+        ModelSet ms2 = om.readValue(output, ModelSet.class);
+        String output2 = om.writeValueAsString(ms2);
+        assert (output.equals(output2));
         System.out.println(jn.toString());
     }
 

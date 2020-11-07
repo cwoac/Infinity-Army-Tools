@@ -9,7 +9,7 @@ import java.util.Map;
 
 
 public class AmmunitionResolver implements ObjectIdResolver {
-    private Map<ObjectIdGenerator.IdKey, Ammunition> _items = new HashMap<>();
+    private final Map<ObjectIdGenerator.IdKey, Ammunition> _items = new HashMap<>();
 
     public AmmunitionResolver() {
         Ammunition blank = new Ammunition();

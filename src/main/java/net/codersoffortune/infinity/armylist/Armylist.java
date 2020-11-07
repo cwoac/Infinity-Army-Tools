@@ -25,7 +25,7 @@ public class Armylist {
     private String faction_name;
     private String army_name;
     private int max_points;
-    private List<CombatGroup> combatGroups = new ArrayList<>();
+    private final List<CombatGroup> combatGroups = new ArrayList<>();
 
     static int readVLI(ByteBuffer data) {
         data.mark();

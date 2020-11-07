@@ -9,7 +9,7 @@ import java.util.stream.Stream;
  * Like FactionFilters, but has maps!
  */
 public class MappedFactionFilters {
-    private EnumMap<FilterType, Map<Integer, FilterItem>> data = new EnumMap<>(FilterType.class);
+    private final EnumMap<FilterType, Map<Integer, FilterItem>> data = new EnumMap<>(FilterType.class);
 
     public MappedFactionFilters(final FactionFilters filters) {
         // initialise the maps

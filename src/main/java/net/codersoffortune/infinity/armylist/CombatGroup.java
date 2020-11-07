@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CombatGroup {
     private int group_number;
-    private List<CombatGroupMember> members = new ArrayList<>();
+    private final List<CombatGroupMember> members = new ArrayList<>();
 
     public static CombatGroup fromCode(ByteBuffer data) {
         CombatGroup result = new CombatGroup();
