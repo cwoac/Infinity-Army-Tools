@@ -100,6 +100,7 @@ public class CompactedUnit {
         Optional<ProfileItem> maybeCamo = skills.stream().filter(x -> x.getId() == 29).findFirst();
         int silhouette = getProfile().getS();
         String template = Armylist.getResourceFileAsString(String.format("templates/S%d.json", silhouette));
+        String diffuse = "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/";
 
         String stype;
 
@@ -128,14 +129,15 @@ public class CompactedUnit {
             if (!maybeCamo.get().getExtra().isEmpty() && maybeCamo.get().getExtra().get(0) == 43) {
 
                 return String.format("%s,\n%s",
-                        String.format(template, 2, stype),
-                        String.format(template, 3, String.format("Silhouette %d", silhouette)));
+                        String.format(template, 2, stype, diffuse),
+                        String.format(template, 3, String.format("Silhouette %d", silhouette), ""));
             }
         } else {
+            diffuse = "";
             stype = String.format("Silhouette %d", silhouette);
         }
 
-        return String.format(template, 2, stype);
+        return String.format(template, 2, stype, diffuse);
     }
 
     public String getTTSNickName(final MappedFactionFilters filters) {

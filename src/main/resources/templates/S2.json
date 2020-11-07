@@ -33,7 +33,7 @@
 "Hands": false,
 "CustomMesh": {
 "MeshURL": "http://cloud-3.steamusercontent.com/ugc/929303676573608759/7BD92CCD59122AA034293F6D291C3B4227CF46CC/",
-"DiffuseURL": "",
+"DiffuseURL": "%s",
 "NormalURL": "",
 "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/929303676573608759/7BD92CCD59122AA034293F6D291C3B4227CF46CC/",
 "Convex": true,
