@@ -4,6 +4,7 @@ import net.codersoffortune.infinity.metadata.Order;
 import net.codersoffortune.infinity.metadata.Peripheral;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ProfileOption {
     // "id":1,"chars":[],"disabled":false,"equip":[],"minis":0,"orders":[],"includes":[],"points":3,"swc":"0","weapons":[{"extra":[6],"id":71,"order":1}],"name":"YÁOZĂO","skills":[],"peripheral":[]}
@@ -25,6 +26,29 @@ public class ProfileOption {
     private String name;
     private List<ProfileItem> skills;
     private List<Peripheral> peripheral;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProfileOption that = (ProfileOption) o;
+        return id == that.id &&
+                minis == that.minis &&
+                Objects.equals(chars, that.chars) &&
+                Objects.equals(habilities, that.habilities) &&
+                Objects.equals(equip, that.equip) &&
+                Objects.equals(orders, that.orders) &&
+                Objects.equals(includes, that.includes) &&
+                Objects.equals(weapons, that.weapons) &&
+                name.equals(that.name) &&
+                Objects.equals(skills, that.skills) &&
+                Objects.equals(peripheral, that.peripheral);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, chars, habilities, equip, minis, orders, includes, weapons, name, skills, peripheral);
+    }
 
     public List<Peripheral> getPeripheral() {
         return peripheral;

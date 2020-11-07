@@ -4,6 +4,7 @@ import net.codersoffortune.infinity.metadata.FilterType;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ProfileItem {
@@ -14,6 +15,22 @@ public class ProfileItem {
     private List<Integer> extra;
     private int id;
     private int order;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProfileItem that = (ProfileItem) o;
+        return q == that.q &&
+                id == that.id &&
+                order == that.order &&
+                Objects.equals(extra, that.extra);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(q, extra, id, order);
+    }
 
     /**
      * Build a nicely formatted version, including the extras
