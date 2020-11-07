@@ -11,7 +11,7 @@
 "scaleY": 1.0,
 "scaleZ": 1.0
 },
-"Nickname": "Silhouette 6",
+"Nickname": "%s",
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
@@ -33,7 +33,7 @@
 "Hands": false,
 "CustomMesh": {
 "MeshURL": "http://cloud-3.steamusercontent.com/ugc/929303943738459572/CCA4B3F4285094CCD598A2F50B6947786900EBB3/",
-"DiffuseURL": "",
+"DiffuseURL": "%s",
 "NormalURL": "",
 "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/929303943738459572/CCA4B3F4285094CCD598A2F50B6947786900EBB3/",
 "Convex": true,

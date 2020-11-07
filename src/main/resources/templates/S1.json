@@ -11,13 +11,13 @@
 "scaleY": 1.0,
 "scaleZ": 1.0
 },
-"Nickname": "Silhouette 1",
+"Nickname": "%s",
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 1.0,
-"g": 1.0,
-"b": 1.0
+"r": 0.0,
+"g": 0.6901961,
+"b": 0.9490196
 },
 "Locked": false,
 "Grid": true,
@@ -33,7 +33,7 @@
 "Hands": false,
 "CustomMesh": {
 "MeshURL": "http://cloud-3.steamusercontent.com/ugc/929303943738459799/16AB5E3A7C708780DD20C78B550CFEB920C689AD/",
-"DiffuseURL": "",
+"DiffuseURL": "%s",
 "NormalURL": "",
 "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1012689924693133830/24D30F0275DCE70611D7EAA9298DBE02405E36E5/",
 "Convex": true,

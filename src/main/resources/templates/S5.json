@@ -11,7 +11,7 @@
 "scaleY": 1.0,
 "scaleZ": 1.0
 },
-"Nickname": "Silhouette 5",
+"Nickname": "%s",
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
@@ -33,7 +33,7 @@
 "Hands": false,
 "CustomMesh": {
 "MeshURL": "https://www.dropbox.com/s/dfec45v22g05hvw/Silhouette5.obj?dl=1",
-"DiffuseURL": "",
+"DiffuseURL": "%s",
 "NormalURL": "",
 "ColliderURL": "https://www.dropbox.com/s/dfec45v22g05hvw/Silhouette5.obj?dl=1",
 "Convex": true,
