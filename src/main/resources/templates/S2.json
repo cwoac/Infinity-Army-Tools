@@ -1,4 +1,4 @@
-"2": {
+"%d": {
 "Name": "Custom_Model",
 "Transform": {
 "posX": -39.0,
@@ -11,7 +11,7 @@
 "scaleY": 1.0,
 "scaleZ": 1.0
 },
-"Nickname": "Silhouette 2",
+"Nickname": "%s",
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {

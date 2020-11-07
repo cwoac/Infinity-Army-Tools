@@ -8,9 +8,11 @@ import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.metadata.Metadata;
 
 import java.io.IOException;
+import java.io.InvalidObjectException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -85,19 +87,62 @@ public class CompactedUnit {
     }
 
     public List<ProfileItem> getPublicSkills() {
-        return skills.stream().filter(x->skipSkills(x.getId())).collect(Collectors.toList());
+        return skills.stream().filter(x -> skipSkills(x.getId())).collect(Collectors.toList());
     }
 
     public String getTTSSilhouette() throws IOException {
-        // TODO:: CAMO
-        return Armylist.getResourceFileAsString(String.format("templates/S%d.json", getProfile().getS()));
+        // Important numbers:
+        // skill 29 - Camouflage
+        // skill 28 - Mimitism
+        // extra 6,7 -3, -6
+
+        Optional<ProfileItem> maybeMimetism = skills.stream().filter(x -> x.getId() == 28).findFirst();
+        Optional<ProfileItem> maybeCamo = skills.stream().filter(x -> x.getId() == 29).findFirst();
+        int silhouette = getProfile().getS();
+        String template = Armylist.getResourceFileAsString(String.format("templates/S%d.json", silhouette));
+
+        String stype;
+
+        if (maybeCamo.isPresent()) {
+            if (maybeMimetism.isPresent()) {
+                int mod = 0;
+                List<Integer> extras = maybeMimetism.get().getExtra();
+                if (!extras.isEmpty()) {
+                    switch (extras.get(0)) {
+                        case 6:
+                            mod = -3;
+                            break;
+                        case 7:
+                            mod = -6;
+                            break;
+                        default:
+                            throw new InvalidObjectException(String.format("Unknown mimitism type %s found", extras.get(0)));
+                    }
+                }
+                stype = String.format("Camouflage (%d) S%d", mod, silhouette);
+            } else {
+                // no mimitism
+                stype = String.format("Camouflage S%d", silhouette);
+            }
+            // edge case of single use camo
+            if (!maybeCamo.get().getExtra().isEmpty() && maybeCamo.get().getExtra().get(0) == 43) {
+
+                return String.format("%s,\n%s",
+                        String.format(template, 2, stype),
+                        String.format(template, 3, String.format("Silhouette %d", silhouette)));
+            }
+        } else {
+            stype = String.format("Silhouette %d", silhouette);
+        }
+
+        return String.format(template, 2, stype);
     }
 
     public String getTTSNickName(final MappedFactionFilters filters) {
         //TODO:: implement a filter to select the 'interesting' options
-        String interesting="";
+        String interesting = "";
         List<ProfileItem> publicSKills = getPublicSkills();
-        if( publicSKills.isEmpty() ) {
+        if (publicSKills.isEmpty()) {
             interesting = filters.getItem(FilterType.weapons, weapons.get(0).getId()).getName();
         } else {
             interesting = filters.getItem(FilterType.skills, publicSKills.get(0).getId()).getName();
