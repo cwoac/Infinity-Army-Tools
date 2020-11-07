@@ -1,6 +1,7 @@
 package net.codersoffortune.infinity.metadata.unit;
 
 import net.codersoffortune.infinity.armylist.Armylist;
+import net.codersoffortune.infinity.armylist.CombatGroup;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.tts.ModelSet;
 import net.codersoffortune.infinity.tts.TTSModel;
@@ -51,7 +52,11 @@ public class Unit {
         return result;
     }
 
-    private static String toJson(final CompactedUnit unit, final MappedFactionFilters filters, final ModelSet modelSet) {
+    private static String toJson(final int combat_group,
+                                 final CompactedUnit unit,
+                                 final MappedFactionFilters filters,
+                                 final ModelSet modelSet,
+                                 final int group_idx) {
         // TODO:: Log the failures properly;
         try {
             TTSModel ttsModel = modelSet.getModel(unit.getUnit_idx(), unit.getGroup_idx(), unit.getProfile_idx(), unit.getOption_idx());
@@ -59,6 +64,7 @@ public class Unit {
             return String.format(Armylist.getResourceFileAsString("Templates/model_template"),
                     unit.getTTSNickName(filters),
                     unit.getTTSDescription(filters),
+                    CombatGroup.getTint(combat_group),
                     ttsModel.getMeshes(),
                     ttsModel.getDecals(),
                     unit.getTTSSilhouette());
@@ -78,10 +84,14 @@ public class Unit {
      * @return collection of strings, one per model.
      * @throws IllegalArgumentException on error.
      */
-    public Collection<String> getUnitsForTTS(final int group, final int option, final MappedFactionFilters filters, final ModelSet modelSet) throws IllegalArgumentException {
+    public Collection<String> getUnitsForTTS(final int combat_group,
+                                             final int group,
+                                             final int option,
+                                             final MappedFactionFilters filters,
+                                             final ModelSet modelSet) throws IllegalArgumentException {
         //TODO:: Handle pilots
         Collection<CompactedUnit> units = getUnits(group, option);
-        return units.stream().map(unit -> toJson(unit, filters, modelSet)).collect(Collectors.toList());
+        return units.stream().map(cu -> toJson(combat_group, cu, filters, modelSet, group)).collect(Collectors.toList());
     }
 
     public Collection<CompactedUnit> getUnits(final int group, final int option) throws IllegalArgumentException {
@@ -95,15 +105,6 @@ public class Unit {
         // and maps directly to the options of profile1, and serves to provide the total cost of taking both of the unit.
         ProfileOption po = pg.getOptions().stream().filter(x -> x.getId() == option).findFirst().orElseThrow(IllegalArgumentException::new);
 
-
-        CompactedUnit unit = new CompactedUnit();
-        unit.setUnit_idx(getID());
-        unit.setGroup_idx(group);
-        unit.setOption_idx(option);
-        unit.setName(po.getName());
-        unit.addEquipment(po.getEquip());
-        unit.addSkills(po.getSkills());
-        unit.addWeapons(po.getWeapons());
         List<Profile> profiles = pg.getProfiles();
         if (profiles.isEmpty()) {
             throw new IllegalArgumentException("Asked for Profile group with no profile");
@@ -111,8 +112,8 @@ public class Unit {
         if (profiles.size() > 1) {
             System.out.println("moo");
         }
-        unit.setProfile(profiles.get(0));
-        unit.setProfile_idx(profiles.get(0).getId());
+        CompactedUnit unit = new CompactedUnit(getID(), pg, profiles.get(0), po);
+
         result.add(unit);
         // now check for included elements.
         for (ProfileInclude pi : po.getIncludes()) {

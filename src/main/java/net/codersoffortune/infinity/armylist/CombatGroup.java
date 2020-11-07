@@ -8,6 +8,16 @@ public class CombatGroup {
     private int group_number;
     private final List<CombatGroupMember> members = new ArrayList<>();
 
+    public static String getTint(int group_number) {
+        switch( group_number ) {
+            case 1:
+                return "\"r\": 0.854901969,\n    \"g\": 0.09803913,\n    \"b\": 0.0941175446";
+            case 2:
+                return "\"r\": 0.121568627,\n    \"g\": 0.52941176,\n    \"b\": 1.0";
+        }
+        throw new IllegalArgumentException("N4 only allows for 2 combat groups!");
+    }
+
     public static CombatGroup fromCode(ByteBuffer data) {
         CombatGroup result = new CombatGroup();
         // first off, who are we?

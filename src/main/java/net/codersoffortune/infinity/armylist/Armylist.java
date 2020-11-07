@@ -155,7 +155,7 @@ public class Armylist {
                 Optional<Unit> maybeUnit = db.getUnitName(cgm.getId(), getFaction());
                 if (!maybeUnit.isPresent()) continue;
                 Unit unit = maybeUnit.get();
-                units.addAll(unit.getUnitsForTTS(cgm.getProfile(), cgm.getOption(), filters, modelSet));
+                units.addAll(unit.getUnitsForTTS(cg.getGroup_number(), cgm.getProfile(), cgm.getOption(), filters, modelSet));
             }
         }
 

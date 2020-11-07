@@ -20,36 +20,49 @@ public class CompactedUnit {
     private final List<ProfileItem> weapons = new ArrayList<>();
     private final List<ProfileItem> skills = new ArrayList<>();
     private final List<ProfileItem> equipment = new ArrayList<>();
+
     private int unit_idx;
+
+    public List<ProfileItem> getWeapons() {
+        return weapons;
+    }
+
+    public List<ProfileItem> getSkills() {
+        return skills;
+    }
+
     private int group_idx;
-    private int profile_idx;
     private int option_idx;
     private Profile profile;
     private String name;
+
+    public CompactedUnit(int unit_idx, ProfileGroup group, Profile profile, ProfileOption option) {
+        this.unit_idx = unit_idx;
+        this.profile = profile;
+        group_idx = group.getId();
+        option_idx = option.getId();
+        name = option.getName();
+        weapons.addAll(profile.getWeapons());
+        skills.addAll(profile.getSkills());
+        equipment.addAll(profile.getEquip());
+        weapons.addAll(option.getWeapons());
+        skills.addAll(option.getSkills());
+        equipment.addAll(option.getEquip());
+
+    }
 
     public int getGroup_idx() {
         return group_idx;
     }
 
-    public void setGroup_idx(int group_idx) {
-        this.group_idx = group_idx;
-    }
-
     public int getProfile_idx() {
-        return profile_idx;
-    }
-
-    public void setProfile_idx(int profile_idx) {
-        this.profile_idx = profile_idx;
+        return profile.getId();
     }
 
     public int getOption_idx() {
         return option_idx;
     }
 
-    public void setOption_idx(int option_idx) {
-        this.option_idx = option_idx;
-    }
 
     // chars to ignore : 2,5
     static boolean skipCharacteristic(final int c) {
@@ -71,17 +84,27 @@ public class CompactedUnit {
         return !(c == 119 || c == 70 || c == 69 || c == 26);
     }
 
+    public List<ProfileItem> getPublicSkills() {
+        return skills.stream().filter(x->skipSkills(x.getId())).collect(Collectors.toList());
+    }
+
     public String getTTSSilhouette() throws IOException {
+        // TODO:: CAMO
         return Armylist.getResourceFileAsString(String.format("templates/S%d.json", getProfile().getS()));
-        //return String.format("S%d",getProfile().getS());
     }
 
     public String getTTSNickName(final MappedFactionFilters filters) {
         //TODO:: implement a filter to select the 'interesting' options
-
+        String interesting="";
+        List<ProfileItem> publicSKills = getPublicSkills();
+        if( publicSKills.isEmpty() ) {
+            interesting = filters.getItem(FilterType.weapons, weapons.get(0).getId()).getName();
+        } else {
+            interesting = filters.getItem(FilterType.skills, publicSKills.get(0).getId()).getName();
+        }
         return String.format("[FFFFFF]%s[-] %s",
                 getName(),
-                filters.getItem(FilterType.weapons, getWeapons().get(0).getId()).getName()
+                interesting
         );
     }
 
@@ -141,18 +164,16 @@ public class CompactedUnit {
         result.append(String.format("[B]S[/B]: %d\\n", getProfile().getS()));
         // kit
         result.append("[ffdddd][sub]----------Weapons---------\\n[/sub]\\n");
-        List<String> weapons = getWeapons().stream().map(x -> x.toString(filters, FilterType.weapons)).collect(Collectors.toList());
-        weapons.addAll(getProfile().getWeapons().stream().map(x -> x.toString(filters, FilterType.weapons)).collect(Collectors.toList()));
-        result.append(String.format("%s[-]\\n", String.join(" ● ", weapons)));
+        List<String> weapon_names = weapons.stream().map(x -> x.toString(filters, FilterType.weapons)).collect(Collectors.toList());
+        result.append(String.format("%s[-]\\n", String.join(" ● ", weapon_names)));
         result.append("[ddffdd][sub]---------Equipment--------\\n[/sub]\\n");
-        List<String> equipment = getEquipment().stream().map(x -> x.toString(filters, FilterType.equip)).collect(Collectors.toList());
-        equipment.addAll(getProfile().getEquip().stream().map(x -> x.toString(filters, FilterType.equip)).collect(Collectors.toList()));
-        result.append(String.format("%s[-]\\n", String.join(" ● ", equipment)));
+        List<String> equipment_names = equipment.stream().map(x -> x.toString(filters, FilterType.equip)).collect(Collectors.toList());
+        result.append(String.format("%s[-]\\n", String.join(" ● ", equipment_names)));
         result.append("[ddddff][sub]----------Skills ---------\\n[/sub]\\n");
-        List<String> skills = getSkills().stream().filter(x -> skipSkills(x.getId())).map(x -> x.toString(filters, FilterType.skills)).collect(Collectors.toList());
-        skills.addAll(getProfile().getSkills().stream().filter(x -> skipSkills(x.getId())).map(x -> x.toString(filters, FilterType.skills)).collect(Collectors.toList()));
+        List<String> skill_names = getPublicSkills().stream().map(x -> x.toString(filters, FilterType.skills)).collect(Collectors.toList());
+
         //TODO:: implement the reference code.
-        result.append(String.format("%s[-]\\n[000013][-]", String.join(" ● ", skills)));
+        result.append(String.format("%s[-]\\n[000013][-]", String.join(" ● ", skill_names)));
         return result.toString();
     }
 
@@ -169,26 +190,6 @@ public class CompactedUnit {
         return equipment;
     }
 
-    public void addEquipment(List<ProfileItem> equipment) {
-        this.equipment.addAll(equipment);
-    }
-
-    public List<ProfileItem> getSkills() {
-        return skills;
-    }
-
-    public void addSkills(List<ProfileItem> skills) {
-        this.skills.addAll(skills);
-    }
-
-    public List<ProfileItem> getWeapons() {
-        return weapons;
-    }
-
-    public void addWeapons(List<ProfileItem> weapons) {
-        this.weapons.addAll(weapons);
-    }
-
     public Profile getProfile() {
         return profile;
     }
@@ -201,7 +202,4 @@ public class CompactedUnit {
         return unit_idx;
     }
 
-    public void setUnit_idx(int unit_idx) {
-        this.unit_idx = unit_idx;
-    }
 }
