@@ -101,7 +101,7 @@ public class Armylist {
                 Optional<Unit> maybeUnit = db.getUnitName(cgm.getId(), getFaction());
                 if (!maybeUnit.isPresent()) continue;
                 Unit unit = maybeUnit.get();
-                Collection<CompactedUnit> cus = unit.getUnits(cgm.getProfile(), cgm.getOption());
+                Collection<CompactedUnit> cus = unit.getUnits(cgm.getGroup(), cgm.getOption());
                 // TODO:: neaten this. Indents? Streams?
                 for (CompactedUnit cu : cus) {
                     sb.append(String.format("%s", cu.getName()));
@@ -155,7 +155,7 @@ public class Armylist {
                 Optional<Unit> maybeUnit = db.getUnitName(cgm.getId(), getFaction());
                 if (!maybeUnit.isPresent()) continue;
                 Unit unit = maybeUnit.get();
-                units.addAll(unit.getUnitsForTTS(cg.getGroup_number(), cgm.getProfile(), cgm.getOption(), filters, modelSet));
+                units.addAll(unit.getUnitsForTTS(cg.getGroup_number(), cgm.getGroup(), cgm.getOption(), filters, modelSet));
             }
         }
 
