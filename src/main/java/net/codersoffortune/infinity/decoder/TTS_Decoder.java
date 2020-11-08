@@ -2,8 +2,8 @@ package net.codersoffortune.infinity.decoder;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.codersoffortune.infinity.armylist.Armylist;
 import net.codersoffortune.infinity.db.Database;
+import net.codersoffortune.infinity.mapping.Catalogue;
 import net.codersoffortune.infinity.metadata.FactionList;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.tts.ModelSet;
@@ -61,9 +61,13 @@ public class TTS_Decoder {
         ModelSet ms2 = om.readValue(output, ModelSet.class);
         String output2 = om.writeValueAsString(ms2);
         assert (output.equals(output2));
-        Armylist testList = Armylist.fromArmyCode(test_list);
+        //Armylist testList = Armylist.fromArmyCode(test_list);
         MappedFactionFilters mff = new MappedFactionFilters(db.getFactions().get(101).getFilters());
-        String bag = testList.asJson(mff, ms2);
+        //String bag = testList.asJson(mff, ms2);
+        Catalogue c = new Catalogue();
+        db.getFactions().entrySet().stream()
+                .forEach(f->c.addUnits(f.getKey(), f.getValue()));
+
         System.out.println(jn.toString());
 
     }

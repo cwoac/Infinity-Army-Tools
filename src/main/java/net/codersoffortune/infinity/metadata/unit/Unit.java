@@ -31,6 +31,12 @@ public class Unit {
     private String slug;
     private Map<String, List<Integer>> filters;
 
+    @Override
+    public String toString() {
+        return String.format("Unit{%d: %s}",ID,
+                (iscAbbr==null)?isc:iscAbbr);
+    }
+
     /**
      * Handle the special case of a unit with the selected group being 0. This represents a paired group of valued units
      * that you have to buy as pair.

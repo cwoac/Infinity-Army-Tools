@@ -42,6 +42,8 @@ public class ProfileOption {
                 Objects.equals(weapons, that.weapons) &&
                 name.equals(that.name) &&
                 Objects.equals(skills, that.skills) &&
+                swc.equals(that.swc) &&
+                points == that.points &&
                 Objects.equals(peripheral, that.peripheral);
     }
 
