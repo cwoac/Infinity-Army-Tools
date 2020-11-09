@@ -1,5 +1,6 @@
 package net.codersoffortune.infinity.tts;
 
+import net.codersoffortune.infinity.armylist.Armylist;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.metadata.SectoralList;
 import net.codersoffortune.infinity.metadata.unit.CompactedUnit;
@@ -16,6 +17,8 @@ import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static net.codersoffortune.infinity.armylist.Armylist.getResourceFileAsString;
 
 /**
  * Describes the set of models needs to represent an entire faction.
@@ -86,27 +89,27 @@ public class Catalogue {
         if( name.isEmpty() ) return result;
         String decals = row.get("decals1");
         String meshes = row.get("meshes1");
-        result.add(new TTSModel(name, decals, meshes));
+        result.add(new TTSModel(name, meshes, decals));
         name = row.get("meshName2");
         if( name.isEmpty() )  return result;
         decals = row.get("decals2");
         meshes = row.get("meshes2");
-        result.add(new TTSModel(name, decals, meshes));
+        result.add(new TTSModel(name, meshes, decals));
         name = row.get("meshName3");
         if( name.isEmpty() )  return result;
         decals = row.get("decals3");
         meshes = row.get("meshes3");
-        result.add(new TTSModel(name, decals, meshes));
+        result.add(new TTSModel(name, meshes, decals));
         name = row.get("meshName4");
         if( name.isEmpty() )  return result;
         decals = row.get("decals4");
         meshes = row.get("meshes4");
-        result.add(new TTSModel(name, decals, meshes));
+        result.add(new TTSModel(name, meshes, decals));
         name = row.get("meshName5");
         if( name.isEmpty() )  return result;
         decals = row.get("decals5");
         meshes = row.get("meshes5");
-        result.add(new TTSModel(name, decals, meshes));
+        result.add(new TTSModel(name, meshes, decals));
         return result;
     }
 
@@ -156,20 +159,25 @@ public class Catalogue {
         return results;
     }
 
-    public void fromCSV(String filename) throws IOException {
-        // First build a mapping so we know where to stash the models.
-        Map<UnitID, List<PrintableUnit>> reverseMap = new HashMap<>();
+    private Map<UnitID, List<PrintableUnit>> buildReverseMap() throws InvalidObjectException {
+        Map<UnitID, List<PrintableUnit>> result = new HashMap<>();
         for( Mapping mapping : unitMappings ) {
             UnitID unitID = mapping.baseUnit.getUnitID();
-            if( reverseMap.containsKey(unitID) ) {
+            if( result.containsKey(unitID) ) {
                 throw new InvalidObjectException("Duplicate UnitID in CSV:" + unitID);
             }
             List<PrintableUnit> pus = new ArrayList<>();
             pus.add(mapping.baseUnit);
             mapping.getEquivalents().stream()
                     .forEach(u->pus.add(u));
-            reverseMap.put(unitID, pus);
+            result.put(unitID, pus);
         }
+        return result;
+    }
+
+    public void fromCSV(String filename) throws IOException {
+        // First build a mapping so we know where to stash the models.
+        Map<UnitID, List<PrintableUnit>> reverseMap = buildReverseMap();
 
         FileReader fh = new FileReader(filename);
         Iterable<CSVRecord> rows = CSVFormat.EXCEL
@@ -231,7 +239,31 @@ public class Catalogue {
             }
         }
 
+    public String asJson(String faction_name) throws IOException {
+        //TODO:: Check we have all the models / log missing.
 
+        // TODO:: This should be a class var inside PrintableUnit
+        String unit_template = getResourceFileAsString("Templates/model_template");
+        String[] silhouette_templates = {
+                Armylist.getResourceFileAsString(String.format("templates/S1.json")),
+                Armylist.getResourceFileAsString(String.format("templates/S2.json")),
+                Armylist.getResourceFileAsString(String.format("templates/S3.json")),
+                Armylist.getResourceFileAsString(String.format("templates/S4.json")),
+                Armylist.getResourceFileAsString(String.format("templates/S5.json")),
+                Armylist.getResourceFileAsString(String.format("templates/S6.json")),
+                Armylist.getResourceFileAsString(String.format("templates/S7.json"))
+        };
+
+
+
+        List<String> units = unitList.stream()
+                .filter(unit -> !unit.getModels().isEmpty())
+                .map(x->x.asJson(unit_template, silhouette_templates))
+                .collect(Collectors.toList());
+        String bag_format = getResourceFileAsString("templates/faction_bag_template");
+        String unit_list = String.join(",\n", units);
+        return String.format(bag_format, faction_name, unit_list);
+    }
     public List<PrintableUnit> getUnitList() {
         return unitList;
     }

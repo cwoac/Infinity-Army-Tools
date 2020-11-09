@@ -1,6 +1,7 @@
 package net.codersoffortune.infinity.metadata.unit;
 
 import net.codersoffortune.infinity.armylist.Armylist;
+import net.codersoffortune.infinity.armylist.CombatGroup;
 import net.codersoffortune.infinity.metadata.FilterType;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.tts.TTSModel;
@@ -42,6 +43,11 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private final String notes;
     private final String distinguisher;
     private final List<TTSModel> models = new ArrayList<>();
+
+    // Properties below here are used for description only.
+    // They should not be added to equals / hashcode!
+
+
 
     //private final List<String> orders; // TODO:: DO WE NEED THIS?
 
@@ -141,6 +147,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 distinguisher = pSkills.get(0).toString(filters, FilterType.skills);
             }
         }
+
     }
 
     public String getTTSMesh(int idx) {
@@ -170,13 +177,63 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         models.stream().forEach(m->addTTSModel(m));
     }
 
-    public String getTTSSilhouette() throws IOException {
-        // Important numbers:
-        // skill 29 - Camouflage
-        // skill 28 - Mimetism
-        // extra 6,7 -3, -6
+    private String getTTSDescription() {
+        //Example
+        //[b]REM[/b] ● [AAFFAA]Regular[-] ● Hackable \n
+        //[sub]---------Attributes-------\n
+        //[/sub]\n
+        //[b]MOV[/b]: 6-6\n
+        //[b]CC[/b]: 13\n
+        //[b]BS[/b]: 8\n
+        //[b]PH[/b]: 11\n
+        //[b]WIP[/b]: 13\n
+        //[b]ARM[/b]: 0\n
+        //[b]BTS[/b]: 3\n
+        //[B]STR[/B]: 1\n
+        //[b]S[/b]: 3\n
+        //[ffdddd][sub]----------Weapons---------\n
+        //[/sub]\n
+        //Flash Pulse ● PARA CC Weapon (-3) [-]\n
+        //[ddffdd][sub]---------Equipment--------\n
+        //[/sub]\n
+        //Repeater [-]\n
+        //[ddddff][sub]----------Skills----------\n
+        //[/sub]\n
+        //Remote Presence ● Courage ● Mimetism (-3) ● Immunity (Shock) [-]\n
+        //[000013][-]
 
-        String template = Armylist.getResourceFileAsString(String.format("templates/S%d.json", s));
+        StringBuilder result = new StringBuilder();
+        result.append(String.format("[b]%s[/b] ● [AAFFAA]%s[-]\\n", type, String.join(" ● ", chars)));
+        result.append("[sub]---------Attributes-------\\n[/sub]\\n");
+        // TODO:: Allow selecting inches.
+        result.append(String.format("[b]MOV[/b]: %s\\n", move));
+        result.append(String.format("[b]CC[/b]: %d\\n", cc));
+        result.append(String.format("[b]BS[/b]: %d\\n", bs));
+        result.append(String.format("[b]PH[/b]: %d\\n", ph));
+        result.append(String.format("[b]WIP[/b]: %d\\n", wip));
+        result.append(String.format("[b]ARM[/b]: %d\\n", arm));
+        result.append(String.format("[b]BTS[/b]: %d\\n", bts));
+        if (str) {
+            result.append(String.format("[B]STR[/B]: %d\\n", w));
+        } else {
+            result.append(String.format("[B]W[/B]: %d\\n", w));
+        }
+        result.append(String.format("[B]S[/B]: %d\\n", s));
+        result.append("[ffdddd][sub]----------Weapons---------\\n[/sub]\\n");
+        result.append(String.format("%s[-]\\n", String.join(" ● ", weapons)));
+        result.append("[ddffdd][sub]---------Equipment--------\\n[/sub]\\n");
+        result.append(String.format("%s[-]\\n", String.join(" ● ", equip)));
+        result.append("[ddddff][sub]----------Skills ---------\\n[/sub]\\n");
+        result.append(String.format("%s[-]\\n", String.join(" ● ", skills)));
+
+        // TODO:: implement reference code
+        return result.toString();
+
+
+    }
+
+    private String getTTSSilhouette(String[] templates) {
+        String template = templates[s-1];
         String diffuse = "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/";
 
         String stype;
@@ -201,8 +258,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return String.format(template, 2, stype, diffuse);
     }
 
-    public String getTTSNickName(final MappedFactionFilters filters) {
-        //TODO:: implement a filter to select the 'interesting' options
+    private String getTTSName() {
         String result = String.format("[FFFFFF]%s[-]", name);
         if (!distinguisher.isEmpty()) {
             result += " " + distinguisher;
@@ -210,6 +266,21 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return result;
     }
 
+    /**
+     * Get the JSON representation of this model, as is suitible for putting in a TTS bag.
+     * Of course, there is a minor issue. We might well have multiple valid models for this unit.
+     * @param model_template the loaded template file (to save having to load it repeatedly)
+     * @param silhouette_templates The loaded templates for the different sized silhouettes
+     * @return the filled in template.
+     */
+    public String asJson(final String model_template, final String[] silhouette_templates) {
+        final String ttsName = getTTSName();
+        final String ttsDescription = getTTSDescription();
+        final String ttsSilhouette = getTTSSilhouette(silhouette_templates);
+        final String ttsColour = CombatGroup.getTint(1); // TODO:: maybe faction specific colours.
+        List<String> ttsModels = models.stream().map(m->String.format(model_template, ttsName, ttsDescription, ttsColour, m.getMeshes(), m.getDecals(), ttsSilhouette)).collect(Collectors.toList());
+        return String.join(",\n", ttsModels);
+    }
 
     public List<String> getWeapons() {
         return weapons;

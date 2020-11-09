@@ -81,6 +81,7 @@ public class TTS_Decoder {
         c2.addUnits(db.getFactions().get(105), 105);
         c2.addUnits(db.getFactions().get(106), 106);
         c2.fromCSV("test2.csv");
+        String faction_json = c2.asJson("PanOceania");
         System.out.println(jn.toString());
 
     }

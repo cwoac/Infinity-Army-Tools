@@ -21,6 +21,17 @@ public class UnitID {
     }
 
     @Override
+    public String toString() {
+        return "UnitID{" +
+                "s:" + sectoral_idx +
+                ";u:" + unit_idx +
+                ";g:" + group_idx +
+                ";p:" + profile_idx +
+                ";o:" + option_idx +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
