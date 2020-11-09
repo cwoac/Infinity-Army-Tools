@@ -1,0 +1,823 @@
+{
+  "SaveName": "",
+  "GameMode": "",
+  "Date": "",
+  "Gravity": 0.5,
+  "PlayArea": 0.5,
+  "GameType": "",
+  "GameComplexity": "",
+  "Tags": [],
+  "Table": "",
+  "Sky": "",
+  "Note": "",
+  "Rules": "",
+  "TabStates": {},
+  "ObjectStates": [
+    {
+      "Name": "Custom_Model_Bag",
+      "Transform": {
+        "posX": 38.69975,
+        "posY": 0.783671856,
+        "posZ": -4.000168,
+        "rotX": -1.09231473E-06,
+        "rotY": 270.0,
+        "rotZ": 1.714223E-07,
+        "scaleX": 4.0,
+        "scaleY": 4.0,
+        "scaleZ": 4.0
+      },
+      "Nickname": "[1E87FF]Miniature Case[-]",
+      "Description": "Drag to empty hidden area on table once loaded.",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.5,
+        "g": 0.75,
+        "b": 1.0
+      },
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "MaterialIndex": -1,
+      "MeshIndex": -1,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/502526366065245451/F664D7049EE36B94AE02C97FB705AD4872DC04E1/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/502526366065246579/FC165962015416BA8F5D7B9B849CC819CB818785/",
+        "NormalURL": "http://cloud-3.steamusercontent.com/ugc/502526366065246920/A5B7D90D38B8837254CF2DAABD1ED58DF79BEBF3/",
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/502526366065245451/F664D7049EE36B94AE02C97FB705AD4872DC04E1/",
+        "Convex": true,
+        "MaterialIndex": 0,
+        "TypeIndex": 6,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 7.0,
+          "FresnelStrength": 0.4
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "ContainedObjects": [
+        {
+          "Name": "Custom_Model",
+          "Transform": {
+            "posX": 33.1581345,
+            "posY": 4.673862,
+            "posZ": 54.9919968,
+            "rotX": 0.0753065944,
+            "rotY": 0.0335165039,
+            "rotZ": 0.122718252,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "scaleZ": 1.0
+          },
+          "Nickname": "[E6DA9B]MAGHARIBA[-] MHMG, HFT, Mine Disp.",
+          "Description": "[b]TAG[/b] ● Cube ● [AAFFAA]Regular[-] ● Hackable \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 6-4\n[b]CC[/b]: 16\n[b]BS[/b]: 14\n[b]PH[/b]: 17\n[b]WIP[/b]: 14\n[b]ARM[/b]: 8\n[b]BTS[/b]: 6\n[B]STR[/B]: 3\n[b]S[/b]: 8\n[ffdddd][sub]----------Weapons---------\n[/sub]\nMULTI Heavy Machine Gun ● Heavy Flamethrower (+1B) ● Mine Dispenser ● AP Heavy Pistol ● CC Weapon [-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nBaggage ● ECM: Guided (-6) ● ECM: Hacker (-3) ● 360º Visor [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nBS Attack (+1 Dam) ● Courage ● Fireteam: Duo ● Immunity (Shock) ● Tactical Awareness ● Religious Troop ● Terrain (Desert) ● Dodge (PH=10) ● Gizmokit (PH=11) [-]\n[200135][-]",
+          "GMNotes": "",
+          "ColorDiffuse": {
+            "r": 0.9019608,
+            "g": 0.854901969,
+            "b": 0.607843161
+          },
+          "Locked": false,
+          "Grid": true,
+          "Snap": true,
+          "IgnoreFoW": false,
+          "MeasureMovement": false,
+          "DragSelectable": true,
+          "Autoraise": true,
+          "Sticky": true,
+          "Tooltip": true,
+          "GridProjection": false,
+          "HideWhenFaceDown": false,
+          "Hands": false,
+          "CustomMesh": {
+            "MeshURL": "http://cloud-3.steamusercontent.com/ugc/866241932578455959/CAD005E96ED31C2403B780E33C2BFD7FCBC234A2/",
+            "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1493460530051298836/2F66F1104D1EC1B78B61CF970EA0F8C32058BFF3/",
+            "NormalURL": "",
+            "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/866241932578456453/38E50EE9F0B2E0DC4036523C2232D3CA6CA57BC9/",
+            "Convex": false,
+            "MaterialIndex": 3,
+            "TypeIndex": 1,
+            "CustomShader": {
+              "SpecularColor": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0
+              },
+              "SpecularIntensity": 0.0,
+              "SpecularSharpness": 2.0,
+              "FresnelStrength": 0.0
+            },
+            "CastShadows": true
+          },
+          "LuaScript": "",
+          "LuaScriptState": "",
+          "XmlUI": "",
+          "GUID": "6fa9cc",
+          "AttachedDecals": [
+            {
+              "Transform": {
+                "posX": -0.017812252,
+                "posY": 1.66741276,
+                "posZ": 0.162045121,
+                "rotX": 0.0,
+                "rotY": 90.0,
+                "rotZ": 0.0,
+                "scaleX": 3.03625,
+                "scaleY": 3.1384356,
+                "scaleZ": 3.13843775
+              },
+              "CustomDecal": {
+                "Name": "Maggie",
+                "ImageURL": "http://cloud-3.steamusercontent.com/ugc/866241932578485178/B2367A24381D431B724A769E27FF139F864679C1/",
+                "Size": 1.0
+              }
+            },
+            {
+              "Transform": {
+                "posX": 0.0178122967,
+                "posY": 1.66741323,
+                "posZ": -0.171303749,
+                "rotX": 1.304653E-06,
+                "rotY": 270.0,
+                "rotZ": 6.134325E-06,
+                "scaleX": 3.036251,
+                "scaleY": 3.13843846,
+                "scaleZ": 3.13844156
+              },
+              "CustomDecal": {
+                "Name": "Maggie",
+                "ImageURL": "http://cloud-3.steamusercontent.com/ugc/866241932578485178/B2367A24381D431B724A769E27FF139F864679C1/",
+                "Size": 1.0
+              }
+            }
+          ],
+          "States": {
+            "2": {
+              "Name": "Custom_Model",
+              "Transform": {
+                "posX": -8.999712,
+                "posY": 0.9600003,
+                "posZ": -16.9998932,
+                "rotX": 1.55797272E-06,
+                "rotY": 0.02456371,
+                "rotZ": -2.074835E-06,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "scaleZ": 1.0
+              },
+              "Nickname": "Silhouette 8",
+              "Description": "",
+              "GMNotes": "",
+              "ColorDiffuse": {
+                "r": 0.9019608,
+                "g": 0.854901969,
+                "b": 0.607843161
+              },
+              "Locked": false,
+              "Grid": true,
+              "Snap": true,
+              "IgnoreFoW": false,
+              "MeasureMovement": false,
+              "DragSelectable": true,
+              "Autoraise": true,
+              "Sticky": true,
+              "Tooltip": true,
+              "GridProjection": false,
+              "HideWhenFaceDown": false,
+              "Hands": false,
+              "CustomMesh": {
+                "MeshURL": "http://cloud-3.steamusercontent.com/ugc/866241932578457915/6E1BCD64A56CEEC1169331EE182DA5FF5EA7BE5E/",
+                "DiffuseURL": "",
+                "NormalURL": "",
+                "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1012689924693144429/6E33EAD1463408B86BCCF1C9D7D37CB473E9C971/",
+                "Convex": true,
+                "MaterialIndex": 3,
+                "TypeIndex": 1,
+                "CustomShader": {
+                  "SpecularColor": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                  },
+                  "SpecularIntensity": 0.0,
+                  "SpecularSharpness": 2.0,
+                  "FresnelStrength": 0.0
+                },
+                "CastShadows": true
+              },
+              "LuaScript": "",
+              "LuaScriptState": "",
+              "XmlUI": "",
+              "GUID": "e70547"
+            }
+          }
+        },
+        {
+          "Name": "Custom_Model",
+          "Transform": {
+            "posX": 25.6354713,
+            "posY": 4.676246,
+            "posZ": 55.70623,
+            "rotX": 359.9705,
+            "rotY": 29.9975586,
+            "rotZ": 359.9917,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "scaleZ": 1.0
+          },
+          "Nickname": "[00B0F2]BØYG[-] Mk12",
+          "Description": "[b]HI[/b] ● Cube ● [AAFFAA]Regular[-] ● Hackable \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 4-4\n[b]CC[/b]: 19\n[b]BS[/b]: 14\n[b]PH[/b]: 13\n[b]WIP[/b]: 12\n[b]ARM[/b]: 5\n[b]BTS[/b]: 6\n[B]W[/B]: 2\n[b]S[/b]: 5\n[ffdddd][sub]----------Weapons---------\n[/sub]\nMk12 ● Heavy Pistol ● Shock CC Weapon [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nBS Attack (+1B) ● Dodge (+3) ● Dodge (+1\") ● Fireteam: Duo ● Immunity (Shock) ● Terrain (Total) [-]\n[1005e3][-]",
+          "GMNotes": "",
+          "ColorDiffuse": {
+            "r": 0.0,
+            "g": 0.6901961,
+            "b": 0.9490196
+          },
+          "Locked": false,
+          "Grid": true,
+          "Snap": true,
+          "IgnoreFoW": false,
+          "MeasureMovement": false,
+          "DragSelectable": true,
+          "Autoraise": true,
+          "Sticky": true,
+          "Tooltip": true,
+          "GridProjection": false,
+          "HideWhenFaceDown": false,
+          "Hands": false,
+          "CustomMesh": {
+            "MeshURL": "http://cloud-3.steamusercontent.com/ugc/925928630319000946/59207F2FCCEED4402B0E7406A59BFC34D1B1C687/",
+            "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1018317530298784696/AA65AFC05E605610C49203B8AEC52DA042923D79/",
+            "NormalURL": "",
+            "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/871866769947411335/EF706CCF87F84E3BD40EABDC2D77B531D08A7AB6/",
+            "Convex": false,
+            "MaterialIndex": 3,
+            "TypeIndex": 1,
+            "CustomShader": {
+              "SpecularColor": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0
+              },
+              "SpecularIntensity": 0.0,
+              "SpecularSharpness": 2.0,
+              "FresnelStrength": 0.0
+            },
+            "CastShadows": true
+          },
+          "LuaScript": "",
+          "LuaScriptState": "",
+          "XmlUI": "",
+          "GUID": "9c5f27",
+          "AttachedDecals": [
+            {
+              "Transform": {
+                "posX": -0.0178120229,
+                "posY": 1.05529642,
+                "posZ": -0.158785418,
+                "rotX": 1.06721707E-07,
+                "rotY": 90.0,
+                "rotZ": 357.1942,
+                "scaleX": 1.36503875,
+                "scaleY": 1.99999976,
+                "scaleZ": 2.0
+              },
+              "CustomDecal": {
+                "Name": "Boyg ML",
+                "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1019447475848804325/295FD0E6480CB9A97986086C22C9DEA364B15593/",
+                "Size": 2.0
+              }
+            },
+            {
+              "Transform": {
+                "posX": 0.01781203,
+                "posY": 1.05894351,
+                "posZ": 0.161144853,
+                "rotX": 4.26886828E-07,
+                "rotY": 270.0,
+                "rotZ": 354.456573,
+                "scaleX": 1.36504161,
+                "scaleY": 1.99999833,
+                "scaleZ": 2.00000215
+              },
+              "CustomDecal": {
+                "Name": "Boyg ML",
+                "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1019447475848804325/295FD0E6480CB9A97986086C22C9DEA364B15593/",
+                "Size": 2.0
+              }
+            }
+          ],
+          "States": {
+            "2": {
+              "Name": "Custom_Model",
+              "Transform": {
+                "posX": -13.0,
+                "posY": 0.9599995,
+                "posZ": -2.99999976,
+                "rotX": 3.68291467E-06,
+                "rotY": 270.026337,
+                "rotZ": 2.25712847E-06,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "scaleZ": 1.0
+              },
+              "Nickname": "Silhouette 5",
+              "Description": "",
+              "GMNotes": "",
+              "ColorDiffuse": {
+                "r": 0.0,
+                "g": 0.6901961,
+                "b": 0.9490196
+              },
+              "Locked": false,
+              "Grid": true,
+              "Snap": true,
+              "IgnoreFoW": false,
+              "MeasureMovement": false,
+              "DragSelectable": true,
+              "Autoraise": true,
+              "Sticky": true,
+              "Tooltip": true,
+              "GridProjection": false,
+              "HideWhenFaceDown": false,
+              "Hands": false,
+              "CustomMesh": {
+                "MeshURL": "https://www.dropbox.com/s/dfec45v22g05hvw/Silhouette5.obj?dl=1",
+                "DiffuseURL": "",
+                "NormalURL": "",
+                "ColliderURL": "https://www.dropbox.com/s/dfec45v22g05hvw/Silhouette5.obj?dl=1",
+                "Convex": true,
+                "MaterialIndex": 3,
+                "TypeIndex": 1,
+                "CastShadows": true
+              },
+              "LuaScript": "",
+              "LuaScriptState": "",
+              "XmlUI": "",
+              "GUID": "913d0e"
+            }
+          }
+        },
+        {
+          "Name": "Custom_Model",
+          "Transform": {
+            "posX": 39.9138527,
+            "posY": 4.627037,
+            "posZ": -2.633047,
+            "rotX": -0.00163229846,
+            "rotY": 269.9747,
+            "rotZ": 0.0303618629,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "scaleZ": 1.0
+          },
+          "Nickname": "[00B0F2]SQUALO[-] NCO ",
+          "Description": "[b]TAG[/b] ● [AAFFAA]Regular[-] ● Hackable \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 6-4\n[b]CC[/b]: 18\n[b]BS[/b]: 15\n[b]PH[/b]: 16\n[b]WIP[/b]: 12\n[b]ARM[/b]: 8\n[b]BTS[/b]: 6\n[B]STR[/B]: 3\n[b]S[/b]: 7\n[ffdddd][sub]----------Weapons---------\n[/sub]\nMULTI Heavy Machine Gun ● CC Weapon ● MULTI Pistol [-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nECM: Guided (-6) ● ECM: Hacker (-3) [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nRemote Presence ● BS Attack (+1 Dam) ● Courage ● Dodge (PH=11) ● Fireteam: Duo ● Gizmokit (PH=13) ● Immunity (Shock) ● Tactical Awareness ● NCO [-]\n[20000a][-]",
+          "GMNotes": "",
+          "ColorDiffuse": {
+            "r": 0.0,
+            "g": 0.6901961,
+            "b": 0.9490196
+          },
+          "Locked": false,
+          "Grid": true,
+          "Snap": true,
+          "IgnoreFoW": false,
+          "MeasureMovement": false,
+          "DragSelectable": true,
+          "Autoraise": true,
+          "Sticky": true,
+          "Tooltip": true,
+          "GridProjection": false,
+          "HideWhenFaceDown": false,
+          "Hands": false,
+          "CustomMesh": {
+            "MeshURL": "http://cloud-3.steamusercontent.com/ugc/925928630318994134/5838E51349A25E681B92707DB5A0D10812E987AF/",
+            "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1257016010465379721/6B0C5C12FCB9764197FEC40F6A388EC3C7CBE679/",
+            "NormalURL": "",
+            "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1012689924693061128/0C1DCF70FB0283858247362931346188E1D12C92/",
+            "Convex": false,
+            "MaterialIndex": 3,
+            "TypeIndex": 1,
+            "CustomShader": {
+              "SpecularColor": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0
+              },
+              "SpecularIntensity": 0.0,
+              "SpecularSharpness": 2.0,
+              "FresnelStrength": 0.0
+            },
+            "CastShadows": true
+          },
+          "LuaScript": "",
+          "LuaScriptState": "",
+          "XmlUI": "",
+          "GUID": "8902e3",
+          "AttachedDecals": [
+            {
+              "Transform": {
+                "posX": -0.017812252,
+                "posY": 1.48282492,
+                "posZ": 0.359137774,
+                "rotX": 0.0,
+                "rotY": 90.0,
+                "rotZ": 0.0,
+                "scaleX": 2.47331715,
+                "scaleY": 2.738993,
+                "scaleZ": 2.73899317
+              },
+              "CustomDecal": {
+                "Name": "Squalo",
+                "ImageURL": "http://cloud-3.steamusercontent.com/ugc/866241292747561383/0A39B8F408960B591B487F5AB02D0D55353F3382/",
+                "Size": 0.96
+              }
+            },
+            {
+              "Transform": {
+                "posX": 0.0178123415,
+                "posY": 1.48282433,
+                "posZ": -0.368396759,
+                "rotX": 1.21643973E-06,
+                "rotY": 270.0,
+                "rotZ": 6.04611159E-06,
+                "scaleX": 2.47331762,
+                "scaleY": 2.73899436,
+                "scaleZ": 2.738995
+              },
+              "CustomDecal": {
+                "Name": "Squalo",
+                "ImageURL": "http://cloud-3.steamusercontent.com/ugc/866241292747561383/0A39B8F408960B591B487F5AB02D0D55353F3382/",
+                "Size": 0.96
+              }
+            }
+          ],
+          "States": {
+            "2": {
+              "Name": "Custom_Model",
+              "Transform": {
+                "posX": 34.0328026,
+                "posY": 0.960000038,
+                "posZ": -1.00676632,
+                "rotX": -4.17087176E-06,
+                "rotY": 269.97467,
+                "rotZ": -3.574875E-05,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "scaleZ": 1.0
+              },
+              "Nickname": "Silhouette 7",
+              "Description": "",
+              "GMNotes": "",
+              "ColorDiffuse": {
+                "r": 0.0,
+                "g": 0.6901961,
+                "b": 0.9490196
+              },
+              "Locked": false,
+              "Grid": true,
+              "Snap": true,
+              "IgnoreFoW": false,
+              "MeasureMovement": false,
+              "DragSelectable": true,
+              "Autoraise": true,
+              "Sticky": true,
+              "Tooltip": true,
+              "GridProjection": false,
+              "HideWhenFaceDown": false,
+              "Hands": false,
+              "CustomMesh": {
+                "MeshURL": "http://cloud-3.steamusercontent.com/ugc/929303943738459507/34EE1AF3873E76E19912EDE95F2059647D9AB1D9/",
+                "DiffuseURL": "",
+                "NormalURL": "",
+                "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/929303943738459507/34EE1AF3873E76E19912EDE95F2059647D9AB1D9/",
+                "Convex": true,
+                "MaterialIndex": 3,
+                "TypeIndex": 1,
+                "CastShadows": true
+              },
+              "LuaScript": "",
+              "LuaScriptState": "",
+              "XmlUI": "",
+              "GUID": "d39d4f"
+            }
+          }
+        },
+        {
+          "Name": "Custom_Model",
+          "Transform": {
+            "posX": 38.6186867,
+            "posY": 4.625002,
+            "posZ": -5.346777,
+            "rotX": -0.00437656138,
+            "rotY": 269.999878,
+            "rotZ": 0.0258899126,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "scaleZ": 1.0
+          },
+          "Nickname": "[00B0F2]Croc Man Hacker[-] AHD",
+          "Description": "[W] Combi Rifle, Antipersonnel Mines, Pistol, Knife\n\n[EQ] Assault Hacking Device, X Visor\n\n[SS] Multiterrain, CH: TO Camuflage, Infiltration\n\nSK - [00ff00]Regular[-], [5555ff]Cube[-]\n\nMOV 4-4 \nCC 14 \nBS 12\nPH 12 \nWIP 13\nARM 1\nBTS 0\nW 1\nS 0",
+          "GMNotes": "",
+          "ColorDiffuse": {
+            "r": 0.0,
+            "g": 0.6901961,
+            "b": 0.9490196
+          },
+          "Locked": false,
+          "Grid": true,
+          "Snap": true,
+          "IgnoreFoW": false,
+          "MeasureMovement": false,
+          "DragSelectable": true,
+          "Autoraise": true,
+          "Sticky": true,
+          "Tooltip": true,
+          "GridProjection": false,
+          "HideWhenFaceDown": false,
+          "Hands": false,
+          "CustomMesh": {
+            "MeshURL": "http://cloud-3.steamusercontent.com/ugc/925928630318913338/E7DA6223E51BEF6492FBDDDD7C2074898E601180/",
+            "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1257016010465435784/AC6EA2A5D0000DD0F677BA74B4D44316585A0D0F/",
+            "NormalURL": "",
+            "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1012689924693058630/D75278D5B13CD7E5C35A47F605461D582CD8566C/",
+            "Convex": false,
+            "MaterialIndex": 3,
+            "TypeIndex": 1,
+            "CustomShader": {
+              "SpecularColor": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0
+              },
+              "SpecularIntensity": 0.0,
+              "SpecularSharpness": 2.0,
+              "FresnelStrength": 0.0
+            },
+            "CastShadows": true
+          },
+          "LuaScript": "",
+          "LuaScriptState": "",
+          "XmlUI": "",
+          "GUID": "ace41b",
+          "AttachedDecals": [
+            {
+              "Transform": {
+                "posX": -0.01781138,
+                "posY": 0.8615517,
+                "posZ": 0.0778238848,
+                "rotX": 1.04220417E-10,
+                "rotY": 89.99999,
+                "rotZ": 0.00174828514,
+                "scaleX": 1.465167,
+                "scaleY": 1.5,
+                "scaleZ": 1.50000048
+              },
+              "CustomDecal": {
+                "Name": "5",
+                "ImageURL": "http://cloud-3.steamusercontent.com/ugc/778494995588022672/AE0FE0FB5F0CA0305AC70F8CAFCAFB1D6E3D735E/",
+                "Size": 1.5
+              }
+            },
+            {
+              "Transform": {
+                "posX": 0.017811466,
+                "posY": 0.872197449,
+                "posZ": -0.02331887,
+                "rotX": -2.13443414E-07,
+                "rotY": 270.0,
+                "rotZ": 355.9314,
+                "scaleX": 1.46516693,
+                "scaleY": 1.49999988,
+                "scaleZ": 1.50000048
+              },
+              "CustomDecal": {
+                "Name": "5",
+                "ImageURL": "http://cloud-3.steamusercontent.com/ugc/778494995588022672/AE0FE0FB5F0CA0305AC70F8CAFCAFB1D6E3D735E/",
+                "Size": 1.5
+              }
+            }
+          ],
+          "States": {
+            "2": {
+              "Name": "Custom_Model",
+              "Transform": {
+                "posX": 30.13891,
+                "posY": 0.9600001,
+                "posZ": -7.78148174,
+                "rotX": 4.5586552E-05,
+                "rotY": 270.0,
+                "rotZ": -8.92105454E-05,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "scaleZ": 1.0
+              },
+              "Nickname": "TO Camouflage S2",
+              "Description": "",
+              "GMNotes": "",
+              "ColorDiffuse": {
+                "r": 0.0,
+                "g": 0.6901961,
+                "b": 0.9490196
+              },
+              "Locked": false,
+              "Grid": true,
+              "Snap": true,
+              "IgnoreFoW": false,
+              "MeasureMovement": false,
+              "DragSelectable": true,
+              "Autoraise": true,
+              "Sticky": true,
+              "Tooltip": true,
+              "GridProjection": false,
+              "HideWhenFaceDown": false,
+              "Hands": false,
+              "CustomMesh": {
+                "MeshURL": "http://cloud-3.steamusercontent.com/ugc/929303676573608759/7BD92CCD59122AA034293F6D291C3B4227CF46CC/",
+                "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/",
+                "NormalURL": "",
+                "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/929303676573608759/7BD92CCD59122AA034293F6D291C3B4227CF46CC/",
+                "Convex": true,
+                "MaterialIndex": 3,
+                "TypeIndex": 1,
+                "CastShadows": true
+              },
+              "LuaScript": "",
+              "LuaScriptState": "",
+              "XmlUI": "",
+              "GUID": "dd6117"
+            }
+          }
+        },
+        {
+          "Name": "Custom_Model",
+          "Transform": {
+            "posX": 38.3063278,
+            "posY": 4.624216,
+            "posZ": -6.73968029,
+            "rotX": -0.000156345632,
+            "rotY": 270.0011,
+            "rotZ": 0.0292133167,
+            "scaleX": 1.0,
+            "scaleY": 1.0,
+            "scaleZ": 1.0
+          },
+          "Nickname": "[00B0F2]CUTTER[-]",
+          "Description": "[b]TAG[/b] ● [AAFFAA]Regular[-] ● Hackable \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 6-4\n[b]CC[/b]: 18\n[b]BS[/b]: 15\n[b]PH[/b]: 16\n[b]WIP[/b]: 12\n[b]ARM[/b]: 8\n[b]BTS[/b]: 6\n[B]STR[/B]: 3\n[b]S[/b]: 7\n[ffdddd][sub]----------Weapons---------\n[/sub]\nMULTI Heavy Machine Gun ● CC Weapon [-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nECM: Guided (-6) [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nRemote Presence ● BS Attack (+1 Dam) ● Surprise Attack (-3) ● Camouflage ● Courage ● Hidden Deployment ● Dodge (PH=11) ● Immunity (Shock) ● Mimetism (-6) ● Tactical Awareness ● Terrain (Aquatic) ● Gizmokit (PH=13) [-]\n[00000c][-]",
+          "GMNotes": "",
+          "ColorDiffuse": {
+            "r": 0.0,
+            "g": 0.6901961,
+            "b": 0.9490196
+          },
+          "Locked": false,
+          "Grid": true,
+          "Snap": true,
+          "IgnoreFoW": false,
+          "MeasureMovement": false,
+          "DragSelectable": true,
+          "Autoraise": true,
+          "Sticky": true,
+          "Tooltip": true,
+          "GridProjection": false,
+          "HideWhenFaceDown": false,
+          "Hands": false,
+          "CustomMesh": {
+            "MeshURL": "http://cloud-3.steamusercontent.com/ugc/925928630318994134/5838E51349A25E681B92707DB5A0D10812E987AF/",
+            "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/1257016010465360644/8ADA600555121EB72D1F2A3A634851CEEA798279/",
+            "NormalURL": "",
+            "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/1012689924693061128/0C1DCF70FB0283858247362931346188E1D12C92/",
+            "Convex": false,
+            "MaterialIndex": 3,
+            "TypeIndex": 1,
+            "CustomShader": {
+              "SpecularColor": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0
+              },
+              "SpecularIntensity": 0.0,
+              "SpecularSharpness": 2.0,
+              "FresnelStrength": 0.0
+            },
+            "CastShadows": true
+          },
+          "LuaScript": "",
+          "LuaScriptState": "",
+          "XmlUI": "",
+          "GUID": "c5e06b",
+          "AttachedDecals": [
+            {
+              "Transform": {
+                "posX": -0.017812252,
+                "posY": 1.418883,
+                "posZ": 0.3180256,
+                "rotX": 0.0,
+                "rotY": 90.0,
+                "rotZ": 0.0,
+                "scaleX": 2.71827126,
+                "scaleY": 2.59374356,
+                "scaleZ": 2.5937438
+              },
+              "CustomDecal": {
+                "Name": "Cutter",
+                "ImageURL": "http://cloud-3.steamusercontent.com/ugc/866241292747567654/6A7A5FCBE7F0D0812F90A6DC63D27938707D8FB8/",
+                "Size": 1.0
+              }
+            },
+            {
+              "Transform": {
+                "posX": 0.0178123116,
+                "posY": 1.40962374,
+                "posZ": -0.299505234,
+                "rotX": 1.306108E-06,
+                "rotY": 270.0,
+                "rotZ": 6.13578E-06,
+                "scaleX": 2.71827173,
+                "scaleY": 2.593745,
+                "scaleZ": 2.59374571
+              },
+              "CustomDecal": {
+                "Name": "Cutter",
+                "ImageURL": "http://cloud-3.steamusercontent.com/ugc/866241292747567654/6A7A5FCBE7F0D0812F90A6DC63D27938707D8FB8/",
+                "Size": 1.0
+              }
+            }
+          ],
+          "States": {
+            "2": {
+              "Name": "Custom_Model",
+              "Transform": {
+                "posX": 31.1279621,
+                "posY": 0.960000157,
+                "posZ": -11.7061558,
+                "rotX": -1.884076E-05,
+                "rotY": 270.001068,
+                "rotZ": -0.000352306553,
+                "scaleX": 1.0,
+                "scaleY": 1.0,
+                "scaleZ": 1.0
+              },
+              "Nickname": "Camouflage (-6) S7",
+              "Description": "",
+              "GMNotes": "",
+              "ColorDiffuse": {
+                "r": 0.0,
+                "g": 0.6901961,
+                "b": 0.9490196
+              },
+              "Locked": false,
+              "Grid": true,
+              "Snap": true,
+              "IgnoreFoW": false,
+              "MeasureMovement": false,
+              "DragSelectable": true,
+              "Autoraise": true,
+              "Sticky": true,
+              "Tooltip": true,
+              "GridProjection": false,
+              "HideWhenFaceDown": false,
+              "Hands": false,
+              "CustomMesh": {
+                "MeshURL": "http://cloud-3.steamusercontent.com/ugc/929303943738459507/34EE1AF3873E76E19912EDE95F2059647D9AB1D9/",
+                "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/",
+                "NormalURL": "",
+                "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/929303943738459507/34EE1AF3873E76E19912EDE95F2059647D9AB1D9/",
+                "Convex": true,
+                "MaterialIndex": 3,
+                "TypeIndex": 1,
+                "CastShadows": true
+              },
+              "LuaScript": "",
+              "LuaScriptState": "",
+              "XmlUI": "",
+              "GUID": "8a494f"
+            }
+          }
+        }
+      ],
+      "GUID": "958bcb"
+    }
+  ],
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "VersionNumber": ""
+}

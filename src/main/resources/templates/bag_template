@@ -1,0 +1,83 @@
+{
+  "SaveName": "",
+  "GameMode": "",
+  "Date": "",
+  "Gravity": 0.5,
+  "PlayArea": 0.5,
+  "GameType": "",
+  "GameComplexity": "",
+  "Tags": [],
+  "Table": "",
+  "Sky": "",
+  "Note": "",
+  "Rules": "",
+  "TabStates": {},
+  "ObjectStates": [
+    {
+      "Name": "Custom_Model_Bag",
+      "Transform": {
+        "posX": -35.0,
+        "posY": 0.833415747,
+        "posZ": 65.87185,
+        "rotX": 2.559561E-07,
+        "rotY": 90.00057,
+        "rotZ": -9.608987E-07,
+        "scaleX": 4.0,
+        "scaleY": 4.0,
+        "scaleZ": 4.0
+      },
+      "Nickname": "[DA1917]Miniature Case[-]",
+      "Description": "%s",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 0.5016792,
+        "b": 0.496515572
+      },
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "MaterialIndex": -1,
+      "MeshIndex": -1,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/502526366065245451/F664D7049EE36B94AE02C97FB705AD4872DC04E1/",
+        "DiffuseURL": "http://cloud-3.steamusercontent.com/ugc/502526366065246579/FC165962015416BA8F5D7B9B849CC819CB818785/",
+        "NormalURL": "http://cloud-3.steamusercontent.com/ugc/502526366065246920/A5B7D90D38B8837254CF2DAABD1ED58DF79BEBF3/",
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/502526366065245451/F664D7049EE36B94AE02C97FB705AD4872DC04E1/",
+        "Convex": true,
+        "MaterialIndex": 0,
+        "TypeIndex": 6,
+        "CustomShader": {
+          "SpecularColor": {
+            "r": 1.0,
+            "g": 1.0,
+            "b": 1.0
+          },
+          "SpecularIntensity": 0.0,
+          "SpecularSharpness": 7.0,
+          "FresnelStrength": 0.4
+        },
+        "CastShadows": true
+      },
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "ContainedObjects": [
+      %s
+      ]
+    }
+  ],
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "VersionNumber": ""
+}
