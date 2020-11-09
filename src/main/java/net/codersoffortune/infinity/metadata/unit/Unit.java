@@ -103,11 +103,11 @@ public class Unit {
     public Collection<CompactedUnit> getAllUnits() {
         Collection<CompactedUnit> result = new ArrayList<>();
         for( ProfileGroup group: profileGroups) {
-            // TODO:: Handle weird profile 2 cases like the sujian
-            Profile profile = group.getProfiles().get(0);
-            result.addAll(group.getOptions().stream()
+            group.getProfiles().stream().forEach(
+            profile->result.addAll(group.getOptions().stream()
                     .map(o->new CompactedUnit(ID, group, profile, o))
-                    .collect(Collectors.toList()));
+                    .collect(Collectors.toList()))
+            );
         }
         return result;
     }

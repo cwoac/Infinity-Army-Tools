@@ -7,10 +7,7 @@ import net.codersoffortune.infinity.tts.TTSModel;
 
 import java.io.IOException;
 import java.io.InvalidObjectException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -22,6 +19,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private final List<String> equip;
     private final List<String> peripheral;
     private final UnitFlags flags;
+    private final int sectoral_idx;
     private final int unit_idx;
     private final int group_idx;
     private final int option_idx;
@@ -51,7 +49,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     @Override
     public String toString() {
         return String.format("PrintableUnit{%d:%d:%d %s}",
-            unit_idx, group_idx, option_idx, name);
+                unit_idx, group_idx, option_idx, name);
     }
 
     @Override
@@ -86,14 +84,18 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
     /**
      * Checks whether the other unit is close enough in equipment that we can still use it's TTS model
+     *
      * @param that the unit to check
      * @return true iff the equipment, skills, name and weapons match
      */
     public boolean isEquivalent(PrintableUnit that) {
         return name.equals(that.name) &&
-                Objects.equals(weapons, that.weapons) &&
-                Objects.equals(skills, that.skills) &&
-                Objects.equals(equip, that.equip);
+                Objects.equals(new HashSet<>(weapons), new HashSet<>(that.weapons)) &&
+                Objects.equals(new HashSet<>(equip), new HashSet<>(that.equip));
+    }
+
+    public UnitID getUnitID() {
+        return new UnitID(sectoral_idx, unit_idx, group_idx, profile_idx, option_idx);
     }
 
     @Override
@@ -101,12 +103,13 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return Objects.hash(weapons, skills, equip, peripheral, unit_idx, group_idx, option_idx, profile_idx, name, arm, bs, bts, cc, chars, move, ph, s, str, type, w, wip, notes, distinguisher);
     }
 
-    public PrintableUnit(MappedFactionFilters filters, CompactedUnit src) throws InvalidObjectException {
+    public PrintableUnit(MappedFactionFilters filters, CompactedUnit src, int sectoral) throws InvalidObjectException {
         weapons = src.getWeapons().stream().map(x -> x.toString(filters, FilterType.weapons)).collect(Collectors.toList());
         skills = src.getPublicSkills().stream().map(x -> x.toString(filters, FilterType.skills)).collect(Collectors.toList());
         equip = src.getEquipment().stream().map(x -> x.toString(filters, FilterType.equip)).collect(Collectors.toList());
         peripheral = src.getPeripheral().stream().map(x -> x.toString(filters, FilterType.peripheral)).collect(Collectors.toList());
         name = src.getName();
+        sectoral_idx = sectoral;
         unit_idx = src.getUnit_idx();
         group_idx = src.getGroup_idx();
         option_idx = src.getOption_idx();
@@ -116,7 +119,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         bs = src.getProfile().getBs();
         bts = src.getProfile().getBts();
         cc = src.getProfile().getCc();
-        chars = src.getPublicChars().stream().map(x->filters.getItem(FilterType.chars, x).getName()).collect(Collectors.toList());
+        chars = src.getPublicChars().stream().map(x -> filters.getItem(FilterType.chars, x).getName()).collect(Collectors.toList());
         move = src.getProfile().getMove().stream().map(String::valueOf).collect(Collectors.joining("-"));
         ph = src.getProfile().getPh();
         s = src.getProfile().getS();
@@ -126,49 +129,51 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         wip = src.getProfile().getWip();
         notes = src.getProfile().getNotes();
         flags = new UnitFlags(src);
-        if( src.getGroup().getOptions().size() == 1) {
+        if (src.getGroup().getOptions().size() == 1) {
             // Don't need to distinguish when only one option
             distinguisher = "";
         } else {
             List<ProfileItem> pSkills = src.getOption().getSkills().stream().filter(c -> CompactedUnit.skipSkills(c.getId())).collect(Collectors.toList());
-            if( pSkills.isEmpty() ) {
+            if (pSkills.isEmpty()) {
                 // No special skills, take the first weapon, I guess?
-                distinguisher=weapons.get(0);
+                distinguisher = weapons.get(0);
             } else {
-                distinguisher=pSkills.get(0).toString(filters, FilterType.skills);
+                distinguisher = pSkills.get(0).toString(filters, FilterType.skills);
             }
         }
     }
 
     public String getTTSMesh(int idx) {
-        if(models.size() < idx+1 ) return " ";
+        if (models.size() < idx + 1) return "";
         return models.get(idx).getMeshes();
     }
 
 
     public String getTTSDecal(int idx) {
-        if(models.size() < idx+1 ) return " ";
+        if (models.size() < idx + 1) return "";
         return models.get(idx).getDecals();
     }
 
     public String getTTSName(int idx) {
-        if(models.size() < idx+1 ) return " ";
+        if (models.size() < idx + 1) return "";
         return models.get(idx).getName();
     }
 
 
     public void addTTSModel(TTSModel model) {
-        this.models.add(model);
+        if( !this.models.contains(model))
+            this.models.add(model);
     }
 
     public void addTTSModels(Collection<TTSModel> models) {
-        this.models.addAll(models);
+        // Use this rather than addAll so we can apply filtering.
+        models.stream().forEach(m->addTTSModel(m));
     }
 
     public String getTTSSilhouette() throws IOException {
         // Important numbers:
         // skill 29 - Camouflage
-        // skill 28 - Mimitism
+        // skill 28 - Mimetism
         // extra 6,7 -3, -6
 
         String template = Armylist.getResourceFileAsString(String.format("templates/S%d.json", s));
@@ -176,14 +181,14 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
         String stype;
 
-        if( flags.isCamo()) {
-            if( flags.getMimetism() > 0) {
+        if (flags.isCamo()) {
+            if (flags.getMimetism() > 0) {
                 stype = String.format("Camouflage (%d) S%d", flags.getMimetism(), s);
             } else {
                 stype = String.format("Camouflage S%d", s);
             }
             // edge case of single use camo
-            if( flags.isSingleCamo())
+            if (flags.isSingleCamo())
                 return String.format("%s,\n%s",
                         String.format(template, 2, stype, diffuse),
                         String.format(template, 3, String.format("Silhouette %d", s), ""));
@@ -199,10 +204,10 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     public String getTTSNickName(final MappedFactionFilters filters) {
         //TODO:: implement a filter to select the 'interesting' options
         String result = String.format("[FFFFFF]%s[-]", name);
-        if( !distinguisher.isEmpty()) {
+        if (!distinguisher.isEmpty()) {
             result += " " + distinguisher;
         }
-        return  result;
+        return result;
     }
 
 
@@ -240,16 +245,20 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
     @Override
     public int compareTo(PrintableUnit printableUnit) {
-        if( printableUnit.unit_idx != unit_idx)
+        if (printableUnit.unit_idx != unit_idx)
             return unit_idx - printableUnit.unit_idx;
-        if( printableUnit.group_idx != group_idx)
+        if (printableUnit.group_idx != group_idx)
             return group_idx - printableUnit.group_idx;
-        if( printableUnit.profile_idx != profile_idx)
+        if (printableUnit.profile_idx != profile_idx)
             return profile_idx - printableUnit.profile_idx;
         return option_idx - printableUnit.option_idx;
     }
 
     public List<TTSModel> getModels() {
         return models;
+    }
+
+    public int getSectoral_idx() {
+        return sectoral_idx;
     }
 }

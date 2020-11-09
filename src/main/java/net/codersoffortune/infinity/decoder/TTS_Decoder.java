@@ -3,15 +3,15 @@ package net.codersoffortune.infinity.decoder;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.codersoffortune.infinity.db.Database;
-import net.codersoffortune.infinity.mapping.OldCatalogue;
 import net.codersoffortune.infinity.metadata.FactionList;
-import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.tts.Catalogue;
 import net.codersoffortune.infinity.tts.ModelSet;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -56,7 +56,7 @@ public class TTS_Decoder {
             String decals = child.get("AttachedDecals").toString();
             String meshes = child.get("CustomMesh").toString();
             ms.addModel(unitIdx, optionIdx, name, decals, meshes);
-            System.out.println(String.format("[%d,%d] %s - %s", unitIdx, optionIdx, name, code));
+            //System.out.println(String.format("[%d,%d] %s - %s", unitIdx, optionIdx, name, code));
         }
         String output = om.writeValueAsString(ms);
         ModelSet ms2 = om.readValue(output, ModelSet.class);
@@ -68,12 +68,19 @@ public class TTS_Decoder {
         Catalogue c = new Catalogue();
         //db.getFactions().entrySet().stream()
         //        .forEach(f->c.addUnits(f.getKey(), f.getValue()));
-        c.addUnits(db.getFactions().get(101));
-        c.addUnits(db.getFactions().get(103));
-        c.addUnits(db.getFactions().get(105));
-        c.addUnits(db.getFactions().get(106));
+        c.addUnits(db.getFactions().get(101), 101);
+        c.addUnits(db.getFactions().get(103), 103);
+        c.addUnits(db.getFactions().get(105), 105);
+        c.addUnits(db.getFactions().get(106), 106);
         c.addTTSModels(ms);
         c.toCSV("test.csv");
+        Map<String, Collection<String>> eq = c.getEquivalences();
+        Catalogue c2 = new Catalogue();
+        c2.addUnits(db.getFactions().get(101), 101);
+        c2.addUnits(db.getFactions().get(103), 103);
+        c2.addUnits(db.getFactions().get(105), 105);
+        c2.addUnits(db.getFactions().get(106), 106);
+        c2.fromCSV("test2.csv");
         System.out.println(jn.toString());
 
     }
