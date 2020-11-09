@@ -2,11 +2,9 @@ package net.codersoffortune.infinity.mapping;
 
 import net.codersoffortune.infinity.metadata.unit.ProfileGroup;
 import net.codersoffortune.infinity.metadata.unit.Unit;
+import net.codersoffortune.infinity.tts.TTSModel;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Top level mapping item.
@@ -26,6 +24,24 @@ public class UnitMapping {
             }
             groups.get(pg.getId()).addGroup(sectoral, pg);
         }
-        // TODO:: Handle group 0 cases.
+    }
+
+    public void addTTSModel(TTSModel model, int option_idx) {
+        addTTSModel(model, 1, option_idx);
+    }
+    public void addTTSModel(TTSModel model, int group_idx, int option_idx) {
+        groups.get(group_idx).addTTSModel(model, option_idx);
+    }
+
+    public Optional<TTSModel> getTTSModel(int option_idx) {
+        return getTTSModel(1, option_idx);
+    }
+
+    public Optional<TTSModel> getTTSModel(int group_idx, int option_idx) {
+        return groups.get(group_idx).getTTSModel(option_idx);
+    }
+
+    public Map<Integer, GroupMapping> getGroups() {
+        return groups;
     }
 }

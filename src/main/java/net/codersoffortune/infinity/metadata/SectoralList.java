@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-public class SectorialList {
+public class SectoralList {
     private String version;
     private List<Unit> units;
     private FactionFilters filters;
@@ -20,13 +20,13 @@ public class SectorialList {
     private List<Relation> relations; // TODO:: Is this ever used?
     private Specops specops;
 
-    public static SectorialList loadFaction(String url) throws IOException {
+    public static SectoralList loadFaction(String url) throws IOException {
         ObjectMapper om = new ObjectMapper();
         SimpleModule sm = new SimpleModule();
         sm.addDeserializer(SpecopsNestedItem.class, new SpecopsNestedItemDeserializer());
         om.registerModule(sm);
         //data = om.readValue(new java.net.URL(url), Map.class);
-        return om.readValue(SectorialList.class.getResource("/" + url), SectorialList.class);
+        return om.readValue(SectoralList.class.getResource("/" + url), SectoralList.class);
     }
 
     public Optional<Unit> getUnit(int id) {
@@ -51,6 +51,10 @@ public class SectorialList {
 
     public FactionFilters getFilters() {
         return filters;
+    }
+
+    public MappedFactionFilters getMappedFilters() {
+        return new MappedFactionFilters(filters);
     }
 
     public void setFilters(FactionFilters filters) {

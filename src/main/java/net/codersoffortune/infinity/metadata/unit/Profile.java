@@ -1,7 +1,5 @@
 package net.codersoffortune.infinity.metadata.unit;
 
-import net.codersoffortune.infinity.metadata.Peripheral;
-
 import java.util.List;
 
 public class Profile {
@@ -29,13 +27,13 @@ public class Profile {
     private String name;
     private String notes;
     private List<ProfileItem> skills;
-    private List<Peripheral> peripheral;
+    private List<ProfileItem> peripheral;
 
-    public List<Peripheral> getPeripheral() {
+    public List<ProfileItem> getPeripheral() {
         return peripheral;
     }
 
-    public void setPeripheral(List<Peripheral> peripheral) {
+    public void setPeripheral(List<ProfileItem> peripheral) {
         this.peripheral = peripheral;
     }
 

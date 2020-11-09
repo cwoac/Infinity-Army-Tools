@@ -26,7 +26,7 @@ public class Unit {
     private String iscAbbr;
     private String notes;
     private String name;
-    private List<ProfileGroup> ProfileGroups;
+    private List<ProfileGroup> profileGroups;
     private List<ProfileOption> options;
     private String slug;
     private Map<String, List<Integer>> filters;
@@ -100,13 +100,25 @@ public class Unit {
         return units.stream().map(cu -> toJson(combat_group, cu, filters, modelSet, group)).collect(Collectors.toList());
     }
 
+    public Collection<CompactedUnit> getAllUnits() {
+        Collection<CompactedUnit> result = new ArrayList<>();
+        for( ProfileGroup group: profileGroups) {
+            // TODO:: Handle weird profile 2 cases like the sujian
+            Profile profile = group.getProfiles().get(0);
+            result.addAll(group.getOptions().stream()
+                    .map(o->new CompactedUnit(ID, group, profile, o))
+                    .collect(Collectors.toList()));
+        }
+        return result;
+    }
+
     public Collection<CompactedUnit> getUnits(final int group, final int option) throws IllegalArgumentException {
         if (group == 0) {
             return get0GroupUnits(option);
         }
         Collection<CompactedUnit> result = new ArrayList<>();
 
-        ProfileGroup pg = ProfileGroups.stream().filter(x -> x.getId() == group).findFirst().orElseThrow(IllegalArgumentException::new);
+        ProfileGroup pg = profileGroups.stream().filter(x -> x.getId() == group).findFirst().orElseThrow(IllegalArgumentException::new);
         // Note: technically, the unit also has a List<Options>, however this is (currently!) used only for jazz+billie and scarface+cordelia,
         // and maps directly to the options of profile1, and serves to provide the total cost of taking both of the unit.
         ProfileOption po = pg.getOptions().stream().filter(x -> x.getId() == option).findFirst().orElseThrow(IllegalArgumentException::new);
@@ -147,11 +159,11 @@ public class Unit {
     }
 
     public List<ProfileGroup> getProfileGroups() {
-        return ProfileGroups;
+        return profileGroups;
     }
 
     public void setProfileGroups(List<ProfileGroup> profileGroups) {
-        ProfileGroups = profileGroups;
+        this.profileGroups = profileGroups;
     }
 
     public String getName() {

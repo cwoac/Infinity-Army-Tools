@@ -1,8 +1,9 @@
 package net.codersoffortune.infinity.metadata;
 
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.Map;
+import net.codersoffortune.infinity.metadata.unit.ProfileItem;
+
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -26,8 +27,11 @@ public class MappedFactionFilters {
         filters.getSkills().forEach(x -> data.get(FilterType.skills).put(x.getId(), x));
     }
 
+    public FilterItem getItem(final FilterType type, final ProfileItem item) throws IndexOutOfBoundsException {
+        return getItem(type, item.getId());
+    }
+
     public FilterItem getItem(final FilterType type, final int idx) throws IndexOutOfBoundsException {
         return data.get(type).get(idx);
     }
-
 }

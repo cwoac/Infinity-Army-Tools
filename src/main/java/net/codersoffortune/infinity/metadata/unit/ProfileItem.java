@@ -42,7 +42,12 @@ public class ProfileItem {
      */
     public String toString(final MappedFactionFilters filters, final FilterType type) {
         StringBuilder result = new StringBuilder();
-        result.append(filters.getItem(type, getId()).getName());
+        try {
+            result.append(filters.getItem(type, getId()).getName());
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+        }
         if (getExtra() != null && !getExtra().isEmpty()) {
             List<String> extras = extra.stream().map(x -> filters.getItem(FilterType.extras, x).getName())
                     .collect(Collectors.toList());

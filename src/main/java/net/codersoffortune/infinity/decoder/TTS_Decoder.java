@@ -3,9 +3,10 @@ package net.codersoffortune.infinity.decoder;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.codersoffortune.infinity.db.Database;
-import net.codersoffortune.infinity.mapping.Catalogue;
+import net.codersoffortune.infinity.mapping.OldCatalogue;
 import net.codersoffortune.infinity.metadata.FactionList;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
+import net.codersoffortune.infinity.tts.Catalogue;
 import net.codersoffortune.infinity.tts.ModelSet;
 
 import java.io.IOException;
@@ -62,12 +63,17 @@ public class TTS_Decoder {
         String output2 = om.writeValueAsString(ms2);
         assert (output.equals(output2));
         //Armylist testList = Armylist.fromArmyCode(test_list);
-        MappedFactionFilters mff = new MappedFactionFilters(db.getFactions().get(101).getFilters());
+        //MappedFactionFilters mff = dFactionFilters(db.getFactions().get(101).getFilters());
         //String bag = testList.asJson(mff, ms2);
         Catalogue c = new Catalogue();
-        db.getFactions().entrySet().stream()
-                .forEach(f->c.addUnits(f.getKey(), f.getValue()));
-
+        //db.getFactions().entrySet().stream()
+        //        .forEach(f->c.addUnits(f.getKey(), f.getValue()));
+        c.addUnits(db.getFactions().get(101));
+        c.addUnits(db.getFactions().get(103));
+        c.addUnits(db.getFactions().get(105));
+        c.addUnits(db.getFactions().get(106));
+        c.addTTSModels(ms);
+        c.toCSV("test.csv");
         System.out.println(jn.toString());
 
     }

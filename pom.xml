@@ -77,8 +77,14 @@
         <!-- dependency versions -->
         <jackson-version>2.11.3</jackson-version>
         <derby-version>10.15.2.0</derby-version>
+        <csv-version>1.8</csv-version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>${csv-version}</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derbytools</artifactId>

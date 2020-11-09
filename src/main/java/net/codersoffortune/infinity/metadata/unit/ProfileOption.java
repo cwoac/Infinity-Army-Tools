@@ -25,7 +25,7 @@ public class ProfileOption {
     private List<ProfileItem> weapons;
     private String name;
     private List<ProfileItem> skills;
-    private List<Peripheral> peripheral;
+    private List<ProfileItem> peripheral;
 
     @Override
     public boolean equals(Object o) {
@@ -52,11 +52,11 @@ public class ProfileOption {
         return Objects.hash(id, chars, habilities, equip, minis, orders, includes, weapons, name, skills, peripheral);
     }
 
-    public List<Peripheral> getPeripheral() {
+    public List<ProfileItem> getPeripheral() {
         return peripheral;
     }
 
-    public void setPeripheral(List<Peripheral> peripheral) {
+    public void setPeripheral(List<ProfileItem> peripheral) {
         this.peripheral = peripheral;
     }
 

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,9 +23,15 @@ public class CompactedUnit {
     private final List<ProfileItem> weapons = new ArrayList<>();
     private final List<ProfileItem> skills = new ArrayList<>();
     private final List<ProfileItem> equipment = new ArrayList<>();
+    private final List<ProfileItem> peripheral = new ArrayList<>();
 
-    private int unit_idx;
-
+    private final int unit_idx;
+    private final int group_idx;
+    private final int option_idx;
+    private final int profile_idx;
+    private final Profile profile;
+    private final ProfileGroup group;
+    private final ProfileOption option;
     public List<ProfileItem> getWeapons() {
         return weapons;
     }
@@ -33,23 +40,26 @@ public class CompactedUnit {
         return skills;
     }
 
-    private int group_idx;
-    private int option_idx;
-    private Profile profile;
-    private String name;
+
+    private final String name;
 
     public CompactedUnit(int unit_idx, ProfileGroup group, Profile profile, ProfileOption option) {
         this.unit_idx = unit_idx;
+        this.group = group;
         this.profile = profile;
+        this.option = option;
+        profile_idx = profile.getId();
         group_idx = group.getId();
         option_idx = option.getId();
         name = option.getName();
-        weapons.addAll(profile.getWeapons());
-        skills.addAll(profile.getSkills());
-        equipment.addAll(profile.getEquip());
         weapons.addAll(option.getWeapons());
         skills.addAll(option.getSkills());
         equipment.addAll(option.getEquip());
+        peripheral.addAll(option.getPeripheral());
+        weapons.addAll(profile.getWeapons());
+        skills.addAll(profile.getSkills());
+        equipment.addAll(profile.getEquip());
+        peripheral.addAll(profile.getPeripheral());
 
     }
 
@@ -65,29 +75,37 @@ public class CompactedUnit {
         return option_idx;
     }
 
-
     // chars to ignore : 2,5
     static boolean skipCharacteristic(final int c) {
         // 2 - no cube, 5 = not impetuous
         return !(c == 2 || c == 5);
     }
 
+    // 119 - lt
+    // 69 strategos l1
+    // 70 strategos l2
+    // 26 chain of command
+    // 120 FT:Core
+    // 121 FT:Haris
+    // 181 FT:Duo
+    private final static List<Integer> privateSkills =
+            Arrays.asList(119,69,70,26,120,121,181);
     /**
      * Checks whether to suppress a hidden information skill
-     *
+     * Also strip fireteam info. TODO:: Workout if this is really what we want to do.
      * @param c skill number to check
      * @return true iff this skill is good to print
      */
     static boolean skipSkills(final int c) {
-        // 119 - lt
-        // 69 strategos l1
-        // 70 strategos l2
-        // 26 chain of command
-        return !(c == 119 || c == 70 || c == 69 || c == 26);
+        return !privateSkills.contains(c);
     }
 
     public List<ProfileItem> getPublicSkills() {
         return skills.stream().filter(x -> skipSkills(x.getId())).collect(Collectors.toList());
+    }
+
+    public List<Integer> getPublicChars() {
+        return profile.getChars().stream().filter(CompactedUnit::skipCharacteristic).collect(Collectors.toList());
     }
 
     public String getTTSSilhouette() throws IOException {
@@ -139,6 +157,8 @@ public class CompactedUnit {
 
         return String.format(template, 2, stype, diffuse);
     }
+
+
 
     public String getTTSNickName(final MappedFactionFilters filters) {
         //TODO:: implement a filter to select the 'interesting' options
@@ -229,9 +249,6 @@ public class CompactedUnit {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public List<ProfileItem> getEquipment() {
         return equipment;
@@ -241,12 +258,20 @@ public class CompactedUnit {
         return profile;
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
 
     public int getUnit_idx() {
         return unit_idx;
     }
 
+    public List<ProfileItem> getPeripheral() {
+        return peripheral;
+    }
+
+    public ProfileGroup getGroup() {
+        return group;
+    }
+
+    public ProfileOption getOption() {
+        return option;
+    }
 }

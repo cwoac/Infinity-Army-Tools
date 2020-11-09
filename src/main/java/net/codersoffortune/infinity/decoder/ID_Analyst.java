@@ -1,7 +1,7 @@
 package net.codersoffortune.infinity.decoder;
 
 import net.codersoffortune.infinity.db.Database;
-import net.codersoffortune.infinity.metadata.SectorialList;
+import net.codersoffortune.infinity.metadata.SectoralList;
 import net.codersoffortune.infinity.metadata.unit.ProfileOption;
 import net.codersoffortune.infinity.metadata.unit.Unit;
 
@@ -20,7 +20,7 @@ public class ID_Analyst {
 
         Map<Integer, List<Unit>> unitMap = new HashMap<>();
 
-        for(SectorialList sl : db.getFactions().values()) {
+        for(SectoralList sl : db.getFactions().values()) {
             for( Unit unit : sl.getUnits()) {
                 if (!unitMap.containsKey(unit.getID())) {
                     unitMap.put(unit.getID(), new ArrayList<>());

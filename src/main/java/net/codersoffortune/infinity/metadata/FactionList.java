@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public class FactionList {
-    private Map<Integer, SectorialList> sectorials = new HashMap<>();
+    private Map<Integer, SectoralList> sectorials = new HashMap<>();
 
     public Optional<Unit> getUnit(int id) {
         return sectorials.values().stream().
@@ -17,15 +17,15 @@ public class FactionList {
                 .findAny();
     }
 
-    public void addSectorial(int faction_idx, SectorialList sectorialList) {
-        sectorials.put(faction_idx, sectorialList);
+    public void addSectorial(int faction_idx, SectoralList sectoralList) {
+        sectorials.put(faction_idx, sectoralList);
     }
 
-    public Map<Integer, SectorialList> getSectorials() {
+    public Map<Integer, SectoralList> getSectorials() {
         return sectorials;
     }
 
-    public void setSectorials(Map<Integer, SectorialList> sectorials) {
+    public void setSectorials(Map<Integer, SectoralList> sectorials) {
         this.sectorials = sectorials;
     }
 }
