@@ -39,7 +39,7 @@ public class ModelSet {
      * @param decals            Json representing the decals for this model
      * @param meshes            Json representing the meshes for this model
      */
-    public void addModel(int unit_idx, int profile_array_idx, String decals, String meshes) {
+    public void addModel(int unit_idx, int profile_array_idx, String modelName, String decals, String meshes) {
         Optional<Unit> maybeUnit = factionList.getUnit(unit_idx);
         if (!maybeUnit.isPresent()) {
             System.out.println(unit_idx);
@@ -59,7 +59,7 @@ public class ModelSet {
         if (!models.containsKey(unit_idx)) {
             models.put(unit_idx, new Model(faction, unit_idx));
         }
-        models.get(unit_idx).addMesh(profile_group, profile, option, decals, meshes);
+        models.get(unit_idx).addMesh(profile_group, profile, option, modelName, decals, meshes);
     }
 
     // TODO:: randomly select when multiple options are availiable?

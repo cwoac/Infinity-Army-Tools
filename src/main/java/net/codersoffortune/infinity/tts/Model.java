@@ -42,7 +42,7 @@ public class Model {
         this.items = items;
     }
 
-    public void addMesh(int profile_group_idx, int profile_idx, int option_idx, String decals, String meshes) {
+    public void addMesh(int profile_group_idx, int profile_idx, int option_idx, String modelName, String decals, String meshes) {
         if (!items.containsKey(profile_group_idx))
             items.put(profile_group_idx, new HashMap<>());
         Map<Integer, Map<Integer, List<TTSModel>>> group_map = items.get(profile_group_idx);
@@ -51,7 +51,7 @@ public class Model {
         Map<Integer, List<TTSModel>> profile_map = group_map.get(profile_idx);
         if (!profile_map.containsKey(option_idx))
             profile_map.put(option_idx, new ArrayList<>());
-        profile_map.get(option_idx).add(new TTSModel(decals, meshes));
+        profile_map.get(option_idx).add(new TTSModel(modelName, decals, meshes));
     }
 
     public int getFaction() {

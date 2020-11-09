@@ -77,11 +77,11 @@ public class Catalogue {
     public void toCSV(String filename) throws IOException {
         FileWriter fh = new FileWriter(filename);
         String[] headers = {"unit,", "group", "profile", "option","name","weapons","equip","skills",
-                "decals1", "meshes1",
-                "decals2", "meshes2",
-                "decals3", "meshes3",
-                "decals4", "meshes4",
-                "decals5", "meshes5",
+                "meshName1", "decals1", "meshes1",
+                "meshName2", "decals2", "meshes2",
+                "meshName3", "decals3", "meshes3",
+                "meshName4", "decals4", "meshes4",
+                "meshName5", "decals5", "meshes5",
         };
         try(CSVPrinter out = new CSVPrinter(fh, CSVFormat.EXCEL.withHeader(headers))) {
             for(PrintableUnit u : unitList) {
@@ -93,16 +93,22 @@ public class Catalogue {
                         String.join(",", u.getWeapons()),
                         String.join(",", u.getEquip()),
                         String.join(",", u.getSkills()),
+                        u.getTTSName(0),
                         u.getTTSMesh(0),
                         u.getTTSDecal(0),
+                        u.getTTSName(1),
                         u.getTTSMesh(1),
                         u.getTTSDecal(1),
+                        u.getTTSName(2),
                         u.getTTSMesh(2),
                         u.getTTSDecal(2),
+                        u.getTTSName(3),
                         u.getTTSMesh(3),
                         u.getTTSDecal(3),
+                        u.getTTSName(4),
                         u.getTTSMesh(4),
                         u.getTTSDecal(4),
+                        u.getTTSName(5),
                         u.getTTSMesh(5),
                         u.getTTSDecal(5));
                 }

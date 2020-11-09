@@ -55,7 +55,7 @@ public class TTS_Decoder {
             }
             String decals = child.get("AttachedDecals").toString();
             String meshes = child.get("CustomMesh").toString();
-            ms.addModel(unitIdx, optionIdx, decals, meshes);
+            ms.addModel(unitIdx, optionIdx, name, decals, meshes);
             System.out.println(String.format("[%d,%d] %s - %s", unitIdx, optionIdx, name, code));
         }
         String output = om.writeValueAsString(ms);

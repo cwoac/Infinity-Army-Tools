@@ -151,6 +151,11 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return models.get(idx).getDecals();
     }
 
+    public String getTTSName(int idx) {
+        if(models.size() < idx+1 ) return " ";
+        return models.get(idx).getName();
+    }
+
 
     public void addTTSModel(TTSModel model) {
         this.models.add(model);
