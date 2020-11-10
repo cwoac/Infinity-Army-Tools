@@ -66,23 +66,23 @@ public class TTS_Decoder {
         //MappedFactionFilters mff = dFactionFilters(db.getFactions().get(101).getFilters());
         //String bag = testList.asJson(mff, ms2);
         Catalogue c = new Catalogue();
-        //db.getFactions().entrySet().stream()
-        //        .forEach(f->c.addUnits(f.getKey(), f.getValue()));
-        c.addUnits(db.getFactions().get(101), 101);
-        c.addUnits(db.getFactions().get(103), 103);
-        c.addUnits(db.getFactions().get(105), 105);
-        c.addUnits(db.getFactions().get(106), 106);
+        boolean useMercs = false;
+        c.addUnits(db.getFactions().get(101), 101, useMercs);
+        c.addUnits(db.getFactions().get(103), 103, useMercs);
+        c.addUnits(db.getFactions().get(105), 105, useMercs);
+        c.addUnits(db.getFactions().get(106), 106, useMercs);
         c.addTTSModels(ms);
         c.toCSV("test.csv");
+
         Map<String, Collection<String>> eq = c.getEquivalences();
         Catalogue c2 = new Catalogue();
-        c2.addUnits(db.getFactions().get(101), 101);
-        c2.addUnits(db.getFactions().get(103), 103);
-        c2.addUnits(db.getFactions().get(105), 105);
-        c2.addUnits(db.getFactions().get(106), 106);
+        c2.addUnits(db.getFactions().get(101), 101, useMercs);
+        c2.addUnits(db.getFactions().get(103), 103, useMercs);
+        c2.addUnits(db.getFactions().get(105), 105, useMercs);
+        c2.addUnits(db.getFactions().get(106), 106, useMercs);
         c2.fromCSV("test2.csv");
         String faction_json = c2.asJson("PanOceania");
-        System.out.println(jn.toString());
+        c2.getModellessList().stream().forEach(u -> System.out.println(String.format("Missing model for %s", u)));
 
     }
 

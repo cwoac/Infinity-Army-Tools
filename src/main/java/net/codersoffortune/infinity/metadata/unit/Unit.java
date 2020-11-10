@@ -58,6 +58,15 @@ public class Unit {
         return result;
     }
 
+
+    /**
+     * Irritatingly merc status is simply denoted by having a unit ID over 10k.
+     * @return whether this unit is a merc.
+     */
+    public boolean isMerc() {
+        return this.ID > 10000;
+    }
+
     private static String toJson(final int combat_group,
                                  final CompactedUnit unit,
                                  final MappedFactionFilters filters,

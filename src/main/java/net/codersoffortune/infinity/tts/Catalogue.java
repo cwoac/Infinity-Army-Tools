@@ -41,7 +41,9 @@ public class Catalogue {
         private final Set<PrintableUnit> equivalentUnits = new HashSet<>();
         private final PrintableUnit baseUnit;
 
-        public Collection<PrintableUnit> getEquivalentUnits() { return equivalentUnits; }
+        public Collection<PrintableUnit> getEquivalentUnits() {
+            return equivalentUnits;
+        }
 
 
         public Mapping(PrintableUnit base) {
@@ -50,14 +52,15 @@ public class Catalogue {
 
         /**
          * Check to see if the passed unit is visibily equivalent to the ones in this mapping. If so, claim it.
+         *
          * @param unit to consider
          * @return true iff the unit is claimed.
          */
         public boolean addUnitMaybe(PrintableUnit unit) {
-            if ( !baseUnit.isEquivalent(unit) ) {
+            if (!baseUnit.isEquivalent(unit)) {
                 return false;
             }
-            if (baseUnit.equals(unit) ) {
+            if (baseUnit.equals(unit)) {
                 // Don't bother adding it if it is the base object
                 return true;
             }
@@ -67,46 +70,53 @@ public class Catalogue {
 
         /**
          * Get a representative printable unit for this mapping.
+         *
          * @return A printable unit from this mapping
          */
-        public PrintableUnit getRepresentative() { return baseUnit; }
+        public PrintableUnit getRepresentative() {
+            return baseUnit;
+        }
 
-        public Collection<PrintableUnit> getEquivalents() { return equivalentUnits; }
+        public Collection<PrintableUnit> getEquivalents() {
+            return equivalentUnits;
+        }
 
     }
+
     private final Set<Mapping> unitMappings = new HashSet<>();
     private List<PrintableUnit> unitList = new ArrayList<>();
 
     /**
      * Helper function to hide some of the nastiness of reading in a CSV file.
+     *
      * @param row the row to read
      * @return a list of 0..5 TTSModels read from that row.
      */
     private static List<TTSModel> readTTSRow(CSVRecord row) {
-        List<TTSModel> result= new ArrayList<>();
+        List<TTSModel> result = new ArrayList<>();
         String name = row.get("meshName1");
         // TODO:: There has to be a nicer way to do this, surely.
-        if( name.isEmpty() ) return result;
+        if (name.isEmpty()) return result;
         String decals = row.get("decals1");
         String meshes = row.get("meshes1");
         result.add(new TTSModel(name, meshes, decals));
         name = row.get("meshName2");
-        if( name.isEmpty() )  return result;
+        if (name.isEmpty()) return result;
         decals = row.get("decals2");
         meshes = row.get("meshes2");
         result.add(new TTSModel(name, meshes, decals));
         name = row.get("meshName3");
-        if( name.isEmpty() )  return result;
+        if (name.isEmpty()) return result;
         decals = row.get("decals3");
         meshes = row.get("meshes3");
         result.add(new TTSModel(name, meshes, decals));
         name = row.get("meshName4");
-        if( name.isEmpty() )  return result;
+        if (name.isEmpty()) return result;
         decals = row.get("decals4");
         meshes = row.get("meshes4");
         result.add(new TTSModel(name, meshes, decals));
         name = row.get("meshName5");
-        if( name.isEmpty() )  return result;
+        if (name.isEmpty()) return result;
         decals = row.get("decals5");
         meshes = row.get("meshes5");
         result.add(new TTSModel(name, meshes, decals));
@@ -118,31 +128,34 @@ public class Catalogue {
         java.util.Collections.sort(unitList);
     }
 
-    public void addUnits(final SectoralList list, int sectoral_idx) throws InvalidObjectException {
+    public void addUnits(final SectoralList list, int sectoral_idx, boolean useMercs) throws InvalidObjectException {
         MappedFactionFilters filters = list.getMappedFilters();
-        for(Unit unit : list.getUnits()) {
-           for(CompactedUnit cu: unit.getAllUnits()) {
-               PrintableUnit pu = new PrintableUnit(filters, cu, sectoral_idx);
-               boolean claimed = unitMappings.stream().anyMatch(x->x.addUnitMaybe(pu));
-               if (!claimed)
-                unitMappings.add( new Mapping(pu) );
-           }
+        for (Unit unit : list.getUnits()) {
+            if (!useMercs && unit.isMerc()) continue;
+
+            for (CompactedUnit cu : unit.getAllUnits()) {
+                PrintableUnit pu = new PrintableUnit(filters, cu, sectoral_idx);
+                boolean claimed = unitMappings.stream().anyMatch(x -> x.addUnitMaybe(pu));
+                if (!claimed)
+                    unitMappings.add(new Mapping(pu));
+            }
         }
         makeList();
     }
 
+
     public void addTTSModels(final ModelSet modelSet) {
-        for( Map.Entry<Integer, Model> entry : modelSet.getModels().entrySet() ) {
-            List<PrintableUnit> targets = unitList.stream().filter(u->u.getUnit_idx()==entry.getKey()).collect(Collectors.toList());
+        for (Map.Entry<Integer, Model> entry : modelSet.getModels().entrySet()) {
+            List<PrintableUnit> targets = unitList.stream().filter(u -> u.getUnit_idx() == entry.getKey()).collect(Collectors.toList());
             Map<Integer, Map<Integer, Map<Integer, List<TTSModel>>>> items = entry.getValue().getItems();
-            for(Map.Entry<Integer, Map<Integer, Map<Integer, List<TTSModel>>>> groupEntry : items.entrySet()) {
-                List<PrintableUnit> groupTargets = targets.stream().filter(u->u.getGroup_idx()==groupEntry.getKey()).collect(Collectors.toList());
-                for(Map.Entry<Integer, Map<Integer, List<TTSModel>>> profileEntry : groupEntry.getValue().entrySet()) {
-                    List<PrintableUnit> profileTargets = groupTargets.stream().filter(u->u.getProfile_idx() == profileEntry.getKey()).collect(Collectors.toList());
-                    for( Map.Entry<Integer, List<TTSModel>> optionEntry : profileEntry.getValue().entrySet()) {
-                        List<PrintableUnit> optionUnits = profileTargets.stream().filter(u->u.getOption_idx() == optionEntry.getKey()).collect(Collectors.toList());
+            for (Map.Entry<Integer, Map<Integer, Map<Integer, List<TTSModel>>>> groupEntry : items.entrySet()) {
+                List<PrintableUnit> groupTargets = targets.stream().filter(u -> u.getGroup_idx() == groupEntry.getKey()).collect(Collectors.toList());
+                for (Map.Entry<Integer, Map<Integer, List<TTSModel>>> profileEntry : groupEntry.getValue().entrySet()) {
+                    List<PrintableUnit> profileTargets = groupTargets.stream().filter(u -> u.getProfile_idx() == profileEntry.getKey()).collect(Collectors.toList());
+                    for (Map.Entry<Integer, List<TTSModel>> optionEntry : profileEntry.getValue().entrySet()) {
+                        List<PrintableUnit> optionUnits = profileTargets.stream().filter(u -> u.getOption_idx() == optionEntry.getKey()).collect(Collectors.toList());
                         List<TTSModel> models = optionEntry.getValue();
-                        optionUnits.stream().forEach(x->x.addTTSModels(models));
+                        optionUnits.stream().forEach(x -> x.addTTSModels(models));
                     }
                 }
             }
@@ -151,8 +164,8 @@ public class Catalogue {
 
     public Map<String, Collection<String>> getEquivalences() {
         Map<String, Collection<String>> results = new HashMap<>();
-        unitMappings.stream().filter(m->!m.getEquivalents().isEmpty())
-                .forEach(u-> {
+        unitMappings.stream().filter(m -> !m.getEquivalents().isEmpty())
+                .forEach(u -> {
                     results.put(u.getRepresentative().toString(),
                             u.getEquivalents().stream().map(PrintableUnit::toString).collect(Collectors.toList()));
                 });
@@ -161,15 +174,15 @@ public class Catalogue {
 
     private Map<UnitID, List<PrintableUnit>> buildReverseMap() throws InvalidObjectException {
         Map<UnitID, List<PrintableUnit>> result = new HashMap<>();
-        for( Mapping mapping : unitMappings ) {
+        for (Mapping mapping : unitMappings) {
             UnitID unitID = mapping.baseUnit.getUnitID();
-            if( result.containsKey(unitID) ) {
+            if (result.containsKey(unitID)) {
                 throw new InvalidObjectException("Duplicate UnitID in CSV:" + unitID);
             }
             List<PrintableUnit> pus = new ArrayList<>();
             pus.add(mapping.baseUnit);
             mapping.getEquivalents().stream()
-                    .forEach(u->pus.add(u));
+                    .forEach(u -> pus.add(u));
             result.put(unitID, pus);
         }
         return result;
@@ -183,20 +196,20 @@ public class Catalogue {
         Iterable<CSVRecord> rows = CSVFormat.EXCEL
                 .withHeader(CSV_HEADERS)
                 .withFirstRecordAsHeader().parse(fh);
-        for( CSVRecord row : rows ) {
+        for (CSVRecord row : rows) {
             // What models does it have?
             List<TTSModel> new_models = readTTSRow(row);
-            if (new_models.isEmpty() ) continue;
+            if (new_models.isEmpty()) continue;
             // Now figure out where to put it.
             UnitID target = new UnitID(Integer.parseInt(row.get("sectoral")),
                     Integer.parseInt(row.get("unit")),
                     Integer.parseInt(row.get("group")),
                     Integer.parseInt(row.get("profile")),
                     Integer.parseInt(row.get("option")));
-            if( reverseMap.containsKey(target) ) {
-                 reverseMap.get(target).stream().forEach(
-                         pu->pu.addTTSModels(new_models)
-                 );
+            if (reverseMap.containsKey(target)) {
+                reverseMap.get(target).stream().forEach(
+                        pu -> pu.addTTSModels(new_models)
+                );
             } else {
                 throw new InvalidObjectException(String.format("Unable to find target %s in catalogue", target));
             }
@@ -205,8 +218,8 @@ public class Catalogue {
 
     public void toCSV(String filename) throws IOException {
         FileWriter fh = new FileWriter(filename);
-        try(CSVPrinter out = new CSVPrinter(fh, CSVFormat.EXCEL.withHeader(CSV_HEADERS))) {
-            for(PrintableUnit u : unitList) {
+        try (CSVPrinter out = new CSVPrinter(fh, CSVFormat.EXCEL.withHeader(CSV_HEADERS))) {
+            for (PrintableUnit u : unitList) {
                 out.printRecord(
                         u.getSectoral_idx(),
                         u.getUnit_idx(),
@@ -235,9 +248,9 @@ public class Catalogue {
                         u.getTTSName(5),
                         u.getTTSMesh(5),
                         u.getTTSDecal(5));
-                }
             }
         }
+    }
 
     public String asJson(String faction_name) throws IOException {
         //TODO:: Check we have all the models / log missing.
@@ -255,16 +268,26 @@ public class Catalogue {
         };
 
 
-
         List<String> units = unitList.stream()
                 .filter(unit -> !unit.getModels().isEmpty())
-                .map(x->x.asJson(unit_template, silhouette_templates))
+                .map(x -> x.asJson(unit_template, silhouette_templates))
                 .collect(Collectors.toList());
-        String bag_format = getResourceFileAsString("templates/faction_bag_template");
+        String bag_format = getResourceFileAsString("templates/pan0_faction_template");
         String unit_list = String.join(",\n", units);
         return String.format(bag_format, faction_name, unit_list);
     }
+
     public List<PrintableUnit> getUnitList() {
         return unitList;
+    }
+
+
+    /**
+     * Ask which units lack models.
+     *
+     * @return a list of all PrintableUnits with no associated models.
+     */
+    public List<PrintableUnit> getModellessList() {
+        return unitList.stream().filter(u -> u.getModels().isEmpty()).collect(Collectors.toList());
     }
 }
