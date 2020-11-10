@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.db.Database;
-import net.codersoffortune.infinity.metadata.Faction;
 import net.codersoffortune.infinity.metadata.FactionList;
 import net.codersoffortune.infinity.tts.Catalogue;
 import net.codersoffortune.infinity.tts.ModelSet;
@@ -69,15 +68,17 @@ public class TTS_Decoder {
         //String bag = testList.asJson(mff, ms2);
         Catalogue c = new Catalogue();
         boolean useMercs = false;
-        c.addUnits(db.getFactions(), FACTION.PanOceania, useMercs);
+        FACTION faction = FACTION.PanOceania;
+        c.addUnits(db.getFactions(), faction, useMercs);
         c.addTTSModels(ms);
-        c.toCSV("test.csv");
+        c.toCSV(String.format("%s test.csv", faction.name()));
 
         Map<String, Collection<String>> eq = c.getEquivalences();
         Catalogue c2 = new Catalogue();
-        c2.addUnits(db.getFactions(), FACTION.PanOceania, useMercs);
-        c2.fromCSV("test2.csv");
-        String faction_json = c2.asJson(FACTION.PanOceania);
+        c2.addUnits(db.getFactions(), faction, useMercs);
+        // Yes this will fail first time. You need to make this file yourself!
+        c2.fromCSV(String.format("%s test2.csv", faction));
+        String faction_json = c2.asJson(faction);
         c2.getModellessList().stream().forEach(u -> System.out.println(String.format("Missing model for %s", u)));
 
     }
