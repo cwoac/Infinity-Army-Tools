@@ -1,5 +1,6 @@
 package net.codersoffortune.infinity.metadata.unit;
 
+import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.armylist.Armylist;
 import net.codersoffortune.infinity.armylist.CombatGroup;
 import net.codersoffortune.infinity.metadata.FilterType;
@@ -235,6 +236,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private String getTTSSilhouette(String[] templates) {
         String template = templates[s-1];
         String diffuse = "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/";
+        // TODO:: Different tint for different camo types?
+        String tint = FACTION.getFactionForSectoral(sectoral_idx).getTint();
 
         String stype;
 
@@ -247,15 +250,15 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
             // edge case of single use camo
             if (flags.isSingleCamo())
                 return String.format("%s,\n%s",
-                        String.format(template, 2, stype, diffuse),
-                        String.format(template, 3, String.format("Silhouette %d", s), ""));
+                        String.format(template, 2, stype, tint, diffuse),
+                        String.format(template, 3, String.format("Silhouette %d", s), tint, ""));
 
         } else {
             diffuse = "";
             stype = String.format("Silhouette %d", s);
         }
 
-        return String.format(template, 2, stype, diffuse);
+        return String.format(template, 2, stype, tint, diffuse);
     }
 
     private String getTTSName() {
@@ -277,7 +280,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
         final String ttsSilhouette = getTTSSilhouette(silhouette_templates);
-        final String ttsColour = CombatGroup.getTint(1); // TODO:: maybe faction specific colours.
+        final String ttsColour = FACTION.getFactionForSectoral(sectoral_idx).getTint();
         List<String> ttsModels = models.stream().map(m->String.format(model_template, ttsName, ttsDescription, ttsColour, m.getMeshes(), m.getDecals(), ttsSilhouette)).collect(Collectors.toList());
         return String.join(",\n", ttsModels);
     }

@@ -26,13 +26,11 @@
         "scaleY": 1.0,
         "scaleZ": 2.0
       },
-      "Nickname": "[00B0F2]%s[-] N4",
+      "Nickname": "[%s]%s[-] N4",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.0,
-        "g": 0.6901961,
-        "b": 0.9490196
+        %s
       },
       "Locked": true,
       "Grid": true,
@@ -79,7 +77,7 @@
           },
           "CustomDecal": {
             "Name": "Faction Hex",
-            "ImageURL": "http://cloud-3.steamusercontent.com/ugc/1685996137035355524/04967D96ACBEBB645E5FA5F365BB6D7AEBCC06CC/",
+            "ImageURL": "%s",
             "Size": 1.0
           }
         }

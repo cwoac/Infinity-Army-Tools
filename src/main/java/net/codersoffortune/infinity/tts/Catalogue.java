@@ -1,5 +1,6 @@
 package net.codersoffortune.infinity.tts;
 
+import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.armylist.Armylist;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.metadata.SectoralList;
@@ -128,6 +129,12 @@ public class Catalogue {
         java.util.Collections.sort(unitList);
     }
 
+    public void addUnits(final Map<Integer, SectoralList> sectorals, FACTION faction, boolean useMercs) throws InvalidObjectException {
+        for(int sectoral : faction.getSectorals()) {
+            addUnits(sectorals.get(sectoral), sectoral, useMercs);
+        }
+    }
+
     public void addUnits(final SectoralList list, int sectoral_idx, boolean useMercs) throws InvalidObjectException {
         MappedFactionFilters filters = list.getMappedFilters();
         for (Unit unit : list.getUnits()) {
@@ -252,7 +259,7 @@ public class Catalogue {
         }
     }
 
-    public String asJson(String faction_name) throws IOException {
+    public String asJson(FACTION faction) throws IOException {
         //TODO:: Check we have all the models / log missing.
 
         // TODO:: This should be a class var inside PrintableUnit
@@ -272,9 +279,9 @@ public class Catalogue {
                 .filter(unit -> !unit.getModels().isEmpty())
                 .map(x -> x.asJson(unit_template, silhouette_templates))
                 .collect(Collectors.toList());
-        String bag_format = getResourceFileAsString("templates/pan0_faction_template");
+        String bag_format = faction.getTemplate();
         String unit_list = String.join(",\n", units);
-        return String.format(bag_format, faction_name, unit_list);
+        return String.format(bag_format, unit_list);
     }
 
     public List<PrintableUnit> getUnitList() {

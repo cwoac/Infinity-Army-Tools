@@ -2,7 +2,9 @@ package net.codersoffortune.infinity.decoder;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.db.Database;
+import net.codersoffortune.infinity.metadata.Faction;
 import net.codersoffortune.infinity.metadata.FactionList;
 import net.codersoffortune.infinity.tts.Catalogue;
 import net.codersoffortune.infinity.tts.ModelSet;
@@ -67,21 +69,15 @@ public class TTS_Decoder {
         //String bag = testList.asJson(mff, ms2);
         Catalogue c = new Catalogue();
         boolean useMercs = false;
-        c.addUnits(db.getFactions().get(101), 101, useMercs);
-        c.addUnits(db.getFactions().get(103), 103, useMercs);
-        c.addUnits(db.getFactions().get(105), 105, useMercs);
-        c.addUnits(db.getFactions().get(106), 106, useMercs);
+        c.addUnits(db.getFactions(), FACTION.PanOceania, useMercs);
         c.addTTSModels(ms);
         c.toCSV("test.csv");
 
         Map<String, Collection<String>> eq = c.getEquivalences();
         Catalogue c2 = new Catalogue();
-        c2.addUnits(db.getFactions().get(101), 101, useMercs);
-        c2.addUnits(db.getFactions().get(103), 103, useMercs);
-        c2.addUnits(db.getFactions().get(105), 105, useMercs);
-        c2.addUnits(db.getFactions().get(106), 106, useMercs);
+        c2.addUnits(db.getFactions(), FACTION.PanOceania, useMercs);
         c2.fromCSV("test2.csv");
-        String faction_json = c2.asJson("PanOceania");
+        String faction_json = c2.asJson(FACTION.PanOceania);
         c2.getModellessList().stream().forEach(u -> System.out.println(String.format("Missing model for %s", u)));
 
     }
