@@ -7,6 +7,7 @@ import net.codersoffortune.infinity.tts.ModelSet;
 import net.codersoffortune.infinity.tts.TTSModel;
 
 import java.io.IOException;
+import java.io.InvalidObjectException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -67,28 +68,6 @@ public class Unit {
         return this.ID > 10000;
     }
 
-    private static String toJson(final int combat_group,
-                                 final CompactedUnit unit,
-                                 final MappedFactionFilters filters,
-                                 final ModelSet modelSet,
-                                 final int group_idx) {
-        // TODO:: Log the failures properly;
-        try {
-            TTSModel ttsModel = modelSet.getModel(unit.getUnit_idx(), unit.getGroup_idx(), unit.getProfile_idx(), unit.getOption_idx());
-            // TODO:: Don't load this everytime
-            return String.format(Armylist.getResourceFileAsString("Templates/model_template"),
-                    unit.getTTSNickName(filters),
-                    unit.getTTSDescription(filters),
-                    CombatGroup.getTint(combat_group),
-                    ttsModel.getMeshes(),
-                    ttsModel.getDecals(),
-                    unit.getTTSSilhouette());
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
-
     /**
      * Get the units as a collection of json strings suitible for importing into TTS
      *
@@ -103,10 +82,20 @@ public class Unit {
                                              final int group,
                                              final int option,
                                              final MappedFactionFilters filters,
-                                             final ModelSet modelSet) throws IllegalArgumentException {
+                                             final ModelSet modelSet,
+                                             final int sectoral_idx) throws IllegalArgumentException, InvalidObjectException {
         //TODO:: Handle pilots
-        Collection<CompactedUnit> units = getUnits(group, option);
-        return units.stream().map(cu -> toJson(combat_group, cu, filters, modelSet, group)).collect(Collectors.toList());
+        Collection<CompactedUnit> compactedUnits = getUnits(group, option);
+        Collection<PrintableUnit> printableUnits = new ArrayList<>();
+        for( CompactedUnit cu: compactedUnits){
+            PrintableUnit pu = new PrintableUnit(filters, cu, sectoral_idx);
+            List<TTSModel> models = modelSet.getModels(pu.getUnitID());
+            pu.addTTSModels(models);
+            printableUnits.add(pu);
+        }
+        return printableUnits.stream()
+                .map(pu -> pu.asArmyJSON(combat_group))
+                .collect(Collectors.toList());
     }
 
     public Collection<CompactedUnit> getAllUnits() {

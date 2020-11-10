@@ -52,6 +52,14 @@ public class ProfileItem {
         return result.toString();
     }
 
+    /**
+     * It seems CB sometimes put empty items in the json, which gets mapped to id 0 by jackson. sigh.
+     * @return true if the ID is not 0
+     */
+    public boolean isNotNull() {
+        return id>0;
+    }
+
     public int getOrder() {
         return order;
     }

@@ -7,6 +7,7 @@ import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.FactionList;
 import net.codersoffortune.infinity.tts.Catalogue;
 import net.codersoffortune.infinity.tts.ModelSet;
+import net.codersoffortune.infinity.tts.TTSModel;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,19 +24,18 @@ public class TTS_Decoder {
     public static void main(String[] args) throws IOException, SQLException {
         Database db = Database.getInstance();
         ObjectMapper om = new ObjectMapper();
-        URL x = TTS_Decoder.class.getResource("/sources/Panoceania N4");
-        JsonNode jn = om.readTree(x);
+        FACTION faction = FACTION.YuJing;
+        URL old_bag = TTS_Decoder.class.getResource(String.format("/sources/%s N4", faction.getName()));
+        JsonNode jn = om.readTree(old_bag);
         // Now get to the contents of the bag
         JsonNode contents = jn.findPath("ContainedObjects");
         Pattern idPattern = Pattern.compile("(?<opt>[\\dA-Fa-f])(?<unit>[\\dA-Fa-f]{5})");
-        //List<Model> models = new ArrayList<>();
         // TODO:: Move this generation into the inner loading code
-        FactionList panO = new FactionList();
-        panO.addSectorial(101, db.getFactions().get(101));
-        panO.addSectorial(103, db.getFactions().get(103));
-        panO.addSectorial(105, db.getFactions().get(105));
-        panO.addSectorial(106, db.getFactions().get(106));
-        ModelSet ms = new ModelSet(panO, 101);
+
+        FactionList factionList = new FactionList();
+        factionList.addFaction(faction, db.getFactions());
+
+        ModelSet ms = new ModelSet();
         for (JsonNode child : contents) {
             String[] descLines = child.get("Description").asText().split("\n");
             String name = child.get("Nickname").asText();
@@ -50,14 +50,14 @@ public class TTS_Decoder {
             int optionIdx = Integer.parseInt(matcher.group("opt"), 16);
             String unit = matcher.group("unit");
             int unitIdx = Integer.parseInt(matcher.group("unit"), 16);
-            if (unitIdx == 22) {
-                // Neoterra related, so not in currently.
+            if ((faction == FACTION.PanOceania && unitIdx == 22))  {
+                // Not all models in the bag are currently in factions (due to sectorals awaiting updates)
+                // 22 - Neoterra auxilia
                 continue;
             }
             String decals = child.get("AttachedDecals").toString();
             String meshes = child.get("CustomMesh").toString();
-            ms.addModel(unitIdx, optionIdx, name, decals, meshes);
-            //System.out.println(String.format("[%d,%d] %s - %s", unitIdx, optionIdx, name, code));
+            ms.addModelOld(factionList, faction.getId(), unitIdx, optionIdx, new TTSModel(name,decals,meshes));
         }
         String output = om.writeValueAsString(ms);
         ModelSet ms2 = om.readValue(output, ModelSet.class);
@@ -68,7 +68,7 @@ public class TTS_Decoder {
         //String bag = testList.asJson(mff, ms2);
         Catalogue c = new Catalogue();
         boolean useMercs = false;
-        FACTION faction = FACTION.PanOceania;
+
         c.addUnits(db.getFactions(), faction, useMercs);
         c.addTTSModels(ms);
         c.toCSV(String.format("%s test.csv", faction.name()));

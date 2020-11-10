@@ -1,6 +1,12 @@
 package net.codersoffortune.infinity.metadata.unit;
 
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.KeyDeserializer;
+
+import java.io.IOException;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * POJO to explicitly identify a unit option
@@ -31,6 +37,23 @@ public class UnitID {
                 '}';
     }
 
+    /**
+     * Convert a toString representation back into the object.
+     * @param input from toString
+     * @return
+     */
+    public UnitID(String input) {
+        Pattern unitPattern = Pattern.compile("s:(?<s>\\d*);u:(?<u>\\d*);g:(?<g>\\d*);p:(?<p>\\d*);o:(?<o>\\d*)}");
+        Matcher matcher = unitPattern.matcher(input);
+        // TODO:: Proper error checking
+        matcher.find();
+        sectoral_idx = Integer.parseInt(matcher.group("s"));
+        unit_idx = Integer.parseInt(matcher.group("u"));
+        group_idx = Integer.parseInt(matcher.group("g"));
+        profile_idx = Integer.parseInt(matcher.group("p"));
+        option_idx = Integer.parseInt(matcher.group("o"));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,6 +64,18 @@ public class UnitID {
                 group_idx == unitID.group_idx &&
                 profile_idx == unitID.profile_idx &&
                 option_idx == unitID.option_idx;
+    }
+
+    /**
+     * Test whether two UnitIDs are equal ignoring sectoral.
+     * @param o the other UnitID to test against
+     * @return true iff they match (ignoring sectoral).
+     */
+    public boolean almost_equals(UnitID o) {
+        return unit_idx == o.unit_idx &&
+                group_idx == o.group_idx &&
+                profile_idx == o.profile_idx &&
+                option_idx == o.option_idx;
     }
 
     @Override

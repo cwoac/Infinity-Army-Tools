@@ -43,6 +43,8 @@ public class CompactedUnit {
 
     private final String name;
 
+
+
     public CompactedUnit(int unit_idx, ProfileGroup group, Profile profile, ProfileOption option) {
         this.unit_idx = unit_idx;
         this.group = group;
@@ -52,14 +54,14 @@ public class CompactedUnit {
         group_idx = group.getId();
         option_idx = option.getId();
         name = option.getName();
-        weapons.addAll(option.getWeapons());
-        skills.addAll(option.getSkills());
-        equipment.addAll(option.getEquip());
-        peripheral.addAll(option.getPeripheral());
-        weapons.addAll(profile.getWeapons());
-        skills.addAll(profile.getSkills());
-        equipment.addAll(profile.getEquip());
-        peripheral.addAll(profile.getPeripheral());
+        weapons.addAll(option.getWeapons().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
+        skills.addAll(option.getSkills().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
+        equipment.addAll(option.getEquip().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
+        peripheral.addAll(option.getPeripheral().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
+        weapons.addAll(profile.getWeapons().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
+        skills.addAll(profile.getSkills().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
+        equipment.addAll(profile.getEquip().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
+        peripheral.addAll(profile.getPeripheral().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
 
     }
 

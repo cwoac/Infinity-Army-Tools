@@ -145,9 +145,9 @@ public class Armylist {
     public String asJson(final MappedFactionFilters filters, final ModelSet modelSet) throws IOException, SQLException {
         Database db = Database.getInstance();
 
-        if (modelSet.getFaction() != getFaction()) {
-            throw new IllegalArgumentException("Modelset is of the wrong faction!");
-        }
+        //if (modelSet.getFaction() != getFaction()) {
+        //    throw new IllegalArgumentException("Modelset is of the wrong faction!");
+        //}
 
         List<String> units = new ArrayList<>();
         for (CombatGroup cg : getCombatGroups()) {
@@ -155,7 +155,7 @@ public class Armylist {
                 Optional<Unit> maybeUnit = db.getUnitName(cgm.getId(), getFaction());
                 if (!maybeUnit.isPresent()) continue;
                 Unit unit = maybeUnit.get();
-                units.addAll(unit.getUnitsForTTS(cg.getGroup_number(), cgm.getGroup(), cgm.getOption(), filters, modelSet));
+                units.addAll(unit.getUnitsForTTS(cg.getGroup_number(), cgm.getGroup(), cgm.getOption(), filters, modelSet, faction));
             }
         }
 

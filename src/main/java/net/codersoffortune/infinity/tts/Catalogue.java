@@ -1,7 +1,6 @@
 package net.codersoffortune.infinity.tts;
 
 import net.codersoffortune.infinity.FACTION;
-import net.codersoffortune.infinity.armylist.Armylist;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.metadata.SectoralList;
 import net.codersoffortune.infinity.metadata.unit.CompactedUnit;
@@ -18,8 +17,6 @@ import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static net.codersoffortune.infinity.armylist.Armylist.getResourceFileAsString;
 
 /**
  * Describes the set of models needs to represent an entire faction.
@@ -68,6 +65,12 @@ public class Catalogue {
             equivalentUnits.add(unit);
             return true;
         }
+
+        public boolean contains(UnitID unitID) {
+            if (baseUnit.getUnitID().almost_equals(unitID)) return true;
+            return this.equivalentUnits.stream().anyMatch(x->x.getUnitID().almost_equals(unitID));
+        }
+
 
         /**
          * Get a representative printable unit for this mapping.
@@ -130,7 +133,7 @@ public class Catalogue {
     }
 
     public void addUnits(final Map<Integer, SectoralList> sectorals, FACTION faction, boolean useMercs) throws InvalidObjectException {
-        for(int sectoral : faction.getSectorals()) {
+        for (int sectoral : faction.getSectorals()) {
             addUnits(sectorals.get(sectoral), sectoral, useMercs);
         }
     }
@@ -141,10 +144,12 @@ public class Catalogue {
             if (!useMercs && unit.isMerc()) continue;
 
             for (CompactedUnit cu : unit.getAllUnits()) {
+
                 PrintableUnit pu = new PrintableUnit(filters, cu, sectoral_idx);
                 boolean claimed = unitMappings.stream().anyMatch(x -> x.addUnitMaybe(pu));
                 if (!claimed)
                     unitMappings.add(new Mapping(pu));
+
             }
         }
         makeList();
@@ -152,18 +157,11 @@ public class Catalogue {
 
 
     public void addTTSModels(final ModelSet modelSet) {
-        for (Map.Entry<Integer, Model> entry : modelSet.getModels().entrySet()) {
-            List<PrintableUnit> targets = unitList.stream().filter(u -> u.getUnit_idx() == entry.getKey()).collect(Collectors.toList());
-            Map<Integer, Map<Integer, Map<Integer, List<TTSModel>>>> items = entry.getValue().getItems();
-            for (Map.Entry<Integer, Map<Integer, Map<Integer, List<TTSModel>>>> groupEntry : items.entrySet()) {
-                List<PrintableUnit> groupTargets = targets.stream().filter(u -> u.getGroup_idx() == groupEntry.getKey()).collect(Collectors.toList());
-                for (Map.Entry<Integer, Map<Integer, List<TTSModel>>> profileEntry : groupEntry.getValue().entrySet()) {
-                    List<PrintableUnit> profileTargets = groupTargets.stream().filter(u -> u.getProfile_idx() == profileEntry.getKey()).collect(Collectors.toList());
-                    for (Map.Entry<Integer, List<TTSModel>> optionEntry : profileEntry.getValue().entrySet()) {
-                        List<PrintableUnit> optionUnits = profileTargets.stream().filter(u -> u.getOption_idx() == optionEntry.getKey()).collect(Collectors.toList());
-                        List<TTSModel> models = optionEntry.getValue();
-                        optionUnits.stream().forEach(x -> x.addTTSModels(models));
-                    }
+        for (Map.Entry<UnitID, List<TTSModel>> modelEntry : modelSet.getModels().entrySet()) {
+            for( Mapping unitMapping : this.unitMappings ) {
+                if(unitMapping.contains(modelEntry.getKey())) {
+                    unitMapping.baseUnit.addTTSModels(modelEntry.getValue());
+                    unitMapping.equivalentUnits.forEach(m->m.addTTSModels(modelEntry.getValue()));
                 }
             }
         }
@@ -262,22 +260,12 @@ public class Catalogue {
     public String asJson(FACTION faction) throws IOException {
         //TODO:: Check we have all the models / log missing.
 
-        // TODO:: This should be a class var inside PrintableUnit
-        String unit_template = getResourceFileAsString("Templates/model_template");
-        String[] silhouette_templates = {
-                Armylist.getResourceFileAsString(String.format("templates/S1.json")),
-                Armylist.getResourceFileAsString(String.format("templates/S2.json")),
-                Armylist.getResourceFileAsString(String.format("templates/S3.json")),
-                Armylist.getResourceFileAsString(String.format("templates/S4.json")),
-                Armylist.getResourceFileAsString(String.format("templates/S5.json")),
-                Armylist.getResourceFileAsString(String.format("templates/S6.json")),
-                Armylist.getResourceFileAsString(String.format("templates/S7.json"))
-        };
-
+        // Make sure the templates are loaded
+        PrintableUnit.load_templates();
 
         List<String> units = unitList.stream()
                 .filter(unit -> !unit.getModels().isEmpty())
-                .map(x -> x.asJson(unit_template, silhouette_templates))
+                .map(PrintableUnit::asFactionJSON)
                 .collect(Collectors.toList());
         String bag_format = faction.getTemplate();
         String unit_list = String.join(",\n", units);

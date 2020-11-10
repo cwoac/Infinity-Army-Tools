@@ -3,88 +3,49 @@ package net.codersoffortune.infinity.tts;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import net.codersoffortune.infinity.metadata.FactionList;
 import net.codersoffortune.infinity.metadata.unit.Unit;
+import net.codersoffortune.infinity.metadata.unit.UnitID;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class ModelSet {
-    private int faction;
-    @JsonIgnore
-    private FactionList factionList;
-    private Map<Integer, Model> models = new HashMap<>();
+    private Map<UnitID, List<TTSModel>> models = new HashMap<>();
 
-    public ModelSet() {
-    }
-
-    public ModelSet(final FactionList factionList, final int faction) {
-        this.factionList = factionList;
-        this.faction = faction;
-
-    }
-
-    public FactionList getFactionList() {
-        return factionList;
-    }
-
-    public void setFactionList(FactionList factionList) {
-        this.factionList = factionList;
+    public void addModel(UnitID unitID, TTSModel model) {
+        // TODO:: Maybe dedupe?
+        if( !models.containsKey(unitID) )
+            models.put(unitID, new ArrayList<>());
+        models.get(unitID).add(model);
     }
 
     /**
-     * Add a model to the set
+     * Add a model to the set, loading from an old style unit ref (unit number, profile array index).
      *
+     * @param faction_idx       which faction this model is based in (don't have the information to pick more specifically).
      * @param unit_idx          the index value of the unit
      * @param profile_array_idx the index into the array of units for which option to use (NOTE: This is _not_ the option_idx)
-     * @param decals            Json representing the decals for this model
-     * @param meshes            Json representing the meshes for this model
+     * @param model the model to add
      */
-    public void addModel(int unit_idx, int profile_array_idx, String modelName, String decals, String meshes) {
+    public void addModelOld(final FactionList factionList, int faction_idx, int unit_idx, int profile_array_idx, TTSModel model) {
+        // First convert the profile index back into a profile ID
         Optional<Unit> maybeUnit = factionList.getUnit(unit_idx);
         if (!maybeUnit.isPresent()) {
+            // Can't look up something which doesn't exist.
             System.out.println(unit_idx);
         }
         Unit unit = factionList.getUnit(unit_idx).orElseThrow(IllegalArgumentException::new);
-        // TODO:: Handle the cases where it is not. E.g. proxies
+        // Don't have any information to assume it is anything but a profile for a normal unit
         int profile_group = 1;
-        // TODO:: Handle the cases where it is not. E.g. pilots
-        // TODO:: Handle the Su Jian
         int profile = 1;
-        int option = 1;
-        try {
-            option = unit.getProfileGroups().get(0).getOptions().get(profile_array_idx).getId();
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
-        }
-        if (!models.containsKey(unit_idx)) {
-            models.put(unit_idx, new Model(faction, unit_idx));
-        }
-        models.get(unit_idx).addMesh(profile_group, profile, option, modelName, decals, meshes);
+        int option = unit.getProfileGroups().get(0).getOptions().get(profile_array_idx).getId();
+
+        addModel(new UnitID(faction_idx, unit_idx,1,1, option), model);
     }
 
-    // TODO:: randomly select when multiple options are availiable?
-    public TTSModel getModel(int unit_idx, int group_idx, int profile_idx, int option_idx) {
-        try {
-            return models.get(unit_idx).getModel(group_idx, profile_idx, option_idx).get(0);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public int getFaction() {
-        return faction;
-    }
-
-    public void setFaction(int faction) {
-        this.faction = faction;
-    }
-
-    public Map<Integer, Model> getModels() {
+    public Map<UnitID, List<TTSModel>> getModels() {
         return models;
     }
 
-    public void setModels(Map<Integer, Model> models) {
-        this.models = models;
+    public List<TTSModel> getModels(UnitID unitID) {
+        return models.get(unitID);
     }
 }

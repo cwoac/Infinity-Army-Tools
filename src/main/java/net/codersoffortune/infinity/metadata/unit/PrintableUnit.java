@@ -1,7 +1,6 @@
 package net.codersoffortune.infinity.metadata.unit;
 
 import net.codersoffortune.infinity.FACTION;
-import net.codersoffortune.infinity.armylist.Armylist;
 import net.codersoffortune.infinity.armylist.CombatGroup;
 import net.codersoffortune.infinity.metadata.FilterType;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
@@ -11,6 +10,8 @@ import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static net.codersoffortune.infinity.armylist.Armylist.getResourceFileAsString;
 
 /**
  * Like a @CompactedUnit, but with all the strings expanded.
@@ -48,7 +49,28 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     // Properties below here are used for description only.
     // They should not be added to equals / hashcode!
 
+    private static String unit_template = null;
+    private static List<String> silhouette_templates = null;
 
+    /**
+     * Load the needed templates for converting to json.
+     * *must* be called before trying to convert anything to json or runtime errors will occur!
+     * Safe to call repeatedly.
+     */
+    public static void load_templates() throws IOException {
+        if (unit_template != null) return;
+
+        silhouette_templates = Arrays.asList(
+                getResourceFileAsString(String.format("templates/S1.json")),
+                getResourceFileAsString(String.format("templates/S2.json")),
+                getResourceFileAsString(String.format("templates/S3.json")),
+                getResourceFileAsString(String.format("templates/S4.json")),
+                getResourceFileAsString(String.format("templates/S5.json")),
+                getResourceFileAsString(String.format("templates/S6.json")),
+                getResourceFileAsString(String.format("templates/S7.json"))
+        );
+        unit_template = getResourceFileAsString("Templates/model_template");
+    }
 
     //private final List<String> orders; // TODO:: DO WE NEED THIS?
 
@@ -169,13 +191,13 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
 
     public void addTTSModel(TTSModel model) {
-        if( !this.models.contains(model))
+        if (!this.models.contains(model))
             this.models.add(model);
     }
 
     public void addTTSModels(Collection<TTSModel> models) {
         // Use this rather than addAll so we can apply filtering.
-        models.stream().forEach(m->addTTSModel(m));
+        models.stream().forEach(m -> addTTSModel(m));
     }
 
     private String getTTSDescription() {
@@ -233,8 +255,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
     }
 
-    private String getTTSSilhouette(String[] templates) {
-        String template = templates[s-1];
+    private String getTTSSilhouette() {
+        String template = silhouette_templates.get(s - 1);
         String diffuse = "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/";
         // TODO:: Different tint for different camo types?
         String tint = FACTION.getFactionForSectoral(sectoral_idx).getTint();
@@ -272,17 +294,38 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     /**
      * Get the JSON representation of this model, as is suitible for putting in a TTS bag.
      * Of course, there is a minor issue. We might well have multiple valid models for this unit.
-     * @param model_template the loaded template file (to save having to load it repeatedly)
-     * @param silhouette_templates The loaded templates for the different sized silhouettes
+     *
      * @return the filled in template.
      */
-    public String asJson(final String model_template, final String[] silhouette_templates) {
+    public String asFactionJSON() {
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
-        final String ttsSilhouette = getTTSSilhouette(silhouette_templates);
+        final String ttsSilhouette = getTTSSilhouette();
         final String ttsColour = FACTION.getFactionForSectoral(sectoral_idx).getTint();
-        List<String> ttsModels = models.stream().map(m->String.format(model_template, ttsName, ttsDescription, ttsColour, m.getMeshes(), m.getDecals(), ttsSilhouette)).collect(Collectors.toList());
+        List<String> ttsModels = models.stream().map(m -> String.format(unit_template, ttsName, ttsDescription, ttsColour, m.getMeshes(), m.getDecals(), ttsSilhouette)).collect(Collectors.toList());
         return String.join(",\n", ttsModels);
+    }
+
+
+    public String asArmyJSON(int combatGroup_idx) {
+        return asArmyJSON(combatGroup_idx, 0);
+    }
+
+
+    public String asArmyJSON(int combatGroup_idx, int model_idx) {
+        final String ttsName = getTTSName();
+        final String ttsDescription = getTTSDescription();
+        final String ttsSilhouette = getTTSSilhouette();
+        final String ttsColour = CombatGroup.getTint(combatGroup_idx);
+        final TTSModel model = models.get(model_idx);
+        return String.format(unit_template,
+                ttsName,
+                ttsDescription,
+                ttsColour,
+                model.getMeshes(),
+                model.getDecals(),
+                ttsSilhouette);
+
     }
 
     public List<String> getWeapons() {

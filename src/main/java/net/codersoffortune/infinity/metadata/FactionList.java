@@ -1,5 +1,6 @@
 package net.codersoffortune.infinity.metadata;
 
+import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.metadata.unit.Unit;
 
 import java.util.HashMap;
@@ -15,6 +16,12 @@ public class FactionList {
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .findAny();
+    }
+
+    public void addFaction(FACTION faction, Map<Integer, SectoralList> sectorials) {
+        for( int sectoral : faction.getSectorals() ) {
+            addSectorial(sectoral, sectorials.get(sectoral));
+        }
     }
 
     public void addSectorial(int faction_idx, SectoralList sectoralList) {
