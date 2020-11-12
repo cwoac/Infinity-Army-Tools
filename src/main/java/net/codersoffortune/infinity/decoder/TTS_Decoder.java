@@ -1,6 +1,5 @@
 package net.codersoffortune.infinity.decoder;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.db.Database;
@@ -8,7 +7,6 @@ import net.codersoffortune.infinity.metadata.FactionList;
 import net.codersoffortune.infinity.metadata.unit.PrintableUnit;
 import net.codersoffortune.infinity.tts.Catalogue;
 import net.codersoffortune.infinity.tts.ModelSet;
-import net.codersoffortune.infinity.tts.TTSModel;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -16,8 +14,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class TTS_Decoder {
 
@@ -28,38 +24,10 @@ public class TTS_Decoder {
         ObjectMapper om = new ObjectMapper();
         FACTION faction = FACTION.YuJing;
         URL old_bag = TTS_Decoder.class.getResource(String.format("/sources/%s N4", faction.getName()));
-        JsonNode jn = om.readTree(old_bag);
-        // Now get to the contents of the bag
-        JsonNode contents = jn.findPath("ContainedObjects");
-        Pattern idPattern = Pattern.compile("(?<opt>[\\dA-Fa-f])(?<unit>[\\dA-Fa-f]{5})");
-        // TODO:: Move this generation into the inner loading code
-
-        FactionList factionList = new FactionList(faction, db.getSectorals());
-
         ModelSet ms = new ModelSet();
-        for (JsonNode child : contents) {
-            String[] descLines = child.get("Description").asText().split("\n");
-            String name = child.get("Nickname").asText();
-            String code = descLines[descLines.length - 1];//.split("\\]?\\[-\\]\\[?")[1];
-            Matcher matcher = idPattern.matcher(code);
-            if (!matcher.find()) {
-                // TODO:: Proper logging. Possibly validate that this is a proxy model?
-                System.out.println(String.format("Unable to find a model for %s", name));
-                continue;
-            }
-            String option = matcher.group("opt");
-            int optionIdx = Integer.parseInt(matcher.group("opt"), 16);
-            String unit = matcher.group("unit");
-            int unitIdx = Integer.parseInt(matcher.group("unit"), 16);
-            if ((faction == FACTION.PanOceania && unitIdx == 22))  {
-                // Not all models in the bag are currently in factions (due to sectorals awaiting updates)
-                // 22 - Neoterra auxilia
-                continue;
-            }
-            String decals = child.get("AttachedDecals").toString();
-            String meshes = child.get("CustomMesh").toString();
-            ms.addModelOld(factionList, faction.getId(), unitIdx, optionIdx, new TTSModel(name,decals,meshes));
-        }
+        FactionList factionList = new FactionList(faction, db.getSectorals());
+        ms.readOldJson(old_bag, faction, factionList);
+
         String output = om.writeValueAsString(ms);
         ModelSet ms2 = om.readValue(output, ModelSet.class);
         String output2 = om.writeValueAsString(ms2);
