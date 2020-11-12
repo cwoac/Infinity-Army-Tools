@@ -4220,7 +4220,7 @@
             "scaleZ": 1.0
           },
           "Nickname": "[A02BFF]JAYTH CUTTHROATS Pit Patrol[-] SMG",
-          "Description": "[b]LI[/b] ● Cube ● [AAFFAA]Regular[-] \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 4-4\n[b]CC[/b]: 23\n[b]BS[/b]: 12\n[b]PH[/b]: 13\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 6\n[B]W[/B]: 1\n[b]S[/b]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSubmachine Gun ● Chain Rifle ● E/M Grenades ● Pistol ● DA CC Weapon [-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nMultispectral Visor L1 [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nShasvastii ● Martial Arts L3 ● Mimetism (-6) ● Fireteam: Duo ● Natural Born Warrior [-]\n[40050e][-]",
+          "Description": "[b]LI[/b] ● Cube ● [AAFFAA]Regular[-] \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 4-4\n[b]CC[/b]: 23\n[b]BS[/b]: 12\n[b]PH[/b]: 13\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 6\n[B]W[/B]: 1\n[b]S[/b]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSubmachine Gun ● Chain Rifle ● E/M Grenades ● Pistol ● DA CC Weapon [-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nMultispectral Visor L1 [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nShasvastii ● Martial Arts L3 ● Mimetism (-6) ● Fireteam: Duo ● Natural Born Warrior [-]\n[10050e][-]",
           "GMNotes": "",
           "ColorDiffuse": {
             "r": 0.5058824,
@@ -4658,7 +4658,7 @@
             "scaleZ": 1.0
           },
           "Nickname": "[A02BFF]NOX[-] MULTI Sniper (Guided)",
-          "Description": "[b]LI[/b] ● Cube ● [AAFFAA]Regular[-] \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 4-4\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[b]S[/b]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nMULTI Sniper Rifle ● Pistol ● CC Weapon [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nShasvastii ● Immunity (Shock) ● Stealth ● Fireteam: Core ● BS Attack (Guided) [-]\n[90050a][-]",
+          "Description": "[b]LI[/b] ● Cube ● [AAFFAA]Regular[-] \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 4-4\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[b]S[/b]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nMULTI Sniper Rifle ● Pistol ● CC Weapon [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nShasvastii ● Immunity (Shock) ● Stealth ● Fireteam: Core ● BS Attack (Guided) [-]\n[30050a][-]",
           "GMNotes": "",
           "ColorDiffuse": {
             "r": 0.5058824,
@@ -5242,7 +5242,7 @@
             "scaleZ": 1.0
           },
           "Nickname": "[A02BFF]M-DRONE FTO[-] Combi, FO",
-          "Description": "[b]REM[/b] ● [AAFFAA]Regular[-] ● Hackable \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 6-4\n[b]CC[/b]: 13\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 3\n[B]STR[/B]: 1\n[b]S[/b]: 3\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● Flash Pulse ● PARA CC Weapon (-3) [-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nDeactivator ● Repeater ● Nanoscreen [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nRemote Presence ● Triangulated Fire ● Courage ● Immunity (Shock) ● Forward Observer ● Terrain (Total) ● Sensor [-]\n[1001fc][-]",
+          "Description": "[b]REM[/b] ● [AAFFAA]Regular[-] ● Hackable \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 6-4\n[b]CC[/b]: 13\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 3\n[B]STR[/B]: 1\n[b]S[/b]: 3\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● Flash Pulse ● PARA CC Weapon (-3) [-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nDeactivator ● Repeater ● Nanoscreen [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nRemote Presence ● Triangulated Fire ● Courage ● Immunity (Shock) ● Forward Observer ● Terrain (Total) ● Sensor [-]\n[0001fc][-]",
           "GMNotes": "",
           "ColorDiffuse": {
             "r": 0.5058824,
@@ -5388,7 +5388,7 @@
             "scaleZ": 1.0
           },
           "Nickname": "[A02BFF]T-DRONE FTO[-] ML",
-          "Description": "[b]REM[/b] ● [AAFFAA]Regular[-] ● Hackable \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 6-4\n[b]CC[/b]: 13\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 3\n[B]STR[/B]: 1\n[b]S[/b]: 3\n[ffdddd][sub]----------Weapons---------\n[/sub]\nMissile Launcher ● Flash Pulse ● PARA CC Weapon (-3) [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nRemote Presence ● BS Attack (Guided) ● Courage ● Immunity (Shock) [-]\n[1001fe][-]",
+          "Description": "[b]REM[/b] ● [AAFFAA]Regular[-] ● Hackable \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 6-4\n[b]CC[/b]: 13\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 3\n[B]STR[/B]: 1\n[b]S[/b]: 3\n[ffdddd][sub]----------Weapons---------\n[/sub]\nMissile Launcher ● Flash Pulse ● PARA CC Weapon (-3) [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nRemote Presence ● BS Attack (Guided) ● Courage ● Immunity (Shock) [-]\n[0001fe][-]",
           "GMNotes": "",
           "ColorDiffuse": {
             "r": 0.5058824,
@@ -32174,7 +32174,7 @@
             "scaleZ": 1.0
           },
           "Nickname": "[A02BFF]SPECULO KILLER[-] Combi, Minelayer",
-          "Description": "[b]SK[/b] ● Cube ● [AAFFAA]Regular[-] \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 4-4\n[b]CC[/b]: 22\n[b]BS[/b]: 12\n[b]PH[/b]: 12\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[b]S[/b]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● Smoke Grenades ● Shock Mines ● Pistol ● Monofilament CC Weapon [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nShasvastii ● Martial Arts L2 ● Surprise Attack (-3) ● Courage ● Dodge (+1\") ● Regeneration ● Stealth ● Terrain (Total) ● Impersonation ● Minelayer [-]\n[2001f7][-]",
+          "Description": "[b]SK[/b] ● Cube ● [AAFFAA]Regular[-] \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 4-4\n[b]CC[/b]: 22\n[b]BS[/b]: 12\n[b]PH[/b]: 12\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[b]S[/b]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● Smoke Grenades ● Shock Mines ● Pistol ● Monofilament CC Weapon [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nShasvastii ● Martial Arts L2 ● Surprise Attack (-3) ● Courage ● Dodge (+1\") ● Regeneration ● Stealth ● Terrain (Total) ● Impersonation ● Minelayer [-]\n[0001f7][-]",
           "GMNotes": "",
           "ColorDiffuse": {
             "r": 0.5058824,

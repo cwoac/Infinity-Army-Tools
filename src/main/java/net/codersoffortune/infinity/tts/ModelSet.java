@@ -11,6 +11,7 @@ import net.codersoffortune.infinity.metadata.unit.UnitID;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +45,9 @@ public class ModelSet {
      */
     public void readOldJson(final URL input, final FACTION faction, final FactionList factionList) throws IOException {
         ObjectMapper om = new ObjectMapper();
+        if(input == null ) {
+            return;
+        }
         JsonNode jn = om.readTree(input);
         JsonNode contents = jn.findPath("ContainedObjects");
         Pattern idPattern = Pattern.compile("(?<opt>[\\dA-Fa-f])(?<unit>[\\dA-Fa-f]{5})");
@@ -61,12 +65,35 @@ public class ModelSet {
             int optionIdx = Integer.parseInt(matcher.group("opt"), 16);
             String unit = matcher.group("unit");
             int unitIdx = Integer.parseInt(matcher.group("unit"), 16);
+            // Not all models in the bag are currently in factions (due to sectorals awaiting updates mostly).
+            switch( faction ) {
+                case PanOceania:
+                    // 22 - Neoterra auxilia
+                    if (unitIdx == 22) continue;
+                    break;
+                case CombinedArmy:
+                    if( unitIdx == 1506) continue;
+                    break;
+                case Aleph:
+                    // 603 Ekdromos
+                    // 604 Alke
+                    // 606 Diomedes
+                    // 607 Machoan
+                    final List<Integer> greeks = Arrays.asList(603, 604, 606, 607);
+                    if ( greeks.contains(unitIdx) ) continue;
+                default:
+                    break;
+            }
             if ((faction == FACTION.PanOceania && unitIdx == 22))  {
-                // Not all models in the bag are currently in factions (due to sectorals awaiting updates)
-                // 22 - Neoterra auxilia
+
                 continue;
             }
-            String decals = child.get("AttachedDecals").toString();
+            String decals = "";
+            if( child.has("AttachedDecals") ) {
+                // Models which are just a token (e.g. seed embryos) may not have extra decals.
+                decals = child.get("AttachedDecals").toString();
+            }
+
             String meshes = child.get("CustomMesh").toString();
             addModelOld(factionList, faction.getId(), unitIdx, optionIdx, new TTSModel(name,decals,meshes));
         }
@@ -94,11 +121,23 @@ public class ModelSet {
             // Can't look up something which doesn't exist.
             System.out.println(unit_idx);
         }
-        Unit unit = factionList.getUnit(unit_idx).orElseThrow(IllegalArgumentException::new);
+        Unit unit = null;
+        try {
+             unit = factionList.getUnit(unit_idx).orElseThrow(IllegalArgumentException::new);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return;
+        }
         // Don't have any information to assume it is anything but a profile for a normal unit
         int profile_group = 1;
         int profile = 1;
-        int option = unit.getProfileGroups().get(0).getOptions().get(profile_array_idx).getId();
+        int option;
+        try {
+            option = unit.getProfileGroups().get(0).getOptions().get(profile_array_idx).getId();
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            throw(e);
+        }
 
         addModel(new UnitID(faction_idx, unit_idx,1,1, option), model);
     }
