@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
  */
 public class Catalogue {
 
-    public static final String[] CSV_HEADERS = new String[]{"sectoral", "unit", "group", "profile", "option", "name", "weapons", "equip", "skills",
+    public static final String[] CSV_HEADERS = new String[]{"sectoral", "unit", "group", "profile", "option", "name", "weapons", "equip",
             "meshName1", "decals1", "meshes1",
             "meshName2", "decals2", "meshes2",
             "meshName3", "decals3", "meshes3",
@@ -118,7 +118,7 @@ public class Catalogue {
 
 
     public void addTTSModels(final ModelSet modelSet) {
-        for (Map.Entry<UnitID, List<TTSModel>> modelEntry : modelSet.getModels().entrySet()) {
+        for (Map.Entry<UnitID, Set<TTSModel>> modelEntry : modelSet.getModels().entrySet()) {
             for( Mapping unitMapping : this.unitMappings ) {
                 if(unitMapping.contains(modelEntry.getKey())) {
                     unitMapping.baseUnit.addTTSModels(modelEntry.getValue());
@@ -197,9 +197,8 @@ public class Catalogue {
                         u.getProfile_idx(),
                         u.getOption_idx(),
                         u.getName(),
-                        String.join(",", u.getWeapons()),
-                        String.join(",", u.getEquip()),
-                        String.join(",", u.getSkills()),
+                        String.join(",", u.getVisible_weapons()),
+                        String.join(",", u.getVisible_equipment()),
                         u.getTTSName(0),
                         u.getTTSMesh(0),
                         u.getTTSDecal(0),

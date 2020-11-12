@@ -45,14 +45,20 @@ public class Database {
             sectorals.put(id, SectoralList.load(String.valueOf(id)));
         }
 
+        /* A little note on S0. Technically, this is SX, which is the 3mm high version of the silhouette.
+           However, the only units which have SX on their profile are the seed embryos, which are all Sx2,
+           so S0 is S2 scaled to 3mm high.
+         */
         silhouetteTemplates = Arrays.asList(
+                getResourceFileAsString("templates/S0.json"),
                 getResourceFileAsString("templates/S1.json"),
                 getResourceFileAsString("templates/S2.json"),
                 getResourceFileAsString("templates/S3.json"),
                 getResourceFileAsString("templates/S4.json"),
                 getResourceFileAsString("templates/S5.json"),
                 getResourceFileAsString("templates/S6.json"),
-                getResourceFileAsString("templates/S7.json")
+                getResourceFileAsString("templates/S7.json"),
+                getResourceFileAsString("templates/S8.json")
         );
         unitTemplate = getResourceFileAsString("Templates/model_template");
         factionTemplate = getResourceFileAsString("templates/faction_template");

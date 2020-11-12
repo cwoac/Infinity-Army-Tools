@@ -10,21 +10,28 @@ import net.codersoffortune.infinity.metadata.unit.UnitID;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ModelSet {
-    private final Map<UnitID, List<TTSModel>> models = new HashMap<>();
+    private final Map<UnitID, Set<TTSModel>> models = new HashMap<>();
 
     public void readJson(final String input) throws JsonProcessingException {
         ObjectMapper om = new ObjectMapper();
-        JsonNode jn = om.readTree(input);
+        JsonNode jn;
+        try {
+            jn = om.readTree(input);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            throw(e);
+        }
         JsonNode contents = jn.findPath("ContainedObjects");
         for (JsonNode child : contents) {
             String[] descLines = child.get("Description").asText().split("\n");
@@ -100,9 +107,8 @@ public class ModelSet {
     }
 
     public void addModel(UnitID unitID, TTSModel model) {
-        // TODO:: Maybe dedupe?
         if (!models.containsKey(unitID))
-            models.put(unitID, new ArrayList<>());
+            models.put(unitID, new HashSet<>());
         models.get(unitID).add(model);
     }
 
@@ -121,32 +127,19 @@ public class ModelSet {
             // Can't look up something which doesn't exist.
             System.out.println(unit_idx);
         }
-        Unit unit = null;
-        try {
-             unit = factionList.getUnit(unit_idx).orElseThrow(IllegalArgumentException::new);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            return;
-        }
+        Unit unit = factionList.getUnit(unit_idx).orElseThrow(IllegalArgumentException::new);
+
         // Don't have any information to assume it is anything but a profile for a normal unit
-        int profile_group = 1;
-        int profile = 1;
-        int option;
-        try {
-            option = unit.getProfileGroups().get(0).getOptions().get(profile_array_idx).getId();
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
-            throw(e);
-        }
+        int option = unit.getProfileGroups().get(0).getOptions().get(profile_array_idx).getId();
 
         addModel(new UnitID(faction_idx, unit_idx,1,1, option), model);
     }
 
-    public Map<UnitID, List<TTSModel>> getModels() {
+    public Map<UnitID, Set<TTSModel>> getModels() {
         return models;
     }
 
-    public List<TTSModel> getModels(UnitID unitID) {
+    public Set<TTSModel> getModels(UnitID unitID) {
         return models.get(unitID);
     }
 }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Unit {
@@ -86,7 +87,7 @@ public class Unit {
         Collection<PrintableUnit> printableUnits = new ArrayList<>();
         for( CompactedUnit cu: compactedUnits){
             PrintableUnit pu = new PrintableUnit(filters, cu, sectoral);
-            List<TTSModel> models = modelSet.getModels(pu.getUnitID());
+            Set<TTSModel> models = modelSet.getModels(pu.getUnitID());
             pu.addTTSModels(models);
             printableUnits.add(pu);
         }

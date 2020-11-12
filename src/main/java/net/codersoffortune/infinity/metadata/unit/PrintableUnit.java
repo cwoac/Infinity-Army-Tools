@@ -7,13 +7,16 @@ import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.FilterType;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.tts.TTSModel;
+import org.apache.commons.text.StringEscapeUtils;
 
 import java.io.InvalidObjectException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -24,6 +27,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private final List<String> skills;
     private final List<String> equip;
     private final List<String> peripheral;
+    private final Set<String> visible_weapons = new HashSet<>();
+    private final Set<String> visible_equipment = new HashSet<>();
     private final UnitFlags flags;
     private final SECTORAL sectoral;
     private final int unit_idx;
@@ -48,6 +53,80 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private final String distinguisher;
     private final List<TTSModel> models = new ArrayList<>();
 
+
+    /* Most primary weapons are visible, so a list of the ones which tend not to be
+        61, 199 AP mines
+        78 AP+DA CC
+        72 AP+Shock CC
+        6 AP CC
+        5 CC
+        147 Chest Mines
+        20 CrazyKoala
+        174 CyberMines
+        17 D-Charges
+        11 DA CC
+        96 Dropbears
+        7 EM CC
+        47 EM Grenades
+        197 EM Mines
+        25 EMitter
+        46 eclipse grenades
+        8 exp cc
+        72 flash pulse
+        44 grenades
+        150 madtraps
+        176 mine dispenser
+        9 mono CC
+        62 mono mines
+        65 nanopulser
+        71 para cc
+        203-205 pheroware
+        154 pitcher
+        73 sepsitor
+        114 sepsitor plus
+        10 shock cc
+        196 shock mines
+        45 smoke grenades
+        153 t2 cc
+        13 viral cc
+        63 viral mines
+        149 vorpal cc
+        182 wild parrot
+        175 zapper
+     */
+
+    public static List<Integer> invisibleWeapons = Arrays.asList(61, 199, 78, 72, 6, 5, 147, 20, 174, 17, 11, 96, 7, 47, 197, 25, 46, 8, 72, 44, 150, 176, 9, 62, 65, 71, 203, 204, 205, 154, 73, 114, 10, 196, 45, 153, 13, 63, 149, 182, 175);
+
+    /**
+     * A visible weapon is one which would be on the actual model and distinguishable from another weapon.
+     * @param w the weapon to check visibility of
+     * @return true if the weapon would be distinctively on the model.
+     */
+    public static boolean isVisibleWeapon(int w) {
+        return !invisibleWeapons.contains(w);
+    }
+
+    /* Visible equipment on the other hand, is much rarer.
+       100 hacking device
+       101 hd+
+       106 medkit
+       107 motorcycle
+       145 KHD
+       182 Evo HD
+       205 AI motorcycle
+       247 gizmokit
+     */
+    public static List<Integer> visibleEquipment = Arrays.asList(100, 101, 106, 107, 145, 182, 205, 247);
+
+
+    /**
+     * A visible piece of equipment is one which might be put on the model.
+     * @param e the equipment to check
+     * @return true if it might be visible on the model (reasonably).
+     */
+    public static boolean isVisibleEquipment(int e) {
+        return visibleEquipment.contains(e);
+    }
 
     @Override
     public String toString() {
@@ -93,8 +172,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
      */
     public boolean isEquivalent(PrintableUnit that) {
         return name.equals(that.name) &&
-                Objects.equals(new HashSet<>(weapons), new HashSet<>(that.weapons)) &&
-                Objects.equals(new HashSet<>(equip), new HashSet<>(that.equip));
+                visible_equipment.equals(that.visible_equipment) &&
+                visible_weapons.equals(that.visible_weapons);
     }
 
     public UnitID getUnitID() {
@@ -108,8 +187,16 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
     public PrintableUnit(MappedFactionFilters filters, CompactedUnit src, SECTORAL sectoral) throws InvalidObjectException {
         weapons = src.getWeapons().stream().map(x -> x.toString(filters, FilterType.weapons)).collect(Collectors.toList());
+        visible_weapons.addAll(src.getWeapons().stream()
+                .filter(x->isVisibleWeapon(x.getId()))
+                .map(x -> x.toString(filters, FilterType.weapons))
+                .collect(Collectors.toList()));
         skills = src.getPublicSkills().stream().map(x -> x.toString(filters, FilterType.skills)).collect(Collectors.toList());
         equip = src.getEquipment().stream().map(x -> x.toString(filters, FilterType.equip)).collect(Collectors.toList());
+        visible_equipment.addAll(src.getEquipment().stream()
+                .filter(x->isVisibleEquipment(x.getId()))
+                .map(x -> x.toString(filters, FilterType.equip))
+                .collect(Collectors.toList()));
         peripheral = src.getPeripheral().stream().map(x -> x.toString(filters, FilterType.peripheral)).collect(Collectors.toList());
         name = src.getName();
         this.sectoral = sectoral;
@@ -229,7 +316,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     }
 
     private String getTTSSilhouette() {
-        String template = Database.getSilhouetteTemplates().get(s - 1);
+        String template = Database.getSilhouetteTemplates().get(s);
         String diffuse = "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/";
         // TODO:: Different tint for different camo types?
 
@@ -262,7 +349,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         if (!distinguisher.isEmpty()) {
             result += " " + distinguisher;
         }
-        return result;
+        return StringEscapeUtils.escapeJson(result);
     }
 
     /**
@@ -336,6 +423,15 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
     public String getName() {
         return name;
+    }
+
+
+    public Set<String> getVisible_weapons() {
+        return visible_weapons;
+    }
+
+    public Set<String> getVisible_equipment() {
+        return visible_equipment;
     }
 
     @Override

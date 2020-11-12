@@ -3,7 +3,6 @@ package net.codersoffortune.infinity.decoder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.db.Database;
-import net.codersoffortune.infinity.metadata.FactionList;
 import net.codersoffortune.infinity.metadata.unit.PrintableUnit;
 import net.codersoffortune.infinity.tts.Catalogue;
 import net.codersoffortune.infinity.tts.ModelSet;
@@ -11,9 +10,6 @@ import net.codersoffortune.infinity.tts.ModelSet;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
-import java.util.Collection;
-import java.util.Map;
 
 public class TTS_Decoder {
 
@@ -25,21 +21,24 @@ public class TTS_Decoder {
 
         boolean useMercs = false;
 
-        for( FACTION faction : FACTION.values()) {
-            URL old_bag = TTS_Decoder.class.getResource(String.format("/sources/%s N4", faction.getName()));
-            ModelSet ms = new ModelSet();
-            FactionList factionList = new FactionList(faction, db.getSectorals());
-            ms.readOldJson(old_bag, faction, factionList);
-
-            Catalogue c = new Catalogue();
-            c.addUnits(db.getSectorals(), faction, useMercs);
-            c.addTTSModels(ms);
-            c.toCSV(String.format("%s test.csv", faction.name()));
-        }
+//        for( FACTION faction : FACTION.values()) {
+//            URL old_bag = TTS_Decoder.class.getResource(String.format("/sources/%s N4", faction.getName()));
+//            ModelSet ms = new ModelSet();
+//            FactionList factionList = new FactionList(faction, db.getSectorals());
+//            ms.readOldJson(old_bag, faction, factionList);
+//
+//            Catalogue c = new Catalogue();
+//            c.addUnits(db.getSectorals(), faction, useMercs);
+//            c.addTTSModels(ms);
+//            c.toCSV(String.format("%s test.csv", faction.name()));
+//        }
 
         System.out.println("All dumps created");
 
         for( FACTION faction : FACTION.values()) {
+            // TODO:: implement NA2
+            if(faction.getId()==9) continue;
+            System.out.println(String.format("Reading %s", faction.getName()));
             Catalogue c2 = new Catalogue();
             c2.addUnits(db.getSectorals(), faction, useMercs);
             // Yes this will fail first time. You need to make this file yourself!

@@ -1,5 +1,7 @@
 package net.codersoffortune.infinity.tts;
 
+import java.util.Objects;
+
 public class TTSModel {
     private String decals;
     private String meshes;
@@ -32,5 +34,19 @@ public class TTSModel {
 
     public void setDecals(String decals) {
         this.decals = decals;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TTSModel ttsModel = (TTSModel) o;
+        return Objects.equals(decals, ttsModel.decals) &&
+                Objects.equals(meshes, ttsModel.meshes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(decals, meshes);
     }
 }
