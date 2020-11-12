@@ -1,57 +1,45 @@
 package net.codersoffortune.infinity.decoder;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.db.Database;
-import net.codersoffortune.infinity.metadata.SectoralList;
-import net.codersoffortune.infinity.metadata.unit.ProfileOption;
-import net.codersoffortune.infinity.metadata.unit.Unit;
+import net.codersoffortune.infinity.metadata.unit.UnitID;
+import net.codersoffortune.infinity.tts.Catalogue;
+import net.codersoffortune.infinity.tts.ModelSet;
+import net.codersoffortune.infinity.tts.TTSModel;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.net.URL;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 public class ID_Analyst {
 
+
+
     public static void main(String[] args) throws IOException {
         Database db = Database.getInstance();
+        ObjectMapper om = new ObjectMapper();
+        ModelSet ms = new ModelSet();
 
-        Map<Integer, List<Unit>> unitMap = new HashMap<>();
-
-        for (SectoralList sl : db.getSectorals().values()) {
-            for (Unit unit : sl.getUnits()) {
-                if (!unitMap.containsKey(unit.getID())) {
-                    unitMap.put(unit.getID(), new ArrayList<>());
-                }
-                unitMap.get(unit.getID()).add(unit);
-            }
+        for(FACTION faction: FACTION.values()) {
+            if (faction == FACTION.NA2) continue;
+            String bagName = String.format("/wip/%s.json", faction.getName());
+            System.out.println(String.format("Loading %s\n", bagName));
+            URL bag = TTS_Decoder.class.getResource(bagName);
+            ms.readJson(bag);
         }
-        List<List<Unit>> interesting = unitMap.values().stream()
-                .filter(x->x.size()>1).collect(Collectors.toList());
-        for( List<Unit> unitList : interesting ){
-            if( unitList.stream().map(Unit::getName).distinct().count() > 1) {
-                System.out.println("Different names");
-            }
-            Map<Integer,List<ProfileOption>> comparisons = new HashMap<>();
-            for( Unit unit : unitList) {
-                for( ProfileOption po : unit.getOptions()) {
-                    if (!comparisons.containsKey(po.getId())) {
-                        comparisons.put(po.getId(), new ArrayList<>());
-                    }
-                    comparisons.get(po.getId()).add(po);
-                }
-            }
-            List<List<ProfileOption>> interesting_options = comparisons.values().stream()
-                    .filter(x->x.size()>1).collect(Collectors.toList());
-            for( List<ProfileOption> interesting_option: interesting_options) {
-                List<ProfileOption> distinct = interesting_option.stream().distinct().collect(Collectors.toList());
-                if( distinct.size() >1 ) {
-                    System.out.print("moo");
-                }
-            }
 
+        Map<UnitID, Set<TTSModel>> hmmm = new HashMap<>();
+        for( Map.Entry<UnitID, Set<TTSModel>> entry : ms.getModels().entrySet() ) {
+            if( entry.getKey().getUnit_idx() == 36) hmmm.put(entry.getKey(), entry.getValue());
         }
+
+        Catalogue c  = new Catalogue();
+        c.addUnits(db.getSectorals(), FACTION.NA2, false);
+        c.addTTSModels(ms);
+        c.toCSV("NA2.csv");
         System.out.println("moo");
     }
 }

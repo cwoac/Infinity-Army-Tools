@@ -22,13 +22,14 @@ public class TTS_Decoder {
         boolean useMercs = false;
 
 //        for( FACTION faction : FACTION.values()) {
+//            System.out.println(String.format("Reading %s", faction.getName()));
 //            URL old_bag = TTS_Decoder.class.getResource(String.format("/sources/%s N4", faction.getName()));
 //            ModelSet ms = new ModelSet();
 //            FactionList factionList = new FactionList(faction, db.getSectorals());
 //            ms.readOldJson(old_bag, faction, factionList);
 //
 //            Catalogue c = new Catalogue();
-//            c.addUnits(db.getSectorals(), faction, useMercs);
+//            c.addUnits(db.getSectorals(), faction, faction==FACTION.NA2?true:useMercs);
 //            c.addTTSModels(ms);
 //            c.toCSV(String.format("%s test.csv", faction.name()));
 //        }
@@ -36,13 +37,12 @@ public class TTS_Decoder {
         System.out.println("All dumps created");
 
         for( FACTION faction : FACTION.values()) {
-            // TODO:: implement NA2
-            if(faction.getId()==9) continue;
+            if( faction == FACTION.NA2 ) continue;
             System.out.println(String.format("Reading %s", faction.getName()));
             Catalogue c2 = new Catalogue();
-            c2.addUnits(db.getSectorals(), faction, useMercs);
+            c2.addUnits(db.getSectorals(), faction,  faction==FACTION.NA2?true:useMercs);
             // Yes this will fail first time. You need to make this file yourself!
-            c2.fromCSV(String.format("%s test2.csv", faction));
+            c2.addTTSModelsFromCSV(String.format("%s test2.csv", faction));
             String faction_json = c2.asJson(faction);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s.json", faction.getName())));
             writer.append(faction_json);

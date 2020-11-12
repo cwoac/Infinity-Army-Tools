@@ -23,15 +23,25 @@ import java.util.regex.Pattern;
 public class ModelSet {
     private final Map<UnitID, Set<TTSModel>> models = new HashMap<>();
 
-    public void readJson(final String input) throws JsonProcessingException {
-        ObjectMapper om = new ObjectMapper();
-        JsonNode jn;
-        try {
-            jn = om.readTree(input);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            throw(e);
-        }
+    private JsonNode parseInput(final URL input) throws IOException {
+        return new ObjectMapper().readTree(input);
+    }
+
+    private JsonNode parseInput(final String input) throws IOException {
+        return new ObjectMapper().readTree(input);
+    }
+
+    public void readJson(final String input) throws IOException {
+        JsonNode jn = parseInput(input);
+        readJsonInner(jn);
+    }
+
+    public void readJson(final URL input) throws IOException {
+        JsonNode jn = parseInput(input);
+        readJsonInner(jn);
+    }
+
+    public void readJsonInner(final JsonNode jn)  {
         JsonNode contents = jn.findPath("ContainedObjects");
         for (JsonNode child : contents) {
             String[] descLines = child.get("Description").asText().split("\n");
@@ -127,6 +137,7 @@ public class ModelSet {
             // Can't look up something which doesn't exist.
             System.out.println(unit_idx);
         }
+
         Unit unit = factionList.getUnit(unit_idx).orElseThrow(IllegalArgumentException::new);
 
         // Don't have any information to assume it is anything but a profile for a normal unit

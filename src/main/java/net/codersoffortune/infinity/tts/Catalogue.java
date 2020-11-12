@@ -88,6 +88,9 @@ public class Catalogue {
         return result;
     }
 
+    /**
+     * Builds the list of the representative units.
+     */
     private void makeList() {
         unitList = unitMappings.stream().map(Mapping::getRepresentative).collect(Collectors.toList());
         java.util.Collections.sort(unitList);
@@ -117,6 +120,10 @@ public class Catalogue {
     }
 
 
+    /**
+     * Add the TTS models defined to the units in the catalogue
+     * @param modelSet to parse.
+     */
     public void addTTSModels(final ModelSet modelSet) {
         for (Map.Entry<UnitID, Set<TTSModel>> modelEntry : modelSet.getModels().entrySet()) {
             for( Mapping unitMapping : this.unitMappings ) {
@@ -143,7 +150,13 @@ public class Catalogue {
         return result;
     }
 
-    public void fromCSV(String filename) throws IOException {
+    /**
+     * Parse a CSV file (in the same format as from toCSV), loading in the models.
+     * TODO:: Should this actually be in ModelSet?
+     * @param filename in CSV format to read in
+     * @throws IOException on error
+     */
+    public void addTTSModelsFromCSV(String filename) throws IOException {
         // First build a mapping so we know where to stash the models.
         Map<UnitID, List<PrintableUnit>> reverseMap = buildReverseMap();
 
@@ -171,21 +184,35 @@ public class Catalogue {
         }
     }
 
+    /**
+     * Generate a Json string of _all_ the units, in a faction bag format for TTS
+     * @param faction to label the bag as for
+     * @return json representation of the catalogue
+     * @throws IOException on failure
+     */
     public String asJson(FACTION faction) throws IOException {
         //TODO:: Check we have all the models / log missing.
 
         // Make sure the templates are loaded
         Database.getInstance();
 
-        List<String> units = unitList.stream()
-                .filter(unit -> !unit.getModels().isEmpty())
-                .map(PrintableUnit::asFactionJSON)
-                .collect(Collectors.toList());
+        List<String> units = new ArrayList<>();
+        for( Mapping mapping : unitMappings ) {
+            if( mapping.baseUnit.getModels().isEmpty()) continue;
+            units.add(mapping.baseUnit.asFactionJSON());
+            units.addAll(mapping.equivalentUnits.stream().map(PrintableUnit::asFactionJSON).collect(Collectors.toList()));
+        }
         String bag_format = faction.getTemplate();
         String unit_list = String.join(",\n", units);
         return String.format(bag_format, unit_list);
     }
 
+    /**
+     * Generates a CSV file containing _just_ the base units for assigning models to groups.
+     *
+     * @param filename to write the csv out to
+     * @throws IOException on error.
+     */
     public void toCSV(String filename) throws IOException {
         FileWriter fh = new FileWriter(filename);
         try (CSVPrinter out = new CSVPrinter(fh, CSVFormat.EXCEL.withHeader(CSV_HEADERS))) {
