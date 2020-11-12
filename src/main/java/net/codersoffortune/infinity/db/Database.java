@@ -5,52 +5,37 @@ import net.codersoffortune.infinity.metadata.Metadata;
 import net.codersoffortune.infinity.metadata.SectoralList;
 import net.codersoffortune.infinity.metadata.unit.Unit;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Database {
-    private static int currentVersion = 1;
+    /*
+       Templates loaded from the resource.
+       Slightly hacky in that I am making them static inside a singleton, however this means they are
+       safe to access without having to call getInstance() and have to handle an IO exception.
+       Obviously, if you call the getters before getInstance has ever been called then you will get blanks.
+    */
+    private static String unitTemplate = "";
+    private static List<String> silhouetteTemplates = new ArrayList<>();
+    private static String bagTemplate = "";
+    private static String factionTemplate = "";
 
-    // helper functions
-
-    // version table
-    private String versionsTable = "versions";
-
-    // use embedded mode
-    private String protocol = "jdbc:derby:";
-    private String dbName = "IAT";
-
-    // Tables
-    private String dbVersionKey = "dbVersion";
-    private String getVersionQueryFmt = "SELECT version FROM versions WHERE thing='%s'";
-    private String versionsSchema = "CREATE table versions(thing varchar(64) NOT NULL, version varchar(64), PRIMARY KEY(thing))";
-
-
-    // in memory structures
-    Metadata metadata;
-    Map<Integer, SectoralList> factions;
-
-    private Database() throws SQLException, IOException {
+    private Database() throws IOException {
         // block reflection
         if (dbSingleton != null) {
             throw new RuntimeException("Don't try and create Database directly");
         }
-        connection = DriverManager.getConnection(protocol + dbName + ";create=true");
 
-        // Have we been run before?
-        try {
-            getDBVersion();
-        } catch (SQLException e) {
-            // TODO update!
-            createSchemas();
-        }
-        System.out.println(getDBVersion());
         metadata = Metadata.loadMetadata();
         factions = new HashMap<>();
         for (Faction f : metadata.getFactions()) {
@@ -58,9 +43,53 @@ public class Database {
             if (id == 901) continue; // NA2 doesn't have a vanilla option
             factions.put(id, SectoralList.loadFaction(String.valueOf(id)));
         }
+
+        silhouetteTemplates = Arrays.asList(
+                getResourceFileAsString("templates/S1.json"),
+                getResourceFileAsString("templates/S2.json"),
+                getResourceFileAsString("templates/S3.json"),
+                getResourceFileAsString("templates/S4.json"),
+                getResourceFileAsString("templates/S5.json"),
+                getResourceFileAsString("templates/S6.json"),
+                getResourceFileAsString("templates/S7.json")
+        );
+        unitTemplate = getResourceFileAsString("Templates/model_template");
+        factionTemplate = getResourceFileAsString("templates/faction_template");
+        bagTemplate = getResourceFileAsString("templates/bag_template");
     }
 
-    public static Database getInstance() throws SQLException, IOException {
+    public static String getBagTemplate() {
+        return bagTemplate;
+    }
+
+    public static String getUnitTemplate() {
+        return unitTemplate;
+    }
+
+    public static List<String> getSilhouetteTemplates() {
+        return silhouetteTemplates;
+    }
+
+    public static String getFactionTemplate() {
+        return factionTemplate;
+    }
+
+    // in memory structures
+    Metadata metadata;
+    Map<Integer, SectoralList> factions;
+
+    private static String getResourceFileAsString(String fileName) throws IOException {
+        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        try (InputStream is = classLoader.getResourceAsStream(fileName)) {
+            if (is == null) return null;
+            try (InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
+                 BufferedReader reader = new BufferedReader(isr)) {
+                return reader.lines().collect(Collectors.joining(System.lineSeparator()));
+            }
+        }
+    }
+
+    public static Database getInstance() throws IOException {
         if (dbSingleton == null) {
             // thread safe
             synchronized (Database.class) {
@@ -84,66 +113,7 @@ public class Database {
         return factions;
     }
 
-    public void setFactions(Map<Integer, SectoralList> factions) {
-        this.factions = factions;
-    }
-
-    private Connection connection;
-
     private static volatile Database dbSingleton;
-
-    /**
-     * build the SQL to insert or update a k/v pairing as required.
-     */
-    private static String getUpsert(String table, String keyfield, String valueField, String key, String value) {
-        return String.format(
-                "MERGE INTO %s USING SYSIBM.SYSDUMMY1 on %s.%s = '%s' WHEN MATCHED THEN UPDATE SET %s='%s' WHEN NOT MATCHED THEN INSERT (%s,%s) VALUES ('%s','%s')",
-                table,
-                table,
-                keyfield,
-                key,
-                valueField,
-                value,
-                keyfield,
-                valueField,
-                key,
-                value);
-    }
-
-    /**
-     * getVersion - look up the current version of _something_ in the versions table.
-     *
-     * @param thing key to look up
-     * @return the current version of the thing, if present, NULL otherwise
-     * @throws SQLException on internal issue.
-     */
-    private String getVersion(String thing) throws SQLException {
-        ResultSet resultSet = connection.createStatement().executeQuery(String.format(getVersionQueryFmt, thing));
-        // TODO:: Check result count?
-        while (resultSet.next())
-            return resultSet.getString("version");
-        return null;
-    }
-
-    private int getDBVersion() throws SQLException {
-        String dbv = getVersion(dbVersionKey);
-        if (dbv == null) {
-            return -1;
-        }
-        return Integer.parseInt(dbv);
-    }
-
-    private void createSchemas() throws SQLException {
-        // first the versions
-        connection.createStatement().execute(versionsSchema);
-        setVersion();
-
-    }
-
-    private void setVersion() throws SQLException {
-        String vQuery = getUpsert(versionsTable, "thing", "version", dbVersionKey, String.valueOf(currentVersion));
-        connection.createStatement().execute(vQuery);
-    }
 
     public Optional<Unit> getUnitName(int unit_id, int faction_id) {
         SectoralList f = factions.get(faction_id);
@@ -155,12 +125,4 @@ public class Database {
         return f.getUnit(unit_id);
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-        if (connection != null) {
-            connection.close();
-            connection = null;
-        }
-    }
 }

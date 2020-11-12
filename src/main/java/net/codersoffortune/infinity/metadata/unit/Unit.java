@@ -1,14 +1,10 @@
 package net.codersoffortune.infinity.metadata.unit;
 
-import net.codersoffortune.infinity.armylist.Armylist;
-import net.codersoffortune.infinity.armylist.CombatGroup;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.tts.ModelSet;
 import net.codersoffortune.infinity.tts.TTSModel;
 
-import java.io.IOException;
 import java.io.InvalidObjectException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -101,10 +97,10 @@ public class Unit {
     public Collection<CompactedUnit> getAllUnits() {
         Collection<CompactedUnit> result = new ArrayList<>();
         for( ProfileGroup group: profileGroups) {
-            group.getProfiles().stream().forEach(
-            profile->result.addAll(group.getOptions().stream()
-                    .map(o->new CompactedUnit(ID, group, profile, o))
-                    .collect(Collectors.toList()))
+            group.getProfiles().forEach(
+                    profile -> result.addAll(group.getOptions().stream()
+                            .map(o -> new CompactedUnit(ID, group, profile, o))
+                            .collect(Collectors.toList()))
             );
         }
         return result;

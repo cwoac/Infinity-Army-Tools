@@ -1,10 +1,10 @@
 package net.codersoffortune.infinity;
 
-import java.io.IOException;
+import net.codersoffortune.infinity.db.Database;
+
 import java.util.Arrays;
 import java.util.List;
 
-import static net.codersoffortune.infinity.armylist.Armylist.getResourceFileAsString;
 
 /**
  * As much as I tried to avoid having a hardcoded faction list, it is unfortunately needed for some of the neater things
@@ -53,18 +53,17 @@ public enum FACTION {
 
     /**
      * Loads the faction bag template and prepopulates the faction specific parts
+     *
      * @return A string containing the bag with a single %s remaining for the contents
-     * @throws IOException on error
      */
-    public String getTemplate() throws IOException {
-        String template = getResourceFileAsString("templates/faction_template");
-        return String.format(template,
+    public String getTemplate() {
+        return String.format(Database.getFactionTemplate(),
                 fontTint,
                 name,
                 tint,
                 "%s", // yes, really.
                 hex
-                );
+        );
     }
 
     FACTION(int id, String name, List<Integer> sectorals, String fontTint, String tint, String hex) {

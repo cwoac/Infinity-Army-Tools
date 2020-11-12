@@ -2,16 +2,18 @@ package net.codersoffortune.infinity.metadata.unit;
 
 import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.armylist.CombatGroup;
+import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.FilterType;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.tts.TTSModel;
 
-import java.io.IOException;
 import java.io.InvalidObjectException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
-
-import static net.codersoffortune.infinity.armylist.Armylist.getResourceFileAsString;
 
 /**
  * Like a @CompactedUnit, but with all the strings expanded.
@@ -30,7 +32,6 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private final String name;
 
     private final int arm;
-    private final int ava;
     private final int bs;
     private final int bts;
     private final int cc;
@@ -45,34 +46,6 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private final String notes;
     private final String distinguisher;
     private final List<TTSModel> models = new ArrayList<>();
-
-    // Properties below here are used for description only.
-    // They should not be added to equals / hashcode!
-
-    private static String unit_template = null;
-    private static List<String> silhouette_templates = null;
-
-    /**
-     * Load the needed templates for converting to json.
-     * *must* be called before trying to convert anything to json or runtime errors will occur!
-     * Safe to call repeatedly.
-     */
-    public static void load_templates() throws IOException {
-        if (unit_template != null) return;
-
-        silhouette_templates = Arrays.asList(
-                getResourceFileAsString(String.format("templates/S1.json")),
-                getResourceFileAsString(String.format("templates/S2.json")),
-                getResourceFileAsString(String.format("templates/S3.json")),
-                getResourceFileAsString(String.format("templates/S4.json")),
-                getResourceFileAsString(String.format("templates/S5.json")),
-                getResourceFileAsString(String.format("templates/S6.json")),
-                getResourceFileAsString(String.format("templates/S7.json"))
-        );
-        unit_template = getResourceFileAsString("Templates/model_template");
-    }
-
-    //private final List<String> orders; // TODO:: DO WE NEED THIS?
 
 
     @Override
@@ -144,7 +117,6 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         option_idx = src.getOption_idx();
         profile_idx = src.getProfile_idx();
         arm = src.getProfile().getArm();
-        ava = src.getProfile().getAva();
         bs = src.getProfile().getBs();
         bts = src.getProfile().getBts();
         cc = src.getProfile().getCc();
@@ -197,7 +169,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
     public void addTTSModels(Collection<TTSModel> models) {
         // Use this rather than addAll so we can apply filtering.
-        models.stream().forEach(m -> addTTSModel(m));
+        models.forEach(this::addTTSModel);
     }
 
     private String getTTSDescription() {
@@ -249,14 +221,14 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         result.append("[ddddff][sub]----------Skills ---------\\n[/sub]\\n");
         result.append(String.format("%s[-]\\n", String.join(" ● ", skills)));
 
-        // TODO:: implement reference code
+        result.append(getUnitID().encode());
         return result.toString();
 
 
     }
 
     private String getTTSSilhouette() {
-        String template = silhouette_templates.get(s - 1);
+        String template = Database.getSilhouetteTemplates().get(s - 1);
         String diffuse = "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/";
         // TODO:: Different tint for different camo types?
         String tint = FACTION.getFactionForSectoral(sectoral_idx).getTint();
@@ -302,7 +274,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         final String ttsDescription = getTTSDescription();
         final String ttsSilhouette = getTTSSilhouette();
         final String ttsColour = FACTION.getFactionForSectoral(sectoral_idx).getTint();
-        List<String> ttsModels = models.stream().map(m -> String.format(unit_template, ttsName, ttsDescription, ttsColour, m.getMeshes(), m.getDecals(), ttsSilhouette)).collect(Collectors.toList());
+        List<String> ttsModels = models.stream().map(m -> String.format(Database.getUnitTemplate(), ttsName, ttsDescription, ttsColour, m.getMeshes(), m.getDecals(), ttsSilhouette)).collect(Collectors.toList());
         return String.join(",\n", ttsModels);
     }
 
@@ -318,7 +290,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         final String ttsSilhouette = getTTSSilhouette();
         final String ttsColour = CombatGroup.getTint(combatGroup_idx);
         final TTSModel model = models.get(model_idx);
-        return String.format(unit_template,
+        return String.format(Database.getUnitTemplate(),
                 ttsName,
                 ttsDescription,
                 ttsColour,
@@ -326,6 +298,10 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 model.getDecals(),
                 ttsSilhouette);
 
+    }
+
+    public String getDistinguisher() {
+        return distinguisher;
     }
 
     public List<String> getWeapons() {

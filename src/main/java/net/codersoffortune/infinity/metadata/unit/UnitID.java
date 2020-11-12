@@ -1,9 +1,5 @@
 package net.codersoffortune.infinity.metadata.unit;
 
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.KeyDeserializer;
-
-import java.io.IOException;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,7 +36,6 @@ public class UnitID {
     /**
      * Convert a toString representation back into the object.
      * @param input from toString
-     * @return
      */
     public UnitID(String input) {
         Pattern unitPattern = Pattern.compile("s:(?<s>\\d*);u:(?<u>\\d*);g:(?<g>\\d*);p:(?<p>\\d*);o:(?<o>\\d*)}");
@@ -53,6 +48,38 @@ public class UnitID {
         profile_idx = Integer.parseInt(matcher.group("p"));
         option_idx = Integer.parseInt(matcher.group("o"));
     }
+
+    private final static Pattern pattern = Pattern.compile("\\[(?<s>[0-9A-Fa-f]{6})]\\[-]\\[(?<u>[0-9A-Fa-f]{6})]\\[-]\\[(?<g>[0-9A-Fa-f]{6})]\\[-]\\[(?<p>[0-9A-Fa-f]{6})]\\[-]\\[(?<o>[0-9A-Fa-f]{6})]\\[-]");
+
+    public static UnitID decode(final String input) {
+        Matcher m = pattern.matcher(input);
+        // TODO:: validate
+        if (!m.find()) {
+            System.out.println("moo");
+        }
+        return new UnitID(Integer.valueOf(m.group("s"), 16),
+                Integer.valueOf(m.group("u"), 16),
+                Integer.valueOf(m.group("g"), 16),
+                Integer.valueOf(m.group("p"), 16),
+                Integer.valueOf(m.group("o"), 16)
+        );
+    }
+
+    /**
+     * Convert to a string suitible for 'hiding' at the bottom of a description block
+     *
+     * @return encoded version of this UnitID
+     */
+    public String encode() {
+        return String.format("[%06X][-][%06X][-][%06X][-][%06X][-][%06X][-]",
+                sectoral_idx,
+                unit_idx,
+                group_idx,
+                profile_idx,
+                option_idx
+        );
+    }
+
 
     @Override
     public boolean equals(Object o) {

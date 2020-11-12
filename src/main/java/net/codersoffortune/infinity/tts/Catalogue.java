@@ -1,6 +1,7 @@
 package net.codersoffortune.infinity.tts;
 
 import net.codersoffortune.infinity.FACTION;
+import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.metadata.SectoralList;
 import net.codersoffortune.infinity.metadata.unit.CompactedUnit;
@@ -15,7 +16,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InvalidObjectException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -32,59 +39,12 @@ public class Catalogue {
     };
 
 
-    /**
-     * Represents a set of visibly equivalent units
-     */
-    private class Mapping {
-        private final Set<PrintableUnit> equivalentUnits = new HashSet<>();
-        private final PrintableUnit baseUnit;
-
-        public Collection<PrintableUnit> getEquivalentUnits() {
-            return equivalentUnits;
-        }
-
-
-        public Mapping(PrintableUnit base) {
-            baseUnit = base;
-        }
-
-        /**
-         * Check to see if the passed unit is visibily equivalent to the ones in this mapping. If so, claim it.
-         *
-         * @param unit to consider
-         * @return true iff the unit is claimed.
-         */
-        public boolean addUnitMaybe(PrintableUnit unit) {
-            if (!baseUnit.isEquivalent(unit)) {
-                return false;
-            }
-            if (baseUnit.equals(unit)) {
-                // Don't bother adding it if it is the base object
-                return true;
-            }
-            equivalentUnits.add(unit);
-            return true;
-        }
-
-        public boolean contains(UnitID unitID) {
-            if (baseUnit.getUnitID().almost_equals(unitID)) return true;
-            return this.equivalentUnits.stream().anyMatch(x->x.getUnitID().almost_equals(unitID));
-        }
-
-
-        /**
-         * Get a representative printable unit for this mapping.
-         *
-         * @return A printable unit from this mapping
-         */
-        public PrintableUnit getRepresentative() {
-            return baseUnit;
-        }
-
-        public Collection<PrintableUnit> getEquivalents() {
-            return equivalentUnits;
-        }
-
+    public Map<String, Collection<String>> getEquivalences() {
+        Map<String, Collection<String>> results = new HashMap<>();
+        unitMappings.stream().filter(m -> !m.getEquivalents().isEmpty())
+                .forEach(u -> results.put(u.getRepresentative().toString(),
+                        u.getEquivalents().stream().map(PrintableUnit::toString).collect(Collectors.toList())));
+        return results;
     }
 
     private final Set<Mapping> unitMappings = new HashSet<>();
@@ -167,16 +127,6 @@ public class Catalogue {
         }
     }
 
-    public Map<String, Collection<String>> getEquivalences() {
-        Map<String, Collection<String>> results = new HashMap<>();
-        unitMappings.stream().filter(m -> !m.getEquivalents().isEmpty())
-                .forEach(u -> {
-                    results.put(u.getRepresentative().toString(),
-                            u.getEquivalents().stream().map(PrintableUnit::toString).collect(Collectors.toList()));
-                });
-        return results;
-    }
-
     private Map<UnitID, List<PrintableUnit>> buildReverseMap() throws InvalidObjectException {
         Map<UnitID, List<PrintableUnit>> result = new HashMap<>();
         for (Mapping mapping : unitMappings) {
@@ -186,8 +136,7 @@ public class Catalogue {
             }
             List<PrintableUnit> pus = new ArrayList<>();
             pus.add(mapping.baseUnit);
-            mapping.getEquivalents().stream()
-                    .forEach(u -> pus.add(u));
+            pus.addAll(mapping.getEquivalents());
             result.put(unitID, pus);
         }
         return result;
@@ -212,13 +161,28 @@ public class Catalogue {
                     Integer.parseInt(row.get("profile")),
                     Integer.parseInt(row.get("option")));
             if (reverseMap.containsKey(target)) {
-                reverseMap.get(target).stream().forEach(
+                reverseMap.get(target).forEach(
                         pu -> pu.addTTSModels(new_models)
                 );
             } else {
                 throw new InvalidObjectException(String.format("Unable to find target %s in catalogue", target));
             }
         }
+    }
+
+    public String asJson(FACTION faction) throws IOException {
+        //TODO:: Check we have all the models / log missing.
+
+        // Make sure the templates are loaded
+        Database.getInstance();
+
+        List<String> units = unitList.stream()
+                .filter(unit -> !unit.getModels().isEmpty())
+                .map(PrintableUnit::asFactionJSON)
+                .collect(Collectors.toList());
+        String bag_format = faction.getTemplate();
+        String unit_list = String.join(",\n", units);
+        return String.format(bag_format, unit_list);
     }
 
     public void toCSV(String filename) throws IOException {
@@ -257,19 +221,59 @@ public class Catalogue {
         }
     }
 
-    public String asJson(FACTION faction) throws IOException {
-        //TODO:: Check we have all the models / log missing.
+    /**
+     * Represents a set of visibly equivalent units
+     */
+    private static class Mapping {
+        private final Set<PrintableUnit> equivalentUnits = new HashSet<>();
+        private final PrintableUnit baseUnit;
 
-        // Make sure the templates are loaded
-        PrintableUnit.load_templates();
+        public Collection<PrintableUnit> getEquivalentUnits() {
+            return equivalentUnits;
+        }
 
-        List<String> units = unitList.stream()
-                .filter(unit -> !unit.getModels().isEmpty())
-                .map(PrintableUnit::asFactionJSON)
-                .collect(Collectors.toList());
-        String bag_format = faction.getTemplate();
-        String unit_list = String.join(",\n", units);
-        return String.format(bag_format, unit_list);
+
+        public Mapping(PrintableUnit base) {
+            baseUnit = base;
+        }
+
+        /**
+         * Check to see if the passed unit is visibily equivalent to the ones in this mapping. If so, claim it.
+         *
+         * @param unit to consider
+         * @return true iff the unit is claimed.
+         */
+        public boolean addUnitMaybe(PrintableUnit unit) {
+            if (!baseUnit.isEquivalent(unit)) {
+                return false;
+            }
+            if (baseUnit.equals(unit)) {
+                // Don't bother adding it if it is the base object
+                return true;
+            }
+            equivalentUnits.add(unit);
+            return true;
+        }
+
+        public boolean contains(UnitID unitID) {
+            if (baseUnit.getUnitID().almost_equals(unitID)) return true;
+            return this.equivalentUnits.stream().anyMatch(x -> x.getUnitID().almost_equals(unitID));
+        }
+
+
+        /**
+         * Get a representative printable unit for this mapping.
+         *
+         * @return A printable unit from this mapping
+         */
+        public PrintableUnit getRepresentative() {
+            return baseUnit;
+        }
+
+        public Collection<PrintableUnit> getEquivalents() {
+            return equivalentUnits;
+        }
+
     }
 
     public List<PrintableUnit> getUnitList() {

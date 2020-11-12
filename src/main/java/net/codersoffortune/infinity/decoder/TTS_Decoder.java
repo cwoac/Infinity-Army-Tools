@@ -5,13 +5,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.FactionList;
+import net.codersoffortune.infinity.metadata.unit.PrintableUnit;
 import net.codersoffortune.infinity.tts.Catalogue;
 import net.codersoffortune.infinity.tts.ModelSet;
 import net.codersoffortune.infinity.tts.TTSModel;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -21,7 +23,7 @@ public class TTS_Decoder {
 
     private final static String test_list = "ZQpwYW5vY2VhbmlhASCBLAIBCQABAQEAAAEBAQAAAQEDAAABAQIAAAEBBQAAAQEIAAABAQkAAAEBBgAADAEBAAIEAITGAQUAAITAAQIAAA0BBQAADAEBAA==";
 
-    public static void main(String[] args) throws IOException, SQLException {
+    public static void main(String[] args) throws IOException {
         Database db = Database.getInstance();
         ObjectMapper om = new ObjectMapper();
         FACTION faction = FACTION.YuJing;
@@ -79,8 +81,17 @@ public class TTS_Decoder {
         // Yes this will fail first time. You need to make this file yourself!
         c2.fromCSV(String.format("%s test2.csv", faction));
         String faction_json = c2.asJson(faction);
-        c2.getModellessList().stream().forEach(u -> System.out.println(String.format("Missing model for %s", u)));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s.json", faction.getName())));
+        writer.append(faction_json);
+        writer.close();
+        writer = new BufferedWriter(new FileWriter(String.format("%s missing.txt", faction.getName())));
+        for (PrintableUnit m : c2.getModellessList())
+            writer.append(String.format("Missing: (%s) %s %s\n", m.getUnitID(), m.getName(), m.getDistinguisher()));
+        writer.close();
+        ModelSet ms3 = new ModelSet();
+        ms3.readJson(faction_json);
 
+        System.out.println("moo");
     }
 
 }

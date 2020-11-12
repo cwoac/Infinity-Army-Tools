@@ -10,15 +10,14 @@ import net.codersoffortune.infinity.metadata.unit.ProfileItem;
 import net.codersoffortune.infinity.metadata.unit.Unit;
 import net.codersoffortune.infinity.tts.ModelSet;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
-import java.sql.SQLException;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 public class Armylist {
     private String army_code;
@@ -38,16 +37,7 @@ public class Armylist {
         return result;
     }
 
-    public static String getResourceFileAsString(String fileName) throws IOException {
-        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        try (InputStream is = classLoader.getResourceAsStream(fileName)) {
-            if (is == null) return null;
-            try (InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
-                 BufferedReader reader = new BufferedReader(isr)) {
-                return reader.lines().collect(Collectors.joining(System.lineSeparator()));
-            }
-        }
-    }
+
 
     public static Armylist fromArmyCode(final String armyCode) {
         byte[] data = Base64.getDecoder().decode(armyCode);
@@ -61,11 +51,8 @@ public class Armylist {
         //int faction_length = dataBuffer.get() & 0xffffff;
         int faction_length = readVLI(dataBuffer);
         byte[] faction_name_data = new byte[faction_length];
-        try {
-            dataBuffer.get(faction_name_data, 0, faction_length);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        dataBuffer.get(faction_name_data, 0, faction_length);
+
         result.setFaction_name(new String(faction_name_data, StandardCharsets.UTF_8));
 
         // Get the army name, if set. Fun fact, the default army name is ' '.
@@ -86,7 +73,7 @@ public class Armylist {
         return result;
     }
 
-    public void pretty_print() throws SQLException, IOException {
+    public void pretty_print() throws IOException {
         Database db = Database.getInstance();
         List<Weapon> weapons = db.getMetadata().getWeapons();
         List<Skill> skills = db.getMetadata().getSkills();
@@ -142,7 +129,7 @@ public class Armylist {
      *
      * @return a String!
      */
-    public String asJson(final MappedFactionFilters filters, final ModelSet modelSet) throws IOException, SQLException {
+    public String asJson(final MappedFactionFilters filters, final ModelSet modelSet) throws IOException {
         Database db = Database.getInstance();
 
         //if (modelSet.getFaction() != getFaction()) {
@@ -161,9 +148,9 @@ public class Armylist {
 
         // now put them in the bag
         String description = String.format("%s - %s", getFaction_name(), getArmy_name());
-        String bag_format = getResourceFileAsString("templates/bag_template");
+
         String unit_list = String.join(",\n", units);
-        return String.format(bag_format, description, unit_list);
+        return String.format(Database.getBagTemplate(), description, unit_list);
     }
 
     public void addCombatGroup(final CombatGroup combatGroup) {

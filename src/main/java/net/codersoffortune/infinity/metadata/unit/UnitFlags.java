@@ -1,7 +1,5 @@
 package net.codersoffortune.infinity.metadata.unit;
 
-import net.codersoffortune.infinity.metadata.FilterType;
-
 import java.io.InvalidObjectException;
 import java.util.List;
 import java.util.Optional;

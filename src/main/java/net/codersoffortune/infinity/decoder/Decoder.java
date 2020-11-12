@@ -7,7 +7,6 @@ import net.codersoffortune.infinity.metadata.Metadata;
 import net.codersoffortune.infinity.metadata.SectoralList;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class Decoder {
     /***
@@ -37,7 +36,7 @@ public class Decoder {
             "g40Nd2hpdGUtY29tcGFueQEggSwBAQEAJAECAA=="
     };
 
-    public static void main(String[] args) throws IOException, SQLException {
+    public static void main(String[] args) throws IOException {
         //preload the db
         Database db = Database.getInstance();
         Metadata m = db.getMetadata();

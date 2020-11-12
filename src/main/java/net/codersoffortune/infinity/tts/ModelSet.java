@@ -1,18 +1,40 @@
 package net.codersoffortune.infinity.tts;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import net.codersoffortune.infinity.metadata.FactionList;
 import net.codersoffortune.infinity.metadata.unit.Unit;
 import net.codersoffortune.infinity.metadata.unit.UnitID;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class ModelSet {
-    private Map<UnitID, List<TTSModel>> models = new HashMap<>();
+    private final Map<UnitID, List<TTSModel>> models = new HashMap<>();
+
+    public void readJson(final String input) throws JsonProcessingException {
+        ObjectMapper om = new ObjectMapper();
+        JsonNode jn = om.readTree(input);
+        JsonNode contents = jn.findPath("ContainedObjects");
+        for (JsonNode child : contents) {
+            String[] descLines = child.get("Description").asText().split("\n");
+            String code = descLines[descLines.length - 1];
+            UnitID unitID = UnitID.decode(code);
+            String name = child.get("Nickname").asText();
+            String decals = child.get("AttachedDecals").toString();
+            String meshes = child.get("CustomMesh").toString();
+            TTSModel model = new TTSModel(name, decals, meshes);
+            addModel(unitID, model);
+        }
+    }
 
     public void addModel(UnitID unitID, TTSModel model) {
         // TODO:: Maybe dedupe?
-        if( !models.containsKey(unitID) )
+        if (!models.containsKey(unitID))
             models.put(unitID, new ArrayList<>());
         models.get(unitID).add(model);
     }

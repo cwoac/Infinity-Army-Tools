@@ -6,7 +6,6 @@ import net.codersoffortune.infinity.metadata.unit.ProfileOption;
 import net.codersoffortune.infinity.metadata.unit.Unit;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,13 +14,13 @@ import java.util.stream.Collectors;
 
 public class ID_Analyst {
 
-    public static void main(String[] args) throws IOException, SQLException {
+    public static void main(String[] args) throws IOException {
         Database db = Database.getInstance();
 
         Map<Integer, List<Unit>> unitMap = new HashMap<>();
 
-        for(SectoralList sl : db.getFactions().values()) {
-            for( Unit unit : sl.getUnits()) {
+        for (SectoralList sl : db.getFactions().values()) {
+            for (Unit unit : sl.getUnits()) {
                 if (!unitMap.containsKey(unit.getID())) {
                     unitMap.put(unit.getID(), new ArrayList<>());
                 }

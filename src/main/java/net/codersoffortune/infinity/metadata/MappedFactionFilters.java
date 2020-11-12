@@ -2,8 +2,9 @@ package net.codersoffortune.infinity.metadata;
 
 import net.codersoffortune.infinity.metadata.unit.ProfileItem;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Stream;
 
 /**
