@@ -1,6 +1,7 @@
 package net.codersoffortune.infinity.metadata.unit;
 
 import net.codersoffortune.infinity.FACTION;
+import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.armylist.CombatGroup;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.FilterType;
@@ -24,7 +25,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private final List<String> equip;
     private final List<String> peripheral;
     private final UnitFlags flags;
-    private final int sectoral_idx;
+    private final SECTORAL sectoral;
     private final int unit_idx;
     private final int group_idx;
     private final int option_idx;
@@ -97,7 +98,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     }
 
     public UnitID getUnitID() {
-        return new UnitID(sectoral_idx, unit_idx, group_idx, profile_idx, option_idx);
+        return new UnitID(sectoral.getId(), unit_idx, group_idx, profile_idx, option_idx);
     }
 
     @Override
@@ -105,13 +106,13 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return Objects.hash(weapons, skills, equip, peripheral, unit_idx, group_idx, option_idx, profile_idx, name, arm, bs, bts, cc, chars, move, ph, s, str, type, w, wip, notes, distinguisher);
     }
 
-    public PrintableUnit(MappedFactionFilters filters, CompactedUnit src, int sectoral) throws InvalidObjectException {
+    public PrintableUnit(MappedFactionFilters filters, CompactedUnit src, SECTORAL sectoral) throws InvalidObjectException {
         weapons = src.getWeapons().stream().map(x -> x.toString(filters, FilterType.weapons)).collect(Collectors.toList());
         skills = src.getPublicSkills().stream().map(x -> x.toString(filters, FilterType.skills)).collect(Collectors.toList());
         equip = src.getEquipment().stream().map(x -> x.toString(filters, FilterType.equip)).collect(Collectors.toList());
         peripheral = src.getPeripheral().stream().map(x -> x.toString(filters, FilterType.peripheral)).collect(Collectors.toList());
         name = src.getName();
-        sectoral_idx = sectoral;
+        this.sectoral = sectoral;
         unit_idx = src.getUnit_idx();
         group_idx = src.getGroup_idx();
         option_idx = src.getOption_idx();
@@ -231,28 +232,29 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         String template = Database.getSilhouetteTemplates().get(s - 1);
         String diffuse = "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/";
         // TODO:: Different tint for different camo types?
-        String tint = FACTION.getFactionForSectoral(sectoral_idx).getTint();
 
-        String stype;
+        String tint = sectoral.getParent().getTint();
+
+        String silhouette;
 
         if (flags.isCamo()) {
             if (flags.getMimetism() > 0) {
-                stype = String.format("Camouflage (%d) S%d", flags.getMimetism(), s);
+                silhouette = String.format("Camouflage (%d) S%d", flags.getMimetism(), s);
             } else {
-                stype = String.format("Camouflage S%d", s);
+                silhouette = String.format("Camouflage S%d", s);
             }
             // edge case of single use camo
             if (flags.isSingleCamo())
                 return String.format("%s,\n%s",
-                        String.format(template, 2, stype, tint, diffuse),
+                        String.format(template, 2, silhouette, tint, diffuse),
                         String.format(template, 3, String.format("Silhouette %d", s), tint, ""));
 
         } else {
             diffuse = "";
-            stype = String.format("Silhouette %d", s);
+            silhouette = String.format("Silhouette %d", s);
         }
 
-        return String.format(template, 2, stype, tint, diffuse);
+        return String.format(template, 2, silhouette, tint, diffuse);
     }
 
     private String getTTSName() {
@@ -273,7 +275,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
         final String ttsSilhouette = getTTSSilhouette();
-        final String ttsColour = FACTION.getFactionForSectoral(sectoral_idx).getTint();
+        final String ttsColour = sectoral.getParent().getTint();
         List<String> ttsModels = models.stream().map(m -> String.format(Database.getUnitTemplate(), ttsName, ttsDescription, ttsColour, m.getMeshes(), m.getDecals(), ttsSilhouette)).collect(Collectors.toList());
         return String.join(",\n", ttsModels);
     }
@@ -351,7 +353,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return models;
     }
 
-    public int getSectoral_idx() {
-        return sectoral_idx;
+    public SECTORAL getSectoral() {
+        return sectoral;
     }
 }

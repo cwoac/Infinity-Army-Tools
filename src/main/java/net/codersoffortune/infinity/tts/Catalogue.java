@@ -1,6 +1,7 @@
 package net.codersoffortune.infinity.tts;
 
 import net.codersoffortune.infinity.FACTION;
+import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.metadata.SectoralList;
@@ -93,12 +94,12 @@ public class Catalogue {
     }
 
     public void addUnits(final Map<Integer, SectoralList> sectorals, FACTION faction, boolean useMercs) throws InvalidObjectException {
-        for (int sectoral : faction.getSectorals()) {
-            addUnits(sectorals.get(sectoral), sectoral, useMercs);
+        for (SECTORAL sectoral : faction.getSectorals()) {
+            addUnits(sectorals.get(sectoral.getId()), sectoral, useMercs);
         }
     }
 
-    public void addUnits(final SectoralList list, int sectoral_idx, boolean useMercs) throws InvalidObjectException {
+    public void addUnits(final SectoralList list, SECTORAL sectoral_idx, boolean useMercs) throws InvalidObjectException {
         MappedFactionFilters filters = list.getMappedFilters();
         for (Unit unit : list.getUnits()) {
             if (!useMercs && unit.isMerc()) continue;
@@ -190,7 +191,7 @@ public class Catalogue {
         try (CSVPrinter out = new CSVPrinter(fh, CSVFormat.EXCEL.withHeader(CSV_HEADERS))) {
             for (PrintableUnit u : unitList) {
                 out.printRecord(
-                        u.getSectoral_idx(),
+                        u.getSectoral().getId(),
                         u.getUnit_idx(),
                         u.getGroup_idx(),
                         u.getProfile_idx(),

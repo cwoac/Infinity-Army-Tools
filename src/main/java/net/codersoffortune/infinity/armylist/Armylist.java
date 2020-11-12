@@ -1,5 +1,6 @@
 package net.codersoffortune.infinity.armylist;
 
+import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.Equipment;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
@@ -21,8 +22,8 @@ import java.util.Optional;
 
 public class Armylist {
     private String army_code;
-    private int faction;
-    private String faction_name;
+    private SECTORAL sectoral;
+    private String sectoralName;
     private String army_name;
     private int max_points;
     private final List<CombatGroup> combatGroups = new ArrayList<>();
@@ -45,7 +46,7 @@ public class Armylist {
         Armylist result = new Armylist();
         result.setArmy_code(armyCode);
         // who are we playing as?
-        result.setFaction(readVLI(dataBuffer));
+        result.setSectoral(readVLI(dataBuffer));
 
         // Not sure why they embed the faction name as well, but *shrug*
         //int faction_length = dataBuffer.get() & 0xffffff;
@@ -53,7 +54,7 @@ public class Armylist {
         byte[] faction_name_data = new byte[faction_length];
         dataBuffer.get(faction_name_data, 0, faction_length);
 
-        result.setFaction_name(new String(faction_name_data, StandardCharsets.UTF_8));
+        result.setSectoralName(new String(faction_name_data, StandardCharsets.UTF_8));
 
         // Get the army name, if set. Fun fact, the default army name is ' '.
         int army_name_length = dataBuffer.get() & 0xffffff;
@@ -81,11 +82,11 @@ public class Armylist {
 
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("CODE: %s\n", army_code));
-        sb.append(String.format("%s: %S\n", faction_name, army_name));
+        sb.append(String.format("%s: %S\n", sectoralName, army_name));
         for (CombatGroup cg : combatGroups) {
             sb.append(String.format("Combat Group %d: %d members\n", cg.getGroup_number(), cg.getGroup_size()));
             for (CombatGroupMember cgm : cg.getMembers()) {
-                Optional<Unit> maybeUnit = db.getUnitName(cgm.getId(), getFaction());
+                Optional<Unit> maybeUnit = db.getUnitName(cgm.getId(), getSectoral());
                 if (!maybeUnit.isPresent()) continue;
                 Unit unit = maybeUnit.get();
                 Collection<CompactedUnit> cus = unit.getUnits(cgm.getGroup(), cgm.getOption());
@@ -139,15 +140,15 @@ public class Armylist {
         List<String> units = new ArrayList<>();
         for (CombatGroup cg : getCombatGroups()) {
             for (CombatGroupMember cgm : cg.getMembers()) {
-                Optional<Unit> maybeUnit = db.getUnitName(cgm.getId(), getFaction());
+                Optional<Unit> maybeUnit = db.getUnitName(cgm.getId(), getSectoral());
                 if (!maybeUnit.isPresent()) continue;
                 Unit unit = maybeUnit.get();
-                units.addAll(unit.getUnitsForTTS(cg.getGroup_number(), cgm.getGroup(), cgm.getOption(), filters, modelSet, faction));
+                units.addAll(unit.getUnitsForTTS(cg.getGroup_number(), cgm.getGroup(), cgm.getOption(), filters, modelSet, sectoral));
             }
         }
 
         // now put them in the bag
-        String description = String.format("%s - %s", getFaction_name(), getArmy_name());
+        String description = String.format("%s - %s", getSectoralName(), getArmy_name());
 
         String unit_list = String.join(",\n", units);
         return String.format(Database.getBagTemplate(), description, unit_list);
@@ -165,20 +166,24 @@ public class Armylist {
         return this.combatGroups.size();
     }
 
-    public int getFaction() {
-        return faction;
+    public SECTORAL getSectoral() {
+        return sectoral;
     }
 
-    public void setFaction(int faction) {
-        this.faction = faction;
+
+    public void setSectoral(int sectoral) throws IllegalArgumentException {
+        this.sectoral = SECTORAL.getByID(sectoral);
+        if (this.sectoral == null) {
+            throw new IllegalArgumentException(String.format("Sectoral %d not found", sectoral));
+        }
     }
 
-    public String getFaction_name() {
-        return faction_name;
+    public String getSectoralName() {
+        return sectoralName;
     }
 
-    public void setFaction_name(String faction_name) {
-        this.faction_name = faction_name;
+    public void setSectoralName(String sectoralName) {
+        this.sectoralName = sectoralName;
     }
 
     public String getArmy_name() {

@@ -20,7 +20,7 @@ public class SectoralList {
     private List<Relation> relations; // TODO:: Is this ever used?
     private Specops specops;
 
-    public static SectoralList loadFaction(String url) throws IOException {
+    public static SectoralList load(String url) throws IOException {
         ObjectMapper om = new ObjectMapper();
         SimpleModule sm = new SimpleModule();
         sm.addDeserializer(SpecopsNestedItem.class, new SpecopsNestedItemDeserializer());

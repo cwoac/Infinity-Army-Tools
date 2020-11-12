@@ -1,5 +1,6 @@
 package net.codersoffortune.infinity.db;
 
+import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.metadata.Faction;
 import net.codersoffortune.infinity.metadata.Metadata;
 import net.codersoffortune.infinity.metadata.SectoralList;
@@ -37,11 +38,11 @@ public class Database {
         }
 
         metadata = Metadata.loadMetadata();
-        factions = new HashMap<>();
+        sectorals = new HashMap<>();
         for (Faction f : metadata.getFactions()) {
             int id = f.getID();
             if (id == 901) continue; // NA2 doesn't have a vanilla option
-            factions.put(id, SectoralList.loadFaction(String.valueOf(id)));
+            sectorals.put(id, SectoralList.load(String.valueOf(id)));
         }
 
         silhouetteTemplates = Arrays.asList(
@@ -74,9 +75,8 @@ public class Database {
         return factionTemplate;
     }
 
-    // in memory structures
     Metadata metadata;
-    Map<Integer, SectoralList> factions;
+    Map<Integer, SectoralList> sectorals;
 
     private static String getResourceFileAsString(String fileName) throws IOException {
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
@@ -109,20 +109,19 @@ public class Database {
         this.metadata = metadata;
     }
 
-    public Map<Integer, SectoralList> getFactions() {
-        return factions;
+    public Map<Integer, SectoralList> getSectorals() {
+        return sectorals;
     }
 
     private static volatile Database dbSingleton;
 
-    public Optional<Unit> getUnitName(int unit_id, int faction_id) {
-        SectoralList f = factions.get(faction_id);
+    public Optional<Unit> getUnitName(int unitId, SECTORAL sectoral) {
+        SectoralList f = sectorals.get(sectoral.getId());
         if (f == null) {
-            // TODO:: Throw exception?
             return Optional.empty();
         }
 
-        return f.getUnit(unit_id);
+        return f.getUnit(unitId);
     }
 
 }

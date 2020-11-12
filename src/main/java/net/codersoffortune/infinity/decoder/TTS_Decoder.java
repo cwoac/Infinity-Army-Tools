@@ -34,8 +34,7 @@ public class TTS_Decoder {
         Pattern idPattern = Pattern.compile("(?<opt>[\\dA-Fa-f])(?<unit>[\\dA-Fa-f]{5})");
         // TODO:: Move this generation into the inner loading code
 
-        FactionList factionList = new FactionList();
-        factionList.addFaction(faction, db.getFactions());
+        FactionList factionList = new FactionList(faction, db.getSectorals());
 
         ModelSet ms = new ModelSet();
         for (JsonNode child : contents) {
@@ -71,13 +70,13 @@ public class TTS_Decoder {
         Catalogue c = new Catalogue();
         boolean useMercs = false;
 
-        c.addUnits(db.getFactions(), faction, useMercs);
+        c.addUnits(db.getSectorals(), faction, useMercs);
         c.addTTSModels(ms);
         c.toCSV(String.format("%s test.csv", faction.name()));
 
         Map<String, Collection<String>> eq = c.getEquivalences();
         Catalogue c2 = new Catalogue();
-        c2.addUnits(db.getFactions(), faction, useMercs);
+        c2.addUnits(db.getSectorals(), faction, useMercs);
         // Yes this will fail first time. You need to make this file yourself!
         c2.fromCSV(String.format("%s test2.csv", faction));
         String faction_json = c2.asJson(faction);

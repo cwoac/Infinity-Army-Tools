@@ -1,5 +1,6 @@
 package net.codersoffortune.infinity.metadata.unit;
 
+import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.tts.ModelSet;
 import net.codersoffortune.infinity.tts.TTSModel;
@@ -79,12 +80,12 @@ public class Unit {
                                              final int option,
                                              final MappedFactionFilters filters,
                                              final ModelSet modelSet,
-                                             final int sectoral_idx) throws IllegalArgumentException, InvalidObjectException {
+                                             final SECTORAL sectoral) throws IllegalArgumentException, InvalidObjectException {
         //TODO:: Handle pilots
         Collection<CompactedUnit> compactedUnits = getUnits(group, option);
         Collection<PrintableUnit> printableUnits = new ArrayList<>();
         for( CompactedUnit cu: compactedUnits){
-            PrintableUnit pu = new PrintableUnit(filters, cu, sectoral_idx);
+            PrintableUnit pu = new PrintableUnit(filters, cu, sectoral);
             List<TTSModel> models = modelSet.getModels(pu.getUnitID());
             pu.addTTSModels(models);
             printableUnits.add(pu);

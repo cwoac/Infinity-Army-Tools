@@ -19,7 +19,7 @@ public class ID_Analyst {
 
         Map<Integer, List<Unit>> unitMap = new HashMap<>();
 
-        for (SectoralList sl : db.getFactions().values()) {
+        for (SectoralList sl : db.getSectorals().values()) {
             for (Unit unit : sl.getUnits()) {
                 if (!unitMap.containsKey(unit.getID())) {
                     unitMap.put(unit.getID(), new ArrayList<>());
