@@ -86,8 +86,7 @@ public class UnitID {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UnitID unitID = (UnitID) o;
-        return sectoral_idx == unitID.sectoral_idx &&
-                unit_idx == unitID.unit_idx &&
+        return unit_idx == unitID.unit_idx &&
                 group_idx == unitID.group_idx &&
                 profile_idx == unitID.profile_idx &&
                 option_idx == unitID.option_idx;
@@ -107,7 +106,7 @@ public class UnitID {
 
     @Override
     public int hashCode() {
-        return Objects.hash(sectoral_idx, unit_idx, group_idx, profile_idx, option_idx);
+        return Objects.hash(unit_idx, group_idx, profile_idx, option_idx);
     }
 
     public int getSectoral_idx() {

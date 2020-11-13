@@ -14,6 +14,7 @@ public class CompactedUnit {
     private final List<ProfileItem> equipment = new ArrayList<>();
     private final List<ProfileItem> peripheral = new ArrayList<>();
 
+
     private final int unit_idx;
     private final int group_idx;
     private final int option_idx;
@@ -52,6 +53,20 @@ public class CompactedUnit {
         equipment.addAll(profile.getEquip().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
         peripheral.addAll(profile.getPeripheral().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
 
+    }
+
+    /**
+     * Returns whether two CompactedUnits are the same based on public information
+     *
+     * Note we _don't_ compare peripherals as they are a separate item in the game.
+     * @param other CompactedUnit to test against
+     * @return true if their public details are the same
+     */
+    public boolean publicallyEqual( CompactedUnit other ) {
+        return other.getPublicSkills().equals(getPublicSkills()) &&
+                other.getWeapons().equals(weapons) &&
+                other.getEquipment().equals(equipment) &&
+                other.getPublicChars().equals(getPublicChars());
     }
 
     public int getGroup_idx() {

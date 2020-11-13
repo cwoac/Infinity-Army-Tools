@@ -51,6 +51,7 @@ public class Catalogue {
 
     private final Set<Mapping> unitMappings = new HashSet<>();
     private List<PrintableUnit> unitList = new ArrayList<>();
+    private Set<UnitID> validIDs = new HashSet<>();
 
     /**
      * Helper function to hide some of the nastiness of reading in a CSV file.
@@ -108,13 +109,13 @@ public class Catalogue {
         for (Unit unit : list.getUnits()) {
             if (!useMercs && unit.isMerc()) continue;
 
-            for (CompactedUnit cu : unit.getAllUnits()) {
+            for (CompactedUnit cu : unit.getAllDistinctUnits()) {
 
                 PrintableUnit pu = new PrintableUnit(filters, cu, sectoral_idx);
                 boolean claimed = unitMappings.stream().anyMatch(x -> x.addUnitMaybe(pu));
                 if (!claimed)
                     unitMappings.add(new Mapping(pu));
-
+                validIDs.add(pu.getUnitID());
             }
         }
         makeList();
@@ -127,6 +128,8 @@ public class Catalogue {
      */
     public void addTTSModels(final ModelSet modelSet) {
         for (Map.Entry<UnitID, Set<TTSModel>> modelEntry : modelSet.getModels().entrySet()) {
+            // Only add models for units we actually care about
+            if( !validIDs.contains(modelEntry.getKey())) continue;
             for( Mapping unitMapping : this.unitMappings ) {
                 if(unitMapping.contains(modelEntry.getKey())) {
                     unitMapping.baseUnit.addTTSModels(modelEntry.getValue());
@@ -175,6 +178,13 @@ public class Catalogue {
                     Integer.parseInt(row.get("group")),
                     Integer.parseInt(row.get("profile")),
                     Integer.parseInt(row.get("option")));
+            // Only add models for units we actually care about
+            if( !validIDs.contains(target)) {
+                System.out.println(String.format("Undesired unit %s in csv file", target));
+                continue;
+            }
+
+
             if (reverseMap.containsKey(target)) {
                 reverseMap.get(target).forEach(
                         pu -> pu.addTTSModels(new_models)

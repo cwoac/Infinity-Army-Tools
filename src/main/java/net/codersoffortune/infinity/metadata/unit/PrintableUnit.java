@@ -1,6 +1,5 @@
 package net.codersoffortune.infinity.metadata.unit;
 
-import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.armylist.CombatGroup;
 import net.codersoffortune.infinity.db.Database;

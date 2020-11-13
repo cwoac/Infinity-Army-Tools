@@ -165,6 +165,16 @@ public class ModelSet {
         return models;
     }
 
+    public Map<UnitID, Set<TTSModel>> getModelsForUnitID(int id) {
+        Map<UnitID, Set<TTSModel>> result = new HashMap<>();
+        for(Map.Entry<UnitID, Set<TTSModel>> entry : models.entrySet()) {
+            if( entry.getKey().getUnit_idx() == 680) {
+                result.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return result;
+    }
+
     public Set<TTSModel> getModels(UnitID unitID) {
         return models.get(unitID);
     }
