@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -215,12 +216,17 @@ public class Catalogue {
 
 
     private String asJsonInner(final String template) {
-        List<String> units = new ArrayList<>();
+        List<PrintableUnit> allUnits = new ArrayList<>();
+
         for( Mapping mapping : unitMappings ) {
+            // Don't bother with unit groups without models
             if( mapping.baseUnit.getModels().isEmpty()) continue;
-            units.add(mapping.baseUnit.asFactionJSON());
-            units.addAll(mapping.equivalentUnits.stream().map(PrintableUnit::asFactionJSON).collect(Collectors.toList()));
+            allUnits.add(mapping.baseUnit);
+            allUnits.addAll(mapping.equivalentUnits);
         }
+
+        allUnits.sort(Comparator.comparing(PrintableUnit::getName));
+        List<String> units = allUnits.stream().map(PrintableUnit::asFactionJSON).collect(Collectors.toList());
         String unit_list = String.join(",\n", units);
         return String.format(template, unit_list);
     }
