@@ -11,6 +11,9 @@ public class TTSModel {
     private String meshes;
     private String name; // mostly a sanity check
 
+    private Set<String> extractedDecals;
+    private Set<String> extractedMeshes;
+
     private static Pattern decalPattern = Pattern.compile("\"ImageURL\":\"(?<url>[^\"]*)\"");
     private static Pattern meshPattern = Pattern.compile("\"MeshURL\":\"(?<url>[^\"]*)\"");
 
@@ -19,8 +22,8 @@ public class TTSModel {
 
     public TTSModel(String name, String decals, String meshes) {
         this.name = name;
-        this.decals = decals;
-        this.meshes = meshes;
+        setDecals(decals);
+        setMeshes(meshes);
     }
 
     public String getName() {
@@ -33,6 +36,7 @@ public class TTSModel {
 
     public void setMeshes(String meshes) {
         this.meshes = meshes;
+        this.extractedMeshes = extractMeshes(meshes);
     }
 
     public String getDecals() {
@@ -41,6 +45,7 @@ public class TTSModel {
 
     public void setDecals(String decals) {
         this.decals = decals;
+        this.extractedDecals = extractDecals(decals);
     }
 
     private static Set<String> extractDecals(String decals) {
@@ -66,12 +71,12 @@ public class TTSModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TTSModel ttsModel = (TTSModel) o;
-        return extractDecals(decals).equals(extractDecals(ttsModel.decals)) &&
-                extractMeshes(meshes).equals(extractMeshes(ttsModel.meshes));
+        return Objects.equals(extractedDecals, ttsModel.extractedDecals) &&
+                Objects.equals(extractedMeshes, ttsModel.extractedMeshes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(decals, meshes);
+        return Objects.hash(extractedDecals, extractedMeshes);
     }
 }
