@@ -30,7 +30,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+        "r": 0.960,"g": 0.145,"b": 0.333
       },
       "Locked": true,
       "Grid": true,
@@ -73,11 +73,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]IRMANDINHO[-] Chain Rifle",
+  "Nickname": "[f25255]IRMANDINHO[-] Chain Rifle",
   "Description": "[b]WB[/b] ● [AAFFAA]Irregular ● Impetuous[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 21\n[b]BS[/b]: 10\n[b]PH[/b]: 14\n[b]WIP[/b]: 13\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nChain Rifle ● D-Charges ● Smoke Grenades ● Pistol ● AP CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nDeactivator[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nBooty ● Engineer ● Impetuous[-]\n[000389][-][0000F0][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.960,"g": 0.145,"b": 0.333
   },
   "Locked": false,
   "Grid": true,
@@ -116,7 +116,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.960,"g": 0.145,"b": 0.333
 },
 "Locked": false,
 "Grid": true,
@@ -159,11 +159,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]IRMANDINHO[-] Submachine Gun",
+  "Nickname": "[f25255]IRMANDINHO[-] Submachine Gun",
   "Description": "[b]WB[/b] ● [AAFFAA]Irregular ● Impetuous[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 21\n[b]BS[/b]: 10\n[b]PH[/b]: 14\n[b]WIP[/b]: 13\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSubmachine Gun ● D-Charges ● Smoke Grenades ● Pistol ● AP CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nDeactivator[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nBooty ● Engineer ● Impetuous[-]\n[000389][-][0000F0][-][000001][-][000001][-][000004][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.960,"g": 0.145,"b": 0.333
   },
   "Locked": false,
   "Grid": true,
@@ -202,7 +202,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.960,"g": 0.145,"b": 0.333
 },
 "Locked": false,
 "Grid": true,
@@ -245,11 +245,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]IRMANDINHO[-] Boarding Shotgun",
+  "Nickname": "[f25255]IRMANDINHO[-] Boarding Shotgun",
   "Description": "[b]WB[/b] ● [AAFFAA]Irregular ● Impetuous[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 21\n[b]BS[/b]: 10\n[b]PH[/b]: 14\n[b]WIP[/b]: 13\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nBoarding Shotgun ● D-Charges ● Smoke Grenades ● Pistol ● AP CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nDeactivator[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nBooty ● Engineer ● Impetuous[-]\n[000389][-][0000F0][-][000001][-][000001][-][000003][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.960,"g": 0.145,"b": 0.333
   },
   "Locked": false,
   "Grid": true,
@@ -288,7 +288,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.960,"g": 0.145,"b": 0.333
 },
 "Locked": false,
 "Grid": true,

@@ -30,7 +30,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+        "r": 0.819,"g": 0.819,"b": 0.698
       },
       "Locked": true,
       "Grid": true,
@@ -73,11 +73,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]ODALISQUE[-] Sixth Sense",
+  "Nickname": "[D1D1B2]ODALISQUE[-] Sixth Sense",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 18\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 2\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSpitfire ● Nanopulser ● MULTI Pistol ● PARA CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nSixth Sense ● CC Attack(-9) ● Courage ● Immunity(Shock) ● No Wound Incapacitation[-]\n[00038C][-][000144][-][000001][-][000001][-][000003][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -116,7 +116,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -159,11 +159,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]ODALISQUE[-] Spitfire",
+  "Nickname": "[D1D1B2]ODALISQUE[-] Spitfire",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 18\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 2\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSpitfire ● Nanopulser ● MULTI Pistol ● PARA CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n360º Visor[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCC Attack(-9) ● Courage ● Immunity(Shock) ● No Wound Incapacitation[-]\n[00038C][-][000144][-][000001][-][000001][-][000008][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -202,7 +202,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -245,11 +245,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]KUM[-] Boarding Shotgun",
+  "Nickname": "[D1D1B2]KUM[-] Boarding Shotgun",
   "Description": "[b]WB[/b] ● [AAFFAA]Irregular ● Impetuous[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 20-15\n[b]CC[/b]: 22\n[b]BS[/b]: 11\n[b]PH[/b]: 13\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 4\n[ffdddd][sub]----------Weapons---------\n[/sub]\nBoarding Shotgun ● Smoke Grenades ● Pistol ● E/M CC Weapon ● Smoke Grenade Launcher[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nMotorcycle[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCourage ● Dodge(+5) ● Dogged ● Impetuous[-]\n[00038C][-][000139][-][000001][-][000001][-][000465][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -288,7 +288,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -341,11 +341,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]GHULAM[-] Missile Launcher",
+  "Nickname": "[D1D1B2]GHULAM[-] Missile Launcher",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nMissile Launcher ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nTerrain(Desert)[-]\n[00038C][-][00012D][-][000001][-][000001][-][000004][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -384,7 +384,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -427,11 +427,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]ZH\u0112NCH\u00C1[-] Forward Observer",
+  "Nickname": "[D1D1B2]ZH\u0112NCH\u00C1[-] Forward Observer",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 16\n[b]BS[/b]: 12\n[b]PH[/b]: 13\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSubmachine Gun ● Panzerfaust ● Shock Mines ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nForward Observer ● Surprise Attack(-3) ● Camouflage ● Courage ● Infiltration ● Immunity(Shock) ● Mimetism(-3) ● Stealth ● Terrain(Total) ● Climbing Plus ● No Wound Incapacitation[-]\n[00038C][-][0004EB][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -470,7 +470,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -513,11 +513,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]HUNZAKUT [-] Sniper Rifle",
+  "Nickname": "[D1D1B2]HUNZAKUT [-] Sniper Rifle",
   "Description": "[b]SK[/b] ● [AAFFAA]Irregular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 12\n[b]WIP[/b]: 14\n[b]ARM[/b]: 0\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSniper Rifle ● Shock Mines ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nSurprise Attack(-3) ● Camouflage ● Infiltration ● Mimetism(-3) ● Stealth ● Terrain(Total)[-]\n[00038C][-][000136][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -556,7 +556,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -599,11 +599,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]MAGHARIBA PILOT[-]",
+  "Nickname": "[D1D1B2]MAGHARIBA PILOT[-]",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 0\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nLight Shotgun ● D-Charges ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nMediKit[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nParamedic ● Pilot ● Religious Troop ● Terrain(Desert)[-]\n[00038C][-][000135][-][000002][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -642,7 +642,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -685,11 +685,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]H\u00DAL\u00C1NG[-] Forward Deployment(+20)",
+  "Nickname": "[D1D1B2]H\u00DAL\u00C1NG[-] Forward Deployment(+20)",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 22\n[b]BS[/b]: 12\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● Light Flamethrower ● E/M Grenades ● D-Charges ● Pistol ● Monofilament CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nForward Deployment(+20) ● Martial Arts L2 ● Courage ● Dodge(+5) ● Immunity(Shock) ● Mimetism(-6) ● Specialist Operative ● Stealth ● No Wound Incapacitation[-]\n[00038C][-][0004E9][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -728,7 +728,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -771,11 +771,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BOUNTY HUNTER[-] Boarding Shotgun",
+  "Nickname": "[D1D1B2]BOUNTY HUNTER[-] Boarding Shotgun",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 16\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 1\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nBoarding Shotgun ● Pistol ● PARA CC Weapon(-6)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nBooty(ReRoll) ● Stealth[-]\n[00038C][-][000031][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -814,7 +814,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -857,11 +857,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BOUNTY HUNTER[-] Boarding Shotgun",
+  "Nickname": "[D1D1B2]BOUNTY HUNTER[-] Boarding Shotgun",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 16\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 1\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nBoarding Shotgun ● Pistol ● PARA CC Weapon(-6)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nBooty(ReRoll) ● Stealth[-]\n[00038C][-][000031][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -900,7 +900,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -943,11 +943,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]Z\u00DAY\u01D1NG[-] Missile Launcher",
+  "Nickname": "[D1D1B2]Z\u00DAY\u01D1NG[-] Missile Launcher",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-5\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nMissile Launcher ● Light Shotgun ● CC Weapon ● Breaker Pistol(+1B)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nDodge(+2.5) ● Immunity(Shock) ● Number 2[-]\n[00038C][-][00007F][-][000001][-][000001][-][000006][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -986,7 +986,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -1029,11 +1029,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BRAWLER[-] Heavy Rocket Launcher",
+  "Nickname": "[D1D1B2]BRAWLER[-] Heavy Rocket Launcher",
   "Description": "[b]MI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 17\n[b]BS[/b]: 12\n[b]PH[/b]: 11\n[b]WIP[/b]: 12\n[b]ARM[/b]: 2\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nHeavy Rocket Launcher ● Assault Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\n[-]\n[00038C][-][0003DB][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -1072,7 +1072,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -1115,11 +1115,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]WARCOR[-] Flash Pulse",
+  "Nickname": "[D1D1B2]WARCOR[-] Flash Pulse",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Irregular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 11\n[b]BS[/b]: 9\n[b]PH[/b]: 11\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nFlash Pulse ● Stun Pistol ● PARA CC Weapon(-3)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n360º Visor[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nJournalist N1(+3)[-]\n[00038C][-][000032][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -1158,7 +1158,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -1201,11 +1201,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]WARCOR[-] Sixth Sense",
+  "Nickname": "[D1D1B2]WARCOR[-] Sixth Sense",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Irregular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 11\n[b]BS[/b]: 9\n[b]PH[/b]: 11\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nFlash Pulse ● Stun Pistol ● PARA CC Weapon(-3)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nSixth Sense ● Journalist N1(+3)[-]\n[00038C][-][000032][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -1244,7 +1244,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -1287,11 +1287,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]Z\u00DAY\u01D1NG[-] Heavy Machine Gun",
+  "Nickname": "[D1D1B2]Z\u00DAY\u01D1NG[-] Heavy Machine Gun",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-5\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nHeavy Machine Gun ● CC Weapon ● Breaker Pistol(+1B)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nDodge(+2.5) ● Immunity(Shock) ● Number 2[-]\n[00038C][-][00007F][-][000001][-][000001][-][000003][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -1330,7 +1330,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -1373,11 +1373,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]Z\u00DAY\u01D1NG[-] Tactical Awareness",
+  "Nickname": "[D1D1B2]Z\u00DAY\u01D1NG[-] Tactical Awareness",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-5\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nHeavy Machine Gun ● CC Weapon ● Breaker Pistol(+1B)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nTactical Awareness ● Dodge(+2.5) ● Immunity(Shock) ● Number 2[-]\n[00038C][-][00007F][-][000001][-][000001][-][00000C][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -1416,7 +1416,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -1459,11 +1459,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]Z\u00DAY\u01D1NG[-] Regeneration",
+  "Nickname": "[D1D1B2]Z\u00DAY\u01D1NG[-] Regeneration",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-5\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nHeavy Machine Gun ● CC Weapon ● Breaker Pistol(+1B)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nRegeneration ● Dodge(+2.5) ● Immunity(Shock) ● Number 2[-]\n[00038C][-][00007F][-][000001][-][000001][-][00000F][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -1502,7 +1502,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -1545,11 +1545,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]Z\u00DAY\u01D1NG[-] Regeneration",
+  "Nickname": "[D1D1B2]Z\u00DAY\u01D1NG[-] Regeneration",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-5\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nHeavy Machine Gun ● CC Weapon ● Breaker Pistol(+1B)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nRegeneration ● Dodge(+2.5) ● Immunity(Shock) ● Number 2[-]\n[00038C][-][00007F][-][000001][-][000001][-][00000A][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -1588,7 +1588,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -1631,11 +1631,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]KAMEEL [-] PARA CC Weapon(-3)",
+  "Nickname": "[D1D1B2]KAMEEL [-] PARA CC Weapon(-3)",
   "Description": "[b]REM[/b] ● [AAFFAA]Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 13\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 2\n[b]BTS[/b]: 3\n[B]STR[/B]: 1\n[B]S[/B]: 4\n[ffdddd][sub]----------Weapons---------\n[/sub]\nPARA CC Weapon(-3)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nDeactivator ● Repeater ● Baggage[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCourage ● Immunity(Shock) ● Remote Presence[-]\n[00038C][-][00014E][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -1674,7 +1674,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -1727,11 +1727,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BASHI BAZOUK[-] Combi Rifle",
+  "Nickname": "[D1D1B2]BASHI BAZOUK[-] Combi Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Irregular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 15\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 12\n[b]ARM[/b]: 2\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● Pistol ● CC Weapon ● E/M Mines[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nHolomask ● Holoprojector[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nSurprise Attack(-3) ● Parachutist[-]\n[00038C][-][000145][-][000001][-][000001][-][000004][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -1770,7 +1770,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -1813,11 +1813,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]GHULAM[-] Sniper Rifle",
+  "Nickname": "[D1D1B2]GHULAM[-] Sniper Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSniper Rifle ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nTerrain(Desert)[-]\n[00038C][-][00012D][-][000001][-][000001][-][000005][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -1856,7 +1856,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -1899,11 +1899,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]LIBERTO[-] Submachine Gun",
+  "Nickname": "[D1D1B2]LIBERTO[-] Submachine Gun",
   "Description": "[b]LI[/b] ● [AAFFAA]Irregular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 16\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 12\n[b]ARM[/b]: 0\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSubmachine Gun ● Chain-colt ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCamouflage(1 Use) ● Courage ● Forward Deployment(+20) ● Dodge(+6) ● Dodge(+2.5) ● Frenzy ● Terrain(Aquatic) ● Dogged[-]\n[00038C][-][0004FB][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -1942,7 +1942,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -1987,7 +1987,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -2030,11 +2030,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]LIBERTO[-] Mimetism(-3)",
+  "Nickname": "[D1D1B2]LIBERTO[-] Mimetism(-3)",
   "Description": "[b]LI[/b] ● [AAFFAA]Irregular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 16\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 12\n[b]ARM[/b]: 0\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSubmachine Gun ● Chain-colt ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nMimetism(-3) ● Camouflage(1 Use) ● Courage ● Forward Deployment(+20) ● Dodge(+6) ● Dodge(+2.5) ● Frenzy ● Terrain(Aquatic) ● Dogged[-]\n[00038C][-][0004FB][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -2073,7 +2073,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -2118,7 +2118,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -2161,11 +2161,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]FANOUS REMOTE[-]",
+  "Nickname": "[D1D1B2]FANOUS REMOTE[-]",
   "Description": "[b]REM[/b] ● [AAFFAA]Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-15\n[b]CC[/b]: 13\n[b]BS[/b]: 8\n[b]PH[/b]: 11\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 3\n[B]STR[/B]: 1\n[B]S[/B]: 3\n[ffdddd][sub]----------Weapons---------\n[/sub]\nFlash Pulse ● PARA CC Weapon(-3)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nRepeater[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCourage ● Immunity(Shock) ● Mimetism(-3) ● Remote Presence[-]\n[00038C][-][00013E][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -2204,7 +2204,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -2257,11 +2257,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]LIBERTO[-] Mimetism(-3)",
+  "Nickname": "[D1D1B2]LIBERTO[-] Mimetism(-3)",
   "Description": "[b]LI[/b] ● [AAFFAA]Irregular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 16\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 12\n[b]ARM[/b]: 0\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nLight Shotgun ● Shock Mines ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nMimetism(-3) ● Minelayer ● Camouflage(1 Use) ● Courage ● Forward Deployment(+20) ● Dodge(+6) ● Dodge(+2.5) ● Frenzy ● Terrain(Aquatic) ● Dogged[-]\n[00038C][-][0004FB][-][000001][-][000001][-][000003][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -2300,7 +2300,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -2345,7 +2345,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -2388,11 +2388,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]LIBERTO[-] Minelayer",
+  "Nickname": "[D1D1B2]LIBERTO[-] Minelayer",
   "Description": "[b]LI[/b] ● [AAFFAA]Irregular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 16\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 12\n[b]ARM[/b]: 0\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nLight Shotgun ● Shock Mines ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nMinelayer ● Camouflage(1 Use) ● Courage ● Forward Deployment(+20) ● Dodge(+6) ● Dodge(+2.5) ● Frenzy ● Terrain(Aquatic) ● Dogged[-]\n[00038C][-][0004FB][-][000001][-][000001][-][000004][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -2431,7 +2431,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -2476,7 +2476,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -2519,11 +2519,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]NAJJARUN Engineer[-]",
+  "Nickname": "[D1D1B2]NAJJARUN Engineer[-]",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● D-Charges ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nGizmoKit[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCourage ● Engineer[-]\n[00038C][-][00013A][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -2562,7 +2562,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -2605,11 +2605,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]HUNZAKUT [-] Forward Observer",
+  "Nickname": "[D1D1B2]HUNZAKUT [-] Forward Observer",
   "Description": "[b]SK[/b] ● [AAFFAA]Irregular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 12\n[b]WIP[/b]: 14\n[b]ARM[/b]: 0\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nBoarding Shotgun ● D-Charges ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nForward Observer ● Surprise Attack(-3) ● Camouflage ● Infiltration ● Mimetism(-3) ● Stealth ● Terrain(Total)[-]\n[00038C][-][000136][-][000001][-][000001][-][000004][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -2648,7 +2648,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -2691,11 +2691,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BOUNTY HUNTER[-] Sniper Rifle",
+  "Nickname": "[D1D1B2]BOUNTY HUNTER[-] Sniper Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 16\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 1\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSniper Rifle ● Breaker Pistol(+1B) ● PARA CC Weapon(-6)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nBooty(ReRoll) ● Stealth[-]\n[00038C][-][000031][-][000001][-][000001][-][000003][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -2734,7 +2734,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -2777,11 +2777,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]ODALISQUE[-] Sixth Sense",
+  "Nickname": "[D1D1B2]ODALISQUE[-] Sixth Sense",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 18\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 2\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● MULTI Pistol ● PARA CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nSixth Sense ● CC Attack(-9) ● Courage ● Immunity(Shock) ● No Wound Incapacitation[-]\n[00038C][-][000144][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -2820,7 +2820,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -2863,11 +2863,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]ODALISQUE[-] Rifle",
+  "Nickname": "[D1D1B2]ODALISQUE[-] Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 18\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 2\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● MULTI Pistol ● PARA CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n360º Visor[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCC Attack(-9) ● Courage ● Immunity(Shock) ● No Wound Incapacitation[-]\n[00038C][-][000144][-][000001][-][000001][-][000006][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -2906,7 +2906,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -2949,11 +2949,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BASHI BAZOUK[-] AP Rifle",
+  "Nickname": "[D1D1B2]BASHI BAZOUK[-] AP Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Irregular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 15\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 12\n[b]ARM[/b]: 2\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nAP Rifle ● CC Weapon ● Breaker Pistol(+1B)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nHolomask ● Holoprojector[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nSurprise Attack(-3) ● Parachutist[-]\n[00038C][-][000145][-][000001][-][000001][-][000003][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -2992,7 +2992,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -3035,11 +3035,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]Z\u00DAY\u01D1NG[-] MULTI Rifle",
+  "Nickname": "[D1D1B2]Z\u00DAY\u01D1NG[-] MULTI Rifle",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-5\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nMULTI Rifle ● CC Weapon ● Breaker Pistol(+1B)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nDodge(+2.5) ● Immunity(Shock) ● Number 2[-]\n[00038C][-][00007F][-][000001][-][000001][-][000005][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -3078,7 +3078,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -3121,11 +3121,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]KUM[-] Light Shotgun",
+  "Nickname": "[D1D1B2]KUM[-] Light Shotgun",
   "Description": "[b]WB[/b] ● [AAFFAA]Irregular ● Impetuous[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 20-15\n[b]CC[/b]: 22\n[b]BS[/b]: 11\n[b]PH[/b]: 13\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 4\n[ffdddd][sub]----------Weapons---------\n[/sub]\nLight Shotgun ● Smoke Grenades ● Pistol ● DA CC Weapon ● Smoke Grenade Launcher[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nMotorcycle[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCourage ● Dodge(+5) ● Dogged ● Impetuous[-]\n[00038C][-][000139][-][000001][-][000001][-][000464][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -3164,7 +3164,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -3217,11 +3217,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]H\u00DAL\u00C1NG[-] Forward Deployment(+20)",
+  "Nickname": "[D1D1B2]H\u00DAL\u00C1NG[-] Forward Deployment(+20)",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 22\n[b]BS[/b]: 12\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSubmachine Gun(+1B) ● E/M Grenades ● D-Charges ● Crazykoala ● Pistol ● Monofilament CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nForward Deployment(+20) ● Minelayer ● Martial Arts L2 ● Courage ● Dodge(+5) ● Immunity(Shock) ● Mimetism(-6) ● Specialist Operative ● Stealth ● No Wound Incapacitation[-]\n[00038C][-][0004E9][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -3260,7 +3260,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -3303,11 +3303,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]KUM[-] Chain Rifle",
+  "Nickname": "[D1D1B2]KUM[-] Chain Rifle",
   "Description": "[b]WB[/b] ● [AAFFAA]Irregular ● Impetuous[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 20-15\n[b]CC[/b]: 22\n[b]BS[/b]: 11\n[b]PH[/b]: 13\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 4\n[ffdddd][sub]----------Weapons---------\n[/sub]\nChain Rifle ● Smoke Grenades ● Pistol ● Shock CC Weapon ● Smoke Grenade Launcher[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nMotorcycle[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCourage ● Dodge(+5) ● Dogged ● Impetuous[-]\n[00038C][-][000139][-][000001][-][000001][-][000463][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -3346,7 +3346,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -3399,11 +3399,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]ODALISQUE[-] Sixth Sense",
+  "Nickname": "[D1D1B2]ODALISQUE[-] Sixth Sense",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 18\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 2\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSubmachine Gun ● Contender ● Nanopulser ● MULTI Pistol ● PARA CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nSixth Sense ● CC Attack(-9) ● Courage ● Immunity(Shock) ● No Wound Incapacitation[-]\n[00038C][-][000144][-][000001][-][000001][-][000004][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -3442,7 +3442,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -3485,11 +3485,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]ODALISQUE[-] Submachine Gun",
+  "Nickname": "[D1D1B2]ODALISQUE[-] Submachine Gun",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 18\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 2\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSubmachine Gun ● Contender ● Nanopulser ● MULTI Pistol ● PARA CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n360º Visor[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCC Attack(-9) ● Courage ● Immunity(Shock) ● No Wound Incapacitation[-]\n[00038C][-][000144][-][000001][-][000001][-][000009][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -3528,7 +3528,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -3571,11 +3571,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]GHULAM[-] Rifle",
+  "Nickname": "[D1D1B2]GHULAM[-] Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nTerrain(Desert)[-]\n[00038C][-][00012D][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -3614,7 +3614,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -3657,11 +3657,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]GHULAM[-] Rifle",
+  "Nickname": "[D1D1B2]GHULAM[-] Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nTerrain(Desert)[-]\n[00038C][-][00012D][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -3700,7 +3700,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -3743,11 +3743,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]GHULAM[-] Forward Observer",
+  "Nickname": "[D1D1B2]GHULAM[-] Forward Observer",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Flash Pulse ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nForward Observer ● Terrain(Desert)[-]\n[00038C][-][00012D][-][000001][-][000001][-][000009][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -3786,7 +3786,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -3829,11 +3829,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]GHULAM[-] Forward Observer",
+  "Nickname": "[D1D1B2]GHULAM[-] Forward Observer",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Flash Pulse ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nForward Observer ● Terrain(Desert)[-]\n[00038C][-][00012D][-][000001][-][000001][-][000009][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -3872,7 +3872,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -3915,11 +3915,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]GHULAM[-] Rifle",
+  "Nickname": "[D1D1B2]GHULAM[-] Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● E/M Mines ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nDeployable Repeater[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nTerrain(Desert)[-]\n[00038C][-][00012D][-][000001][-][000001][-][00000A][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -3958,7 +3958,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -4001,11 +4001,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]GHULAM[-] Rifle",
+  "Nickname": "[D1D1B2]GHULAM[-] Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● E/M Mines ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nDeployable Repeater[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nTerrain(Desert)[-]\n[00038C][-][00012D][-][000001][-][000001][-][00000A][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -4044,7 +4044,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -4087,11 +4087,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]GHULAM[-] Rifle",
+  "Nickname": "[D1D1B2]GHULAM[-] Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nTerrain(Desert)[-]\n[00038C][-][00012D][-][000001][-][000001][-][000013][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -4130,7 +4130,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -4173,11 +4173,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]GHULAM[-] Rifle",
+  "Nickname": "[D1D1B2]GHULAM[-] Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nTerrain(Desert)[-]\n[00038C][-][00012D][-][000001][-][000001][-][000013][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -4216,7 +4216,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -4259,11 +4259,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]GHULAM[-] Rifle",
+  "Nickname": "[D1D1B2]GHULAM[-] Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nTerrain(Desert)[-]\n[00038C][-][00012D][-][000001][-][000001][-][00000B][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -4302,7 +4302,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -4345,11 +4345,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]GHULAM[-] Rifle",
+  "Nickname": "[D1D1B2]GHULAM[-] Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nTerrain(Desert)[-]\n[00038C][-][00012D][-][000001][-][000001][-][00000B][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -4388,7 +4388,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -4431,11 +4431,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]Z\u00DAY\u01D1NG[-] Combi Rifle",
+  "Nickname": "[D1D1B2]Z\u00DAY\u01D1NG[-] Combi Rifle",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-5\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● CC Weapon ● Breaker Pistol(+1B)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nDodge(+2.5) ● Immunity(Shock) ● Number 2[-]\n[00038C][-][00007F][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -4474,7 +4474,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -4517,11 +4517,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]Z\u00DAY\u01D1NG[-] Combi Rifle",
+  "Nickname": "[D1D1B2]Z\u00DAY\u01D1NG[-] Combi Rifle",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-5\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● CC Weapon ● Breaker Pistol(+1B)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nDodge(+2.5) ● Immunity(Shock) ● Number 2[-]\n[00038C][-][00007F][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -4560,7 +4560,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -4603,11 +4603,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]Z\u00DAY\u01D1NG[-] Combi Rifle",
+  "Nickname": "[D1D1B2]Z\u00DAY\u01D1NG[-] Combi Rifle",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-5\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● CC Weapon ● Breaker Pistol(+1B)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nTinBot: Firewall(-6)[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nDodge(+2.5) ● Immunity(Shock) ● Number 2[-]\n[00038C][-][00007F][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -4646,7 +4646,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -4689,11 +4689,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]Z\u00DAY\u01D1NG[-] Combi Rifle",
+  "Nickname": "[D1D1B2]Z\u00DAY\u01D1NG[-] Combi Rifle",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-5\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● CC Weapon ● Breaker Pistol(+1B)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nTinBot: Firewall(-6)[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nDodge(+2.5) ● Immunity(Shock) ● Number 2[-]\n[00038C][-][00007F][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -4732,7 +4732,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -4775,11 +4775,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]Z\u00DAY\u01D1NG[-] Forward Observer",
+  "Nickname": "[D1D1B2]Z\u00DAY\u01D1NG[-] Forward Observer",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-5\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● Flash Pulse ● Breaker Pistol(+1B) ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nForward Observer ● Dodge(+2.5) ● Immunity(Shock) ● Number 2[-]\n[00038C][-][00007F][-][000001][-][000001][-][000009][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -4818,7 +4818,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -4861,11 +4861,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]Z\u00DAY\u01D1NG[-] Forward Observer",
+  "Nickname": "[D1D1B2]Z\u00DAY\u01D1NG[-] Forward Observer",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-5\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● Flash Pulse ● Breaker Pistol(+1B) ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nForward Observer ● Dodge(+2.5) ● Immunity(Shock) ● Number 2[-]\n[00038C][-][00007F][-][000001][-][000001][-][000009][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -4904,7 +4904,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -4947,11 +4947,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]Z\u00DAY\u01D1NG[-] Tactical Awareness",
+  "Nickname": "[D1D1B2]Z\u00DAY\u01D1NG[-] Tactical Awareness",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-5\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● CC Weapon ● Breaker Pistol(+1B)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nTinBot: Firewall(-6)[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nTactical Awareness ● Dodge(+2.5) ● Immunity(Shock) ● Number 2[-]\n[00038C][-][00007F][-][000001][-][000001][-][000008][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -4990,7 +4990,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -5033,11 +5033,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]Z\u00DAY\u01D1NG[-] Tactical Awareness",
+  "Nickname": "[D1D1B2]Z\u00DAY\u01D1NG[-] Tactical Awareness",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-5\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● CC Weapon ● Breaker Pistol(+1B)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nTinBot: Firewall(-6)[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nTactical Awareness ● Dodge(+2.5) ● Immunity(Shock) ● Number 2[-]\n[00038C][-][00007F][-][000001][-][000001][-][000008][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -5076,7 +5076,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -5119,11 +5119,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]Z\u00DAY\u01D1NG[-] Combi Rifle",
+  "Nickname": "[D1D1B2]Z\u00DAY\u01D1NG[-] Combi Rifle",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-5\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● CC Weapon ● Breaker Pistol(+1B)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nDodge(+2.5) ● Immunity(Shock) ● Number 2[-]\n[00038C][-][00007F][-][000001][-][000001][-][00000E][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -5162,7 +5162,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -5205,11 +5205,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]Z\u00DAY\u01D1NG[-] Combi Rifle",
+  "Nickname": "[D1D1B2]Z\u00DAY\u01D1NG[-] Combi Rifle",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-5\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● CC Weapon ● Breaker Pistol(+1B)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nDodge(+2.5) ● Immunity(Shock) ● Number 2[-]\n[00038C][-][00007F][-][000001][-][000001][-][00000E][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -5248,7 +5248,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -5291,11 +5291,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]MAGHARIBA[-] MULTI Heavy Machine Gun",
+  "Nickname": "[D1D1B2]MAGHARIBA[-] MULTI Heavy Machine Gun",
   "Description": "[b]TAG[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-10\n[b]CC[/b]: 16\n[b]BS[/b]: 14\n[b]PH[/b]: 17\n[b]WIP[/b]: 14\n[b]ARM[/b]: 8\n[b]BTS[/b]: 6\n[B]STR[/B]: 3\n[B]S[/B]: 8\n[ffdddd][sub]----------Weapons---------\n[/sub]\nMULTI Heavy Machine Gun ● Heavy Flamethrower(+1B) ● Mine Dispenser ● AP Heavy Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nBaggage ● ECM: Guided(-6) ● ECM: Hacker(-3) ● 360º Visor[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nBS Attack(+1 Dam) ● Courage ● Immunity(Shock) ● Tactical Awareness ● Religious Troop ● Terrain(Desert) ● Dodge(PH=10) ● Gizmokit(PH=11)[-]\n[00038C][-][000135][-][000001][-][000001][-][000003][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -5334,7 +5334,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -5387,11 +5387,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]KAMEEL [-] Hacker",
+  "Nickname": "[D1D1B2]KAMEEL [-] Hacker",
   "Description": "[b]REM[/b] ● [AAFFAA]Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 13\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 2\n[b]BTS[/b]: 3\n[B]STR[/B]: 1\n[B]S[/B]: 4\n[ffdddd][sub]----------Weapons---------\n[/sub]\nPARA CC Weapon(-3)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nEVO Hacking Device ● Baggage[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nHacker ● Courage ● Immunity(Shock) ● Remote Presence[-]\n[00038C][-][00014E][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -5430,7 +5430,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -5483,11 +5483,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BASHI BAZOUK[-] Rifle",
+  "Nickname": "[D1D1B2]BASHI BAZOUK[-] Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Irregular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 15\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 12\n[b]ARM[/b]: 2\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nHolomask ● Holoprojector[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nSurprise Attack(-3) ● Parachutist[-]\n[00038C][-][000145][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -5526,7 +5526,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -5569,11 +5569,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BASHI BAZOUK[-] Specialist Operative",
+  "Nickname": "[D1D1B2]BASHI BAZOUK[-] Specialist Operative",
   "Description": "[b]LI[/b] ● [AAFFAA]Irregular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 15\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 12\n[b]ARM[/b]: 2\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nHolomask ● Holoprojector[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nSpecialist Operative ● Surprise Attack(-3) ● Parachutist[-]\n[00038C][-][000145][-][000001][-][000001][-][000008][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -5612,7 +5612,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -5655,11 +5655,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BRAWLER[-] Doctor",
+  "Nickname": "[D1D1B2]BRAWLER[-] Doctor",
   "Description": "[b]MI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 17\n[b]BS[/b]: 12\n[b]PH[/b]: 11\n[b]WIP[/b]: 12\n[b]ARM[/b]: 2\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nMediKit[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nDoctor[-]\n[00038C][-][0003DB][-][000001][-][000001][-][000007][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -5698,7 +5698,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -5741,11 +5741,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]112 (Motorized)[-]",
+  "Nickname": "[D1D1B2]112 (Motorized)[-]",
   "Description": "[b]LI[/b] ● [AAFFAA]Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 20-10\n[b]CC[/b]: 16\n[b]BS[/b]: 11\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 4\n[ffdddd][sub]----------Weapons---------\n[/sub]\nLight Shotgun ● Pistol ● CC Weapon ● Smoke Grenade Launcher[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nMediKit ● Motorcycle[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nDoctor ● Courage[-]\n[00038C][-][000504][-][000001][-][000001][-][001299][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -5784,7 +5784,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -5837,11 +5837,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]GHULAM[-] Hacker",
+  "Nickname": "[D1D1B2]GHULAM[-] Hacker",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nHacking Device[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nHacker ● Terrain(Desert)[-]\n[00038C][-][00012D][-][000001][-][000001][-][000007][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -5880,7 +5880,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -5923,11 +5923,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]KUM[-] Rifle",
+  "Nickname": "[D1D1B2]KUM[-] Rifle",
   "Description": "[b]WB[/b] ● [AAFFAA]Irregular ● Impetuous[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 20-15\n[b]CC[/b]: 22\n[b]BS[/b]: 11\n[b]PH[/b]: 13\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 4\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Smoke Grenades ● Pistol ● E/M CC Weapon ● Smoke Grenade Launcher[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nMotorcycle[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCourage ● Dodge(+5) ● Dogged ● Impetuous[-]\n[00038C][-][000139][-][000001][-][000001][-][000466][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -5966,7 +5966,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -6019,11 +6019,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]SFORZA FTO[-] Viral Rifle",
+  "Nickname": "[D1D1B2]SFORZA FTO[-] Viral Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 19\n[b]BS[/b]: 13\n[b]PH[/b]: 11\n[b]WIP[/b]: 13\n[b]ARM[/b]: 2\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nViral Rifle ● Adhesive Launcher(+1B) ● Nanopulser ● Heavy Pistol ● PARA CC Weapon(-6)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nHolomask ● X Visor[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCourage ● Stealth ● Dogged[-]\n[00038C][-][0000C6][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -6062,7 +6062,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -6105,11 +6105,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]ODALISQUE[-] Sixth Sense",
+  "Nickname": "[D1D1B2]ODALISQUE[-] Sixth Sense",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 18\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 2\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nBoarding Shotgun ● MULTI Pistol ● PARA CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nSixth Sense ● CC Attack(-9) ● Courage ● Immunity(Shock) ● No Wound Incapacitation[-]\n[00038C][-][000144][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -6148,7 +6148,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -6191,11 +6191,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]ODALISQUE[-] Boarding Shotgun",
+  "Nickname": "[D1D1B2]ODALISQUE[-] Boarding Shotgun",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 18\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 2\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nBoarding Shotgun ● MULTI Pistol ● PARA CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n360º Visor[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCC Attack(-9) ● Courage ● Immunity(Shock) ● No Wound Incapacitation[-]\n[00038C][-][000144][-][000001][-][000001][-][000007][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -6234,7 +6234,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -6277,11 +6277,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BOUNTY HUNTER[-] Red Fury",
+  "Nickname": "[D1D1B2]BOUNTY HUNTER[-] Red Fury",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 16\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 1\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRed Fury ● Pistol ● PARA CC Weapon(-6)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nBooty(ReRoll) ● Stealth[-]\n[00038C][-][000031][-][000001][-][000001][-][000006][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -6320,7 +6320,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -6363,11 +6363,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BOUNTY HUNTER[-] Combi Rifle",
+  "Nickname": "[D1D1B2]BOUNTY HUNTER[-] Combi Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 16\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 1\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● Pistol ● PARA CC Weapon(-6)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nBooty(ReRoll) ● Stealth[-]\n[00038C][-][000031][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -6406,7 +6406,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -6449,11 +6449,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BRAWLER[-] Rifle",
+  "Nickname": "[D1D1B2]BRAWLER[-] Rifle",
   "Description": "[b]MI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 17\n[b]BS[/b]: 12\n[b]PH[/b]: 11\n[b]WIP[/b]: 12\n[b]ARM[/b]: 2\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\n[-]\n[00038C][-][0003DB][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -6492,7 +6492,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -6535,11 +6535,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BRAWLER[-] Rifle",
+  "Nickname": "[D1D1B2]BRAWLER[-] Rifle",
   "Description": "[b]MI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 17\n[b]BS[/b]: 12\n[b]PH[/b]: 11\n[b]WIP[/b]: 12\n[b]ARM[/b]: 2\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\n[-]\n[00038C][-][0003DB][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -6578,7 +6578,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -6621,11 +6621,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BRAWLER[-] Engineer",
+  "Nickname": "[D1D1B2]BRAWLER[-] Engineer",
   "Description": "[b]MI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 17\n[b]BS[/b]: 12\n[b]PH[/b]: 11\n[b]WIP[/b]: 12\n[b]ARM[/b]: 2\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● D-Charges ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nDeactivator ● GizmoKit[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nEngineer[-]\n[00038C][-][0003DB][-][000001][-][000001][-][000006][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -6664,7 +6664,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -6707,11 +6707,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BRAWLER[-] Engineer",
+  "Nickname": "[D1D1B2]BRAWLER[-] Engineer",
   "Description": "[b]MI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 17\n[b]BS[/b]: 12\n[b]PH[/b]: 11\n[b]WIP[/b]: 12\n[b]ARM[/b]: 2\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● D-Charges ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nDeactivator ● GizmoKit[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nEngineer[-]\n[00038C][-][0003DB][-][000001][-][000001][-][000006][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -6750,7 +6750,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -6793,11 +6793,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BRAWLER[-] Rifle",
+  "Nickname": "[D1D1B2]BRAWLER[-] Rifle",
   "Description": "[b]MI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 17\n[b]BS[/b]: 12\n[b]PH[/b]: 11\n[b]WIP[/b]: 12\n[b]ARM[/b]: 2\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\n[-]\n[00038C][-][0003DB][-][000001][-][000001][-][000009][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -6836,7 +6836,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -6879,11 +6879,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BRAWLER[-] Rifle",
+  "Nickname": "[D1D1B2]BRAWLER[-] Rifle",
   "Description": "[b]MI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 17\n[b]BS[/b]: 12\n[b]PH[/b]: 11\n[b]WIP[/b]: 12\n[b]ARM[/b]: 2\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\n[-]\n[00038C][-][0003DB][-][000001][-][000001][-][000009][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -6922,7 +6922,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -6965,11 +6965,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BRAWLER[-] Pistol",
+  "Nickname": "[D1D1B2]BRAWLER[-] Pistol",
   "Description": "[b]MI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 17\n[b]BS[/b]: 12\n[b]PH[/b]: 11\n[b]WIP[/b]: 12\n[b]ARM[/b]: 2\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nPistol ● MULTI Sniper Rifle ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nMultispectral Visor L2[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\n[-]\n[00038C][-][0003DB][-][000001][-][000001][-][000003][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -7008,7 +7008,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -7051,11 +7051,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]SAITO TOGAN[-]",
+  "Nickname": "[D1D1B2]SAITO TOGAN[-]",
   "Description": "[b]SK[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 24\n[b]BS[/b]: 11\n[b]PH[/b]: 13\n[b]WIP[/b]: 13\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● Smoke Grenades ● Pistol ● EXP CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nMartial Arts L4 ● Surprise Attack(-3) ● Camouflage ● Courage ● Hidden Deployment ● Dodge(+2.5) ● Infiltration ● Mimetism(-6) ● Stealth ● Terrain(Total)[-]\n[00038C][-][00029C][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -7094,7 +7094,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -7137,11 +7137,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]NASMAT[-]",
+  "Nickname": "[D1D1B2]NASMAT[-]",
   "Description": "[b]REM[/b] ● [AAFFAA]Peripheral ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-10\n[b]CC[/b]: 11\n[b]BS[/b]: 8\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 3\n[B]STR[/B]: 1\n[B]S[/B]: 1\n[ffdddd][sub]----------Weapons---------\n[/sub]\nPARA CC Weapon(-3)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCourage ● Immunity(Shock) ● Mimetism(-3) ● Peripheral(Synchronized)[-]\n[00038C][-][00014D][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -7180,7 +7180,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -7233,11 +7233,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]Z\u00DAY\u01D1NG[-] Boarding Shotgun",
+  "Nickname": "[D1D1B2]Z\u00DAY\u01D1NG[-] Boarding Shotgun",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-5\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nBoarding Shotgun ● CC Weapon ● Breaker Pistol(+1B)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nDodge(+2.5) ● Immunity(Shock) ● Number 2[-]\n[00038C][-][00007F][-][000001][-][000001][-][000004][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -7276,7 +7276,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -7319,11 +7319,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]RUI SHI[-]",
+  "Nickname": "[D1D1B2]RUI SHI[-]",
   "Description": "[b]REM[/b] ● [AAFFAA]Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-10\n[b]CC[/b]: 13\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 6\n[B]STR[/B]: 1\n[B]S[/B]: 4\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSpitfire ● PARA CC Weapon(-3)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nMultispectral Visor L2 ● Repeater[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nRemote Presence ● Courage ● Immunity(Shock)[-]\n[00038C][-][00009F][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -7362,7 +7362,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -7415,11 +7415,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BRAWLER[-] Hacker",
+  "Nickname": "[D1D1B2]BRAWLER[-] Hacker",
   "Description": "[b]MI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 17\n[b]BS[/b]: 12\n[b]PH[/b]: 11\n[b]WIP[/b]: 12\n[b]ARM[/b]: 2\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSubmachine Gun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nHacking Device[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nHacker[-]\n[00038C][-][0003DB][-][000001][-][000001][-][000005][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -7458,7 +7458,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -7501,11 +7501,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]HUNZAKUT [-] Forward Observer",
+  "Nickname": "[D1D1B2]HUNZAKUT [-] Forward Observer",
   "Description": "[b]SK[/b] ● [AAFFAA]Irregular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 12\n[b]WIP[/b]: 14\n[b]ARM[/b]: 0\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Shock Mines ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nDeployable Repeater[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nForward Observer ● Surprise Attack(-3) ● Camouflage ● Infiltration ● Mimetism(-3) ● Stealth ● Terrain(Total)[-]\n[00038C][-][000136][-][000001][-][000001][-][000003][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -7544,7 +7544,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -7587,11 +7587,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]H\u00DAL\u00C1NG FTO[-] MULTI Rifle",
+  "Nickname": "[D1D1B2]H\u00DAL\u00C1NG FTO[-] MULTI Rifle",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 22\n[b]BS[/b]: 12\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nMULTI Rifle ● Light Flamethrower ● D-Charges ● Pistol ● Monofilament CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nMartial Arts L2 ● Courage ● Dodge(+5) ● Immunity(Shock) ● Mimetism(-6) ● Specialist Operative ● Stealth ● No Wound Incapacitation[-]\n[00038C][-][0004E9][-][000001][-][000001][-][000004][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -7630,7 +7630,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -7673,11 +7673,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]GHULAM[-] Doctor(+3)",
+  "Nickname": "[D1D1B2]GHULAM[-] Doctor(+3)",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nMediKit[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nDoctor(+3) ● Terrain(Desert)[-]\n[00038C][-][00012D][-][000001][-][000001][-][000008][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -7716,7 +7716,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -7759,11 +7759,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]GHULAM[-] NCO",
+  "Nickname": "[D1D1B2]GHULAM[-] NCO",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Grenade Launcher ● Smoke Grenade Launcher ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nNCO ● Terrain(Desert)[-]\n[00038C][-][00012D][-][000001][-][000001][-][00000E][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -7802,7 +7802,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -7845,11 +7845,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]GHULAM[-] Rifle",
+  "Nickname": "[D1D1B2]GHULAM[-] Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Pistol ● Grenade Launcher ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nTerrain(Desert)[-]\n[00038C][-][00012D][-][000001][-][000001][-][000003][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -7888,7 +7888,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -7931,11 +7931,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]L\u00D9 DU\u0100N[-]",
+  "Nickname": "[D1D1B2]L\u00D9 DU\u0100N[-]",
   "Description": "[b]REM[/b] ● [AAFFAA]Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-10\n[b]CC[/b]: 13\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 6\n[B]STR[/B]: 1\n[B]S[/B]: 4\n[ffdddd][sub]----------Weapons---------\n[/sub]\nMk12 ● PARA CC Weapon(-3) ● Heavy Flamethrower(+1B)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nDeployable Repeater ● Holomask ● Holoprojector ● Multispectral Visor L1[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nRemote Presence ● Surprise Attack(-3) ● Courage ● Immunity(Shock) ● Minelayer[-]\n[00038C][-][0000A0][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -7974,7 +7974,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -8027,11 +8027,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]FASID[-] Heavy Rocket Launcher(+1B)",
+  "Nickname": "[D1D1B2]FASID[-] Heavy Rocket Launcher(+1B)",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 14\n[b]WIP[/b]: 14\n[b]ARM[/b]: 5\n[b]BTS[/b]: 6\n[B]W[/B]: 2\n[B]S[/B]: 5\n[ffdddd][sub]----------Weapons---------\n[/sub]\nHeavy Rocket Launcher(+1B) ● Submachine Gun ● Shock Mines ● Heavy Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nMinelayer ● Sixth Sense ● Veteran ● Immunity(Shock)[-]\n[00038C][-][000157][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -8070,7 +8070,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -8113,11 +8113,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]ODALISQUE[-] Sixth Sense",
+  "Nickname": "[D1D1B2]ODALISQUE[-] Sixth Sense",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 18\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 2\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSubmachine Gun ● Nanopulser ● Flash Pulse(+1B) ● MULTI Pistol ● PARA CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nSixth Sense ● CC Attack(-9) ● Courage ● Immunity(Shock) ● No Wound Incapacitation[-]\n[00038C][-][000144][-][000001][-][000001][-][000005][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -8156,7 +8156,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -8199,11 +8199,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]ODALISQUE[-] Submachine Gun",
+  "Nickname": "[D1D1B2]ODALISQUE[-] Submachine Gun",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 18\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 2\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSubmachine Gun ● Nanopulser ● Flash Pulse(+1B) ● MULTI Pistol ● PARA CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n360º Visor[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCC Attack(-9) ● Courage ● Immunity(Shock) ● No Wound Incapacitation[-]\n[00038C][-][000144][-][000001][-][000001][-][00000A][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -8242,7 +8242,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -8285,11 +8285,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]HUNZAKUT [-] Rifle",
+  "Nickname": "[D1D1B2]HUNZAKUT [-] Rifle",
   "Description": "[b]SK[/b] ● [AAFFAA]Irregular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 12\n[b]WIP[/b]: 14\n[b]ARM[/b]: 0\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Grenade Launcher ● Shock Mines ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nDeployable Repeater[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nSurprise Attack(-3) ● Camouflage ● Infiltration ● Mimetism(-3) ● Stealth ● Terrain(Total)[-]\n[00038C][-][000136][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -8328,7 +8328,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -8371,11 +8371,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]GHULAM[-] Heavy Machine Gun",
+  "Nickname": "[D1D1B2]GHULAM[-] Heavy Machine Gun",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nHeavy Machine Gun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nTerrain(Desert)[-]\n[00038C][-][00012D][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -8414,7 +8414,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -8457,11 +8457,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]RAFIQ REMOTE FTO[-] Red Fury",
+  "Nickname": "[D1D1B2]RAFIQ REMOTE FTO[-] Red Fury",
   "Description": "[b]REM[/b] ● [AAFFAA]Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-10\n[b]CC[/b]: 13\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 3\n[B]STR[/B]: 1\n[B]S[/B]: 3\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRed Fury ● Flash Pulse ● PARA CC Weapon(-3)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nDeactivator ● Repeater[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nTriangulated Fire ● Courage ● Immunity(Shock) ● Forward Observer ● Remote Presence ● Sensor[-]\n[00038C][-][00013B][-][000001][-][000001][-][000003][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -8500,7 +8500,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -8553,11 +8553,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]KAMEEL [-] Total Reaction",
+  "Nickname": "[D1D1B2]KAMEEL [-] Total Reaction",
   "Description": "[b]REM[/b] ● [AAFFAA]Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 13\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 2\n[b]BTS[/b]: 3\n[B]STR[/B]: 1\n[B]S[/B]: 4\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● PARA CC Weapon(-3)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nRepeater ● Baggage[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nTotal Reaction ● Courage ● Immunity(Shock) ● Remote Presence[-]\n[00038C][-][00014E][-][000001][-][000001][-][000003][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -8596,7 +8596,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -8649,11 +8649,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]MIRANDA ASHCROFT[-] Boarding Shotgun",
+  "Nickname": "[D1D1B2]MIRANDA ASHCROFT[-] Boarding Shotgun",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 19\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 1\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nBoarding Shotgun ● Pistol ● Monofilament CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCC Attack(-6) ● Mimetism(-6) ● Specialist Operative ● Stealth[-]\n[00038C][-][000033][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -8692,7 +8692,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -8735,11 +8735,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]McMURROUGH[-]",
+  "Nickname": "[D1D1B2]McMURROUGH[-]",
   "Description": "[b]WB[/b] ● [AAFFAA]Irregular ● Impetuous[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-10\n[b]CC[/b]: 23\n[b]BS[/b]: 11\n[b]PH[/b]: 16\n[b]WIP[/b]: 14\n[b]ARM[/b]: 4\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 6\n[ffdddd][sub]----------Weapons---------\n[/sub]\nChain Rifle(+1B) ● Grenades ● Smoke Grenades ● AP + DA CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nMartial Arts L3 ● Berserk ● Courage ● Dodge(+5) ● Immunity(Total) ● Super-Jump ● Vulnerability(Viral) ● Impetuous[-]\n[00038C][-][00011B][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -8778,7 +8778,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": false,
@@ -8821,11 +8821,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]RAFIQ REMOTE[-] Rifle",
+  "Nickname": "[D1D1B2]RAFIQ REMOTE[-] Rifle",
   "Description": "[b]REM[/b] ● [AAFFAA]Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-10\n[b]CC[/b]: 13\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 3\n[B]STR[/B]: 1\n[B]S[/B]: 3\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Flash Pulse ● PARA CC Weapon(-3)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nDeactivator ● Repeater[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nTriangulated Fire ● Courage ● Immunity(Shock) ● Forward Observer ● Remote Presence ● Sensor[-]\n[00038C][-][00013B][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -8864,7 +8864,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -8917,11 +8917,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]MAGHARIBA[-] MULTI Heavy Machine Gun",
+  "Nickname": "[D1D1B2]MAGHARIBA[-] MULTI Heavy Machine Gun",
   "Description": "[b]TAG[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-10\n[b]CC[/b]: 16\n[b]BS[/b]: 14\n[b]PH[/b]: 17\n[b]WIP[/b]: 14\n[b]ARM[/b]: 8\n[b]BTS[/b]: 6\n[B]STR[/B]: 3\n[B]S[/B]: 8\n[ffdddd][sub]----------Weapons---------\n[/sub]\nMULTI Heavy Machine Gun ● Heavy Rocket Launcher ● Grenade Launcher ● Heavy Pistol(+1B) ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nBaggage ● ECM: Guided(-6) ● ECM: Hacker(-3) ● 360º Visor[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nBS Attack(+1 Dam) ● Courage ● Immunity(Shock) ● Tactical Awareness ● Religious Troop ● Terrain(Desert) ● Dodge(PH=10) ● Gizmokit(PH=11)[-]\n[00038C][-][000135][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -8960,7 +8960,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -9013,11 +9013,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]FASID[-] Heavy Machine Gun",
+  "Nickname": "[D1D1B2]FASID[-] Heavy Machine Gun",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 14\n[b]WIP[/b]: 14\n[b]ARM[/b]: 5\n[b]BTS[/b]: 6\n[B]W[/B]: 2\n[B]S[/B]: 5\n[ffdddd][sub]----------Weapons---------\n[/sub]\nHeavy Machine Gun ● Grenade Launcher ● Smoke Grenade Launcher ● Shock Mines ● Heavy Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nMinelayer ● Sixth Sense ● Veteran ● Immunity(Shock)[-]\n[00038C][-][000157][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -9056,7 +9056,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -9099,11 +9099,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]FASID[-] Heavy Machine Gun",
+  "Nickname": "[D1D1B2]FASID[-] Heavy Machine Gun",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 14\n[b]WIP[/b]: 14\n[b]ARM[/b]: 5\n[b]BTS[/b]: 6\n[B]W[/B]: 2\n[B]S[/B]: 5\n[ffdddd][sub]----------Weapons---------\n[/sub]\nHeavy Machine Gun ● Grenade Launcher ● Smoke Grenade Launcher ● Shock Mines ● Heavy Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nMinelayer ● Sixth Sense ● Veteran ● Immunity(Shock)[-]\n[00038C][-][000157][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -9142,7 +9142,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -9185,11 +9185,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]SHIHAB REMOTE[-]",
+  "Nickname": "[D1D1B2]SHIHAB REMOTE[-]",
   "Description": "[b]REM[/b] ● [AAFFAA]Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-10\n[b]CC[/b]: 13\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 3\n[B]STR[/B]: 1\n[B]S[/B]: 3\n[ffdddd][sub]----------Weapons---------\n[/sub]\nHeavy Machine Gun ● PARA CC Weapon(-3)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n360º Visor[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCourage ● Immunity(Shock) ● Remote Presence ● Total Reaction[-]\n[00038C][-][00013C][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -9228,7 +9228,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -9281,11 +9281,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]VALERYA GROMOZ[-]",
+  "Nickname": "[D1D1B2]VALERYA GROMOZ[-]",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 15\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● Zapper ● Pitcher ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nHacking Device(UPGRADE: Total Control (+1B))[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nHacker[-]\n[00038C][-][0001D0][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -9324,7 +9324,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -9367,11 +9367,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]Z\u00DAY\u01D1NG[-] Paramedic",
+  "Nickname": "[D1D1B2]Z\u00DAY\u01D1NG[-] Paramedic",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-5\n[b]CC[/b]: 17\n[b]BS[/b]: 13\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 2\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● CC Weapon ● Breaker Pistol(+1B)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nMediKit[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nParamedic ● Dodge(+2.5) ● Immunity(Shock) ● Number 2[-]\n[00038C][-][00007F][-][000001][-][000001][-][00000B][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -9410,7 +9410,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -9453,11 +9453,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]SFORZA[-] Surprise Attack(-3)",
+  "Nickname": "[D1D1B2]SFORZA[-] Surprise Attack(-3)",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 19\n[b]BS[/b]: 13\n[b]PH[/b]: 11\n[b]WIP[/b]: 13\n[b]ARM[/b]: 2\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nViral Rifle ● Adhesive Launcher(+1B) ● Nanopulser ● Heavy Pistol ● PARA CC Weapon(-6)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nHoloprojector ● Holomask ● X Visor[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nSurprise Attack(-3) ● Courage ● Stealth ● Dogged[-]\n[00038C][-][0000C6][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -9496,7 +9496,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -9539,11 +9539,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]MAGHARIBA[-] MULTI Heavy Machine Gun",
+  "Nickname": "[D1D1B2]MAGHARIBA[-] MULTI Heavy Machine Gun",
   "Description": "[b]TAG[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-10\n[b]CC[/b]: 16\n[b]BS[/b]: 14\n[b]PH[/b]: 17\n[b]WIP[/b]: 14\n[b]ARM[/b]: 8\n[b]BTS[/b]: 6\n[B]STR[/B]: 3\n[B]S[/B]: 8\n[ffdddd][sub]----------Weapons---------\n[/sub]\nMULTI Heavy Machine Gun ● Heavy Pistol(+1B) ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nBaggage ● ECM: Guided(-6) ● ECM: Hacker(-3) ● 360º Visor[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nBS Attack(+1 Dam) ● Courage ● Immunity(Shock) ● Tactical Awareness ● Religious Troop ● Terrain(Desert) ● Dodge(PH=10) ● Gizmokit(PH=11)[-]\n[00038C][-][000135][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -9582,7 +9582,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -9635,11 +9635,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BASHI BAZOUK[-] Pistol",
+  "Nickname": "[D1D1B2]BASHI BAZOUK[-] Pistol",
   "Description": "[b]LI[/b] ● [AAFFAA]Irregular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 15\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 12\n[b]ARM[/b]: 2\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nPistol ● CC Weapon ● Submachine Gun ● Chain-colt[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nHolomask ● Holoprojector[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nSurprise Attack(-3) ● Parachutist[-]\n[00038C][-][000145][-][000001][-][000001][-][000005][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -9678,7 +9678,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -9721,11 +9721,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BASHI BAZOUK[-] Boarding Shotgun",
+  "Nickname": "[D1D1B2]BASHI BAZOUK[-] Boarding Shotgun",
   "Description": "[b]LI[/b] ● [AAFFAA]Irregular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 15\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 12\n[b]ARM[/b]: 2\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nBoarding Shotgun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nHolomask ● Holoprojector[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nSurprise Attack(-3) ● Parachutist[-]\n[00038C][-][000145][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -9764,7 +9764,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -9807,11 +9807,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]112[-]",
+  "Nickname": "[D1D1B2]112[-]",
   "Description": "[b]LI[/b] ● [AAFFAA]Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 16\n[b]BS[/b]: 11\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nLight Shotgun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nMediKit[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nDoctor ● Courage[-]\n[00038C][-][0000FF][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -9850,7 +9850,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -9893,11 +9893,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BOUNTY HUNTER[-] Spitfire",
+  "Nickname": "[D1D1B2]BOUNTY HUNTER[-] Spitfire",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 16\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 1\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSpitfire ● Pistol ● PARA CC Weapon(-6)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nBooty(ReRoll) ● Stealth[-]\n[00038C][-][000031][-][000001][-][000001][-][000004][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -9936,7 +9936,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -9979,11 +9979,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]GHULAM[-] Number 2",
+  "Nickname": "[D1D1B2]GHULAM[-] Number 2",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 10\n[b]WIP[/b]: 14\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Light Shotgun ● Panzerfaust ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nNumber 2 ● Terrain(Desert)[-]\n[00038C][-][00012D][-][000001][-][000001][-][000012][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -10022,7 +10022,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -10065,11 +10065,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]BOUNTY HUNTER[-] Submachine Gun",
+  "Nickname": "[D1D1B2]BOUNTY HUNTER[-] Submachine Gun",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 16\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 1\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSubmachine Gun ● Akrylat-Kanone ● Breaker Pistol ● PARA CC Weapon(-6)[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nBooty(ReRoll) ● Stealth[-]\n[00038C][-][000031][-][000001][-][000001][-][000005][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -10108,7 +10108,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -10151,11 +10151,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]MIRANDA ASHCROFT[-] MULTI Rifle",
+  "Nickname": "[D1D1B2]MIRANDA ASHCROFT[-] MULTI Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Cube ● Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 19\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 1\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nMULTI Rifle ● Nanopulser ● Pistol ● Monofilament CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCC Attack(-6) ● Mimetism(-6) ● Specialist Operative ● Stealth[-]\n[00038C][-][000033][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -10194,7 +10194,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -10237,11 +10237,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]ZH\u0112NCH\u00C1[-] Forward Observer",
+  "Nickname": "[D1D1B2]ZH\u0112NCH\u00C1[-] Forward Observer",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 16\n[b]BS[/b]: 12\n[b]PH[/b]: 13\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nBoarding Shotgun ● D-Charges ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nForward Observer ● Surprise Attack(-3) ● Camouflage ● Courage ● Infiltration ● Immunity(Shock) ● Mimetism(-3) ● Stealth ● Terrain(Total) ● Climbing Plus ● No Wound Incapacitation[-]\n[00038C][-][0004EB][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -10280,7 +10280,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -10323,11 +10323,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]SHAYTANIYAH REMOTE[-]",
+  "Nickname": "[D1D1B2]SHAYTANIYAH REMOTE[-]",
   "Description": "[b]REM[/b] ● [AAFFAA]Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 15-10\n[b]CC[/b]: 13\n[b]BS[/b]: 12\n[b]PH[/b]: 10\n[b]WIP[/b]: 13\n[b]ARM[/b]: 0\n[b]BTS[/b]: 3\n[B]STR[/B]: 1\n[B]S[/B]: 3\n[ffdddd][sub]----------Weapons---------\n[/sub]\nPARA CC Weapon(-3) ● Missile Launcher[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nBS Attack(Guided) ● Courage ● Immunity(Shock) ● Remote Presence[-]\n[00038C][-][00013D][-][000001][-][000001][-][000001][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -10366,7 +10366,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -10419,11 +10419,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]DOZER[-] Rifle",
+  "Nickname": "[D1D1B2]DOZER[-] Rifle",
   "Description": "[b]LI[/b] ● [AAFFAA]Regular[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 14\n[b]BS[/b]: 11\n[b]PH[/b]: 11\n[b]WIP[/b]: 13\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nRifle ● Akrylat-Kanone ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nGizmoKit ● Deactivator[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nCourage ● Engineer[-]\n[00038C][-][000100][-][000001][-][000001][-][000002][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -10462,7 +10462,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -10505,11 +10505,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]H\u00DAL\u00C1NG FTO[-] Submachine Gun(+1B)",
+  "Nickname": "[D1D1B2]H\u00DAL\u00C1NG FTO[-] Submachine Gun(+1B)",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 22\n[b]BS[/b]: 12\n[b]PH[/b]: 12\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nSubmachine Gun(+1B) ● E/M Grenades ● D-Charges ● Pistol ● Monofilament CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\n[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nMartial Arts L2 ● Courage ● Dodge(+5) ● Immunity(Shock) ● Mimetism(-6) ● Specialist Operative ● Stealth ● No Wound Incapacitation[-]\n[00038C][-][0004E9][-][000001][-][000001][-][000003][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -10548,7 +10548,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
@@ -10591,11 +10591,11 @@
     "scaleY": 1.0,
     "scaleZ": 1.0
   },
-  "Nickname": "[FFFFFF]ZH\u0112NCH\u00C1[-] Hacker",
+  "Nickname": "[D1D1B2]ZH\u0112NCH\u00C1[-] Hacker",
   "Description": "[b]HI[/b] ● [AAFFAA]Cube ● Regular ● Hackable[-]\n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 10-10\n[b]CC[/b]: 16\n[b]BS[/b]: 12\n[b]PH[/b]: 13\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[B]S[/B]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nBoarding Shotgun ● Pistol ● CC Weapon[-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nHacking Device[-]\n[ddddff][sub]----------Skills ---------\n[/sub]\nHacker ● Surprise Attack(-3) ● Camouflage ● Courage ● Infiltration ● Immunity(Shock) ● Mimetism(-3) ● Stealth ● Terrain(Total) ● Climbing Plus ● No Wound Incapacitation[-]\n[00038C][-][0004EB][-][000001][-][000001][-][000003][-]",
   "GMNotes": "",
   "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
   },
   "Locked": false,
   "Grid": true,
@@ -10634,7 +10634,7 @@
 "Description": "",
 "GMNotes": "",
 "ColorDiffuse": {
-"r": 0.32700938,"g": 0.46554023,"b": 0.4444081
+"r": 0.819,"g": 0.819,"b": 0.698
 },
 "Locked": false,
 "Grid": true,
