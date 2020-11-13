@@ -34,20 +34,27 @@ public class ModelSet {
 
     public void readJson(final String input) throws IOException {
         JsonNode jn = parseInput(input);
-        readJsonInner(jn);
+        readJsonInner(jn, true);
     }
 
     public void readJson(final URL input) throws IOException {
         JsonNode jn = parseInput(input);
-        readJsonInner(jn);
+        readJsonInner(jn, true);
     }
 
-    public void readJsonInner(final JsonNode jn)  {
+    public void readJsonForMissing(final URL input) throws IOException {
+        JsonNode jn = parseInput(input);
+        readJsonInner(jn, false);
+    }
+
+    public void readJsonInner(final JsonNode jn, boolean loadAll)  {
         JsonNode contents = jn.findPath("ContainedObjects");
         for (JsonNode child : contents) {
             String[] descLines = child.get("Description").asText().split("\n");
             String code = descLines[descLines.length - 1];
             UnitID unitID = UnitID.decode(code);
+            // If we are only searching for missing models, don't grab one we already have.
+            if( !loadAll && models.containsKey(unitID)) continue;
             String name = child.get("Nickname").asText();
             String decals = child.get("AttachedDecals").toString();
             String meshes = child.get("CustomMesh").toString();
@@ -117,7 +124,7 @@ public class ModelSet {
         }
     }
 
-    public void addModel(UnitID unitID, TTSModel model) {
+    private void addModel(UnitID unitID, TTSModel model) {
         if (!models.containsKey(unitID))
             models.put(unitID, new HashSet<>());
         models.get(unitID).add(model);
