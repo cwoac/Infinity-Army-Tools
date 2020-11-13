@@ -16,3 +16,9 @@ Each entry has a number of bits of data associated with it, mostly of which shou
 
 Note that sectorals can define these values to be `null`, in which case the parent faction value will be used.
 
+## Model choice
+In `PrintableUnit` there are a two lists - `invisbleWeapons` and `visibleEquipment`. These are used to determine whether two unit's models would be distinguishable.
+If the mappings change (unlikely) or new weapons / equipment is added (more likely) then these may need altering. 
+
+Also, at the bottom of PrintableUnit's constructor, there is the code to pick the 'distinguisher'. This is the bit of text after the model's name in the hover text.
+It can probably do with tweaking algorithmically, but may also need updating as new things are added.
