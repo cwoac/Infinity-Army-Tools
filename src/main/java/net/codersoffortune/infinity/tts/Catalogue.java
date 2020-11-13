@@ -195,16 +195,34 @@ public class Catalogue {
 
         // Make sure the templates are loaded
         Database.getInstance();
+        String template = faction.getTemplate();
+        return asJsonInner(template);
+    }
 
+    /**
+     * Generate a Json string of _all_ the units, in a sectoral bag format for TTS
+     * @param sectoral to label the bag as for
+     * @return json representation of the catalogue
+     * @throws IOException on failure
+     */
+    public String asJson(SECTORAL sectoral) throws IOException {
+        // Make sure the templates are loaded
+        Database.getInstance();
+        String template = sectoral.getTemplate();
+        return asJsonInner(template);
+
+    }
+
+
+    private String asJsonInner(final String template) {
         List<String> units = new ArrayList<>();
         for( Mapping mapping : unitMappings ) {
             if( mapping.baseUnit.getModels().isEmpty()) continue;
             units.add(mapping.baseUnit.asFactionJSON());
             units.addAll(mapping.equivalentUnits.stream().map(PrintableUnit::asFactionJSON).collect(Collectors.toList()));
         }
-        String bag_format = faction.getTemplate();
         String unit_list = String.join(",\n", units);
-        return String.format(bag_format, unit_list);
+        return String.format(template, unit_list);
     }
 
     /**

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.metadata.FactionList;
+import net.codersoffortune.infinity.metadata.unit.ProfileOption;
 import net.codersoffortune.infinity.metadata.unit.Unit;
 import net.codersoffortune.infinity.metadata.unit.UnitID;
 
@@ -141,7 +142,14 @@ public class ModelSet {
         Unit unit = factionList.getUnit(unit_idx).orElseThrow(IllegalArgumentException::new);
 
         // Don't have any information to assume it is anything but a profile for a normal unit
-        int option = unit.getProfileGroups().get(0).getOptions().get(profile_array_idx).getId();
+        List<ProfileOption> options = unit.getProfileGroups().get(0).getOptions();
+        int option = 0;
+        if( options.size() <= profile_array_idx) {
+            System.out.println(String.format("Can't find profile %d for %s, assuming 0", profile_array_idx, unit.getName()));
+            // Option is missing? Ah well, guess 0
+        } else {
+            option = options.get(profile_array_idx).getId();
+        }
 
         addModel(new UnitID(faction_idx, unit_idx,1,1, option), model);
     }

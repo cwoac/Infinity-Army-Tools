@@ -320,7 +320,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         String diffuse = "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/";
         // TODO:: Different tint for different camo types?
 
-        String tint = sectoral.getParent().getTint();
+        String tint = sectoral.getTint();
 
         String silhouette;
 
@@ -345,7 +345,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     }
 
     private String getTTSName() {
-        String result = String.format("[FFFFFF]%s[-]", name);
+        String result = String.format("[%s]%s[-]", sectoral.getFontTint(), name);
         if (!distinguisher.isEmpty()) {
             result += " " + distinguisher;
         }
@@ -362,7 +362,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
         final String ttsSilhouette = getTTSSilhouette();
-        final String ttsColour = sectoral.getParent().getTint();
+        final String ttsColour = sectoral.getTint();
         List<String> ttsModels = models.stream().map(m -> String.format(Database.getUnitTemplate(), ttsName, ttsDescription, ttsColour, m.getMeshes(), m.getDecals(), ttsSilhouette)).collect(Collectors.toList());
         return String.join(",\n", ttsModels);
     }

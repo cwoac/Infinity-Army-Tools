@@ -1732,7 +1732,7 @@
             "scaleZ": 1.0
           },
           "Nickname": "[AAAAAA]SAITO TOGAN[-] SO",
-          "Description": "[b]SK[/b] ● Cube ● [AAFFAA]Regular[-] \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 4-4\n[b]CC[/b]: 24\n[b]BS[/b]: 11\n[b]PH[/b]: 13\n[b]WIP[/b]: 13\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[b]S[/b]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● Smoke Grenades ● Pistol ● EXP CC Weapon [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nMartial Arts L4 ● Surprise Attack (-3) ● Camouflage ● Courage ● Hidden Deployment ● Dodge (+1\") ● Infiltration ● Mimetism (-6) ● Stealth ● Terrain (Total) ● Specialist Operative [-]\n[10029c][-]\n",
+          "Description": "[b]SK[/b] ● Cube ● [AAFFAA]Regular[-] \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 4-4\n[b]CC[/b]: 24\n[b]BS[/b]: 11\n[b]PH[/b]: 13\n[b]WIP[/b]: 13\n[b]ARM[/b]: 1\n[b]BTS[/b]: 0\n[B]W[/B]: 1\n[b]S[/b]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● Smoke Grenades ● Pistol ● EXP CC Weapon [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nMartial Arts L4 ● Surprise Attack (-3) ● Camouflage ● Courage ● Hidden Deployment ● Dodge (+1\") ● Infiltration ● Mimetism (-6) ● Stealth ● Terrain (Total) ● Specialist Operative [-]\n[00029c][-]\n",
           "GMNotes": "",
           "ColorDiffuse": {
             "r": 0.7019608,
@@ -4052,7 +4052,7 @@
             "scaleZ": 1.0
           },
           "Nickname": "[AAAAAA]DRUZE[-] Combi",
-          "Description": "[b]MI[/b] ● Cube ● [AAFFAA]Regular[-] \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 4-4\n[b]CC[/b]: 16\n[b]BS[/b]: 12\n[b]PH[/b]: 11\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[b]S[/b]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● Chain-colt ● Viral Pistol ● CC Weapon [-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nX Visor [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nBS Attack (+1 Dam) ● Fireteam: Duo ● Fireteam: Haris ● Veteran ● Fireteam: Core ● Lieutenant [-]\n[90017b][-]",
+          "Description": "[b]MI[/b] ● Cube ● [AAFFAA]Regular[-] \n[sub]---------Attributes-------\n[/sub]\n[b]MOV[/b]: 4-4\n[b]CC[/b]: 16\n[b]BS[/b]: 12\n[b]PH[/b]: 11\n[b]WIP[/b]: 13\n[b]ARM[/b]: 3\n[b]BTS[/b]: 3\n[B]W[/B]: 1\n[b]S[/b]: 2\n[ffdddd][sub]----------Weapons---------\n[/sub]\nCombi Rifle ● Chain-colt ● Viral Pistol ● CC Weapon [-]\n[ddffdd][sub]---------Equipment--------\n[/sub]\nX Visor [-]\n[ddddff][sub]----------Skills----------\n[/sub]\nBS Attack (+1 Dam) ● Fireteam: Duo ● Fireteam: Haris ● Veteran ● Fireteam: Core ● Lieutenant [-]\n[00017b][-]",
           "GMNotes": "",
           "ColorDiffuse": {
             "r": 0.7019608,

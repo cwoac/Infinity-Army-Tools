@@ -4,7 +4,6 @@ import net.codersoffortune.infinity.db.Database;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 /**
@@ -20,7 +19,7 @@ public enum FACTION {
     CombinedArmy(6,"Combined Army",Arrays.asList(SECTORAL.CA, SECTORAL.MAF, SECTORAL.Onyx, SECTORAL.Shasvastii), "813CAA", "\"r\": 0.5058824, \"g\": 0.235293388, \"b\": 0.6666667", "http://cloud-3.steamusercontent.com/ugc/1685996137035365049/68902014928ED2D5F9C276A1254260D395EE9020/"),
     Aleph(7, "Aleph",Arrays.asList(SECTORAL.Aleph, SECTORAL.OSS),"AFA7BC", "\"r\": 0.6862744, \"g\": 0.654902, \"b\": 0.737255","http://cloud-3.steamusercontent.com/ugc/1685996137035317962/5E5F36F03124D394BEC60D13FB37FED7F9360E05/"),
     // TODO:: Handle NA2 colours properly.
-    NA2(9, "Non-Aligned Armies",Arrays.asList(SECTORAL.Druze, SECTORAL.JSA, SECTORAL.Ikari, SECTORAL.Starco, SECTORAL.SpiralCorps, SECTORAL.FoCo, SECTORAL.Dahshat, SECTORAL.WiCo),"f25255", "\"r\": 0.32700938, \"g\": 0.46554023, \"b\": 0.4444081", ""),
+    NA2(9, "Non-Aligned Armies",Arrays.asList(SECTORAL.Druze, SECTORAL.JSA, SECTORAL.Ikari, SECTORAL.Starco, SECTORAL.SpiralCorps, SECTORAL.FoCo, SECTORAL.Dahshat, SECTORAL.WiCo),"808080", "\"r\": 0.5, \"g\": 0.5, \"b\": 0.5", ""),
     O12(10, "O-12",Arrays.asList(SECTORAL.O12, SECTORAL.Starmarda), "726C96", "\"r\": 0.305881649, \"g\": 0.27843067, \"b\": 0.4666664", "http://cloud-3.steamusercontent.com/ugc/1685996137035366882/D545AFAB6DEA17368E442BD2B7E256C4E11E4751/");
 
 
@@ -43,6 +42,10 @@ public enum FACTION {
 
     public List<SECTORAL> getSectorals() {
         return sectorals;
+    }
+
+    public String getFontTint() {
+        return fontTint;
     }
 
     public String getTint() {
