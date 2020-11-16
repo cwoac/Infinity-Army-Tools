@@ -98,4 +98,14 @@ public class ProfileItem {
     public void setQ(int q) {
         this.q = q;
     }
+
+    @Override
+    public String toString() {
+        return "ProfileItem{" +
+                "q=" + q +
+                ", extra=" + extra +
+                ", id=" + id +
+                ", order=" + order +
+                '}';
+    }
 }

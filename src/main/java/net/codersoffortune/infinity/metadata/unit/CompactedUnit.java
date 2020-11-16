@@ -61,6 +61,12 @@ public class CompactedUnit {
         equipment.addAll(profile.getEquip().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
         peripheral.addAll(profile.getPeripheral().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
 
+        weapons.sort(Comparator.comparing(ProfileItem::getOrder));
+        equipment.sort(Comparator.comparing(ProfileItem::getOrder));
+        skills.sort(Comparator.comparing(ProfileItem::getOrder));
+        // Not sure if anyone _has_ more than one peripheral, but just in case.
+        peripheral.sort(Comparator.comparing(ProfileItem::getOrder));
+
     }
 
     /**
@@ -158,16 +164,10 @@ public class CompactedUnit {
     }
 
     /**
-     * Calculate if there are any weapons added to this profile compared to the base (option10)
-     * @return OptionalOf the profileItem with the lowest index (so most important)
+     * Find the weapon with the lowest index (if any).
      */
     public Optional<ProfileItem> getInterestingWeaponMaybe() {
-        if (option_idx == 1) return Optional.empty();
-
-        Set<ProfileItem> theirWeapons = new HashSet<>(group.getOptions().get(1) .getWeapons());
-        Set<ProfileItem> ourWeapons = new HashSet<>(weapons);
-        ourWeapons.removeAll(theirWeapons);
-        return ourWeapons.stream().sorted(Comparator.comparing(ProfileItem::getOrder)).findFirst();
+        return weapons.stream().sorted(Comparator.comparing(ProfileItem::getOrder)).findFirst();
     }
 
 }

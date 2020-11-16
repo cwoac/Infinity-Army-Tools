@@ -1,5 +1,6 @@
 package net.codersoffortune.infinity.metadata.unit;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class ProfileGroup {
@@ -14,6 +15,12 @@ public class ProfileGroup {
 
     public List<Profile> getProfiles() {
         return profiles;
+    }
+
+    public ProfileOption getOptionOne() { return options.stream()
+            .filter(x->x.getId()==1)
+            .findFirst()
+            .orElse(options.get(0));
     }
 
     public void setProfiles(List<Profile> profiles) {

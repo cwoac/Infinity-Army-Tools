@@ -235,7 +235,8 @@ public class Catalogue {
             allUnits.addAll(mapping.equivalentUnits);
         }
 
-        allUnits.sort(Comparator.comparing(PrintableUnit::getName));
+        // sort reversed due to ordering in the bag.
+        allUnits.sort(Comparator.comparing(PrintableUnit::getName).reversed());
         List<String> units = allUnits.stream().map(PrintableUnit::asFactionJSON).collect(Collectors.toList());
         String unit_list = String.join(",\n", units);
         return String.format(template, unit_list);
