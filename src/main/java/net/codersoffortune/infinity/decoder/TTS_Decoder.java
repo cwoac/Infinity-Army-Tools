@@ -80,8 +80,8 @@ public class TTS_Decoder {
         }
         System.out.println("Bags opened\n");
 
-        //for( FACTION faction : FACTION.values()) {
-        for( FACTION faction : Arrays.asList(FACTION.Aleph)) {
+        for( FACTION faction : FACTION.values()) {
+        //for( FACTION faction : Arrays.asList(FACTION.Aleph)) {
             if( faction == FACTION.NA2 ) continue; // handled below
             System.out.printf("Reading %s%n", faction.getName());
             ModelSet ms = new ModelSet();
