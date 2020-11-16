@@ -2,7 +2,12 @@ package net.codersoffortune.infinity.metadata.unit;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -13,6 +18,8 @@ public class CompactedUnit {
     private final List<ProfileItem> skills = new ArrayList<>();
     private final List<ProfileItem> equipment = new ArrayList<>();
     private final List<ProfileItem> peripheral = new ArrayList<>();
+    private final Set<ProfileItem> publicSkills = new HashSet<>();
+
 
 
     private final int unit_idx;
@@ -50,6 +57,7 @@ public class CompactedUnit {
         peripheral.addAll(option.getPeripheral().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
         weapons.addAll(profile.getWeapons().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
         skills.addAll(profile.getSkills().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
+        calcPublicSkills();
         equipment.addAll(profile.getEquip().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
         peripheral.addAll(profile.getPeripheral().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
 
@@ -106,8 +114,12 @@ public class CompactedUnit {
         return !privateSkills.contains(c);
     }
 
-    public List<ProfileItem> getPublicSkills() {
-        return skills.stream().filter(x -> skipSkills(x.getId())).collect(Collectors.toList());
+    private void calcPublicSkills() {
+        skills.stream().filter(x -> skipSkills(x.getId())).forEach(publicSkills::add);
+    }
+
+    public Collection<ProfileItem> getPublicSkills() {
+        return publicSkills;
     }
 
     public List<Integer> getPublicChars() {
@@ -144,4 +156,18 @@ public class CompactedUnit {
     public ProfileOption getOption() {
         return option;
     }
+
+    /**
+     * Calculate if there are any weapons added to this profile compared to the base (option10)
+     * @return OptionalOf the profileItem with the lowest index (so most important)
+     */
+    public Optional<ProfileItem> getInterestingWeaponMaybe() {
+        if (option_idx == 1) return Optional.empty();
+
+        Set<ProfileItem> theirWeapons = new HashSet<>(group.getOptions().get(1) .getWeapons());
+        Set<ProfileItem> ourWeapons = new HashSet<>(weapons);
+        ourWeapons.removeAll(theirWeapons);
+        return ourWeapons.stream().sorted(Comparator.comparing(ProfileItem::getOrder)).findFirst();
+    }
+
 }

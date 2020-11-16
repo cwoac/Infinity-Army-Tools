@@ -12,9 +12,11 @@ import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -184,6 +186,25 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return Objects.hash(weapons, skills, equip, peripheral, unit_idx, group_idx, option_idx, profile_idx, name, arm, bs, bts, cc, chars, move, ph, s, str, type, w, wip, notes, distinguisher);
     }
 
+    /**
+     * Look for items which would be in the options title chunk.
+     * @param src Compacted Unit to examine
+     * @param filters to look up types in.
+     * @return A list of items.
+     */
+    public List<String> getInterestingStuff(CompactedUnit src, MappedFactionFilters filters){
+        List<String> results = new ArrayList<>();
+        src.getOption().getSkills().stream()
+                .filter(s->CompactedUnit.skipSkills(s.getId()))
+                .forEach(s->results.add(s.toString(filters, FilterType.skills)));
+
+        src.getOption().getEquip().stream()
+                .filter(e->filters.getItem(FilterType.equip,e).getType().equalsIgnoreCase("PERSON"))
+                .map(e->e.toString(filters, FilterType.equip))
+                .forEach(results::add);
+        return results;
+    }
+
     public PrintableUnit(MappedFactionFilters filters, CompactedUnit src, SECTORAL sectoral) throws InvalidObjectException {
         weapons = src.getWeapons().stream().map(x -> x.toString(filters, FilterType.weapons)).collect(Collectors.toList());
         visible_weapons.addAll(src.getWeapons().stream()
@@ -217,16 +238,25 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         wip = src.getProfile().getWip();
         notes = src.getProfile().getNotes();
         flags = new UnitFlags(src);
+
+
+
         if (src.getGroup().getOptions().size() == 1) {
             // Don't need to distinguish when only one option
             distinguisher = "";
         } else {
-            List<ProfileItem> pSkills = src.getOption().getSkills().stream().filter(c -> CompactedUnit.skipSkills(c.getId())).collect(Collectors.toList());
-            if (pSkills.isEmpty()) {
-                // No special skills, take the first weapon, I guess?
-                distinguisher = weapons.get(0);
+            // Is the weapon interesting?
+            Optional<ProfileItem> interestingWeaponMaybe = src.getInterestingWeaponMaybe();
+            List<String> interestingStuff = getInterestingStuff(src, filters);
+            if(interestingStuff.isEmpty()) {
+                if( interestingWeaponMaybe.isPresent() ) {
+                    distinguisher = interestingWeaponMaybe.get().toString(filters, FilterType.weapons);
+                } else {
+                    // Nothing!
+                    distinguisher = "";
+                }
             } else {
-                distinguisher = pSkills.get(0).toString(filters, FilterType.skills);
+                distinguisher = String.join(", ", interestingStuff);
             }
         }
 

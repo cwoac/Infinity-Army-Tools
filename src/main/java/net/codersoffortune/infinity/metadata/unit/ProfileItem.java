@@ -16,6 +16,14 @@ public class ProfileItem {
     private int id;
     private int order;
 
+    private List<Integer> cleanExtra() {
+        /* unfortunately, sometimes an empty extra field decodes to the empty list
+           and sometimes null. While the same for our purposes, they are not for java's.
+         */
+        if( this.extra==null || this.extra.isEmpty()) return null;
+        return this.extra;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -23,13 +31,12 @@ public class ProfileItem {
         ProfileItem that = (ProfileItem) o;
         return q == that.q &&
                 id == that.id &&
-                order == that.order &&
-                Objects.equals(extra, that.extra);
+                Objects.equals(cleanExtra(), ((ProfileItem) o).cleanExtra());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(q, extra, id, order);
+        return Objects.hash(q, cleanExtra(), id);
     }
 
     /**
