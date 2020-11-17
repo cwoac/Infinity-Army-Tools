@@ -16,6 +16,7 @@ public class RelationUnit {
     //            "group": false
     private int unit;
     private int profile;
+    private boolean group;
     private List<RelationUnit> depends;
     private int min;
     private int minDependant;
@@ -58,5 +59,13 @@ public class RelationUnit {
 
     public void setMin(int min) {
         this.min = min;
+    }
+
+    public boolean isGroup() {
+        return group;
+    }
+
+    public void setGroup(boolean group) {
+        this.group = group;
     }
 }

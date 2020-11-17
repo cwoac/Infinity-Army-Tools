@@ -6,6 +6,7 @@ public class FilterItem {
     private boolean mercs;
     private String wiki;
     private String type;
+    private boolean specops;
 
     public String getType() {
         return type;
@@ -53,5 +54,13 @@ public class FilterItem {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public boolean isSpecops() {
+        return specops;
+    }
+
+    public void setSpecops(boolean specops) {
+        this.specops = specops;
     }
 }

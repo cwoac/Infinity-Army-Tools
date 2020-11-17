@@ -13,6 +13,8 @@ public class FactionFilters {
     private List<FilterItem> skills;
     private List<FilterItem> weapons;
     private List<FilterItem> extras;
+    private List<FilterItem> points;
+    private List<FilterItem> swc;
 
     public List<FilterItem> getExtras() {
         return extras;
@@ -92,5 +94,21 @@ public class FactionFilters {
 
     public void setType(List<FilterItem> type) {
         this.type = type;
+    }
+
+    public List<FilterItem> getPoints() {
+        return points;
+    }
+
+    public void setPoints(List<FilterItem> points) {
+        this.points = points;
+    }
+
+    public List<FilterItem> getSwc() {
+        return swc;
+    }
+
+    public void setSwc(List<FilterItem> swc) {
+        this.swc = swc;
     }
 }
