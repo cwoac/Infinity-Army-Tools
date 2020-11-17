@@ -25,7 +25,6 @@ public class SectoralList {
         SimpleModule sm = new SimpleModule();
         sm.addDeserializer(SpecopsNestedItem.class, new SpecopsNestedItemDeserializer());
         om.registerModule(sm);
-        //data = om.readValue(new java.net.URL(url), Map.class);
         return om.readValue(SectoralList.class.getResource("/" + url), SectoralList.class);
     }
 
