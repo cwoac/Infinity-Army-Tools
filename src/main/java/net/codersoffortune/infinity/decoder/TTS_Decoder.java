@@ -12,8 +12,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,8 +19,8 @@ public class TTS_Decoder {
 
     //private final static String test_list = "ZQpwYW5vY2VhbmlhASCBLAIBCQABAQEAAAEBAQAAAQEDAAABAQIAAAEBBQAAAQEIAAABAQkAAAEBBgAADAEBAAIEAITGAQUAAITAAQIAAA0BBQAADAEBAA==";
 
-    private static Database db;
     private static final boolean useMercs = false;
+    private static Database db;
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         db = Database.getInstance();
@@ -73,7 +71,6 @@ public class TTS_Decoder {
 //        System.out.println("All dumps created");
 
 
-
         System.out.println("moo");
     }
 
@@ -82,20 +79,20 @@ public class TTS_Decoder {
 
         Map<Integer, URL> old_bags = new HashMap<>();
         // first find all the old bags
-        for( FACTION faction : FACTION.values()) {
-            if( faction == FACTION.NA2 ) continue; // handled below
+        for (FACTION faction : FACTION.values()) {
+            if (faction == FACTION.NA2) continue; // handled below
             URL old_bag = TTS_Decoder.class.getResource(String.format("/wip/%s.json", faction.getName()));
             old_bags.put(faction.getId(), old_bag);
         }
 
-        for( SECTORAL sectoral : FACTION.NA2.getSectorals() ) {
+        for (SECTORAL sectoral : FACTION.NA2.getSectorals()) {
             URL old_bag = TTS_Decoder.class.getResource(String.format("/wip/%s.json", sectoral.getName()));
             old_bags.put(sectoral.getId(), old_bag);
         }
         System.out.println("Bags opened\n");
 
-        for( FACTION faction : FACTION.values()) {
-            if( faction == FACTION.NA2 ) continue; // handled below
+        for (FACTION faction : FACTION.values()) {
+            if (faction == FACTION.NA2) continue; // handled below
             System.out.printf("Reading %s%n", faction.getName());
             Catalogue c = new Catalogue();
             c.addUnits(db.getSectorals(), faction, false);
@@ -103,7 +100,7 @@ public class TTS_Decoder {
             ems.readJson(old_bags.get(faction.getId()));
             result.addModelSet(ems.expand());
         }
-        for( SECTORAL sectoral : FACTION.NA2.getSectorals()) {
+        for (SECTORAL sectoral : FACTION.NA2.getSectorals()) {
             System.out.printf("Reading %s%n", sectoral.getName());
             Catalogue c = new Catalogue();
             c.addUnits(db.getSectorals().get(sectoral.getId()), sectoral, false);
@@ -120,9 +117,8 @@ public class TTS_Decoder {
         ModelSet ms = new ModelSet("models2.json");
 
 
-        //for( FACTION faction : FACTION.values()) {
-        for( FACTION faction : Arrays.asList(FACTION.Aleph)) {
-            if( faction == FACTION.NA2 ) continue; // handled below
+        for (FACTION faction : FACTION.values()) {
+            if (faction == FACTION.NA2) continue; // handled below
             System.out.printf("Reading %s%n", faction.getName());
             Catalogue c = new Catalogue();
             c.addUnits(db.getSectorals(), faction, useMercs);
@@ -137,13 +133,13 @@ public class TTS_Decoder {
                 writer.append(String.format("Missing: (%s) %s %s\n", m.getUnitID(), m.getName(), m.getDistinguisher()));
             writer.close();
             // Test the outputted JSON is good
-            if( check ) {
+            if (check) {
                 ModelSet ms3 = new EquivalentModelSet(c.getMappings());
                 ms3.readJson(factionJson);
             }
         }
 
-        for( SECTORAL sectoral : FACTION.NA2.getSectorals()){
+        for (SECTORAL sectoral : FACTION.NA2.getSectorals()) {
             System.out.printf("Reading %s%n", sectoral.getName());
 
 
@@ -160,7 +156,7 @@ public class TTS_Decoder {
                 writer.append(String.format("Missing: (%s) %s %s\n", m.getUnitID(), m.getName(), m.getDistinguisher()));
             writer.close();
             // Test the outputted JSON is good
-            if( check ) {
+            if (check) {
                 ModelSet ms3 = new EquivalentModelSet(c.getMappings());
                 ms3.readJson(sectoralJSON);
             }
@@ -168,10 +164,8 @@ public class TTS_Decoder {
     }
 
     private static void importFromCSV() throws IOException {
-        //for( FACTION faction : FACTION.values()) {
-        for( FACTION faction : Arrays.asList(FACTION.Aleph)) {
-
-        if( faction == FACTION.NA2 ) continue;
+        for (FACTION faction : FACTION.values()) {
+            if (faction == FACTION.NA2) continue;
             System.out.printf("Reading %s%n", faction.getName());
             String csvFile = String.format("%s2.csv", faction.name());
             Catalogue c = new Catalogue();
@@ -198,7 +192,7 @@ public class TTS_Decoder {
             ms3.readJson(faction_json);
         }
 
-        for( SECTORAL sectoral : FACTION.NA2.getSectorals()) {
+        for (SECTORAL sectoral : FACTION.NA2.getSectorals()) {
             System.out.printf("Reading %s%n", sectoral.getName());
             String csvFile = String.format("%s2.csv", sectoral.name());
             Catalogue c = new Catalogue();

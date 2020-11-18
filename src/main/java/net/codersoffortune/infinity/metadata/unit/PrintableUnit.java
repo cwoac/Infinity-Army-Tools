@@ -2,6 +2,7 @@ package net.codersoffortune.infinity.metadata.unit;
 
 import com.codepoetics.protonpack.StreamUtils;
 import net.codersoffortune.infinity.SECTORAL;
+import net.codersoffortune.infinity.Util;
 import net.codersoffortune.infinity.armylist.CombatGroup;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.FilterType;
@@ -14,7 +15,6 @@ import org.apache.commons.text.StringEscapeUtils;
 import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.MissingFormatArgumentException;
@@ -58,48 +58,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private final String notes;
     private final String distinguisher;
 
-    /* Most primary weapons are visible, so a list of the ones which tend not to be
-        61, 199 AP mines
-        78 AP+DA CC
-        72 AP+Shock CC
-        6 AP CC
-        5 CC
-        147 Chest Mines
-        20 CrazyKoala
-        174 CyberMines
-        17 D-Charges
-        11 DA CC
-        96 Dropbears
-        7 EM CC
-        47 EM Grenades
-        197 EM Mines
-        25 EMitter
-        46 eclipse grenades
-        8 exp cc
-        72 flash pulse
-        44 grenades
-        150 madtraps
-        176 mine dispenser
-        9 mono CC
-        62 mono mines
-        65 nanopulser
-        71 para cc
-        203-205 pheroware
-        154 pitcher
-        73 sepsitor
-        114 sepsitor plus
-        10 shock cc
-        196 shock mines
-        45 smoke grenades
-        153 t2 cc
-        13 viral cc
-        63 viral mines
-        149 vorpal cc
-        182 wild parrot
-        175 zapper
-     */
 
-    private static final List<Integer> invisibleWeapons = Arrays.asList(61, 199, 78, 72, 6, 5, 147, 20, 174, 17, 11, 96, 7, 47, 197, 25, 46, 8, 72, 44, 150, 176, 9, 62, 65, 71, 203, 204, 205, 154, 73, 114, 10, 196, 45, 153, 13, 63, 149, 182, 175);
 
     /**
      * A visible weapon is one which would be on the actual model and distinguishable from another weapon.
@@ -108,20 +67,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
      * @return true if the weapon would be distinctively on the model.
      */
     private static boolean isVisibleWeapon(int w) {
-        return !invisibleWeapons.contains(w);
+        return !Util.invisibleWeapons.contains(w);
     }
-
-    /* Visible equipment on the other hand, is much rarer.
-       100 hacking device
-       101 hd+
-       106 medkit
-       107 motorcycle
-       145 KHD
-       182 Evo HD
-       205 AI motorcycle
-       247 gizmokit
-     */
-    private static final List<Integer> visibleEquipment = Arrays.asList(100, 101, 106, 107, 145, 182, 205, 247);
 
 
     /**
@@ -131,7 +78,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
      * @return true if it might be visible on the model (reasonably).
      */
     private static boolean isVisibleEquipment(int e) {
-        return visibleEquipment.contains(e);
+        return Util.visibleEquipment.contains(e);
     }
 
     @Override
@@ -140,13 +87,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 unit_idx, group_idx, option_idx, name);
     }
 
-    /* Very few skills are 'visible'. The main use is to enforce different models when weapons + kit would
-     * suggest they are the same (i.e. hacking related stuff mostly).
-     *    255 - remdriver
-     */
-    private static final List<Integer> visibleSkills = Arrays.asList(255);
-
-    private static boolean isVisibleSkill(int s) { return visibleSkills.contains(s); }
+    private static boolean isVisibleSkill(int s) { return Util.visibleSkills.contains(s); }
 
     @Override
     public boolean equals(Object o) {
@@ -214,18 +155,6 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return results;
     }
 
-    // TODO:: Make a seperate module for special case lists so they are easy to find
-    private final static List<Integer> nameEdgeCases = Arrays.asList(
-            20, // Joan
-            42, // Joan
-            613, // achilles
-            749, // achilles
-            53, // Sheskiin
-            1503, // Sheskiin
-            143, // TZE
-            165 // TZE
-    );
-
     public PrintableUnit(MappedFactionFilters filters, CompactedUnit src, SECTORAL sectoral) throws InvalidObjectException {
         weapons = src.getWeapons().stream().map(x -> x.toString(filters, FilterType.weapons)).collect(Collectors.toList());
         visible_weapons.addAll(src.getWeapons().stream()
@@ -246,7 +175,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         // Name. Name _should_ be easy. For almost everyone it is the option name
         // However, for a few characters who exist as multiple units (in different armours), this is not usefully the case.
         profile_name = src.getProfile().getName();
-        if (nameEdgeCases.contains(src.getUnit_idx())) {
+        if (Util.nameEdgeCases.contains(src.getUnit_idx())) {
             name = profile_name;
         } else {
             name = src.getName();
@@ -262,7 +191,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         bts = src.getProfile().getBts();
         cc = src.getProfile().getCc();
         chars = src.getPublicChars().stream().map(x -> filters.getItem(FilterType.chars, x).getName()).collect(Collectors.toList());
-        move = src.getProfile().getMove().stream().map(String::valueOf).collect(Collectors.joining("-"));
+        move = src.getProfile().getMove().stream().map(Util::formatDistance).map(String::valueOf).collect(Collectors.joining("-"));
         ph = src.getProfile().getPh();
         s = src.getProfile().getS();
         str = src.getProfile().isStr();
@@ -321,6 +250,18 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 unfolded.get(14));
     }
 
+    protected static String colouriseChar(final String characteristic) {
+        switch (characteristic) {
+            case "Regular":
+                return "[AAFFAA]Regular[-]";
+            case "Irregular":
+                return "[FFFFAA]Irregular[-]";
+            case "Impetuous":
+                return "[FFAAAA]Impetuous[-]";
+            default:
+                return characteristic;
+        }
+    }
 
     protected String getTTSDescription() {
         //Example
@@ -348,9 +289,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         //[000013][-]
 
         StringBuilder result = new StringBuilder();
-        result.append(String.format("[b]%s[/b] ● [AAFFAA]%s[-]\\n", type, String.join(" ● ", chars)));
+        result.append(String.format("[b]%s[/b] ● %s\\n", type, chars.stream().map(PrintableUnit::colouriseChar).collect(Collectors.joining(" ● "))));
         result.append("[sub]---------Attributes-------\\n[/sub]\\n");
-        // TODO:: Allow selecting inches.
         result.append(String.format("[b]MOV[/b]: %s\\n", move));
         result.append(String.format("[b]CC[/b]: %d\\n", cc));
         result.append(String.format("[b]BS[/b]: %d\\n", bs));
@@ -364,12 +304,18 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
             result.append(String.format("[B]W[/B]: %d\\n", w));
         }
         result.append(String.format("[B]S[/B]: %d\\n", s));
-        result.append("[ffdddd][sub]----------Weapons---------\\n[/sub]\\n");
-        result.append(String.format("%s[-]\\n", String.join(" ● ", weapons)));
-        result.append("[ddffdd][sub]---------Equipment--------\\n[/sub]\\n");
-        result.append(String.format("%s[-]\\n", String.join(" ● ", equip)));
-        result.append("[ddddff][sub]----------Skills ---------\\n[/sub]\\n");
-        result.append(String.format("%s[-]\\n", String.join(" ● ", skills)));
+        if( !weapons.isEmpty()) {
+            result.append("[ffdddd][sub]----------Weapons---------\\n[/sub]\\n");
+            result.append(String.format("%s[-]\\n", String.join(" ● ", weapons)));
+        }
+        if (!equip.isEmpty()) {
+            result.append("[ddffdd][sub]---------Equipment--------\\n[/sub]\\n");
+            result.append(String.format("%s[-]\\n", String.join(" ● ", equip)));
+        }
+        if (!skills.isEmpty()) {
+            result.append("[ddddff][sub]----------Skills ---------\\n[/sub]\\n");
+            result.append(String.format("%s[-]\\n", String.join(" ● ", skills)));
+        }
 
         result.append(getUnitID().encode());
         return result.toString();
