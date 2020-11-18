@@ -38,8 +38,7 @@ public class ID_Analyst {
 
         Catalogue c  = new Catalogue();
         c.addUnits(db.getSectorals(), FACTION.NA2, false);
-        c.addTTSModels(ms);
-        c.toCSV("NA2.csv");
+        c.toCSV("NA2.csv", ms);
         System.out.println("moo");
     }
 }

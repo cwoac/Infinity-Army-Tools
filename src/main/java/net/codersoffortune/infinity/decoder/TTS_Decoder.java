@@ -11,6 +11,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,9 +26,8 @@ public class TTS_Decoder {
     public static void main(String[] args) throws IOException {
         db = Database.getInstance();
 
+        loadFromJSON(false);
         importFromCSV();
-
-      //  loadFromJSON();
 
 
 //
@@ -67,7 +67,7 @@ public class TTS_Decoder {
         System.out.println("moo");
     }
 
-    private static void loadFromJSON() throws IOException {
+    private static void loadFromJSON(boolean check) throws IOException {
         Map<Integer, URL> old_bags = new HashMap<>();
         // first find all the old bags
         for( FACTION faction : FACTION.values()) {
@@ -82,8 +82,8 @@ public class TTS_Decoder {
         }
         System.out.println("Bags opened\n");
 
-        for( FACTION faction : FACTION.values()) {
-        //for( FACTION faction : Arrays.asList(FACTION.Aleph)) {
+        //for( FACTION faction : FACTION.values()) {
+        for( FACTION faction : Arrays.asList(FACTION.Aleph)) {
             if( faction == FACTION.NA2 ) continue; // handled below
             System.out.printf("Reading %s%n", faction.getName());
             ModelSet ms = new ModelSet();
@@ -92,19 +92,20 @@ public class TTS_Decoder {
 
             Catalogue c = new Catalogue();
             c.addUnits(db.getSectorals(), faction, useMercs);
-            c.addTTSModels(ms);
-            c.toCSV(String.format("%s.csv", faction.name()));
-            String factionJson = c.asJson(faction);
+            c.toCSV(String.format("%s.csv", faction.name()), ms);
+            String factionJson = c.asJson(faction, ms);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s.json", faction.getName())));
             writer.append(factionJson);
             writer.close();
             writer = new BufferedWriter(new FileWriter(String.format("%s missing.txt", faction.getName())));
-            for (PrintableUnit m : c.getModellessList())
+            for (PrintableUnit m : c.getModellessList(ms))
                 writer.append(String.format("Missing: (%s) %s %s\n", m.getUnitID(), m.getName(), m.getDistinguisher()));
             writer.close();
             // Test the outputted JSON is good
-            ModelSet ms3 = new ModelSet();
-            ms3.readJson(factionJson);
+            if( check ) {
+                ModelSet ms3 = new ModelSet();
+                ms3.readJson(factionJson);
+            }
         }
 
         for( SECTORAL sectoral : FACTION.NA2.getSectorals()){
@@ -114,43 +115,47 @@ public class TTS_Decoder {
 
             Catalogue c = new Catalogue();
             c.addUnits(db.getSectorals().get(sectoral.getId()), sectoral, useMercs);
-            c.addTTSModels(ms);
-            c.toCSV(String.format("%s.csv", sectoral.name()));
-            String sectoralJSON = c.asJson(sectoral);
+            c.toCSV(String.format("%s.csv", sectoral.name()), ms);
+            String sectoralJSON = c.asJson(sectoral, ms);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s.json", sectoral.getName())));
             writer.append(sectoralJSON);
             writer.close();
             writer = new BufferedWriter(new FileWriter(String.format("%s missing.txt", sectoral.getName())));
-            for (PrintableUnit m : c.getModellessList())
+            for (PrintableUnit m : c.getModellessList(ms))
                 writer.append(String.format("Missing: (%s) %s %s\n", m.getUnitID(), m.getName(), m.getDistinguisher()));
             writer.close();
             // Test the outputted JSON is good
-            ModelSet ms3 = new ModelSet();
-            ms3.readJson(sectoralJSON);
+            if( check ) {
+                ModelSet ms3 = new ModelSet();
+                ms3.readJson(sectoralJSON);
+            }
         }
     }
 
     private static void importFromCSV() throws IOException {
-        for( FACTION faction : FACTION.values()) {
-            if( faction == FACTION.NA2 ) continue;
+        //for( FACTION faction : FACTION.values()) {
+        for( FACTION faction : Arrays.asList(FACTION.Aleph)) {
+
+        if( faction == FACTION.NA2 ) continue;
             System.out.printf("Reading %s%n", faction.getName());
             String csvFile = String.format("%s2.csv", faction.name());
             Catalogue c = new Catalogue();
             c.addUnits(db.getSectorals(), faction, useMercs);
+            ModelSet ms = new ModelSet();
             // Yes this will fail first time. You need to make this file yourself!
             try {
-                c.addTTSModelsFromCSV(csvFile);
+                ms.readCSV(csvFile);
             } catch (IOException e) {
                 // yes this is nasty. sorry.
                 System.out.printf("%s not found. skipping%n", csvFile);
                 continue;
             }
-            String faction_json = c.asJson(faction);
+            String faction_json = c.asJson(faction, ms);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s.json", faction.getName())));
             writer.append(faction_json);
             writer.close();
             writer = new BufferedWriter(new FileWriter(String.format("%s missing.txt", faction.getName())));
-            for (PrintableUnit m : c.getModellessList())
+            for (PrintableUnit m : c.getModellessList(ms))
                 writer.append(String.format("Missing: (%s) %s %s\n", m.getUnitID(), m.getName(), m.getDistinguisher()));
             writer.close();
             // Test the outputted JSON is good
@@ -163,20 +168,21 @@ public class TTS_Decoder {
             String csvFile = String.format("%s2.csv", sectoral.name());
             Catalogue c = new Catalogue();
             c.addUnits(db.getSectorals().get(sectoral.getId()), sectoral, useMercs);
+            ModelSet ms = new ModelSet();
             // Yes this will fail first time. You need to make this file yourself!
             try {
-                c.addTTSModelsFromCSV(csvFile);
+                ms.readCSV(csvFile);
             } catch (IOException e) {
                 // yes this is nasty. sorry.
                 System.out.printf("%s not found. skipping%n", csvFile);
                 continue;
             }
-            String faction_json = c.asJson(sectoral);
+            String faction_json = c.asJson(sectoral, ms);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s.json", sectoral.getName())));
             writer.append(faction_json);
             writer.close();
             writer = new BufferedWriter(new FileWriter(String.format("%s missing.txt", sectoral.getName())));
-            for (PrintableUnit m : c.getModellessList())
+            for (PrintableUnit m : c.getModellessList(ms))
                 writer.append(String.format("Missing: (%s) %s %s\n", m.getUnitID(), m.getName(), m.getDistinguisher()));
             writer.close();
             // Test the outputted JSON is good

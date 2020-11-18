@@ -6,6 +6,8 @@ import net.codersoffortune.infinity.armylist.CombatGroup;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.FilterType;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
+import net.codersoffortune.infinity.tts.Model;
+import net.codersoffortune.infinity.tts.ModelSet;
 import net.codersoffortune.infinity.tts.TTSModel;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.text.StringEscapeUtils;
@@ -18,6 +20,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.MissingFormatArgumentException;
+import java.util.MissingResourceException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -40,6 +43,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private final int option_idx;
     private final int profile_idx;
     private final String name;
+    private final String profile_name;
 
     private final int arm;
     private final int bs;
@@ -55,7 +59,6 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private final int wip;
     private final String notes;
     private final String distinguisher;
-    protected final List<TTSModel> models = new ArrayList<>();
 
     /* Most primary weapons are visible, so a list of the ones which tend not to be
         61, 199 AP mines
@@ -231,11 +234,13 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         peripheral = src.getPeripheral().stream().map(x -> x.toString(filters, FilterType.peripheral)).collect(Collectors.toList());
         // Name. Name _should_ be easy. For almost everyone it is the option name
         // However, for a few characters who exist as multiple units (in different armours), this is not usefully the case.
+        profile_name = src.getProfile().getName();
         if (nameEdgeCases.contains(src.getUnit_idx())) {
-            name = src.getProfile().getName();
+            name = profile_name;
         } else {
             name = src.getName();
         }
+
         this.sectoral = sectoral;
         unit_idx = src.getUnit_idx();
         group_idx = src.getGroup_idx();
@@ -268,7 +273,17 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
     }
 
-    public void printCSVRecord(CSVPrinter out) throws IOException {
+    public void printCSVRecord(CSVPrinter out, final ModelSet ms) throws IOException {
+        List<String> unfolded = new ArrayList<>();
+
+        for( TTSModel model : ms.getModels(getUnitID())) {
+            unfolded.add(model.getName());
+            unfolded.add(model.getMeshes());
+            unfolded.add(model.getDecals());
+        }
+        while( unfolded.size() < 15 ) unfolded.add("");
+
+
         out.printRecord(
                 sectoral.getId(),
                 unit_idx,
@@ -278,52 +293,23 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 name,
                 String.join(",", visible_weapons),
                 String.join(",", visible_equipment),
-                getTTSName(0),
-                getTTSMesh(0),
-                getTTSDecal(0),
-                getTTSName(1),
-                getTTSMesh(1),
-                getTTSDecal(1),
-                getTTSName(2),
-                getTTSMesh(2),
-                getTTSDecal(2),
-                getTTSName(3),
-                getTTSMesh(3),
-                getTTSDecal(3),
-                getTTSName(4),
-                getTTSMesh(4),
-                getTTSDecal(4),
-                getTTSName(5),
-                getTTSMesh(5),
-                getTTSDecal(5));
+                unfolded.get(0),
+                unfolded.get(1),
+                unfolded.get(2),
+                unfolded.get(3),
+                unfolded.get(4),
+                unfolded.get(5),
+                unfolded.get(6),
+                unfolded.get(7),
+                unfolded.get(8),
+                unfolded.get(9),
+                unfolded.get(10),
+                unfolded.get(11),
+                unfolded.get(12),
+                unfolded.get(13),
+                unfolded.get(14));
     }
 
-    private String getTTSMesh(int idx) {
-        if (models.size() < idx + 1) return "";
-        return models.get(idx).getMeshes();
-    }
-
-
-    private String getTTSDecal(int idx) {
-        if (models.size() < idx + 1) return "";
-        return models.get(idx).getDecals();
-    }
-
-    private String getTTSName(int idx) {
-        if (models.size() < idx + 1) return "";
-        return models.get(idx).getName();
-    }
-
-
-    private void addTTSModel(TTSModel model) {
-        if (!this.models.contains(model))
-            this.models.add(model);
-    }
-
-    public void addTTSModels(Collection<TTSModel> models) {
-        // Use this rather than addAll so we can apply filtering.
-        models.forEach(this::addTTSModel);
-    }
 
     protected String getTTSDescription() {
         //Example
@@ -419,19 +405,26 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return result;
     }
 
-
-
-    protected String getTTSName() {
-        String result = String.format("[%s]%s[-]", sectoral.getFontTint(), name);
+    private String getTTSNameInner(String n) {
+        String result = String.format("[%s]%s[-]", sectoral.getFontTint(), n);
         if (!distinguisher.isEmpty()) {
             result += " " + distinguisher;
         }
         return StringEscapeUtils.escapeJson(result);
     }
 
+    protected String getTTSName() {
+        return getTTSNameInner(name);
+    }
 
-    public String asFactionJSON() {
+    protected String getEmbeddedTTSName() {
+        return getTTSNameInner(profile_name);
+    }
 
+
+
+
+    public String asFactionJSON(final ModelSet ms) {
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
         final List<String> ttsSilhouettes = getTTSSilhouettes();
@@ -441,7 +434,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
         //final String states = String.join(",\n", ttsSilhouettes);
         final String ttsColour = sectoral.getTint();
-        List<String> ttsModels = models.stream().map(m -> String.format(Database.getUnitTemplate(),
+        List<String> ttsModels = ms.getModels(getUnitID()).stream().map(m -> String.format(Database.getUnitTemplate(),
                 ttsName,
                 ttsDescription,
                 ttsColour,
@@ -451,10 +444,11 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return String.join(",\n", ttsModels);
     }
 
-    public String asEmbeddedJSON() {
-        final String ttsName = getTTSName();
-        final String ttsDescription = getTTSDescription();
-        final String ttsColour = sectoral.getTint();
+    public String asEmbeddedJSON(final ModelSet ms) {
+        String ttsName = getEmbeddedTTSName();
+        String ttsDescription = getTTSDescription();
+        String ttsColour = sectoral.getTint();
+        Set<TTSModel> models = ms.getModels(getUnitID());
         List<String> ttsModels = models.stream().map(m -> String.format(Database.getTransmutedUnitTemplate(),
                 ttsName,
                 ttsDescription,
@@ -464,19 +458,14 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return String.join(",\n", ttsModels);
     }
 
-
-    public String asArmyJSON(int combatGroup_idx) {
-        return asArmyJSON(combatGroup_idx, 0);
-    }
-
-
-    private String asArmyJSON(int combatGroup_idx, int model_idx) {
+    public String asArmyJSON(int combatGroup_idx, final ModelSet ms) throws IllegalArgumentException {
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
         final List<String> ttsSilhouettes = getTTSSilhouettes();
         final String states = String.join(",\n", ttsSilhouettes);
         final String ttsColour = CombatGroup.getTint(combatGroup_idx);
-        final TTSModel model = models.get(model_idx);
+        // TODO:: Better picking of model
+        final TTSModel model =  ms.getModels(getUnitID()).stream().findAny().orElseThrow(IllegalArgumentException::new);
         return String.format(Database.getUnitTemplate(),
                 ttsName,
                 ttsDescription,
@@ -494,11 +483,6 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
     public String getName() {
         return name;
-    }
-
-
-    public List<TTSModel> getModels() {
-        return models;
     }
 
     @Override

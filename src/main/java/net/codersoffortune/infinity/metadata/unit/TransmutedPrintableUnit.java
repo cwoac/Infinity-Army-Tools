@@ -4,12 +4,15 @@ import com.codepoetics.protonpack.StreamUtils;
 import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
+import net.codersoffortune.infinity.tts.ModelSet;
 import org.apache.commons.csv.CSVPrinter;
 
 import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class TransmutedPrintableUnit extends PrintableUnit {
@@ -29,37 +32,36 @@ public class TransmutedPrintableUnit extends PrintableUnit {
     }
 
     @Override
-    public void printCSVRecord(CSVPrinter out) throws IOException {
-        super.printCSVRecord(out);
+    public void printCSVRecord(CSVPrinter out, final ModelSet ms) throws IOException {
+        super.printCSVRecord(out, ms);
         for( PrintableUnit pu : printableUnits ) {
-            pu.printCSVRecord(out);
+            pu.printCSVRecord(out, ms);
         }
     }
 
 
 
     @Override
-    public String asFactionJSON() {
+    public String asFactionJSON(final ModelSet ms) {
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
-        final List<String> states = getTTSSilhouettes();
+        final Set<String> states = new HashSet<>(getTTSSilhouettes());
         for( PrintableUnit pu : printableUnits ) {
-            states.add(pu.asEmbeddedJSON());
-            // TODO:: filter duplicate Ss
+            states.add(pu.asEmbeddedJSON(ms));
             states.addAll(pu.getTTSSilhouettes());
         }
-        final String stateString = StreamUtils.zipWithIndex(states.stream())
+        final String stateString = StreamUtils.zipWithIndex(states.stream().filter(s->!s.isEmpty()))
                 .map(x -> embedState(x.getValue(), x.getIndex()+2))
                 .collect(Collectors.joining("\n,"));
         //final String states = String.join(",\n", ttsSilhouettes);
         final String ttsColour = sectoral.getTint();
-        List<String> ttsModels = models.stream().map(m -> String.format(Database.getUnitTemplate(),
+        List<String> ttsModels =  ms.getModels(getUnitID()).stream().map(m -> String.format(Database.getUnitTemplate(),
                 ttsName,
                 ttsDescription,
                 ttsColour,
                 m.getMeshes(),
                 m.getDecals(),
-                states)).collect(Collectors.toList());
+                stateString)).collect(Collectors.toList());
         return String.join(",\n", ttsModels);
     }
 }

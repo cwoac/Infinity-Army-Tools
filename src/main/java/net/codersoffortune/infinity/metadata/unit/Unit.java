@@ -86,13 +86,10 @@ public class Unit {
         Collection<CompactedUnit> compactedUnits = getUnits(group, option);
         Collection<PrintableUnit> printableUnits = new ArrayList<>();
         for( CompactedUnit cu: compactedUnits){
-            PrintableUnit pu = cu.getPrintableUnit(filters, sectoral);
-            Set<TTSModel> models = modelSet.getModels(pu.getUnitID());
-            pu.addTTSModels(models);
-            printableUnits.add(pu);
+            printableUnits.add(cu.getPrintableUnit(filters, sectoral));
         }
         return printableUnits.stream()
-                .map(pu -> pu.asArmyJSON(combat_group))
+                .map(pu -> pu.asArmyJSON(combat_group, modelSet))
                 .collect(Collectors.toList());
     }
 

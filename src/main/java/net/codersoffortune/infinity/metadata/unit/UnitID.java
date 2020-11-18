@@ -92,18 +92,6 @@ public class UnitID {
                 option_idx == unitID.option_idx;
     }
 
-    /**
-     * Test whether two UnitIDs are equal ignoring sectoral.
-     * @param o the other UnitID to test against
-     * @return true iff they match (ignoring sectoral).
-     */
-    public boolean almost_equals(UnitID o) {
-        return unit_idx == o.unit_idx &&
-                group_idx == o.group_idx &&
-                profile_idx == o.profile_idx &&
-                option_idx == o.option_idx;
-    }
-
     @Override
     public int hashCode() {
         return Objects.hash(unit_idx, group_idx, profile_idx, option_idx);
