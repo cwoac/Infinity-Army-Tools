@@ -9,7 +9,7 @@ import net.codersoffortune.infinity.metadata.Weapon;
 import net.codersoffortune.infinity.metadata.unit.CompactedUnit;
 import net.codersoffortune.infinity.metadata.unit.ProfileItem;
 import net.codersoffortune.infinity.metadata.unit.Unit;
-import net.codersoffortune.infinity.tts.ModelSet;
+import net.codersoffortune.infinity.tts.EquivalentModelSet;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -130,7 +130,7 @@ public class Armylist {
      *
      * @return a String!
      */
-    public String asJson(final MappedFactionFilters filters, final ModelSet modelSet) throws IOException {
+    public String asJson(final MappedFactionFilters filters, final EquivalentModelSet equivalentModelSet) throws IOException {
         Database db = Database.getInstance();
 
         //if (modelSet.getFaction() != getFaction()) {
@@ -143,7 +143,7 @@ public class Armylist {
                 Optional<Unit> maybeUnit = db.getUnitName(cgm.getId(), getSectoral());
                 if (!maybeUnit.isPresent()) continue;
                 Unit unit = maybeUnit.get();
-                units.addAll(unit.getUnitsForTTS(cg.getGroup_number(), cgm.getGroup(), cgm.getOption(), filters, modelSet, sectoral));
+                units.addAll(unit.getUnitsForTTS(cg.getGroup_number(), cgm.getGroup(), cgm.getOption(), filters, equivalentModelSet, sectoral));
             }
         }
 

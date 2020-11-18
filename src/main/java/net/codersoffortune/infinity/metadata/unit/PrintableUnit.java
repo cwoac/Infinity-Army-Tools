@@ -6,7 +6,7 @@ import net.codersoffortune.infinity.armylist.CombatGroup;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.FilterType;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
-import net.codersoffortune.infinity.tts.Model;
+import net.codersoffortune.infinity.tts.EquivalentModelSet;
 import net.codersoffortune.infinity.tts.ModelSet;
 import net.codersoffortune.infinity.tts.TTSModel;
 import org.apache.commons.csv.CSVPrinter;
@@ -16,11 +16,9 @@ import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.MissingFormatArgumentException;
-import java.util.MissingResourceException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -36,6 +34,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private final List<String> peripheral;
     private final Set<String> visible_weapons = new HashSet<>();
     private final Set<String> visible_equipment = new HashSet<>();
+    private final Set<String> visible_skills = new HashSet<>();
     private final UnitFlags flags;
     protected final SECTORAL sectoral;
     private final int unit_idx;
@@ -142,6 +141,14 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 unit_idx, group_idx, option_idx, name);
     }
 
+    /* Very few skills are 'visible'. The main use is to enforce different models when weapons + kit would
+     * suggest they are the same (i.e. hacking related stuff mostly).
+     *    255 - remdriver
+     */
+    private static final List<Integer> visibleSkills = Arrays.asList(255);
+
+    private static boolean isVisibleSkill(int s) { return visibleSkills.contains(s); }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -175,7 +182,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     public boolean isEquivalent(PrintableUnit that) {
         return name.equals(that.name) &&
                 visible_equipment.equals(that.visible_equipment) &&
-                visible_weapons.equals(that.visible_weapons);
+                visible_weapons.equals(that.visible_weapons) &&
+                visible_skills.equals(that.visible_skills);
     }
 
     public UnitID getUnitID() {
@@ -226,6 +234,10 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 .map(x -> x.toString(filters, FilterType.weapons))
                 .collect(Collectors.toList()));
         skills = src.getPublicSkills().stream().map(x -> x.toString(filters, FilterType.skills)).collect(Collectors.toList());
+        visible_skills.addAll(src.getPublicSkills().stream()
+                .filter(x -> isVisibleSkill(x.getId()))
+                .map(x -> x.toString(filters, FilterType.skills))
+                .collect(Collectors.toList()));
         equip = src.getEquipment().stream().map(x -> x.toString(filters, FilterType.equip)).collect(Collectors.toList());
         visible_equipment.addAll(src.getEquipment().stream()
                 .filter(x -> isVisibleEquipment(x.getId()))

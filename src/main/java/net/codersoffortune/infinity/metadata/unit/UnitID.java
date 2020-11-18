@@ -1,5 +1,6 @@
 package net.codersoffortune.infinity.metadata.unit;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -7,7 +8,7 @@ import java.util.regex.Pattern;
 /**
  * POJO to explicitly identify a unit option
  */
-public class UnitID {
+public class UnitID implements Comparable<UnitID>, Serializable {
     private final int sectoral_idx;
     private final int unit_idx;
     private final int group_idx;
@@ -115,5 +116,14 @@ public class UnitID {
 
     public int getOption_idx() {
         return option_idx;
+    }
+
+    @Override
+    public int compareTo(UnitID unitID) {
+        if( unitID.unit_idx != unit_idx ) return unit_idx - unitID.unit_idx;
+        if( unitID.group_idx != group_idx ) return group_idx - unitID.group_idx;
+        if( unitID.profile_idx != profile_idx ) return profile_idx - unitID.profile_idx;
+        if( unitID.option_idx != option_idx) return option_idx - unitID.option_idx;
+        return sectoral_idx - unitID.sectoral_idx;
     }
 }

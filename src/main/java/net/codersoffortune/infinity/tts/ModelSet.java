@@ -1,22 +1,29 @@
 package net.codersoffortune.infinity.tts;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.metadata.FactionList;
-import net.codersoffortune.infinity.metadata.unit.PrintableUnit;
 import net.codersoffortune.infinity.metadata.unit.ProfileOption;
 import net.codersoffortune.infinity.metadata.unit.Unit;
 import net.codersoffortune.infinity.metadata.unit.UnitID;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Serializable;
+import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -29,9 +36,20 @@ import java.util.regex.Pattern;
 import static net.codersoffortune.infinity.tts.Catalogue.CSV_HEADERS;
 
 public class ModelSet {
+    private static final ObjectMapper SORTED_MAPPER = new ObjectMapper();
+    static {
+        SORTED_MAPPER.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
+    }
+
     final Map<UnitID, Set<TTSModel>> models = new HashMap<>();
 
-    transient Set<Catalogue.EquivalenceMapping> equivalenceMappings;
+    public ModelSet() {
+    }
+
+    public ModelSet(final String filename) throws IOException, ClassNotFoundException {
+        readFile(filename);
+    }
+
 
     /**
      * Helper function to hide some of the nastiness of reading in a CSV file.
@@ -70,21 +88,56 @@ public class ModelSet {
         return result;
     }
 
-    public Set<Catalogue.EquivalenceMapping> getEquivalenceMappings() {
-        return equivalenceMappings;
+    /**
+     * Write the contents of this ModelSet to a file, suitible for later reading.
+     * @param filename to write to
+     * @throws IOException on failure
+     */
+    public void writeFile(final String filename) throws IOException {
+        String output = toJson();
+        BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+        writer.append(output);
+        writer.flush();
+        writer.close();
     }
 
-    public void setEquivalenceMappings(Set<Catalogue.EquivalenceMapping> equivalenceMappings) {
-        this.equivalenceMappings = equivalenceMappings;
+    //    public void writeFile(final String filename) throws IOException {
+//        FileOutputStream fileOut = new FileOutputStream(filename);
+//        ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
+//        objOut.writeObject(models);
+//        objOut.flush();
+//        objOut.close();
+//    }
+
+    public String toJson() throws JsonProcessingException {
+        return SORTED_MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(models);
+    }
+
+    public void readFile(final String filename) throws IOException {
+        TypeReference<Map<UnitID, Set<TTSModel>>> mapRef = new TypeReference<Map<UnitID, Set<TTSModel>>>(){};
+        Map<UnitID, Set<TTSModel>> staging = SORTED_MAPPER.readValue(new File(filename), mapRef);
+        for( Map.Entry<UnitID, Set<TTSModel>> entry : staging.entrySet()) {
+            addModels(entry.getKey(), entry.getValue());
+        }
+    }
+
+    public void readBinFile(final String filename) throws IOException, ClassNotFoundException {
+        FileInputStream fileIn = new FileInputStream(filename);
+        ObjectInputStream objIn = new ObjectInputStream(fileIn);
+        Map<UnitID, Set<TTSModel>> staging = (Map<UnitID, Set<TTSModel>>) objIn.readObject();
+        objIn.close();
+        for( Map.Entry<UnitID, Set<TTSModel>> entry : staging.entrySet()) {
+            addModels(entry.getKey(), entry.getValue());
+        }
     }
 
     public void readJson(final String input) throws IOException {
-        JsonNode jn = new ObjectMapper().readTree(input);
+        JsonNode jn = SORTED_MAPPER.readTree(input);
         readJsonInner(jn, true);
     }
 
     public void readJson(final URL input) throws IOException {
-        JsonNode jn = new ObjectMapper().readTree(input);
+        JsonNode jn = SORTED_MAPPER.readTree(input);
         readJsonInner(jn, true);
     }
 
@@ -104,10 +157,32 @@ public class ModelSet {
         }
     }
 
-    private void addModel(UnitID unitID, TTSModel model) {
+    protected void addModel(UnitID unitID, TTSModel model) {
         if (!models.containsKey(unitID))
             models.put(unitID, new HashSet<>());
         models.get(unitID).add(model);
+    }
+
+    protected void addModels(UnitID unitID, Collection<TTSModel> newModels) {
+        try {
+            if (!models.containsKey(unitID)) {
+                models.put(unitID, new HashSet<>(newModels));
+            } else {
+                models.get(unitID).addAll(newModels);
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            throw (e);
+        }
+    }
+
+    /**
+     * Copy the contents of another modelset into this one
+     * @param ms to copy from
+     */
+    public void addModelSet(final ModelSet ms) {
+        ms.getModels().entrySet()
+                .forEach(e->addModels(e.getKey(), e.getValue()));
     }
 
     public void readCSV(String filename) throws IOException {
@@ -117,19 +192,15 @@ public class ModelSet {
                 .withFirstRecordAsHeader().parse(fh);
         for (CSVRecord row : rows) {
             // What models does it have?
-            List<TTSModel> new_models = readTTSRow(row);
-            if (new_models.isEmpty()) continue;
+            List<TTSModel> newModels = ModelSet.readTTSRow(row);
+            if (newModels.isEmpty()) continue;
             // Now figure out where to put it.
             UnitID target = new UnitID(Integer.parseInt(row.get("sectoral")),
                     Integer.parseInt(row.get("unit")),
                     Integer.parseInt(row.get("group")),
                     Integer.parseInt(row.get("profile")),
                     Integer.parseInt(row.get("option")));
-            if (!models.containsKey(target)) {
-                models.put(target, new HashSet<>(new_models));
-            } else {
-                models.get(target).addAll(new_models);
-            }
+            addModels(target, newModels);
         }
     }
 
@@ -140,11 +211,10 @@ public class ModelSet {
      * @throws IOException on failure
      */
     public void readOldJson(final URL input, final FACTION faction, final FactionList factionList) throws IOException {
-        ObjectMapper om = new ObjectMapper();
         if (input == null) {
             return;
         }
-        JsonNode jn = om.readTree(input);
+        JsonNode jn = SORTED_MAPPER.readTree(input);
         JsonNode contents = jn.findPath("ContainedObjects");
         Pattern idPattern = Pattern.compile("(?<opt>[\\dA-Fa-f])(?<unit>[\\dA-Fa-f]{5})");
         for (JsonNode child : contents) {
@@ -195,7 +265,6 @@ public class ModelSet {
         }
     }
 
-
     /**
      * Add a model to the set, loading from an old style unit ref (unit number, profile array index).
      *
@@ -241,30 +310,6 @@ public class ModelSet {
         return result;
     }
 
-    public Set<TTSModel> getModels(final UnitID unitID) {
-        // Do we have this model?
-        if (hasUnit(unitID)) {
-            return models.get(unitID);
-        }
-        // OK, do we know some equivalents for this model?
-        Optional<Catalogue.EquivalenceMapping> maybeMapping = equivalenceMappings.stream().filter(m -> m.contains(unitID)).findFirst();
-        if (!maybeMapping.isPresent()) {
-            return new HashSet<>();
-        }
-        Catalogue.EquivalenceMapping mapping = maybeMapping.get();
-
-        // OK, what about the equivalents?
-        Optional<UnitID> equivalent = mapping.getAllUnits().stream()
-                .map(PrintableUnit::getUnitID)
-                .filter(this::hasUnit)
-                .findAny();
-        if (!equivalent.isPresent()) {
-            return new HashSet<>();
-        }
-
-        return models.get(equivalent.get());
-    }
-
     public boolean hasUnit(final UnitID unitID) {
         return models.containsKey(unitID);
     }
@@ -279,5 +324,8 @@ public class ModelSet {
         return mapping.getAllUnits().stream().anyMatch(u -> models.containsKey(u.getUnitID()));
     }
 
-
+    public Set<TTSModel> getModels(final UnitID unitID) {
+        if (hasUnit(unitID)) return models.get(unitID);
+        return new HashSet<>();
+    }
 }

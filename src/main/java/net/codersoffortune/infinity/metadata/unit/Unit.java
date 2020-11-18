@@ -2,15 +2,13 @@ package net.codersoffortune.infinity.metadata.unit;
 
 import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
-import net.codersoffortune.infinity.tts.ModelSet;
-import net.codersoffortune.infinity.tts.TTSModel;
+import net.codersoffortune.infinity.tts.EquivalentModelSet;
 
 import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Unit {
@@ -72,7 +70,7 @@ public class Unit {
      * @param group    profile group selected (usually 1)
      * @param option   profile choice selected
      * @param filters  Needed for mapping types, orders as they are stored in the faction data not meta data?
-     * @param modelSet the set of availiable models.
+     * @param equivalentModelSet the set of availiable models.
      * @return collection of strings, one per model.
      * @throws IllegalArgumentException on error.
      */
@@ -80,7 +78,7 @@ public class Unit {
                                              final int group,
                                              final int option,
                                              final MappedFactionFilters filters,
-                                             final ModelSet modelSet,
+                                             final EquivalentModelSet equivalentModelSet,
                                              final SECTORAL sectoral) throws IllegalArgumentException, InvalidObjectException {
         //TODO:: Handle pilots
         Collection<CompactedUnit> compactedUnits = getUnits(group, option);
@@ -89,7 +87,7 @@ public class Unit {
             printableUnits.add(cu.getPrintableUnit(filters, sectoral));
         }
         return printableUnits.stream()
-                .map(pu -> pu.asArmyJSON(combat_group, modelSet))
+                .map(pu -> pu.asArmyJSON(combat_group, equivalentModelSet))
                 .collect(Collectors.toList());
     }
 

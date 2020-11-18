@@ -5,7 +5,6 @@ import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.metadata.SectoralList;
-
 import net.codersoffortune.infinity.metadata.unit.CompactedUnit;
 import net.codersoffortune.infinity.metadata.unit.PrintableUnit;
 import net.codersoffortune.infinity.metadata.unit.Unit;
@@ -19,7 +18,6 @@ import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -39,19 +37,22 @@ public class Catalogue {
             "meshName5", "decals5", "meshes5",
     };
 
-
-    public Map<String, Collection<String>> getEquivalences() {
-        Map<String, Collection<String>> results = new HashMap<>();
-        unitEquivalenceMappings.stream().filter(m -> !m.getEquivalents().isEmpty())
-                .forEach(u -> results.put(u.getRepresentative().toString(),
-                        u.getEquivalents().stream().map(PrintableUnit::toString).collect(Collectors.toList())));
-        return results;
-    }
+//
+//    public Map<String, Collection<String>> getEquivalences() {
+//        Map<String, Collection<String>> results = new HashMap<>();
+//        unitEquivalenceMappings.stream().filter(m -> !m.getEquivalents().isEmpty())
+//                .forEach(u -> results.put(u.getRepresentative().toString(),
+//                        u.getEquivalents().stream().map(PrintableUnit::toString).collect(Collectors.toList())));
+//        return results;
+//    }
 
     private final Set<EquivalenceMapping> unitEquivalenceMappings = new HashSet<>();
     private List<PrintableUnit> unitList = new ArrayList<>();
     private Set<UnitID> validIDs = new HashSet<>();
 
+    public Set<EquivalenceMapping> getMappings() {
+        return unitEquivalenceMappings;
+    }
 
     /**
      * Builds the list of the representative units.
@@ -88,6 +89,7 @@ public class Catalogue {
     /**
      * Generate a Json string of _all_ the units, in a faction bag format for TTS
      * @param faction to label the bag as for
+     * @param ms
      * @return json representation of the catalogue
      * @throws IOException on failure
      */
@@ -103,6 +105,7 @@ public class Catalogue {
     /**
      * Generate a Json string of _all_ the units, in a sectoral bag format for TTS
      * @param sectoral to label the bag as for
+     * @param ms
      * @return json representation of the catalogue
      * @throws IOException on failure
      */
@@ -117,7 +120,6 @@ public class Catalogue {
 
     private String asJsonInner(final String template, final ModelSet ms) {
         List<PrintableUnit> allUnits = new ArrayList<>();
-        ms.setEquivalenceMappings(unitEquivalenceMappings);
 
         for( EquivalenceMapping equivalenceMapping : unitEquivalenceMappings) {
             // Don't bother with unit groups without models
@@ -141,7 +143,6 @@ public class Catalogue {
      */
     public void toCSV(String filename, final ModelSet ms) throws IOException {
         FileWriter fh = new FileWriter(filename);
-        ms.setEquivalenceMappings(unitEquivalenceMappings);
         try (CSVPrinter out = new CSVPrinter(fh, CSVFormat.EXCEL.withHeader(CSV_HEADERS))) {
             for (PrintableUnit u : unitList) u.printCSVRecord(out, ms);
         }

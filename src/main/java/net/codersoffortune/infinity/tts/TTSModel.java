@@ -1,12 +1,13 @@
 package net.codersoffortune.infinity.tts;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TTSModel {
+public class TTSModel implements Serializable {
     private String decals;
     private String meshes;
     private String name; // mostly a sanity check

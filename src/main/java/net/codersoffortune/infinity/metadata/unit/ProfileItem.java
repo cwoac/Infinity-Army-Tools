@@ -29,14 +29,13 @@ public class ProfileItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProfileItem that = (ProfileItem) o;
-        return q == that.q &&
-                id == that.id &&
+        return id == that.id &&
                 Objects.equals(cleanExtra(), ((ProfileItem) o).cleanExtra());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(q, cleanExtra(), id);
+        return Objects.hash(cleanExtra(), id);
     }
 
     /**

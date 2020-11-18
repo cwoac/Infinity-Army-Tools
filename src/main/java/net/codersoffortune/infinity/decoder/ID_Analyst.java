@@ -5,6 +5,7 @@ import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.unit.UnitID;
 import net.codersoffortune.infinity.tts.Catalogue;
+import net.codersoffortune.infinity.tts.EquivalentModelSet;
 import net.codersoffortune.infinity.tts.ModelSet;
 import net.codersoffortune.infinity.tts.TTSModel;
 

@@ -1,15 +1,19 @@
 package net.codersoffortune.infinity.decoder;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.unit.PrintableUnit;
 import net.codersoffortune.infinity.tts.Catalogue;
+import net.codersoffortune.infinity.tts.EquivalentModelSet;
+import net.codersoffortune.infinity.tts.Model;
 import net.codersoffortune.infinity.tts.ModelSet;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InvalidObjectException;
 import java.net.URL;
 
 import java.util.Arrays;
@@ -23,8 +27,17 @@ public class TTS_Decoder {
     private static Database db;
     private static final boolean useMercs = false;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         db = Database.getInstance();
+
+        //ModelSet fullMS = buildMegaModelSet();
+        //fullMS.writeFile("All.models");
+
+//        ModelSet ms = new ModelSet("models.json");
+//        //ms.readBinFile("All.models");
+//        ms.writeFile("models2.json");
+//        ModelSet ms2 = new ModelSet("models2.json");
+
 
         loadFromJSON(false);
         importFromCSV();
@@ -67,7 +80,9 @@ public class TTS_Decoder {
         System.out.println("moo");
     }
 
-    private static void loadFromJSON(boolean check) throws IOException {
+    private static ModelSet buildMegaModelSet() throws IOException {
+        ModelSet result = new ModelSet();
+
         Map<Integer, URL> old_bags = new HashMap<>();
         // first find all the old bags
         for( FACTION faction : FACTION.values()) {
@@ -82,16 +97,39 @@ public class TTS_Decoder {
         }
         System.out.println("Bags opened\n");
 
+        for( FACTION faction : FACTION.values()) {
+            if( faction == FACTION.NA2 ) continue; // handled below
+            System.out.printf("Reading %s%n", faction.getName());
+            Catalogue c = new Catalogue();
+            c.addUnits(db.getSectorals(), faction, false);
+            EquivalentModelSet ems = new EquivalentModelSet(c.getMappings());
+            ems.readJson(old_bags.get(faction.getId()));
+            result.addModelSet(ems.expand());
+        }
+        for( SECTORAL sectoral : FACTION.NA2.getSectorals()) {
+            System.out.printf("Reading %s%n", sectoral.getName());
+            Catalogue c = new Catalogue();
+            c.addUnits(db.getSectorals().get(sectoral.getId()), sectoral, false);
+            EquivalentModelSet ems = new EquivalentModelSet(c.getMappings());
+            ems.readJson(old_bags.get(sectoral.getId()));
+            result.addModelSet(ems.expand());
+        }
+
+        return result;
+    }
+
+    private static void loadFromJSON(boolean check) throws IOException, ClassNotFoundException {
+        Map<Integer, URL> old_bags = new HashMap<>();
+        ModelSet ms = new ModelSet("models2.json");
+
+
         //for( FACTION faction : FACTION.values()) {
         for( FACTION faction : Arrays.asList(FACTION.Aleph)) {
             if( faction == FACTION.NA2 ) continue; // handled below
             System.out.printf("Reading %s%n", faction.getName());
-            ModelSet ms = new ModelSet();
-            ms.readJson(old_bags.get(faction.getId()));
-
-
             Catalogue c = new Catalogue();
             c.addUnits(db.getSectorals(), faction, useMercs);
+
             c.toCSV(String.format("%s.csv", faction.name()), ms);
             String factionJson = c.asJson(faction, ms);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s.json", faction.getName())));
@@ -103,18 +141,18 @@ public class TTS_Decoder {
             writer.close();
             // Test the outputted JSON is good
             if( check ) {
-                ModelSet ms3 = new ModelSet();
+                ModelSet ms3 = new EquivalentModelSet(c.getMappings());
                 ms3.readJson(factionJson);
             }
         }
 
         for( SECTORAL sectoral : FACTION.NA2.getSectorals()){
             System.out.printf("Reading %s%n", sectoral.getName());
-            ModelSet ms = new ModelSet();
-            ms.readJson(old_bags.get(sectoral.getId()));
+
 
             Catalogue c = new Catalogue();
             c.addUnits(db.getSectorals().get(sectoral.getId()), sectoral, useMercs);
+
             c.toCSV(String.format("%s.csv", sectoral.name()), ms);
             String sectoralJSON = c.asJson(sectoral, ms);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s.json", sectoral.getName())));
@@ -126,7 +164,7 @@ public class TTS_Decoder {
             writer.close();
             // Test the outputted JSON is good
             if( check ) {
-                ModelSet ms3 = new ModelSet();
+                ModelSet ms3 = new EquivalentModelSet(c.getMappings());
                 ms3.readJson(sectoralJSON);
             }
         }
@@ -141,7 +179,7 @@ public class TTS_Decoder {
             String csvFile = String.format("%s2.csv", faction.name());
             Catalogue c = new Catalogue();
             c.addUnits(db.getSectorals(), faction, useMercs);
-            ModelSet ms = new ModelSet();
+            EquivalentModelSet ms = new EquivalentModelSet(c.getMappings());
             // Yes this will fail first time. You need to make this file yourself!
             try {
                 ms.readCSV(csvFile);
@@ -159,7 +197,7 @@ public class TTS_Decoder {
                 writer.append(String.format("Missing: (%s) %s %s\n", m.getUnitID(), m.getName(), m.getDistinguisher()));
             writer.close();
             // Test the outputted JSON is good
-            ModelSet ms3 = new ModelSet();
+            ModelSet ms3 = new EquivalentModelSet(c.getMappings());
             ms3.readJson(faction_json);
         }
 
@@ -168,7 +206,7 @@ public class TTS_Decoder {
             String csvFile = String.format("%s2.csv", sectoral.name());
             Catalogue c = new Catalogue();
             c.addUnits(db.getSectorals().get(sectoral.getId()), sectoral, useMercs);
-            ModelSet ms = new ModelSet();
+            EquivalentModelSet ms = new EquivalentModelSet(c.getMappings());
             // Yes this will fail first time. You need to make this file yourself!
             try {
                 ms.readCSV(csvFile);
@@ -186,7 +224,7 @@ public class TTS_Decoder {
                 writer.append(String.format("Missing: (%s) %s %s\n", m.getUnitID(), m.getName(), m.getDistinguisher()));
             writer.close();
             // Test the outputted JSON is good
-            ModelSet ms3 = new ModelSet();
+            ModelSet ms3 = new EquivalentModelSet(c.getMappings());
             ms3.readJson(faction_json);
         }
     }
