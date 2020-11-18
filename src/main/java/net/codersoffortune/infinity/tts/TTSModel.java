@@ -15,8 +15,8 @@ public class TTSModel implements Serializable {
     private Set<String> extractedDecals;
     private Set<String> extractedMeshes;
 
-    private static Pattern decalPattern = Pattern.compile("\"ImageURL\":\"(?<url>[^\"]*)\"");
-    private static Pattern meshPattern = Pattern.compile("\"MeshURL\":\"(?<url>[^\"]*)\"");
+    private static final Pattern decalPattern = Pattern.compile("\"ImageURL\":\"(?<url>[^\"]*)\"");
+    private static final Pattern meshPattern = Pattern.compile("\"MeshURL\":\"(?<url>[^\"]*)\"");
 
     public TTSModel() {
     }

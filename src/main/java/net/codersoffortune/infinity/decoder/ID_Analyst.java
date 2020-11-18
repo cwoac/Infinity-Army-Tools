@@ -5,7 +5,6 @@ import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.unit.UnitID;
 import net.codersoffortune.infinity.tts.Catalogue;
-import net.codersoffortune.infinity.tts.EquivalentModelSet;
 import net.codersoffortune.infinity.tts.ModelSet;
 import net.codersoffortune.infinity.tts.TTSModel;
 
@@ -27,7 +26,7 @@ public class ID_Analyst {
         for(FACTION faction: FACTION.values()) {
             if (faction == FACTION.NA2) continue;
             String bagName = String.format("/wip/%s.json", faction.getName());
-            System.out.println(String.format("Loading %s\n", bagName));
+            System.out.printf("Loading %s\n%n", bagName);
             URL bag = TTS_Decoder.class.getResource(bagName);
             ms.readJson(bag);
         }

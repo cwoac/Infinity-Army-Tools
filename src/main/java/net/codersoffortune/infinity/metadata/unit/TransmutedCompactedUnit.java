@@ -8,12 +8,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TransmutedCompactedUnit extends CompactedUnit {
-    private final List<Profile> profiles;
+
     private final List<CompactedUnit> CompactedUnits;
 
     public TransmutedCompactedUnit(int unit_idx, ProfileGroup group, List<Profile> profiles, ProfileOption option) {
         super(unit_idx, group, profiles.get(0), option);
-        this.profiles = profiles;
         this.CompactedUnits = profiles.stream().map(p->new CompactedUnit(unit_idx, group, p,option)).collect(Collectors.toList());
     }
 

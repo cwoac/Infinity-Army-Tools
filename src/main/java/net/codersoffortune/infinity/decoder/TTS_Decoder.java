@@ -1,19 +1,16 @@
 package net.codersoffortune.infinity.decoder;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.unit.PrintableUnit;
 import net.codersoffortune.infinity.tts.Catalogue;
 import net.codersoffortune.infinity.tts.EquivalentModelSet;
-import net.codersoffortune.infinity.tts.Model;
 import net.codersoffortune.infinity.tts.ModelSet;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InvalidObjectException;
 import java.net.URL;
 
 import java.util.Arrays;

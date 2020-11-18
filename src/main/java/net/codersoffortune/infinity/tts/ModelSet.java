@@ -114,7 +114,8 @@ public class ModelSet {
     }
 
     public void readFile(final String filename) throws IOException {
-        TypeReference<Map<UnitID, Set<TTSModel>>> mapRef = new TypeReference<Map<UnitID, Set<TTSModel>>>(){};
+        TypeReference<Map<UnitID, Set<TTSModel>>> mapRef = new TypeReference<>() {
+        };
         Map<UnitID, Set<TTSModel>> staging = SORTED_MAPPER.readValue(new File(filename), mapRef);
         for( Map.Entry<UnitID, Set<TTSModel>> entry : staging.entrySet()) {
             addModels(entry.getKey(), entry.getValue());
@@ -181,8 +182,7 @@ public class ModelSet {
      * @param ms to copy from
      */
     public void addModelSet(final ModelSet ms) {
-        ms.getModels().entrySet()
-                .forEach(e->addModels(e.getKey(), e.getValue()));
+        ms.getModels().forEach((key, value) -> addModels(key, value));
     }
 
     public void readCSV(String filename) throws IOException {

@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public class FactionList {
-    private Map<SECTORAL, SectoralList> sectorals = new HashMap<>();
+    private final Map<SECTORAL, SectoralList> sectorals = new HashMap<>();
 
     public Optional<Unit> getUnit(int id) {
         return sectorals.values().stream().
@@ -20,7 +20,7 @@ public class FactionList {
     }
 
     public FactionList(FACTION faction, Map<Integer, SectoralList> sectorals) {
-        faction.getSectorals().stream().forEach(s-> addSectoral(s, sectorals.get(s.getId())));
+        faction.getSectorals().forEach(s-> addSectoral(s, sectorals.get(s.getId())));
     }
 
     private void addSectoral(SECTORAL sectoral, SectoralList sectoralList) {

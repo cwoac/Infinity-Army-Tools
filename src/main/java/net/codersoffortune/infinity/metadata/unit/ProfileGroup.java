@@ -1,6 +1,5 @@
 package net.codersoffortune.infinity.metadata.unit;
 
-import java.util.Comparator;
 import java.util.List;
 
 public class ProfileGroup {

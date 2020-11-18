@@ -94,7 +94,7 @@ public class Unit {
     public Collection<CompactedUnit> getAllDistinctUnits() {
         Collection<CompactedUnit> source = getAllUnits();
         Collection<CompactedUnit> result = new ArrayList<>();
-        source.forEach(s->{if(result.stream().allMatch(r->!r.publicallyEqual(s)))result.add(s);});
+        source.forEach(s->{if(result.stream().noneMatch(r-> r.publicallyEqual(s)))result.add(s);});
         return result;
     }
 

@@ -175,9 +175,9 @@ public class CompactedUnit {
 
         if( bsWeapons.isEmpty() ) {
             // CC only? just return whatever
-            return weapons.stream().sorted(Comparator.comparing(ProfileItem::getOrder)).findFirst();
+            return weapons.stream().min(Comparator.comparing(ProfileItem::getOrder));
         }
-        return bsWeapons.stream().sorted(Comparator.comparing(ProfileItem::getOrder)).findFirst();
+        return bsWeapons.stream().min(Comparator.comparing(ProfileItem::getOrder));
 
     }
 

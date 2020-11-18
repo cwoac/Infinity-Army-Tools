@@ -48,7 +48,6 @@ public class Catalogue {
 
     private final Set<EquivalenceMapping> unitEquivalenceMappings = new HashSet<>();
     private List<PrintableUnit> unitList = new ArrayList<>();
-    private Set<UnitID> validIDs = new HashSet<>();
 
     public Set<EquivalenceMapping> getMappings() {
         return unitEquivalenceMappings;
@@ -79,7 +78,6 @@ public class Catalogue {
                 boolean claimed = unitEquivalenceMappings.stream().anyMatch(x -> x.addUnitMaybe(pu));
                 if (!claimed)
                     unitEquivalenceMappings.add(new EquivalenceMapping(pu));
-                validIDs.add(pu.getUnitID());
             }
         }
         makeList();
@@ -89,7 +87,7 @@ public class Catalogue {
     /**
      * Generate a Json string of _all_ the units, in a faction bag format for TTS
      * @param faction to label the bag as for
-     * @param ms
+     * @param ms set of models to use for the conversion
      * @return json representation of the catalogue
      * @throws IOException on failure
      */
@@ -105,7 +103,7 @@ public class Catalogue {
     /**
      * Generate a Json string of _all_ the units, in a sectoral bag format for TTS
      * @param sectoral to label the bag as for
-     * @param ms
+     * @param ms set of models to use for the conversion
      * @return json representation of the catalogue
      * @throws IOException on failure
      */
