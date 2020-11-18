@@ -78,6 +78,7 @@
         <jackson-version>2.11.3</jackson-version>
         <csv-version>1.8</csv-version>
         <text-version>1.9</text-version>
+        <protonpack-version>1.16</protonpack-version>
     </properties>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
@@ -105,6 +106,11 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.codepoetics</groupId>
+            <artifactId>protonpack</artifactId>
+            <version>${protonpack-version}</version>
         </dependency>
     </dependencies>
 

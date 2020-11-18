@@ -5,6 +5,7 @@ import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.metadata.SectoralList;
+
 import net.codersoffortune.infinity.metadata.unit.CompactedUnit;
 import net.codersoffortune.infinity.metadata.unit.PrintableUnit;
 import net.codersoffortune.infinity.metadata.unit.Unit;
@@ -111,7 +112,7 @@ public class Catalogue {
 
             for (CompactedUnit cu : unit.getAllDistinctUnits()) {
 
-                PrintableUnit pu = new PrintableUnit(filters, cu, sectoral_idx);
+                PrintableUnit pu =cu.getPrintableUnit(filters, sectoral_idx);
                 boolean claimed = unitMappings.stream().anyMatch(x -> x.addUnitMaybe(pu));
                 if (!claimed)
                     unitMappings.add(new Mapping(pu));
@@ -251,35 +252,7 @@ public class Catalogue {
     public void toCSV(String filename) throws IOException {
         FileWriter fh = new FileWriter(filename);
         try (CSVPrinter out = new CSVPrinter(fh, CSVFormat.EXCEL.withHeader(CSV_HEADERS))) {
-            for (PrintableUnit u : unitList) {
-                out.printRecord(
-                        u.getSectoral().getId(),
-                        u.getUnit_idx(),
-                        u.getGroup_idx(),
-                        u.getProfile_idx(),
-                        u.getOption_idx(),
-                        u.getName(),
-                        String.join(",", u.getVisible_weapons()),
-                        String.join(",", u.getVisible_equipment()),
-                        u.getTTSName(0),
-                        u.getTTSMesh(0),
-                        u.getTTSDecal(0),
-                        u.getTTSName(1),
-                        u.getTTSMesh(1),
-                        u.getTTSDecal(1),
-                        u.getTTSName(2),
-                        u.getTTSMesh(2),
-                        u.getTTSDecal(2),
-                        u.getTTSName(3),
-                        u.getTTSMesh(3),
-                        u.getTTSDecal(3),
-                        u.getTTSName(4),
-                        u.getTTSMesh(4),
-                        u.getTTSDecal(4),
-                        u.getTTSName(5),
-                        u.getTTSMesh(5),
-                        u.getTTSDecal(5));
-            }
+            for (PrintableUnit u : unitList) u.printCSVRecord(out);
         }
     }
 

@@ -1,11 +1,18 @@
 package net.codersoffortune.infinity.metadata.unit;
 
+import net.codersoffortune.infinity.SECTORAL;
+import net.codersoffortune.infinity.metadata.FilterType;
+import net.codersoffortune.infinity.metadata.MappedFactionFilters;
+
+import java.io.InvalidObjectException;
 import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -29,10 +36,10 @@ public class CompactedUnit {
     private final Profile profile;
     private final ProfileGroup group;
     private final ProfileOption option;
+
     public List<ProfileItem> getWeapons() {
         return weapons;
     }
-
     public List<ProfileItem> getSkills() {
         return skills;
     }
@@ -69,14 +76,35 @@ public class CompactedUnit {
 
     }
 
+    // chars to ignore : 2,5
+    static boolean skipCharacteristic(int c) {
+        // 2 - no cube, 5 = not impetuous
+        return !(c == 2 || c == 5);
+    }
+
+
+    // 119 - lt
+    // 69 strategos l1
+    // 70 strategos l2
+    // 26 chain of command
+    // 120 FT:Core
+    // 121 FT:Haris
+    // 181 FT:Duo
+    final static List<Integer> privateSkills =
+            Arrays.asList(119,69,70,26,120,121,181);
+
     /**
-     * Returns whether two CompactedUnits are the same based on public information
+     * Checks whether to suppress a hidden information skill
+     * Also strip fireteam info. TODO:: Workout if this is really what we want to do.
      *
-     * Note we _don't_ compare peripherals as they are a separate item in the game.
-     * @param other CompactedUnit to test against
-     * @return true if their public details are the same
+     * @param c skill number to check
+     * @return true iff this skill is good to print
      */
-    public boolean publicallyEqual( CompactedUnit other ) {
+    static boolean skipSkills(int c) {
+        return !privateSkills.contains(c);
+    }
+
+    public boolean publicallyEqual(CompactedUnit other) {
         return other.getPublicSkills().equals(getPublicSkills()) &&
                 other.getWeapons().equals(weapons) &&
                 other.getEquipment().equals(equipment) &&
@@ -95,34 +123,6 @@ public class CompactedUnit {
         return option_idx;
     }
 
-    // chars to ignore : 2,5
-    static boolean skipCharacteristic(final int c) {
-        // 2 - no cube, 5 = not impetuous
-        return !(c == 2 || c == 5);
-    }
-
-    // 119 - lt
-    // 69 strategos l1
-    // 70 strategos l2
-    // 26 chain of command
-    // 120 FT:Core
-    // 121 FT:Haris
-    // 181 FT:Duo
-    private final static List<Integer> privateSkills =
-            Arrays.asList(119,69,70,26,120,121,181);
-    /**
-     * Checks whether to suppress a hidden information skill
-     * Also strip fireteam info. TODO:: Workout if this is really what we want to do.
-     * @param c skill number to check
-     * @return true iff this skill is good to print
-     */
-    static boolean skipSkills(final int c) {
-        return !privateSkills.contains(c);
-    }
-
-    private void calcPublicSkills() {
-        skills.stream().filter(x -> skipSkills(x.getId())).forEach(publicSkills::add);
-    }
 
     public Collection<ProfileItem> getPublicSkills() {
         return publicSkills;
@@ -132,6 +132,9 @@ public class CompactedUnit {
         return profile.getChars().stream().filter(CompactedUnit::skipCharacteristic).collect(Collectors.toList());
     }
 
+    private void calcPublicSkills() {
+        getSkills().stream().filter(x -> skipSkills(x.getId())).forEach(publicSkills::add);
+    }
 
     public String getName() {
         return name;
@@ -163,11 +166,22 @@ public class CompactedUnit {
         return option;
     }
 
-    /**
-     * Find the weapon with the lowest index (if any).
-     */
-    public Optional<ProfileItem> getInterestingWeaponMaybe() {
-        return weapons.stream().sorted(Comparator.comparing(ProfileItem::getOrder)).findFirst();
+    public Optional<ProfileItem> getInterestingWeaponMaybe(final MappedFactionFilters filters) {
+        if (weapons.isEmpty()) return Optional.empty();
+
+        Collection<ProfileItem> bsWeapons = weapons.stream()
+                .filter(w->filters.getItem(FilterType.weapons,w.getId()).getType().equalsIgnoreCase("BS"))
+                .collect(Collectors.toList());
+
+        if( bsWeapons.isEmpty() ) {
+            // CC only? just return whatever
+            return weapons.stream().sorted(Comparator.comparing(ProfileItem::getOrder)).findFirst();
+        }
+        return bsWeapons.stream().sorted(Comparator.comparing(ProfileItem::getOrder)).findFirst();
+
     }
 
+    public PrintableUnit getPrintableUnit(final MappedFactionFilters filters, SECTORAL sectoral) throws InvalidObjectException {
+        return new PrintableUnit(filters, this, sectoral);
+    }
 }

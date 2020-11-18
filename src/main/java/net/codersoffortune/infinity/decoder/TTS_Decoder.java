@@ -25,7 +25,9 @@ public class TTS_Decoder {
     public static void main(String[] args) throws IOException {
         db = Database.getInstance();
 
-        loadFromJSON();
+        importFromCSV();
+
+      //  loadFromJSON();
 
 
 //

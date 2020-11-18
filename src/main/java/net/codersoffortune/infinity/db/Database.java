@@ -30,6 +30,7 @@ public class Database {
     private static List<String> silhouetteTemplates = new ArrayList<>();
     private static String bagTemplate = "";
     private static String factionTemplate = "";
+    private static String transmutedUnitTemplate = "";
 
     private Database() throws IOException {
         // block reflection
@@ -61,6 +62,7 @@ public class Database {
                 getResourceFileAsString("templates/S8.json")
         );
         unitTemplate = getResourceFileAsString("Templates/model_template");
+        transmutedUnitTemplate = getResourceFileAsString("Templates/transmuted_model_template");
         factionTemplate = getResourceFileAsString("templates/faction_template");
         bagTemplate = getResourceFileAsString("templates/bag_template");
     }
@@ -105,6 +107,10 @@ public class Database {
             }
         }
         return dbSingleton;
+    }
+
+    public static String getTransmutedUnitTemplate() {
+        return transmutedUnitTemplate;
     }
 
     public Metadata getMetadata() {
