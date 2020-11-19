@@ -13,6 +13,7 @@ public class UnitFlags {
     private final boolean camo;
     private final boolean singleCamo;
     private final int mimetism;
+    private final int impersonisation;
 
     public UnitFlags(CompactedUnit unit) throws InvalidObjectException {
         Optional<ProfileItem> maybeMimetism = unit.getSkills().stream().filter(x -> x.getId() == 28).findFirst();
@@ -35,6 +36,23 @@ public class UnitFlags {
             }
         } else {
             mimetism = 0;
+        }
+
+        // Are they an impersonator?
+        boolean hasIMP = unit.getSkills().stream().anyMatch(x->x.getId() == 249);
+        if( !hasIMP ) {
+            // No? Maybe they have access to cybermask though (and aren't impetuous)?
+            if (unit.getEquipment().stream().anyMatch(x->(x.getId()==145)||x.getId()==101) &&
+                !unit.getPublicChars().contains(6)
+            ) {
+                impersonisation = 1;
+            }
+            else
+            {
+                impersonisation = 0;
+            }
+        } else {
+            impersonisation = 2;
         }
 
         Optional<ProfileItem> maybeCamo = unit.getSkills().stream().filter(x -> x.getId() == 29).findFirst();
@@ -61,5 +79,9 @@ public class UnitFlags {
 
     public int getMimetism() {
         return mimetism;
+    }
+
+    public int getImpersonisation() {
+        return impersonisation;
     }
 }

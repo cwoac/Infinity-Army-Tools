@@ -2,7 +2,6 @@ package net.codersoffortune.infinity;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Private class for all things hardcoded, utility and otherwise "don't quite have a home".
@@ -130,11 +129,8 @@ public class Util {
         Util.inInches = inInches;
     }
 
-    public static final Map<Integer, String> CAMO_DECALS = Map.of(
-            0, "http://cloud-3.steamusercontent.com/ugc/1548633241857020838/CDE48FB1F62CB3A31810F9077CAC176EFB735038/",
-            -3, "http://cloud-3.steamusercontent.com/ugc/859478426278216451/A4FDA4E7168D2F62C477AB5CA1DBE0FF0776D640/",
-            -6, "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/"
-            );
+
+
 
 
     private Util() { throw new UnsupportedOperationException("Do not instantiate me."); }

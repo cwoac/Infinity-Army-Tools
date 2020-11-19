@@ -17,6 +17,7 @@ import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -323,13 +324,39 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     }
 
 
+    public static final List<String> IMP_DECALS = List.of(
+            ",\"AttachedDecals\": [{\"Transform\": {\"posX\": -0.00541555043,\"posY\": 1.6975,\"posZ\": 0.00176222192,\"rotX\": 89.98022,\"rotY\": 0.0138618117,\"rotZ\": 0.0,\"scaleX\": 0.909090936,\"scaleY\": 0.909090936,\"scaleZ\": 0.9090909},\"CustomDecal\": {\"Name\": \"IMP-2\",\"ImageURL\": \"http://cloud-3.steamusercontent.com/ugc/859479043234200757/7E194DA057B6FABED18662C5F2A0B6F77E6A05B2/\",\"Size\": 1.0}}]",
+            ",\"AttachedDecals\": [{\"Transform\": {\"posX\": 0.00342403026,\"posY\": 1.6975,\"posZ\": 0.00270367065,\"rotX\": 89.98022,\"rotY\": 0.0137606515,\"rotZ\": 0.0,\"scaleX\": 0.909090936,\"scaleY\": 0.909090936,\"scaleZ\": 0.9090909},\"CustomDecal\": {\"Name\": \"IMP-1\",\"ImageURL\": \"http://cloud-3.steamusercontent.com/ugc/859479043234200062/5F360301D5BA8909AA375577B8EC34D98D0F90E4/\",\"Size\": 1.0}}]"
+    );
+
+    public static final List<String> IMP_TINTS = List.of(
+      "\"r\": 0.8901961,\"g\": 0.5882353,\"b\": 0.58431375",
+      "\"r\": 0.545097947,\"g\": 0.819607854,\"b\": 0.9254902"
+    );
+
+    public static final Map<Integer, String> CAMO_DECALS = Map.of(
+            0, "http://cloud-3.steamusercontent.com/ugc/1548633241857020838/CDE48FB1F62CB3A31810F9077CAC176EFB735038/",
+            -3, "http://cloud-3.steamusercontent.com/ugc/859478426278216451/A4FDA4E7168D2F62C477AB5CA1DBE0FF0776D640/",
+            -6, "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/"
+    );
 
     protected List<String> getTTSSilhouettes() {
+
         String template = Database.getSilhouetteTemplates().get(s);
         String description;
         String decal;
         String tint = sectoral.getTint();
         List<String> result = new ArrayList<>();
+
+        if (flags.getImpersonisation() > 1) {
+            //has IMP1
+            result.add(String.format(template,"IMP-1 (discover -6)",IMP_TINTS.get(1),"", IMP_DECALS.get(1)));
+        }
+        if (flags.getImpersonisation() > 0 ) {
+            // has IMP2
+            result.add(String.format(template,"IMP-2",IMP_TINTS.get(0),"", IMP_DECALS.get(0)));
+        }
+
 
         if (flags.isCamo()) {
             int mimetism = flags.getMimetism();
@@ -338,13 +365,15 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
             } else {
                 description = String.format("Camouflage S%d", s);
             }
-            decal = Util.CAMO_DECALS.get(mimetism);
+            decal = CAMO_DECALS.get(mimetism);
         } else {
             description = String.format("Silhouette %d", s);
             decal = "";
         }
 
-        result.add(String.format(template, description, tint, decal));
+
+
+        result.add(String.format(template, description, tint, decal, ""));
         return result;
     }
 
