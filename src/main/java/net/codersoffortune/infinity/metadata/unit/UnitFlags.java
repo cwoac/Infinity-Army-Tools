@@ -11,7 +11,6 @@ import java.util.Optional;
 public class UnitFlags {
     private final boolean isLT;
     private final boolean camo;
-    private final boolean singleCamo;
     private final int mimetism;
     private final int impersonisation;
 
@@ -37,14 +36,18 @@ public class UnitFlags {
         } else {
             mimetism = 0;
         }
+        
+        camo = unit.getSkills().stream().anyMatch(x -> x.getId() == 29);
+
+        isLT = unit.getSkills().stream().anyMatch(x -> x.getId() == 119);
 
         // Are they an impersonator?
         boolean hasIMP = unit.getSkills().stream().anyMatch(x->x.getId() == 249);
         if( !hasIMP ) {
-            // No? Maybe they have access to cybermask though (and aren't impetuous)?
+            // No? Maybe they have access to cybermask though (and aren't impetuous / have camo)?
             if (unit.getEquipment().stream().anyMatch(x->(x.getId()==145)||x.getId()==101) &&
-                !unit.getPublicChars().contains(6)
-            ) {
+                    !unit.getPublicChars().contains(6) &&
+                    !camo) {
                 impersonisation = 1;
             }
             else
@@ -54,15 +57,6 @@ public class UnitFlags {
         } else {
             impersonisation = 2;
         }
-
-        Optional<ProfileItem> maybeCamo = unit.getSkills().stream().filter(x -> x.getId() == 29).findFirst();
-        camo = maybeCamo.isPresent();
-
-        singleCamo = maybeCamo.isPresent()
-                && maybeCamo.get().getExtra() != null
-                && maybeCamo.get().getExtra().contains(43);
-
-        isLT = unit.getSkills().stream().anyMatch(x -> x.getId() == 119);
     }
 
     public boolean isLT() {
@@ -71,10 +65,6 @@ public class UnitFlags {
 
     public boolean isCamo() {
         return camo;
-    }
-
-    public boolean isSingleCamo() {
-        return singleCamo;
     }
 
     public int getMimetism() {
