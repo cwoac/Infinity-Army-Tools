@@ -17,7 +17,6 @@ import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.MissingFormatArgumentException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -175,11 +174,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         // Name. Name _should_ be easy. For almost everyone it is the option name
         // However, for a few characters who exist as multiple units (in different armours), this is not usefully the case.
         profile_name = src.getProfile().getName();
-        if (Util.nameEdgeCases.contains(src.getUnit_idx())) {
-            name = profile_name;
-        } else {
-            name = src.getName();
-        }
+        name = Util.getName(src.getUnit_idx(), profile_name, src.getName());
 
         this.sectoral = sectoral;
         unit_idx = src.getUnit_idx();
@@ -327,38 +322,29 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return String.format("\"%d\" : %s", index, state);
     }
 
+
+
     protected List<String> getTTSSilhouettes() {
         String template = Database.getSilhouetteTemplates().get(s);
-        String diffuse = "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/";
-        // TODO:: Different tint for different camo types?
-
+        String description;
+        String decal;
         String tint = sectoral.getTint();
-
-        String silhouette;
         List<String> result = new ArrayList<>();
 
         if (flags.isCamo()) {
-            if (flags.getMimetism() > 0) {
-                silhouette = String.format("Camouflage (%d) S%d", flags.getMimetism(), s);
+            int mimetism = flags.getMimetism();
+            if (mimetism != 0) {
+                description = String.format("Camouflage (%d) S%d", mimetism, s);
             } else {
-                silhouette = String.format("Camouflage S%d", s);
+                description = String.format("Camouflage S%d", s);
             }
-            // edge case of single use camo
-            if (flags.isSingleCamo())
-                try {
-                    result.add(String.format(template, silhouette, tint, diffuse));
-                    result.add(String.format(template, String.format("Silhouette %d", s), tint, ""));
-                } catch (MissingFormatArgumentException e) {
-                    e.printStackTrace();
-                }
-                return result;
-
+            decal = Util.CAMO_DECALS.get(mimetism);
         } else {
-            diffuse = "";
-            silhouette = String.format("Silhouette %d", s);
+            description = String.format("Silhouette %d", s);
+            decal = "";
         }
 
-        result.add(String.format(template, silhouette, tint, diffuse));
+        result.add(String.format(template, description, tint, decal));
         return result;
     }
 

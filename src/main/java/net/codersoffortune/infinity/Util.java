@@ -2,6 +2,7 @@ package net.codersoffortune.infinity;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Private class for all things hardcoded, utility and otherwise "don't quite have a home".
@@ -9,6 +10,9 @@ import java.util.List;
  * The name is an in-joke.
  */
 public class Util {
+
+
+    // Visible properties
 
     /* Most primary weapons are visible, so a list of the ones which tend not to be
         61, 199 AP mines
@@ -70,6 +74,8 @@ public class Util {
      */
     public static final List<Integer> visibleSkills = Arrays.asList(255);
 
+    // Names
+
     public static final List<Integer> nameEdgeCases = Arrays.asList(
             20, // Joan
             42, // Joan
@@ -81,7 +87,24 @@ public class Util {
             165 // TZE
     );
 
+    /**
+     * Figure out the correct name to put along the top of the model.
+     * This is _almost_ always the unit name.
+     * When it isn't, it is _usually_ the profile name.
+     * Except when it is both.
+     * @param unitId ID of the unit
+     * @param profileName the name of the current profile
+     * @param unitName the name of the current unit
+     * @return The correct name for the model
+     */
+    public static String getName(int unitId, final String profileName, final String unitName) {
+        if( nameEdgeCases.contains(unitId) ) return profileName;
+        if( unitId == 155 ) return String.format("%s (%s)", unitName, profileName); // Su Jian
+        return unitName;
+    }
 
+
+    // Distances
     private static boolean inInches = true;
 
     /**
@@ -106,6 +129,12 @@ public class Util {
     public static void setInInches(boolean inInches) {
         Util.inInches = inInches;
     }
+
+    public static final Map<Integer, String> CAMO_DECALS = Map.of(
+            0, "http://cloud-3.steamusercontent.com/ugc/1548633241857020838/CDE48FB1F62CB3A31810F9077CAC176EFB735038/",
+            -3, "http://cloud-3.steamusercontent.com/ugc/859478426278216451/A4FDA4E7168D2F62C477AB5CA1DBE0FF0776D640/",
+            -6, "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/"
+            );
 
 
     private Util() { throw new UnsupportedOperationException("Do not instantiate me."); }
