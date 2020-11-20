@@ -36,7 +36,7 @@ public class UnitFlags {
         } else {
             mimetism = 0;
         }
-        
+
         camo = unit.getSkills().stream().anyMatch(x -> x.getId() == 29);
 
         isLT = unit.getSkills().stream().anyMatch(x -> x.getId() == 119);

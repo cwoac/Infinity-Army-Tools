@@ -102,6 +102,28 @@ public class Util {
         return unitName;
     }
 
+    /**
+     * An interesting weapon is one that, if present, should be in the users title line.
+     */
+    public static final List<Integer> interestingWeapons = Arrays.asList(
+        1, // AK Kanone
+        50, // Adhesive launcher
+        70, // Assault Pistol
+        14, // Blitzen
+        15, // chain rifle
+        16, // chain colt
+        201, // EM grenade launcher
+        82, // Flammenspeer
+        194, // gren launcher
+        57, // heavy flamer
+        56, // light flamer
+        58, // missile launcher
+        9, // mono ccw
+        65, // nanopulser
+        68, // panzerf
+        195 // smoke GL
+    );
+
 
     // Distances
     private static boolean inInches = true;

@@ -1,6 +1,7 @@
 package net.codersoffortune.infinity.metadata.unit;
 
 import net.codersoffortune.infinity.SECTORAL;
+import net.codersoffortune.infinity.Util;
 import net.codersoffortune.infinity.metadata.FilterType;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 
@@ -166,19 +167,34 @@ public class CompactedUnit {
         return option;
     }
 
-    public Optional<ProfileItem> getInterestingWeaponMaybe(final MappedFactionFilters filters) {
-        if (weapons.isEmpty()) return Optional.empty();
+    public List<ProfileItem> getInterestingWeapons(final MappedFactionFilters filters) {
+        List<ProfileItem> result = new ArrayList<>();
+        if (weapons.isEmpty()) return result;
 
-        Collection<ProfileItem> bsWeapons = weapons.stream()
+        ProfileItem firstWeapon;
+
+        // First get the lowest indexed BS weapon
+        Optional<ProfileItem> maybeBSWeapon = weapons.stream()
                 .filter(w->filters.getItem(FilterType.weapons,w.getId()).getType().equalsIgnoreCase("BS"))
-                .collect(Collectors.toList());
+                .min(Comparator.comparing(ProfileItem::getOrder));
 
-        if( bsWeapons.isEmpty() ) {
-            // CC only? just return whatever
-            return weapons.stream().min(Comparator.comparing(ProfileItem::getOrder));
+        if( maybeBSWeapon.isPresent()) {
+            firstWeapon = maybeBSWeapon.get();
+        } else {
+            // CC only? Just grab the first. We know there is one, since we checked isEmpty.
+            firstWeapon = weapons.stream().min(Comparator.comparing(ProfileItem::getOrder)).get();
         }
-        return bsWeapons.stream().min(Comparator.comparing(ProfileItem::getOrder));
 
+        if (!Util.interestingWeapons.contains(firstWeapon.getId())) {
+            // Make sure we don't double add
+            result.add(firstWeapon);
+        }
+        // Now add anything on the interesting weapons list
+        weapons.stream()
+                .filter(w->Util.interestingWeapons.contains(w.getId()))
+                .sorted(Comparator.comparing(ProfileItem::getOrder))
+                .forEach(result::add);
+        return result;
     }
 
     public PrintableUnit getPrintableUnit(final MappedFactionFilters filters, SECTORAL sectoral) throws InvalidObjectException {

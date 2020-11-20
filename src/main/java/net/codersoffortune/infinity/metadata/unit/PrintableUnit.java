@@ -199,12 +199,12 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
 
         // Is the weapon interesting?
-        Optional<ProfileItem> interestingWeaponMaybe = src.getInterestingWeaponMaybe(filters);
+        List<ProfileItem> interestingWeapons = src.getInterestingWeapons(filters);
         List<String> interestingStuff = getInterestingStuff(src, filters);
+        interestingWeapons.stream()
+                .map(w->w.toString(filters, FilterType.weapons))
+                .forEach(interestingStuff::add);
 
-        if (interestingWeaponMaybe.isPresent()) {
-            interestingStuff.add(interestingWeaponMaybe.get().toString(filters, FilterType.weapons));
-        }
         distinguisher = String.join(", ", interestingStuff);
 
     }
