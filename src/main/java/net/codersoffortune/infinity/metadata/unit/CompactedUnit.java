@@ -7,13 +7,10 @@ import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 
 import java.io.InvalidObjectException;
 import java.util.ArrayList;
-
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -29,7 +26,6 @@ public class CompactedUnit {
     private final Set<ProfileItem> publicSkills = new HashSet<>();
 
 
-
     private final int unit_idx;
     private final int group_idx;
     private final int option_idx;
@@ -37,18 +33,7 @@ public class CompactedUnit {
     private final Profile profile;
     private final ProfileGroup group;
     private final ProfileOption option;
-
-    public List<ProfileItem> getWeapons() {
-        return weapons;
-    }
-    public List<ProfileItem> getSkills() {
-        return skills;
-    }
-
-
     private final String name;
-
-
 
     public CompactedUnit(int unit_idx, ProfileGroup group, Profile profile, ProfileOption option) {
         this.unit_idx = unit_idx;
@@ -83,17 +68,6 @@ public class CompactedUnit {
         return !(c == 2 || c == 5);
     }
 
-
-    // 119 - lt
-    // 69 strategos l1
-    // 70 strategos l2
-    // 26 chain of command
-    // 120 FT:Core
-    // 121 FT:Haris
-    // 181 FT:Duo
-    final static List<Integer> privateSkills =
-            Arrays.asList(119,69,70,26,120,121,181);
-
     /**
      * Checks whether to suppress a hidden information skill
      * Also strip fireteam info. TODO:: Workout if this is really what we want to do.
@@ -102,7 +76,15 @@ public class CompactedUnit {
      * @return true iff this skill is good to print
      */
     static boolean skipSkills(int c) {
-        return !privateSkills.contains(c);
+        return !Util.privateSkills.contains(c);
+    }
+
+    public List<ProfileItem> getWeapons() {
+        return weapons;
+    }
+
+    public List<ProfileItem> getSkills() {
+        return skills;
     }
 
     public boolean publicallyEqual(CompactedUnit other) {
@@ -167,6 +149,12 @@ public class CompactedUnit {
         return option;
     }
 
+    private boolean isInterestingWeapon(final ProfileItem weapon) {
+        return Util.interestingWeapons.contains(weapon.getId()) || (weapon.getExtra() != null &&
+                weapon.getExtra().stream().anyMatch(Util.interestingWeaponMods::contains));
+
+    }
+
     public List<ProfileItem> getInterestingWeapons(final MappedFactionFilters filters) {
         List<ProfileItem> result = new ArrayList<>();
         if (weapons.isEmpty()) return result;
@@ -175,25 +163,23 @@ public class CompactedUnit {
 
         // First get the lowest indexed BS weapon
         Optional<ProfileItem> maybeBSWeapon = weapons.stream()
-                .filter(w->filters.getItem(FilterType.weapons,w.getId()).getType().equalsIgnoreCase("BS"))
+                .filter(w -> filters.getItem(FilterType.weapons, w.getId()).getType().equalsIgnoreCase("BS"))
                 .min(Comparator.comparing(ProfileItem::getOrder));
 
-        if( maybeBSWeapon.isPresent()) {
+        if (maybeBSWeapon.isPresent()) {
             firstWeapon = maybeBSWeapon.get();
-        } else {
-            // CC only? Just grab the first. We know there is one, since we checked isEmpty.
-            firstWeapon = weapons.stream().min(Comparator.comparing(ProfileItem::getOrder)).get();
-        }
 
-        if (!Util.interestingWeapons.contains(firstWeapon.getId())) {
-            // Make sure we don't double add
-            result.add(firstWeapon);
+            if (!isInterestingWeapon(firstWeapon)) {
+                // Make sure we don't double add
+                result.add(firstWeapon);
+            }
         }
         // Now add anything on the interesting weapons list
         weapons.stream()
-                .filter(w->Util.interestingWeapons.contains(w.getId()))
+                .filter(this::isInterestingWeapon)
                 .sorted(Comparator.comparing(ProfileItem::getOrder))
                 .forEach(result::add);
+
         return result;
     }
 

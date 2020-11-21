@@ -144,12 +144,14 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
      */
     private List<String> getInterestingStuff(CompactedUnit src, MappedFactionFilters filters) {
         List<String> results = new ArrayList<>();
-        src.getOption().getSkills().stream()
-                .filter(s -> CompactedUnit.skipSkills(s.getId()))
+        src.getSkills().stream()
+                .filter(s -> !Util.privateSkills.contains(s.getId()))
+                .filter(s -> Util.interestingSkills.contains(s.getId()))
                 .forEach(s -> results.add(s.toString(filters, FilterType.skills)));
 
         src.getOption().getEquip().stream()
                 .filter(e -> filters.getItem(FilterType.equip, e).getType().equalsIgnoreCase("PERSON"))
+                .filter(e -> !Util.boringEquipment.contains(e.getId()))
                 .map(e -> e.toString(filters, FilterType.equip))
                 .forEach(results::add);
         return results;
@@ -342,21 +344,17 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
     protected List<String> getTTSSilhouettes() {
 
-        String template = Database.getSilhouetteTemplates().get(s);
-        String description;
-        String decal;
-        String tint = sectoral.getTint();
+        final String template = Database.getSilhouetteTemplates().get(s);
+        final String description;
+        final String side_decal;
+        final String top_decal;
+        final String tint;
         List<String> result = new ArrayList<>();
 
         if (flags.getImpersonisation() > 1) {
             //has IMP1
             result.add(String.format(template,"IMP-1 (discover -6)",IMP_TINTS.get(1),"", IMP_DECALS.get(1)));
         }
-        if (flags.getImpersonisation() > 0 ) {
-            // has IMP2
-            result.add(String.format(template,"IMP-2",IMP_TINTS.get(0),"", IMP_DECALS.get(0)));
-        }
-
 
         if (flags.isCamo()) {
             int mimetism = flags.getMimetism();
@@ -365,15 +363,30 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
             } else {
                 description = String.format("Camouflage S%d", s);
             }
-            decal = CAMO_DECALS.get(mimetism);
+            side_decal = CAMO_DECALS.get(mimetism);
+            top_decal = "";
+            tint = sectoral.getTint();
         } else {
-            description = String.format("Silhouette %d", s);
-            decal = "";
+            /* it may seem slightly odd putting imp2 here, _but_ this is due to cybermask
+               granting imp2 _only_. A unit won't have camo + IMP, but might have camo + cybermask.
+               However in that case IMP2 is pointless so don't bother.
+               Also, if you have IMP2, don't bother with a normal sil.
+             */
+            if (flags.getImpersonisation() > 0 ) {
+                // has IMP2
+                description = "IMP-2";
+                side_decal = "";
+                top_decal = IMP_DECALS.get(0);
+                tint = IMP_TINTS.get(0);
+            } else {
+                description = String.format("Silhouette %d", s);
+                side_decal = "";
+                top_decal = "";
+                tint = sectoral.getTint();
+            }
         }
 
-
-
-        result.add(String.format(template, description, tint, decal, ""));
+        result.add(String.format(template, description, tint, side_decal, top_decal));
         return result;
     }
 

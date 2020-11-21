@@ -86,6 +86,17 @@ public class Util {
             165 // TZE
     );
 
+    // 119 - lt
+    // 69 strategos l1
+    // 70 strategos l2
+    // 26 chain of command
+    // 120 FT:Core
+    // 121 FT:Haris
+    // 125 FT: ent
+    // 181 FT:Duo
+    public final static List<Integer> privateSkills =
+            Arrays.asList(119,69,70,26,120,121,125,181);
+
     /**
      * Figure out the correct name to put along the top of the model.
      * This is _almost_ always the unit name.
@@ -110,19 +121,90 @@ public class Util {
         50, // Adhesive launcher
         70, // Assault Pistol
         14, // Blitzen
-        15, // chain rifle
-        16, // chain colt
+        18, // chain rifle
+        80, // chain colt
         201, // EM grenade launcher
         82, // Flammenspeer
         194, // gren launcher
         57, // heavy flamer
         56, // light flamer
         58, // missile launcher
-        9, // mono ccw
         65, // nanopulser
         68, // panzerf
-        195 // smoke GL
+        77, // SMG
+        195, // smoke GL
+        154, // Pitcher
+        176, // mine dispenser
+        179, // viral bow
+        193, // bow
+        197, // EM mines
+        88, // LRL
+        96, // Drop Bears
+        20, // koalas
+        23, // E/Marat
+        196, // shock mines
+        174, // cyber mines
+        175 // zapper
     );
+
+    /**
+     * A weapon can also be interesting if it has an interesting mod
+     */
+    public static final List<Integer> interestingWeaponMods = Arrays.asList(
+      4, // +1D
+      271, // +1BS (unsure if any weapons have this though)
+      30, //shock
+      8, // +1B
+      39 // viral
+    );
+
+    /**
+     * Some equipment, even if it is on CB's list, just isn't that interesting.
+     *
+     */
+    public static final List<Integer> boringEquipment = Arrays.asList(
+            104, // holoprojector
+            24, // holomask
+            238 // deactivator
+    );
+
+    public static final List<Integer> interestingSkills = Arrays.asList(
+      49, // engineer
+      53, // doctor
+      59, // forward observer
+      61, // TR
+      189, // Specialist
+      64, // paramedic
+      67, // sixth sense
+      1000 // hacker
+    );
+
+//    public static final List<Integer> boringSkills = Arrays.asList(
+//            161, // forward deployment
+//            242 // triangulated fire
+//            131, // discover
+//            138, // bioimmune
+//            19,20,21,22,23, // MAL1-5
+//            24, // beserk
+//            25, // booty
+//            28, // mimetism
+//            156, // marksman
+//            29, //camo
+//            33, // parachute
+//            162, // immune
+//            35, //c jump
+//            164, // stealth
+//            39, // nbw
+//            40, //dodge
+//            47, // infiltrate
+//            55, // metach
+//            56, // minelayer
+//            58, // terrain
+//            60,
+//
+//
+//
+//    );
 
 
     // Distances

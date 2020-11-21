@@ -31,6 +31,7 @@ public class Database {
     private static String bagTemplate = "";
     private static String factionTemplate = "";
     private static String transmutedUnitTemplate = "";
+    private static List<String> impersonationTemplates = new ArrayList<>();
 
     private Database() throws IOException {
         // block reflection
@@ -65,6 +66,10 @@ public class Database {
         transmutedUnitTemplate = getResourceFileAsString("Templates/transmuted_model_template");
         factionTemplate = getResourceFileAsString("templates/faction_template");
         bagTemplate = getResourceFileAsString("templates/bag_template");
+        impersonationTemplates = Arrays.asList(
+                getResourceFileAsString("templates/IMP1.json"),
+                getResourceFileAsString("templates/IMP2.json")
+        );
     }
 
     public static String getBagTemplate() {
@@ -111,6 +116,10 @@ public class Database {
 
     public static String getTransmutedUnitTemplate() {
         return transmutedUnitTemplate;
+    }
+
+    public static List<String> getImpersonationTemplates() {
+        return impersonationTemplates;
     }
 
     public Metadata getMetadata() {
