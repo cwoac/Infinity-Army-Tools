@@ -147,12 +147,12 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         src.getSkills().stream()
                 .filter(s -> !Util.privateSkills.contains(s.getId()))
                 .filter(s -> Util.interestingSkills.contains(s.getId()))
-                .forEach(s -> results.add(s.toString(filters, FilterType.skills)));
+                .forEach(s -> results.add(s.toString(filters, FilterType.skills, true)));
 
         src.getOption().getEquip().stream()
                 .filter(e -> filters.getItem(FilterType.equip, e).getType().equalsIgnoreCase("PERSON"))
                 .filter(e -> !Util.boringEquipment.contains(e.getId()))
-                .map(e -> e.toString(filters, FilterType.equip))
+                .map(e -> e.toString(filters, FilterType.equip, true))
                 .forEach(results::add);
         return results;
     }
@@ -203,8 +203,9 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         // Is the weapon interesting?
         List<ProfileItem> interestingWeapons = src.getInterestingWeapons(filters);
         List<String> interestingStuff = getInterestingStuff(src, filters);
+        boolean shortenWeapons = interestingWeapons.size() > 1;
         interestingWeapons.stream()
-                .map(w->w.toString(filters, FilterType.weapons))
+                .map(w->w.toString(filters, FilterType.weapons, shortenWeapons))
                 .forEach(interestingStuff::add);
 
         distinguisher = String.join(", ", interestingStuff);

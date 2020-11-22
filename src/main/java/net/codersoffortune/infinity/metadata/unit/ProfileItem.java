@@ -1,10 +1,12 @@
 package net.codersoffortune.infinity.metadata.unit;
 
+import net.codersoffortune.infinity.Util;
 import net.codersoffortune.infinity.metadata.FilterType;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Filter;
 import java.util.stream.Collectors;
 
 public class ProfileItem {
@@ -44,11 +46,17 @@ public class ProfileItem {
      *
      * @param filters the filters to look up the text from
      * @param type    the type of item this represents (yes, I know it's odd we don't store it in the object)
+     * @param shorten whether to abbreviate the title, if able.
      * @return A formatted string.
      */
-    public String toString(final MappedFactionFilters filters, final FilterType type) {
+    public String toString(final MappedFactionFilters filters, final FilterType type, boolean shorten) {
         StringBuilder result = new StringBuilder();
-        result.append(filters.getItem(type, getId()).getName());
+        if(shorten && Util.abbreviations.containsKey(type) && Util.abbreviations.get(type).containsKey(getId())) {
+            result.append(Util.abbreviations.get(type).get(getId()));
+        } else {
+            // no abbreviation. Take the full one.
+            result.append(filters.getItem(type, getId()).getName());
+        }
 
         if (getExtra() != null && !getExtra().isEmpty()) {
             List<String> extras = extra.stream().map(x -> filters.getItem(FilterType.extras, x).getName())
@@ -56,6 +64,18 @@ public class ProfileItem {
             result.append(String.format("(%s)", String.join(", ", extras)));
         }
         return result.toString();
+    }
+
+    /**
+     * Build a nicely formatted version, including the extras
+     * e.g. Heavy Machine Gun (+1 Burst)
+     *
+     * @param filters the filters to look up the text from
+     * @param type    the type of item this represents (yes, I know it's odd we don't store it in the object)
+     * @return A formatted string.
+     */
+    public String toString(final MappedFactionFilters filters, final FilterType type) {
+        return toString(filters, type, false);
     }
 
     /**

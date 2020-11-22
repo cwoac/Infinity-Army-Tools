@@ -1,7 +1,11 @@
 package net.codersoffortune.infinity;
 
+import net.codersoffortune.infinity.metadata.FilterType;
+
+import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Private class for all things hardcoded, utility and otherwise "don't quite have a home".
@@ -165,7 +169,8 @@ public class Util {
     public static final List<Integer> boringEquipment = Arrays.asList(
             104, // holoprojector
             24, // holomask
-            238 // deactivator
+            238, // deactivator
+            169 //tinbot
     );
 
     public static final List<Integer> interestingSkills = Arrays.asList(
@@ -177,6 +182,91 @@ public class Util {
       64, // paramedic
       67, // sixth sense
       1000 // hacker
+    );
+
+    public static final Map<Integer, String> SkillAbbreviations = Map.of(
+            19, "MA1",
+            20, "MA2",
+            21, "MA3",
+            22, "MA4",
+            23, "MA5",
+            59, "FO",
+            61, "TR",
+            189, "Specialist",
+            204, "SpecOps"
+
+    );
+
+    public static final Map<Integer, String> EquipAbbreviations = Map.of(
+            100, "HD",
+            101, "HD+",
+            145, "KHD",
+            182, "Evo HD",
+            114, "MSV1",
+            115, "MSV2",
+            116, "MSV3"
+    );
+
+    //TODO:: Load this from a file?
+    //	Map<String, String> map = Map.ofEntries(
+    //	  new AbstractMap.SimpleEntry<String, String>("name", "John"),
+
+    public static final Map<Integer, String> WeaponAbbreviations = Map.ofEntries(
+            new AbstractMap.SimpleEntry<>(1, "AK-Kanone"),
+            new AbstractMap.SimpleEntry<>(2, "HMG"),
+            new AbstractMap.SimpleEntry<>(3, "AP HMG"),
+            new AbstractMap.SimpleEntry<>(4, "Multi HMG"),
+            new AbstractMap.SimpleEntry<>(26, "BSG"),
+            new AbstractMap.SimpleEntry<>(28, "LSG"),
+            new AbstractMap.SimpleEntry<>(29, "HSG"),
+            new AbstractMap.SimpleEntry<>(31, "Rfl"),
+            new AbstractMap.SimpleEntry<>(32, "AP Rfl"),
+            new AbstractMap.SimpleEntry<>(33, "Combi"),
+            new AbstractMap.SimpleEntry<>(34, "Sniper"),
+            new AbstractMap.SimpleEntry<>(36, "Multi Sniper"),
+            new AbstractMap.SimpleEntry<>(38, "T2 Sniper"),
+            new AbstractMap.SimpleEntry<>(39, "Viral Sniper"),
+            new AbstractMap.SimpleEntry<>(40, "Plasma Rfl"),
+            new AbstractMap.SimpleEntry<>(41, "Multi Rfl"),
+            new AbstractMap.SimpleEntry<>(44, "Grn"),
+            new AbstractMap.SimpleEntry<>(45, "Smoke Grn"),
+            new AbstractMap.SimpleEntry<>(46, "Eclipse Grn"),
+            new AbstractMap.SimpleEntry<>(47, "E/M Grn"),
+            new AbstractMap.SimpleEntry<>(50, "ADHL"),
+            new AbstractMap.SimpleEntry<>(56, "LFT"),
+            new AbstractMap.SimpleEntry<>(57, "HFT"),
+            new AbstractMap.SimpleEntry<>(58, "ML"),
+            new AbstractMap.SimpleEntry<>(62, "Mono Mines"),
+            new AbstractMap.SimpleEntry<>(65, "Nano"),
+            new AbstractMap.SimpleEntry<>(68, "Pnzrf"),
+            new AbstractMap.SimpleEntry<>(69, "Pst"),
+            new AbstractMap.SimpleEntry<>(70, "Assault Pst"),
+            new AbstractMap.SimpleEntry<>(77, "SMG"),
+            new AbstractMap.SimpleEntry<>(81, "VSG"),
+            new AbstractMap.SimpleEntry<>(84, "MMR"),
+            new AbstractMap.SimpleEntry<>(88, "LRL"),
+            new AbstractMap.SimpleEntry<>(89, "HRL"),
+            new AbstractMap.SimpleEntry<>(92, "Stun Pst"),
+            new AbstractMap.SimpleEntry<>(98, "Breaker Pst"),
+            new AbstractMap.SimpleEntry<>(100, "AP Hvy Pst"),
+            new AbstractMap.SimpleEntry<>(103, "Breaker Combi"),
+            new AbstractMap.SimpleEntry<>(110, "K1 SR"),
+            new AbstractMap.SimpleEntry<>(155, "Shock MMR"),
+            new AbstractMap.SimpleEntry<>(156, "Viral Pst"),
+            new AbstractMap.SimpleEntry<>(169, "Multi MMR"),
+            new AbstractMap.SimpleEntry<>(179, "Viral Bow"),
+            new AbstractMap.SimpleEntry<>(181, "K1 MMR"),
+            new AbstractMap.SimpleEntry<>(189, "Multi Pst"),
+            new AbstractMap.SimpleEntry<>(193, "Bow"),
+            new AbstractMap.SimpleEntry<>(194, "GL"),
+            new AbstractMap.SimpleEntry<>(195, "Smoke GL"),
+            new AbstractMap.SimpleEntry<>(201, "E/M GL")
+    );
+
+    public static final Map<FilterType, Map<Integer, String>> abbreviations = Map.of(
+            FilterType.equip, EquipAbbreviations,
+            FilterType.weapons, WeaponAbbreviations,
+            FilterType.skills, SkillAbbreviations
     );
 
 //    public static final List<Integer> boringSkills = Arrays.asList(
