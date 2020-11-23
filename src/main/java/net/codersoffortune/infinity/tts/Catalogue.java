@@ -11,6 +11,8 @@ import net.codersoffortune.infinity.metadata.unit.Unit;
 import net.codersoffortune.infinity.metadata.unit.UnitID;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -28,6 +30,8 @@ import java.util.stream.Collectors;
  * Describes the set of models needs to represent an entire faction.
  */
 public class Catalogue {
+
+    private static final Logger logger = LogManager.getLogger();
 
     public static final String[] CSV_HEADERS = new String[]{"sectoral", "unit", "group", "profile", "option", "name", "weapons", "equip",
             "meshName1", "decals1", "meshes1",
@@ -69,11 +73,12 @@ public class Catalogue {
 
     public void addUnits(final SectoralList list, SECTORAL sectoral_idx, boolean useMercs) throws InvalidObjectException {
         MappedFactionFilters filters = list.getMappedFilters();
+        logger.debug("Adding Units for " + sectoral_idx.toString());
         for (Unit unit : list.getUnits()) {
             if (!useMercs && unit.isMerc()) continue;
-
+            logger.trace("Parsing " + unit.toString());
             for (CompactedUnit cu : unit.getAllDistinctUnits()) {
-
+                logger.trace("Adding " + cu.toString());
                 PrintableUnit pu =cu.getPrintableUnit(filters, sectoral_idx);
                 boolean claimed = unitEquivalenceMappings.stream().anyMatch(x -> x.addUnitMaybe(pu));
                 if (!claimed)
@@ -92,11 +97,10 @@ public class Catalogue {
      * @throws IOException on failure
      */
     public String asJson(FACTION faction, final ModelSet ms) throws IOException {
-        //TODO:: Check we have all the models / log missing.
-
         // Make sure the templates are loaded
         Database.getInstance();
         String template = faction.getTemplate();
+        logger.info("Building JSON for " + faction.getName());
         return asJsonInner(template, ms);
     }
 
@@ -111,6 +115,7 @@ public class Catalogue {
         // Make sure the templates are loaded
         Database.getInstance();
         String template = sectoral.getTemplate();
+        logger.info("Building JSON for " + sectoral.getName());
         return asJsonInner(template, ms);
 
     }
@@ -121,7 +126,10 @@ public class Catalogue {
 
         for( EquivalenceMapping equivalenceMapping : unitEquivalenceMappings) {
             // Don't bother with unit groups without models
-            if (!ms.hasOneOf(equivalenceMapping)) continue;
+            if (!ms.hasOneOf(equivalenceMapping)) {
+                logger.warn("Unable to find models for "+equivalenceMapping.baseUnit.toString());
+                continue;
+            }
             allUnits.add(equivalenceMapping.baseUnit);
             allUnits.addAll(equivalenceMapping.equivalentUnits);
         }
@@ -143,6 +151,19 @@ public class Catalogue {
         FileWriter fh = new FileWriter(filename);
         try (CSVPrinter out = new CSVPrinter(fh, CSVFormat.EXCEL.withHeader(CSV_HEADERS))) {
             for (PrintableUnit u : unitList) u.printCSVRecord(out, ms);
+        }
+    }
+
+    /**
+     * Generates a CSV file containing _just_ the missing base units for assigning models to groups.
+     *
+     * @param filename to write the csv out to
+     * @throws IOException on error.
+     */
+    public void toModellessCSV(final String filename, final ModelSet ms) throws IOException {
+        FileWriter fh = new FileWriter(filename);
+        try (CSVPrinter out = new CSVPrinter(fh, CSVFormat.EXCEL.withHeader(CSV_HEADERS))) {
+            for (PrintableUnit u : getModellessList(ms)) u.printCSVRecord(out, ms);
         }
     }
 

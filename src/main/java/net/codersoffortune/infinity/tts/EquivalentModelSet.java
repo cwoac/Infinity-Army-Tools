@@ -69,6 +69,9 @@ public class EquivalentModelSet extends ModelSet {
             UnitID mappingUnitID = maybeUnitID.get();
             Set<TTSModel> mappingModels = models.get(mappingUnitID);
 
+            // Give them a nice name
+            mappingModels.forEach(m->m.setName(mapping.getRepresentative().getTTSName()));
+
             // Now add them all to ms
             mapping.getAllUnits().stream()
                     .map(PrintableUnit::getUnitID)

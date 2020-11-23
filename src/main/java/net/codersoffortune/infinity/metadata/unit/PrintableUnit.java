@@ -11,6 +11,8 @@ import net.codersoffortune.infinity.tts.ModelSet;
 import net.codersoffortune.infinity.tts.TTSModel;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.text.StringEscapeUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InvalidObjectException;
@@ -27,6 +29,8 @@ import java.util.stream.Collectors;
  * Like a @{link RegularCompactedUnit}, but with all the strings expanded.
  */
 public class PrintableUnit implements Comparable<PrintableUnit> {
+    private static final Logger logger = LogManager.getLogger();
+
     private final List<String> weapons;
     private final List<String> skills;
     private final List<String> equip;
@@ -399,7 +403,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return StringEscapeUtils.escapeJson(result);
     }
 
-    protected String getTTSName() {
+    public String getTTSName() {
         return getTTSNameInner(name);
     }
 
@@ -417,7 +421,6 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         final String states = StreamUtils.zipWithIndex(ttsSilhouettes.stream())
             .map(x -> embedState(x.getValue(), x.getIndex()+2))
             .collect(Collectors.joining("\n,"));
-
         //final String states = String.join(",\n", ttsSilhouettes);
         final String ttsColour = sectoral.getTint();
         List<String> ttsModels = ms.getModels(getUnitID()).stream().map(m -> String.format(Database.getUnitTemplate(),
@@ -427,6 +430,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 m.getMeshes(),
                 m.getDecals(),
                 states)).collect(Collectors.toList());
+        logger.trace(String.format("asFactionJSON for %s has %d models", this.toString(), ttsModels.size()));
         return String.join(",\n", ttsModels);
     }
 

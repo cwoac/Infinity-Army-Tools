@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
  * A compacted unit is the final profile got from taking a specific profile group / option combination on a unit.
  */
 public class CompactedUnit {
+
     private final List<ProfileItem> weapons = new ArrayList<>();
     private final List<ProfileItem> skills = new ArrayList<>();
     private final List<ProfileItem> equipment = new ArrayList<>();
@@ -60,6 +61,16 @@ public class CompactedUnit {
         // Not sure if anyone _has_ more than one peripheral, but just in case.
         peripheral.sort(Comparator.comparing(ProfileItem::getOrder));
 
+    }
+
+    @Override
+    public String toString() {
+        return "CompactedUnit{" +
+                "u:" + unit_idx +
+                ", g:" + group_idx +
+                ", o:" + option_idx +
+                ", p:" + profile_idx +
+                '}';
     }
 
     // chars to ignore : 2,5

@@ -12,6 +12,8 @@ import net.codersoffortune.infinity.metadata.unit.Unit;
 import net.codersoffortune.infinity.metadata.unit.UnitID;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -36,7 +38,10 @@ import java.util.regex.Pattern;
 import static net.codersoffortune.infinity.tts.Catalogue.CSV_HEADERS;
 
 public class ModelSet {
+    private static final Logger logger = LogManager.getLogger();
+
     private static final ObjectMapper SORTED_MAPPER = new ObjectMapper();
+
     static {
         SORTED_MAPPER.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
     }
@@ -90,6 +95,7 @@ public class ModelSet {
 
     /**
      * Write the contents of this ModelSet to a file, suitible for later reading.
+     *
      * @param filename to write to
      * @throws IOException on failure
      */
@@ -117,7 +123,7 @@ public class ModelSet {
         TypeReference<Map<UnitID, Set<TTSModel>>> mapRef = new TypeReference<>() {
         };
         Map<UnitID, Set<TTSModel>> staging = SORTED_MAPPER.readValue(new File(filename), mapRef);
-        for( Map.Entry<UnitID, Set<TTSModel>> entry : staging.entrySet()) {
+        for (Map.Entry<UnitID, Set<TTSModel>> entry : staging.entrySet()) {
             addModels(entry.getKey(), entry.getValue());
         }
     }
@@ -127,7 +133,7 @@ public class ModelSet {
         ObjectInputStream objIn = new ObjectInputStream(fileIn);
         Map<UnitID, Set<TTSModel>> staging = (Map<UnitID, Set<TTSModel>>) objIn.readObject();
         objIn.close();
-        for( Map.Entry<UnitID, Set<TTSModel>> entry : staging.entrySet()) {
+        for (Map.Entry<UnitID, Set<TTSModel>> entry : staging.entrySet()) {
             addModels(entry.getKey(), entry.getValue());
         }
     }
@@ -165,6 +171,7 @@ public class ModelSet {
     }
 
     protected void addModels(UnitID unitID, Collection<TTSModel> newModels) {
+        logger.trace("Adding {} models for {}", newModels.size(), unitID);
         try {
             if (!models.containsKey(unitID)) {
                 models.put(unitID, new HashSet<>(newModels));
@@ -179,11 +186,13 @@ public class ModelSet {
 
     /**
      * Copy the contents of another modelset into this one
+     *
      * @param ms to copy from
      */
     public void addModelSet(final ModelSet ms) {
         ms.getModels().forEach((key, value) -> addModels(key, value));
     }
+
 
     public void readCSV(String filename) throws IOException {
         FileReader fh = new FileReader(filename);

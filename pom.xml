@@ -79,9 +79,19 @@
         <csv-version>1.8</csv-version>
         <text-version>1.9</text-version>
         <protonpack-version>1.16</protonpack-version>
+        <log4j.version>2.14.0</log4j.version>
     </properties>
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-text</artifactId>
