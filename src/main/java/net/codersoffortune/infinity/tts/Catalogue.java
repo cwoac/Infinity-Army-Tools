@@ -97,11 +97,23 @@ public class Catalogue {
      * @throws IOException on failure
      */
     public String asJson(FACTION faction, final ModelSet ms) throws IOException {
+        return asJson(faction, ms, false);
+    }
+
+    /**
+     * Generate a Json string of _all_ the units, in a faction bag format for TTS
+     * @param faction to label the bag as for
+     * @param ms set of models to use for the conversion
+     * @param multiplesOnly whether to only output units with multiple models
+     * @return json representation of the catalogue
+     * @throws IOException on failure
+     */
+    public String asJson(FACTION faction, final ModelSet ms, boolean multiplesOnly) throws IOException {
         // Make sure the templates are loaded
         Database.getInstance();
         String template = faction.getTemplate();
         logger.info("Building JSON for " + faction.getName());
-        return asJsonInner(template, ms);
+        return asJsonInner(template, ms, multiplesOnly);
     }
 
     /**
@@ -112,16 +124,28 @@ public class Catalogue {
      * @throws IOException on failure
      */
     public String asJson(SECTORAL sectoral, final ModelSet ms) throws IOException {
+        return asJson(sectoral, ms, false);
+    }
+
+    /**
+     * Generate a Json string of _all_ the units, in a sectoral bag format for TTS
+     * @param sectoral to label the bag as for
+     * @param ms set of models to use for the conversion
+     * @param multiplesOnly whether to only output units with multiple models
+     * @return json representation of the catalogue
+     * @throws IOException on failure
+     */
+    public String asJson(SECTORAL sectoral, final ModelSet ms, boolean multiplesOnly) throws IOException {
         // Make sure the templates are loaded
         Database.getInstance();
         String template = sectoral.getTemplate();
         logger.info("Building JSON for " + sectoral.getName());
-        return asJsonInner(template, ms);
+        return asJsonInner(template, ms, multiplesOnly);
 
     }
 
 
-    private String asJsonInner(final String template, final ModelSet ms) {
+    private String asJsonInner(final String template, final ModelSet ms, boolean multiplesOnly) {
         List<PrintableUnit> allUnits = new ArrayList<>();
 
         for( EquivalenceMapping equivalenceMapping : unitEquivalenceMappings) {
@@ -130,6 +154,9 @@ public class Catalogue {
                 logger.warn("Unable to find models for "+equivalenceMapping.baseUnit.toString());
                 continue;
             }
+
+            if( multiplesOnly && ms.getCountFor(equivalenceMapping)<2 ) continue;
+
             allUnits.add(equivalenceMapping.baseUnit);
             allUnits.addAll(equivalenceMapping.equivalentUnits);
         }
@@ -190,7 +217,7 @@ public class Catalogue {
             if (!baseUnit.isEquivalent(unit)) {
                 return false;
             }
-            if (baseUnit.equals(unit)) {
+            if (baseUnit.functionallyEquals(unit)) {
                 // Don't bother adding it if it is the base object
                 return true;
             }

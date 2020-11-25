@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.metadata.FactionList;
+import net.codersoffortune.infinity.metadata.unit.PrintableUnit;
 import net.codersoffortune.infinity.metadata.unit.ProfileOption;
 import net.codersoffortune.infinity.metadata.unit.Unit;
 import net.codersoffortune.infinity.metadata.unit.UnitID;
@@ -331,6 +332,15 @@ public class ModelSet {
      */
     public boolean hasOneOf(final Catalogue.EquivalenceMapping mapping) {
         return mapping.getAllUnits().stream().anyMatch(u -> models.containsKey(u.getUnitID()));
+    }
+    public int getCountFor(final Catalogue.EquivalenceMapping mapping) {
+        return mapping.getAllUnits().stream()
+                .map(PrintableUnit::getUnitID)
+                .filter(models::containsKey)
+                .map(models::get)
+                .map(Set::size)
+                .findFirst()
+                .orElse(0);
     }
 
     public Set<TTSModel> getModels(final UnitID unitID) {

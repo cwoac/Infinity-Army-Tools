@@ -102,7 +102,18 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 group_idx == that.group_idx &&
                 option_idx == that.option_idx &&
                 profile_idx == that.profile_idx &&
-                arm == that.arm &&
+                functionallyEquals(that);
+    }
+
+    /**
+     * Are these two units the same (ignoring unitID).
+     * This is mostly relevant for auxbots and the like where multiple units will have the same
+     * addon option
+     * @param that to compare against
+     * @return true iff they are the same
+     */
+    public boolean functionallyEquals(final PrintableUnit that) {
+        return  arm == that.arm &&
                 bs == that.bs &&
                 bts == that.bts &&
                 cc == that.cc &&
@@ -123,11 +134,17 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 Objects.equals(distinguisher, that.distinguisher);
     }
 
+    /**
+     * Compares two units to see if they are visibily the same (i.e. can use the same mesh+decals)
+     * @param that to compare against
+     * @return true if they look the same
+     */
     public boolean isEquivalent(PrintableUnit that) {
         return name.equals(that.name) &&
                 visible_equipment.equals(that.visible_equipment) &&
                 visible_weapons.equals(that.visible_weapons) &&
-                visible_skills.equals(that.visible_skills);
+                visible_skills.equals(that.visible_skills) &&
+                s == that.s;
     }
 
     public UnitID getUnitID() {
