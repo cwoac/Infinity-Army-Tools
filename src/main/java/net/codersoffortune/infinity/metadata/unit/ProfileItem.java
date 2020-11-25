@@ -1,6 +1,7 @@
 package net.codersoffortune.infinity.metadata.unit;
 
 import net.codersoffortune.infinity.Util;
+import net.codersoffortune.infinity.metadata.FilterItem;
 import net.codersoffortune.infinity.metadata.FilterType;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 
@@ -40,6 +41,22 @@ public class ProfileItem {
         return Objects.hash(cleanExtra(), id);
     }
 
+
+    /**
+     * Some extras are distances, so they should be formatted appropriately.
+     * @param extra to format
+     * @return the extra, converted to a String, with the distance changed if appropriate
+     */
+    private String formatExtra(int extra, final MappedFactionFilters filters) {
+        FilterItem filter = filters.getItem(FilterType.extras, extra);
+        if( filter.getType().equalsIgnoreCase("DISTANCE")) {
+            String stripped = filter.getName().replaceAll("[^\\d\\.]", "");
+            return String.format("+%s", Util.formatDistance(Float.parseFloat(stripped), true));
+        } else {
+            return filter.getName();
+        }
+    }
+
     /**
      * Build a nicely formatted version, including the extras
      * e.g. Heavy Machine Gun (+1 Burst)
@@ -59,7 +76,7 @@ public class ProfileItem {
         }
 
         if (getExtra() != null && !getExtra().isEmpty()) {
-            List<String> extras = extra.stream().map(x -> filters.getItem(FilterType.extras, x).getName())
+            List<String> extras = extra.stream().map(x -> formatExtra(x, filters))
                     .collect(Collectors.toList());
             result.append(String.format("(%s)", String.join(", ", extras)));
         }

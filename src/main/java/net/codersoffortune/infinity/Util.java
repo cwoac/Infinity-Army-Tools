@@ -2,6 +2,7 @@ package net.codersoffortune.infinity;
 
 import net.codersoffortune.infinity.metadata.FilterType;
 
+import java.text.DecimalFormat;
 import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.List;
@@ -299,20 +300,34 @@ public class Util {
 
     // Distances
     private static boolean inInches = true;
+    private static DecimalFormat distanceFormatter = new DecimalFormat("#.#");
 
     /**
      * Convert a value from CM to 'CB Inches' - so, 5 per 2.
      * @param cm distance
      * @return the distance in inches.
      */
-    public static int toInches(final int cm) {
-        return cm / 5 * 2;
+    public static float toInches(final float cm) {
+        return Math.round(cm / 2.5f);
     }
 
+    public static String formatDistance(float in) {
+        return formatDistance(in, false);
+    }
 
-    public static int formatDistance(final int in) {
-        if (inInches) return toInches(in);
-        return in;
+    public static String formatDistance(float in, boolean addUnit) {
+        float distance;
+        String unit;
+        if (inInches) {
+            distance = toInches(in);
+            unit = "\\\"";
+        } else {
+            distance = in;
+            unit = "cm";
+        }
+        if( addUnit)
+            return String.format("%s%s", distanceFormatter.format(distance), unit);
+        return distanceFormatter.format(distance);
     }
 
     /**
