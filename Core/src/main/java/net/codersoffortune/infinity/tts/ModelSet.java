@@ -52,7 +52,7 @@ public class ModelSet {
     public ModelSet() {
     }
 
-    public ModelSet(final String filename) throws IOException, ClassNotFoundException {
+    public ModelSet(final String filename) throws IOException {
         readFile(filename);
     }
 

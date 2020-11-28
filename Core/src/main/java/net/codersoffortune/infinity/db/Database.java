@@ -1,16 +1,22 @@
 package net.codersoffortune.infinity.db;
 
+import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.metadata.Faction;
 import net.codersoffortune.infinity.metadata.Metadata;
 import net.codersoffortune.infinity.metadata.SectoralList;
 import net.codersoffortune.infinity.metadata.unit.Unit;
+import net.codersoffortune.infinity.tts.Catalogue;
+import net.codersoffortune.infinity.tts.ModelSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InvalidObjectException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -153,5 +159,43 @@ public class Database {
         }
 
         return f.getUnit(unitId);
+    }
+
+    public String getVersion() {
+        return sectorals.get(101).getVersion();
+    }
+
+    /**
+     * Write the faction jsons to the indicated directory
+     * @param outputDir to write to
+     * @throws IOException on error
+     */
+    public void writeJson( File outputDir ) throws IOException {
+        ModelSet ms = new ModelSet("resources/model catalogue.json");
+        outputDir.mkdir();
+        for (FACTION faction : FACTION.values()) {
+            if (faction == FACTION.NA2) continue; // They have per sectoral boxes
+            logger.info("Reading {}", faction.getName());
+            Catalogue c = new Catalogue();
+            c.addUnits(sectorals, faction, false);
+            logger.info("Writing JSON");
+            String factionJson = c.asJson(faction, ms);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), faction.getName())));
+            writer.append(factionJson);
+            writer.close();
+        }
+
+        logger.info("Parsing NA2 Sectorals");
+        for (SECTORAL sectoral : FACTION.NA2.getSectorals()) {
+            System.out.printf("Reading %s%n", sectoral.getName());
+
+            Catalogue c = new Catalogue();
+            c.addUnits(sectorals.get(sectoral.getId()), sectoral, false);
+
+            String sectoralJSON = c.asJson(sectoral, ms);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), sectoral.getName())));
+            writer.append(sectoralJSON);
+            writer.close();
+        }
     }
 }

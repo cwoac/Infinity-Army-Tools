@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="net.codersoffortune.infinity.gui.MainController"
+      spacing="10">
+    <HBox fx:id="updateBox" spacing="5">
+        <Label text="Current Version"/>
+        <Label fx:id="versionLabel" text="Hello world FXML"/>
+        <Button fx:id="updateDBButton" text="Update DB" onAction="#updateClicked"/>
+        <ProgressIndicator fx:id="updateDBIndicator" />
+    </HBox>
+    <HBox spacing="10">
+        <Label text="Update box files" />
+        <Button fx:id="updateBoxButton" text="Write Faction Boxes" onAction="#writeBoxes"/>
+    </HBox>
+    <HBox spacing="10">
+        <Label text="Army Code:" />
+    </HBox>
+</VBox>
