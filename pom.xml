@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <properties>
         <!-- base versions -->
-        <java.version>9</java.version>
+        <java.version>11</java.version>
         <lang.encoding>UTF-8</lang.encoding>
         <project.build.sourceEncoding>${lang.encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${lang.encoding}</project.reporting.outputEncoding>
@@ -20,42 +20,9 @@
         <csv-version>1.8</csv-version>
         <text-version>1.9</text-version>
         <protonpack-version>1.16</protonpack-version>
-        <log4j.version>2.14.0</log4j.version>
+        <log4j-version>2.14.0</log4j-version>
+        <javafx-version>15.0.1</javafx-version>
     </properties>
-
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>3.1.0</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.0.2</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.1</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.2</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.2</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.2</version>
-            </plugin>
-
-        </plugins>
-    </build>
 
     <modules>
         <module>Core</module>
