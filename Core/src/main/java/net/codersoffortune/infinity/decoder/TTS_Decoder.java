@@ -7,6 +7,8 @@ import net.codersoffortune.infinity.metadata.unit.PrintableUnit;
 import net.codersoffortune.infinity.tts.Catalogue;
 import net.codersoffortune.infinity.tts.EquivalentModelSet;
 import net.codersoffortune.infinity.tts.ModelSet;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -16,9 +18,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TTS_Decoder {
+    private static final Logger logger = LogManager.getLogger();
 
     //private final static String test_list = "ZQpwYW5vY2VhbmlhASCBLAIBCQABAQEAAAEBAQAAAQEDAAABAQIAAAEBBQAAAQEIAAABAQkAAAEBBgAADAEBAAIEAITGAQUAAITAAQIAAA0BBQAADAEBAA==";
-
+    // lsit 2 : gr8Kb3BlcmF0aW9ucwEggSwCAQoAgLcBBAAAgLcBAgAAgLcBBQAAegEDAACGFQEBAACEpwECAABtAQkAAG0BBAAAglMBAQAAglMBAQACBQCCUQEBAACCUQEBAAA7AQUAAIRqAQEAAIJQAQEA
     private static final boolean useMercs = false;
     private static Database db;
 
@@ -28,50 +31,17 @@ public class TTS_Decoder {
         //ModelSet fullMS = buildMegaModelSet();
         //fullMS.writeFile("All.models");
 
-//        ModelSet ms = new ModelSet("models.json");
+        //ModelSet ms = new ModelSet("models.json");
 //        //ms.readBinFile("All.models");
 //        ms.writeFile("models2.json");
-//        ModelSet ms2 = new ModelSet("models2.json");
-
+//        ModelSet ms2 = new ModelSet("models2.json");x
 
         loadFromJSON(false);
-        importFromCSV();
+      //  importFromCSV();
 
 
 //
-
-        System.out.println("All Done\n");
-//        FactionList factionList = new FactionList(FACTION.NA2, db.getSectorals());
-//        for( SECTORAL sectoral : FACTION.NA2.getSectorals()) {
-//            String naFile = String.format("/sources/%s N4", sectoral.getName());
-//            System.out.println("Loading "+ naFile);
-//            URL naURL = TTS_Decoder.class.getResource(naFile);
-//            if( naURL == null ) {
-//                continue;
-//            }
-//            ModelSet ms = new ModelSet();
-//            ms.readOldJson(naURL, FACTION.NA2, factionList);
-//            Catalogue c = new Catalogue();
-//            c.addUnits(db.getSectorals().get(sectoral.getId()), sectoral, false);
-//            c.addTTSModels(ms);
-//            c.toCSV(String.format("%s test.csv", sectoral.getName()));
-//        }
-
-//        for( SECTORAL sectoral : FACTION.NA2.getSectorals()) {
-//            Catalogue c = new Catalogue();
-//            c.addUnits(db.getSectorals().get(sectoral.getId()), sectoral, false);
-//            String csvFile = String.format("%s test2.csv", sectoral.getName());
-//            c.addTTSModelsFromCSV(csvFile);
-//            String sectoralJSON = c.asJson(sectoral);
-//            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s.json", sectoral.getName())));
-//            writer.append(sectoralJSON);
-//            writer.close();
-//        }
-
-//        System.out.println("All dumps created");
-
-
-        System.out.println("moo");
+        logger.info("All done");
     }
 
     private static ModelSet buildMegaModelSet() throws IOException {
@@ -113,54 +83,63 @@ public class TTS_Decoder {
     }
 
     private static void loadFromJSON(boolean check) throws IOException, ClassNotFoundException {
-        Map<Integer, URL> old_bags = new HashMap<>();
         ModelSet ms = new ModelSet("models2.json");
-
+        logger.info("Starting Loading from JSON");
 
         for (FACTION faction : FACTION.values()) {
             if (faction == FACTION.NA2) continue; // handled below
-            System.out.printf("Reading %s%n", faction.getName());
+         //   if(faction != FACTION.PanOceania) continue;;
+
+            logger.info("Reading {}", faction.getName());
             Catalogue c = new Catalogue();
             c.addUnits(db.getSectorals(), faction, useMercs);
-
+            logger.info("Writing CSV");
             c.toCSV(String.format("%s.csv", faction.name()), ms);
+            logger.info("Writing JSON");
             String factionJson = c.asJson(faction, ms);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s.json", faction.getName())));
             writer.append(factionJson);
             writer.close();
-            writer = new BufferedWriter(new FileWriter(String.format("%s missing.txt", faction.getName())));
-            for (PrintableUnit m : c.getModellessList(ms))
-                writer.append(String.format("Missing: (%s) %s %s\n", m.getUnitID(), m.getName(), m.getDistinguisher()));
+            logger.info("Writing duplicates json");
+            String dupeJson = c.asJson(faction, ms, true);
+            writer = new BufferedWriter(new FileWriter(String.format("%s dupes.json", faction.getName())));
+            writer.append(dupeJson);
             writer.close();
+            logger.info("Building missing model list");
+            c.toModellessCSV(String.format("%s missing.csv", faction.name()), ms);
+//            writer = new BufferedWriter(new FileWriter(String.format("%s missing.txt", faction.getName())));
+//            for (PrintableUnit m : c.getModellessList(ms))
+//                writer.append(String.format("Missing: (%s) %s %s\n", m.getUnitID(), m.getName(), m.getDistinguisher()));
+//            writer.close();
             // Test the outputted JSON is good
             if (check) {
                 ModelSet ms3 = new EquivalentModelSet(c.getMappings());
                 ms3.readJson(factionJson);
             }
         }
-
-        for (SECTORAL sectoral : FACTION.NA2.getSectorals()) {
-            System.out.printf("Reading %s%n", sectoral.getName());
-
-
-            Catalogue c = new Catalogue();
-            c.addUnits(db.getSectorals().get(sectoral.getId()), sectoral, useMercs);
-
-            c.toCSV(String.format("%s.csv", sectoral.name()), ms);
-            String sectoralJSON = c.asJson(sectoral, ms);
-            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s.json", sectoral.getName())));
-            writer.append(sectoralJSON);
-            writer.close();
-            writer = new BufferedWriter(new FileWriter(String.format("%s missing.txt", sectoral.getName())));
-            for (PrintableUnit m : c.getModellessList(ms))
-                writer.append(String.format("Missing: (%s) %s %s\n", m.getUnitID(), m.getName(), m.getDistinguisher()));
-            writer.close();
-            // Test the outputted JSON is good
-            if (check) {
-                ModelSet ms3 = new EquivalentModelSet(c.getMappings());
-                ms3.readJson(sectoralJSON);
-            }
-        }
+//        logger.info("Parsing NA2 Sectorals");
+//        for (SECTORAL sectoral : FACTION.NA2.getSectorals()) {
+//            System.out.printf("Reading %s%n", sectoral.getName());
+//
+//
+//            Catalogue c = new Catalogue();
+//            c.addUnits(db.getSectorals().get(sectoral.getId()), sectoral, useMercs);
+//
+//            c.toCSV(String.format("%s.csv", sectoral.name()), ms);
+//            String sectoralJSON = c.asJson(sectoral, ms);
+//            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s.json", sectoral.getName())));
+//            writer.append(sectoralJSON);
+//            writer.close();
+//            writer = new BufferedWriter(new FileWriter(String.format("%s missing.txt", sectoral.getName())));
+//            for (PrintableUnit m : c.getModellessList(ms))
+//                writer.append(String.format("Missing: (%s) %s %s\n", m.getUnitID(), m.getName(), m.getDistinguisher()));
+//            writer.close();
+//            // Test the outputted JSON is good
+//            if (check) {
+//                ModelSet ms3 = new EquivalentModelSet(c.getMappings());
+//                ms3.readJson(sectoralJSON);
+//            }
+//        }
     }
 
     private static void importFromCSV() throws IOException {
