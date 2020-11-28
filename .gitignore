@@ -29,3 +29,5 @@ hs_err_pid*
 # or output files
 target/
 output/
+Core/resources/
+Gui/resources/
