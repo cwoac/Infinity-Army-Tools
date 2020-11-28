@@ -5,23 +5,29 @@ import net.codersoffortune.infinity.metadata.Faction;
 import net.codersoffortune.infinity.metadata.Metadata;
 import net.codersoffortune.infinity.metadata.SectoralList;
 import net.codersoffortune.infinity.metadata.unit.Unit;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.io.BufferedReader;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class Database {
+    private static final Logger logger = LogManager.getLogger();
+
+    private final static String METADATA_URL = "https://api.corvusbelli.com/army/infinity/en/metadata";
+    private final static String FACTION_URL_FORMAT = "https://api.corvusbelli.com/army/units/en/%d";
     /*
        Templates loaded from the resource.
        Slightly hacky in that I am making them static inside a singleton, however this means they are
@@ -33,7 +39,9 @@ public class Database {
     private static String bagTemplate = "";
     private static String factionTemplate = "";
     private static String transmutedUnitTemplate = "";
-    private static List<String> impersonationTemplates = new ArrayList<>();
+    private static volatile Database dbSingleton;
+    Metadata metadata;
+    Map<Integer, SectoralList> sectorals;
 
     private Database() throws IOException {
         // block reflection
@@ -86,11 +94,8 @@ public class Database {
         return factionTemplate;
     }
 
-    Metadata metadata;
-    Map<Integer, SectoralList> sectorals;
-
     private static String getResourceFileAsString(String fileName) throws IOException {
-        return Files.readString(new File("resources/"+fileName).toPath(), StandardCharsets.UTF_8);
+        return Files.readString(new File("resources/" + fileName).toPath(), StandardCharsets.UTF_8);
     }
 
     public static Database getInstance() throws IOException {
@@ -109,8 +114,24 @@ public class Database {
         return transmutedUnitTemplate;
     }
 
-    public static List<String> getImpersonationTemplates() {
-        return impersonationTemplates;
+    public static Database updateAll() throws IOException {
+        // reload the database
+        synchronized (Database.class) {
+            if (dbSingleton != null) {
+                dbSingleton = null;
+            }
+            logger.info("Updating metadata");
+            BufferedInputStream in = new BufferedInputStream(new URL(METADATA_URL).openStream());
+
+            Files.copy(in, Paths.get("resources/metadata.json"), StandardCopyOption.REPLACE_EXISTING);
+            for (SECTORAL s : SECTORAL.values()) {
+                logger.info("Updating {}", s.getName());
+                in = new BufferedInputStream(new URL(String.format(FACTION_URL_FORMAT, s.getId())).openStream());
+                Files.copy(in, Paths.get(String.format("resources/%d.json", s.getId())), StandardCopyOption.REPLACE_EXISTING);
+            }
+        }
+
+        return getInstance();
     }
 
     public Metadata getMetadata() {
@@ -125,8 +146,6 @@ public class Database {
         return sectorals;
     }
 
-    private static volatile Database dbSingleton;
-
     public Optional<Unit> getUnitName(int unitId, SECTORAL sectoral) {
         SectoralList f = sectorals.get(sectoral.getId());
         if (f == null) {
@@ -135,5 +154,4 @@ public class Database {
 
         return f.getUnit(unitId);
     }
-
 }

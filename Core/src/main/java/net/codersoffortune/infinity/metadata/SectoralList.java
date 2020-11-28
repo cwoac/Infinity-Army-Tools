@@ -26,7 +26,7 @@ public class SectoralList {
         SimpleModule sm = new SimpleModule();
         sm.addDeserializer(SpecopsNestedItem.class, new SpecopsNestedItemDeserializer());
         om.registerModule(sm);
-        return om.readValue(new File("resources/"+url), SectoralList.class);
+        return om.readValue(new File(String.format("resources/%s.json",url)), SectoralList.class);
     }
 
     public Optional<Unit> getUnit(int id) {

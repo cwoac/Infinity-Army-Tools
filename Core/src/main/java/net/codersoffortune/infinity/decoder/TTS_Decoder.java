@@ -27,7 +27,9 @@ public class TTS_Decoder {
     private static Database db;
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
+       // db = Database.updateAll();
         db = Database.getInstance();
+
 
         //ModelSet fullMS = buildMegaModelSet();
         //fullMS.writeFile("All.models");
