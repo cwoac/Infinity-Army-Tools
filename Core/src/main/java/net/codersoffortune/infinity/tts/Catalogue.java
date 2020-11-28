@@ -188,9 +188,12 @@ public class Catalogue {
      * @throws IOException on error.
      */
     public void toModellessCSV(final String filename, final ModelSet ms) throws IOException {
+        List<PrintableUnit> units = getModellessList(ms);
+        if (units.isEmpty()) return;
+
         FileWriter fh = new FileWriter(filename);
         try (CSVPrinter out = new CSVPrinter(fh, CSVFormat.EXCEL.withHeader(CSV_HEADERS))) {
-            for (PrintableUnit u : getModellessList(ms)) u.printCSVRecord(out, ms);
+            for (PrintableUnit u : units) u.printCSVRecord(out, ms);
         }
     }
 

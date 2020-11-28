@@ -1,0 +1,91 @@
+{
+  "SaveName": "",
+  "GameMode": "",
+  "Date": "",
+  "Gravity": 0.5,
+  "PlayArea": 0.5,
+  "GameType": "",
+  "GameComplexity": "",
+  "Tags": [],
+  "Table": "",
+  "Sky": "",
+  "Note": "",
+  "Rules": "",
+  "TabStates": {},
+  "ObjectStates": [
+    {
+      "Name": "Custom_Model_Bag",
+      "Transform": {
+        "posX": -9.0,
+        "posY": 1.10975063,
+        "posZ": 52.0,
+        "rotX": -2.47973367E-06,
+        "rotY": 180.0,
+        "rotZ": -4.718451E-06,
+        "scaleX": 2.0,
+        "scaleY": 1.0,
+        "scaleZ": 2.0
+      },
+      "Nickname": "[%s]%s[-] N4",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        %s
+      },
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "MeasureMovement": false,
+      "DragSelectable": true,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "MaterialIndex": -1,
+      "MeshIndex": -1,
+      "CustomMesh": {
+        "MeshURL": "http://cloud-3.steamusercontent.com/ugc/929303676573612409/FF751A206976EBD2B75A29196FDCBB590ECB0A43/",
+        "DiffuseURL": "",
+        "NormalURL": "",
+        "ColliderURL": "http://cloud-3.steamusercontent.com/ugc/929303676573612409/FF751A206976EBD2B75A29196FDCBB590ECB0A43/",
+        "Convex": true,
+        "MaterialIndex": 1,
+        "TypeIndex": 6,
+        "CastShadows": true
+      },
+      "LuaScript": "function onObjectLeaveContainer(container, object)\r\r\n\r\n\t\t   if container.getLock() and container == self then\n     local clone = object.clone({position = {0,100,0}})\r\n\t\t        function coPause()\r\n\t\t\t            coroutine.yield(0)\r\n\t\t\t            container.putObject(clone)\r\n\t\t\t            return 1\r\n        end\r\n\t\t    startLuaCoroutine(self, 'coPause')\n    end\r\t\r\n\tend",
+      "LuaScriptState": "",
+      "XmlUI": "",
+      "ContainedObjects": [
+      %s
+      ],
+      "AttachedDecals": [
+        {
+          "Transform": {
+            "posX": 0.0020508226,
+            "posY": 0.1049999,
+            "posZ": 3.240696E-05,
+            "rotX": 89.98022,
+            "rotY": 179.999969,
+            "rotZ": 0.0,
+            "scaleX": 2.297487,
+            "scaleY": 2.29748654,
+            "scaleZ": 2.29748654
+          },
+          "CustomDecal": {
+            "Name": "Faction Hex",
+            "ImageURL": "%s",
+            "Size": 1.0
+          }
+        }
+      ]
+    }
+  ],
+  "LuaScript": "",
+  "LuaScriptState": "",
+  "XmlUI": "",
+  "VersionNumber": ""
+}

@@ -16,12 +16,14 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <!-- dependency versions -->
+        <maven.resources-version>3.2.0</maven.resources-version>
         <jackson-version>2.11.3</jackson-version>
         <csv-version>1.8</csv-version>
         <text-version>1.9</text-version>
         <protonpack-version>1.16</protonpack-version>
         <log4j-version>2.14.0</log4j-version>
         <javafx-version>15.0.1</javafx-version>
+        <exec-version>3.0.0</exec-version>
     </properties>
 
     <modules>

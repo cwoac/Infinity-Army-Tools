@@ -2,6 +2,7 @@ package net.codersoffortune.infinity.metadata;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -44,9 +45,8 @@ public class Metadata {
 
     public static Metadata loadMetadata() throws IOException {
         ObjectMapper om = new ObjectMapper();
+        return om.readValue(new File("resources/metadata.json"), Metadata.class);
 
-        //data = om.readValue(new java.net.URL(url), Map.class);
-        return om.readValue(Metadata.class.getResource("/metadata"), Metadata.class);
     }
 
 

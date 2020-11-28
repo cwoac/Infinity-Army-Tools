@@ -7,10 +7,12 @@ import net.codersoffortune.infinity.metadata.SectoralList;
 import net.codersoffortune.infinity.metadata.unit.Unit;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -66,10 +68,6 @@ public class Database {
         transmutedUnitTemplate = getResourceFileAsString("Templates/transmuted_model_template");
         factionTemplate = getResourceFileAsString("templates/faction_template");
         bagTemplate = getResourceFileAsString("templates/bag_template");
-        impersonationTemplates = Arrays.asList(
-                getResourceFileAsString("templates/IMP1.json"),
-                getResourceFileAsString("templates/IMP2.json")
-        );
     }
 
     public static String getBagTemplate() {
@@ -92,14 +90,7 @@ public class Database {
     Map<Integer, SectoralList> sectorals;
 
     private static String getResourceFileAsString(String fileName) throws IOException {
-        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        try (InputStream is = classLoader.getResourceAsStream(fileName)) {
-            if (is == null) return null;
-            try (InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
-                 BufferedReader reader = new BufferedReader(isr)) {
-                return reader.lines().collect(Collectors.joining(System.lineSeparator()));
-            }
-        }
+        return Files.readString(new File("resources/"+fileName).toPath(), StandardCharsets.UTF_8);
     }
 
     public static Database getInstance() throws IOException {

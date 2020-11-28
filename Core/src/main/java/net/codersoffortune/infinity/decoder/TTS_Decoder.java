@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -83,30 +84,32 @@ public class TTS_Decoder {
     }
 
     private static void loadFromJSON(boolean check) throws IOException, ClassNotFoundException {
-        ModelSet ms = new ModelSet("models2.json");
+        ModelSet ms = new ModelSet("resources/model catalogue.json");
         logger.info("Starting Loading from JSON");
+
+        File outputDir = new File("output");
+        outputDir.mkdir();
 
         for (FACTION faction : FACTION.values()) {
             if (faction == FACTION.NA2) continue; // handled below
-         //   if(faction != FACTION.PanOceania) continue;;
 
             logger.info("Reading {}", faction.getName());
             Catalogue c = new Catalogue();
             c.addUnits(db.getSectorals(), faction, useMercs);
             logger.info("Writing CSV");
-            c.toCSV(String.format("%s.csv", faction.name()), ms);
+            c.toCSV(String.format("output/%s.csv", faction.name()), ms);
             logger.info("Writing JSON");
             String factionJson = c.asJson(faction, ms);
-            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s.json", faction.getName())));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("output/%s.json", faction.getName())));
             writer.append(factionJson);
             writer.close();
             logger.info("Writing duplicates json");
             String dupeJson = c.asJson(faction, ms, true);
-            writer = new BufferedWriter(new FileWriter(String.format("%s dupes.json", faction.getName())));
+            writer = new BufferedWriter(new FileWriter(String.format("output/%s dupes.json", faction.getName())));
             writer.append(dupeJson);
             writer.close();
             logger.info("Building missing model list");
-            c.toModellessCSV(String.format("%s missing.csv", faction.name()), ms);
+            c.toModellessCSV(String.format("output/%s missing.csv", faction.name()), ms);
 //            writer = new BufferedWriter(new FileWriter(String.format("%s missing.txt", faction.getName())));
 //            for (PrintableUnit m : c.getModellessList(ms))
 //                writer.append(String.format("Missing: (%s) %s %s\n", m.getUnitID(), m.getName(), m.getDistinguisher()));

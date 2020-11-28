@@ -7,6 +7,7 @@ import net.codersoffortune.infinity.metadata.specops.SpecopsNestedItem;
 import net.codersoffortune.infinity.metadata.specops.SpecopsNestedItemDeserializer;
 import net.codersoffortune.infinity.metadata.unit.Unit;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +26,7 @@ public class SectoralList {
         SimpleModule sm = new SimpleModule();
         sm.addDeserializer(SpecopsNestedItem.class, new SpecopsNestedItemDeserializer());
         om.registerModule(sm);
-        return om.readValue(SectoralList.class.getResource("/" + url), SectoralList.class);
+        return om.readValue(new File("resources/"+url), SectoralList.class);
     }
 
     public Optional<Unit> getUnit(int id) {
