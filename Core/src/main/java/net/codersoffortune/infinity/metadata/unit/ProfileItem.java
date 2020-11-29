@@ -49,7 +49,7 @@ public class ProfileItem {
     private String formatExtra(int extra, final MappedFactionFilters filters) {
         FilterItem filter = filters.getItem(FilterType.extras, extra);
         if( filter.getType().equalsIgnoreCase("DISTANCE")) {
-            String stripped = filter.getName().replaceAll("[^\\d\\.]", "");
+            String stripped = filter.getName().replaceAll("[^\\d.]", "");
             return String.format("+%s", Util.formatDistance(Float.parseFloat(stripped), true));
         } else {
             return filter.getName();

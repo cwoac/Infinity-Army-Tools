@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="net.codersoffortune.infinity.gui.MainController"
       spacing="10">
-    <HBox fx:id="updateBox" spacing="5">
+    <HBox spacing="5">
         <Label text="Current Version"/>
         <Label fx:id="versionLabel" text="Hello world FXML"/>
         <ProgressIndicator fx:id="updateDBIndicator" />
     </HBox>
     <HBox spacing="10">
         <Label text="DB Maintenance" />
-        <Button fx:id="updateDBButton" text="Update DB from Army" onAction="#updateClicked"/>
+        <Button text="Update DB from Army" onAction="#updateClicked"/>
         <Button text="Dump Missing Files" onAction="#writeMissing"/>
         <Button text="Dump Duplicate Files" onAction="#writeDuplicates"/>
     </HBox>
     <HBox spacing="10">
         <Label text="Write new box files" />
-        <Button fx:id="updateBoxButton" text="Write Faction Boxes" onAction="#writeBoxes"/>
+        <Button text="Write Faction Boxes" onAction="#writeBoxes"/>
     </HBox>
     <HBox spacing="10">
         <Label text="Army Code:" />

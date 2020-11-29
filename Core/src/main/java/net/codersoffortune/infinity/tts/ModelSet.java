@@ -108,13 +108,6 @@ public class ModelSet {
         writer.close();
     }
 
-    //    public void writeFile(final String filename) throws IOException {
-//        FileOutputStream fileOut = new FileOutputStream(filename);
-//        ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
-//        objOut.writeObject(models);
-//        objOut.flush();
-//        objOut.close();
-//    }
 
     public String toJson() throws JsonProcessingException {
         return SORTED_MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(models);
@@ -124,16 +117,6 @@ public class ModelSet {
         TypeReference<Map<UnitID, Set<TTSModel>>> mapRef = new TypeReference<>() {
         };
         Map<UnitID, Set<TTSModel>> staging = SORTED_MAPPER.readValue(new File(filename), mapRef);
-        for (Map.Entry<UnitID, Set<TTSModel>> entry : staging.entrySet()) {
-            addModels(entry.getKey(), entry.getValue());
-        }
-    }
-
-    public void readBinFile(final String filename) throws IOException, ClassNotFoundException {
-        FileInputStream fileIn = new FileInputStream(filename);
-        ObjectInputStream objIn = new ObjectInputStream(fileIn);
-        Map<UnitID, Set<TTSModel>> staging = (Map<UnitID, Set<TTSModel>>) objIn.readObject();
-        objIn.close();
         for (Map.Entry<UnitID, Set<TTSModel>> entry : staging.entrySet()) {
             addModels(entry.getKey(), entry.getValue());
         }
@@ -191,7 +174,7 @@ public class ModelSet {
      * @param ms to copy from
      */
     public void addModelSet(final ModelSet ms) {
-        ms.getModels().forEach((key, value) -> addModels(key, value));
+        ms.getModels().forEach(this::addModels);
     }
 
 
@@ -286,7 +269,7 @@ public class ModelSet {
     public void addModelOld(final FactionList factionList, int faction_idx, int unit_idx, int profile_array_idx, TTSModel model) {
         // First convert the profile index back into a profile ID
         Optional<Unit> maybeUnit = factionList.getUnit(unit_idx);
-        if (!maybeUnit.isPresent()) {
+        if (maybeUnit.isEmpty()) {
             // Can't look up something which doesn't exist.
             System.out.println(unit_idx);
         }

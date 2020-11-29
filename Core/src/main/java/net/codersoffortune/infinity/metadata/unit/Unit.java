@@ -3,7 +3,6 @@ package net.codersoffortune.infinity.metadata.unit;
 import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.tts.EquivalentModelSet;
-import net.codersoffortune.infinity.tts.ModelSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -134,7 +133,7 @@ public class Unit {
         Collection<CompactedUnit> result = new ArrayList<>();
         Collection<CompactedUnit> unsortedUnits = getUnits(group, option);
         for(CompactedUnit compactedUnit : unsortedUnits) {
-            if(! compactedUnit.isHasPrivateInformation()) {
+            if(compactedUnit.hasNoPrivateInformation()) {
                 // Easy!
                 result.add(compactedUnit);
                 continue;
@@ -144,7 +143,7 @@ public class Unit {
             List<Profile> profiles = pg.getProfiles();
             for( ProfileOption po : pg.getOptions() ) {
                 CompactedUnit candidate = new CompactedUnit(getID(), pg, profiles.get(0), po);
-                if( candidate.publicallyEqual(compactedUnit) && !candidate.isHasPrivateInformation()) {
+                if( candidate.publicallyEqual(compactedUnit) && candidate.hasNoPrivateInformation()) {
                     result.add(candidate);
                     break;
                 }

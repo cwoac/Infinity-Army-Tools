@@ -5,6 +5,7 @@ import net.codersoffortune.infinity.metadata.FilterType;
 import java.text.DecimalFormat;
 import java.util.AbstractMap;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -76,7 +77,7 @@ public class Util {
      * suggest they are the same (i.e. hacking related stuff mostly).
      *    255 - remdriver
      */
-    public static final List<Integer> visibleSkills = Arrays.asList(255);
+    public static final List<Integer> visibleSkills = Collections.singletonList(255);
 
     // Names
 
@@ -303,7 +304,7 @@ public class Util {
 
     // Distances
     private static boolean inInches = true;
-    private static DecimalFormat distanceFormatter = new DecimalFormat("#.#");
+    private static final DecimalFormat distanceFormatter = new DecimalFormat("#.#");
 
     /**
      * Convert a value from CM to 'CB Inches' - so, 5 per 2.

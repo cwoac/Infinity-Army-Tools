@@ -29,7 +29,7 @@ public class EquivalentModelSet extends ModelSet {
         }
         // OK, do we know some equivalents for this model?
         Optional<Catalogue.EquivalenceMapping> maybeMapping = equivalenceMappings.stream().filter(m -> m.contains(unitID)).findFirst();
-        if (!maybeMapping.isPresent()) {
+        if (maybeMapping.isEmpty()) {
             return new HashSet<>();
         }
         Catalogue.EquivalenceMapping mapping = maybeMapping.get();
@@ -39,7 +39,7 @@ public class EquivalentModelSet extends ModelSet {
                 .map(PrintableUnit::getUnitID)
                 .filter(this::hasUnit)
                 .findAny();
-        if (!equivalent.isPresent()) {
+        if (equivalent.isEmpty()) {
             return new HashSet<>();
         }
 
@@ -54,14 +54,14 @@ public class EquivalentModelSet extends ModelSet {
     public ModelSet expand() {
         ModelSet ms = new ModelSet();
         // First add the explicit models.
-        models.entrySet().forEach(e->ms.addModels(e.getKey(), e.getValue()));
+        models.forEach((key, value) -> ms.addModels(key, value));
         for(Catalogue.EquivalenceMapping mapping : equivalenceMappings) {
             // Do we have a model for this one?
             Optional<UnitID> maybeUnitID = mapping.getAllUnits().stream()
                     .map(PrintableUnit::getUnitID)
                     .filter(models::containsKey)
                     .findAny();
-            if (!maybeUnitID.isPresent()) {
+            if (maybeUnitID.isEmpty()) {
                 System.out.printf("No model for equivalence based on %s", mapping.getRepresentative());
                 continue;
             }

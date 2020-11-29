@@ -475,7 +475,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 .collect(Collectors.joining("\n,"));        final String ttsColour = CombatGroup.getTint(combatGroup_idx);
         // TODO:: Better picking of model
         final Optional<TTSModel> modelMaybe =  ms.getModels(getUnitID()).stream().findAny();
-        if( !modelMaybe.isPresent() )
+        if(modelMaybe.isEmpty())
                 throw new IllegalArgumentException(String.format("Unable to find models for %s",
                             getUnitID()));
         final TTSModel model = modelMaybe.get();

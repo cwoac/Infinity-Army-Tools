@@ -108,8 +108,8 @@ public class CompactedUnit {
                 other.getPublicChars().equals(getPublicChars());
     }
 
-    public boolean isHasPrivateInformation() {
-        return hasPrivateInformation;
+    public boolean hasNoPrivateInformation() {
+        return !hasPrivateInformation;
     }
 
     public int getGroup_idx() {

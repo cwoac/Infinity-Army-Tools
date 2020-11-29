@@ -88,7 +88,7 @@ public class Armylist {
             sb.append(String.format("Combat Group %d: %d members\n", cg.getGroup_number(), cg.getGroup_size()));
             for (CombatGroupMember cgm : cg.getMembers()) {
                 Optional<Unit> maybeUnit = db.getUnitName(cgm.getId(), getSectoral());
-                if (!maybeUnit.isPresent()) continue;
+                if (maybeUnit.isEmpty()) continue;
                 Unit unit = maybeUnit.get();
                 Collection<CompactedUnit> cus = unit.getUnits(cgm.getGroup(), cgm.getOption());
                 // TODO:: neaten this. Indents? Streams?
@@ -142,7 +142,7 @@ public class Armylist {
         for (CombatGroup cg : getCombatGroups()) {
             for (CombatGroupMember cgm : cg.getMembers()) {
                 Optional<Unit> maybeUnit = db.getUnitName(cgm.getId(), getSectoral());
-                if (!maybeUnit.isPresent()) continue;
+                if (maybeUnit.isEmpty()) continue;
                 Unit unit = maybeUnit.get();
                 units.addAll(unit.getUnitsForTTS(cg.getGroup_number(), cgm.getGroup(), cgm.getOption(), filters, equivalentModelSet, sectoral));
             }

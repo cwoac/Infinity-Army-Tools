@@ -44,7 +44,7 @@ public class Decoder {
 
         for (String code : testcodes) {
             Armylist list = Armylist.fromArmyCode(code);
-            SectoralList fl = db.getSectorals().get(list.getSectoral());
+            SectoralList fl = db.getSectorals().get(list.getSectoral().getId());
             MappedFactionFilters filters = new MappedFactionFilters(fl.getFilters());
             //TODO:: Load the right modelset
             String moo = list.asJson(filters, null);
