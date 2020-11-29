@@ -3,6 +3,9 @@ package net.codersoffortune.infinity.metadata.unit;
 import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.tts.EquivalentModelSet;
+import net.codersoffortune.infinity.tts.ModelSet;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.InvalidObjectException;
 import java.util.ArrayList;
@@ -12,10 +15,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Unit {
-    //"id":161,"idArmy":38,"canonical":201,"isc":"Yáozăo","iscAbbr":null,"notes":null,"name":"YÁOZĂO",
-    // "options":[],
-    //            "slug":"yaozao",
-    //            "filters":{"categories":[8],"skills":[28,84,162,243],"equip":[],"chars":[2,5,21,27],"types":[5],"weapons":[71],"ammunition":[37]}}
+    private static final Logger logger = LogManager.getLogger();
+
     private int ID;
     private int idArmy;
     private int canonical;
@@ -81,12 +82,13 @@ public class Unit {
                                              final EquivalentModelSet equivalentModelSet,
                                              final SECTORAL sectoral) throws IllegalArgumentException, InvalidObjectException {
         //TODO:: Handle pilots
-        Collection<CompactedUnit> compactedUnits = getUnits(group, option);
+        Collection<CompactedUnit> compactedUnits = getPublicUnits(group, option);
         Collection<PrintableUnit> printableUnits = new ArrayList<>();
         for( CompactedUnit cu: compactedUnits){
             printableUnits.add(cu.getPrintableUnit(filters, sectoral));
         }
         return printableUnits.stream()
+                .peek(pu -> logger.trace("Converting {}", pu.getName()))
                 .map(pu -> pu.asArmyJSON(combat_group, equivalentModelSet))
                 .collect(Collectors.toList());
     }
@@ -125,6 +127,30 @@ public class Unit {
                 );
             }
         }
+        return result;
+    }
+
+    public Collection<CompactedUnit> getPublicUnits(final int group, final int option) throws IllegalArgumentException {
+        Collection<CompactedUnit> result = new ArrayList<>();
+        Collection<CompactedUnit> unsortedUnits = getUnits(group, option);
+        for(CompactedUnit compactedUnit : unsortedUnits) {
+            if(! compactedUnit.isHasPrivateInformation()) {
+                // Easy!
+                result.add(compactedUnit);
+                continue;
+            }
+            // Ah. Need to find the public version of this.
+            ProfileGroup pg = profileGroups.stream().filter(x -> x.getId() == group).findFirst().orElseThrow(IllegalArgumentException::new);
+            List<Profile> profiles = pg.getProfiles();
+            for( ProfileOption po : pg.getOptions() ) {
+                CompactedUnit candidate = new CompactedUnit(getID(), pg, profiles.get(0), po);
+                if( candidate.publicallyEqual(compactedUnit) && !candidate.isHasPrivateInformation()) {
+                    result.add(candidate);
+                    break;
+                }
+            }
+        }
+
         return result;
     }
 

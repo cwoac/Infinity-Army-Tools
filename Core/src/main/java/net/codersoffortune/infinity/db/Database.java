@@ -16,7 +16,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InvalidObjectException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -45,6 +44,7 @@ public class Database {
     private static String bagTemplate = "";
     private static String factionTemplate = "";
     private static String transmutedUnitTemplate = "";
+    private static ModelSet modelSet = null;
     private static volatile Database dbSingleton;
     Metadata metadata;
     Map<Integer, SectoralList> sectorals;
@@ -82,6 +82,8 @@ public class Database {
         transmutedUnitTemplate = getResourceFileAsString("Templates/transmuted_model_template");
         factionTemplate = getResourceFileAsString("templates/faction_template");
         bagTemplate = getResourceFileAsString("templates/bag_template");
+        modelSet = new ModelSet("resources/model catalogue.json");
+
     }
 
     public static String getBagTemplate() {
@@ -99,6 +101,8 @@ public class Database {
     public static String getFactionTemplate() {
         return factionTemplate;
     }
+
+    public static ModelSet getModelSet() { return modelSet; }
 
     private static String getResourceFileAsString(String fileName) throws IOException {
         return Files.readString(new File("resources/" + fileName).toPath(), StandardCharsets.UTF_8);
@@ -167,11 +171,11 @@ public class Database {
 
     /**
      * Write the faction jsons to the indicated directory
+     *
      * @param outputDir to write to
      * @throws IOException on error
      */
-    public void writeJson( File outputDir ) throws IOException {
-        ModelSet ms = new ModelSet("resources/model catalogue.json");
+    public void writeJson(File outputDir) throws IOException {
         outputDir.mkdir();
         for (FACTION faction : FACTION.values()) {
             if (faction == FACTION.NA2) continue; // They have per sectoral boxes
@@ -179,7 +183,7 @@ public class Database {
             Catalogue c = new Catalogue();
             c.addUnits(sectorals, faction, false);
             logger.info("Writing JSON");
-            String factionJson = c.asJson(faction, ms);
+            String factionJson = c.asJson(faction, modelSet);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), faction.getName())));
             writer.append(factionJson);
             writer.close();
@@ -192,8 +196,72 @@ public class Database {
             Catalogue c = new Catalogue();
             c.addUnits(sectorals.get(sectoral.getId()), sectoral, false);
 
-            String sectoralJSON = c.asJson(sectoral, ms);
+            String sectoralJSON = c.asJson(sectoral, modelSet);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), sectoral.getName())));
+            writer.append(sectoralJSON);
+            writer.close();
+        }
+    }
+
+    /**
+     * write the details of any missing decals
+     *
+     * @param outDir where to put the details
+     * @return true iff there are any missing decals
+     * @throws IOException on failure
+     */
+    public boolean writeMissing(File outDir) throws IOException {
+        outDir.mkdir();
+        boolean anyMissing = false;
+
+        for (FACTION faction : FACTION.values()) {
+            if (faction == FACTION.NA2) continue; // They have per sectoral boxes
+            logger.info("Reading {}", faction.getName());
+            Catalogue c = new Catalogue();
+            c.addUnits(sectorals, faction, false);
+            anyMissing |= c.toModellessCSV(String.format("output/%s missing.csv", faction.name()), modelSet);
+        }
+
+        logger.info("Parsing NA2 Sectorals");
+        for (SECTORAL sectoral : FACTION.NA2.getSectorals()) {
+            System.out.printf("Reading %s%n", sectoral.getName());
+
+            Catalogue c = new Catalogue();
+            c.addUnits(sectorals.get(sectoral.getId()), sectoral, false);
+            anyMissing |= c.toModellessCSV(String.format("output/%s missing.csv", sectoral.name()), modelSet);
+        }
+        return anyMissing;
+    }
+
+    /**
+     * write the details of any duplicate decals
+     *
+     * @param outDir where to put the details
+     * @throws IOException on failure
+     */
+    public void writeDuplicates(File outDir) throws IOException {
+        outDir.mkdir();
+        for (FACTION faction : FACTION.values()) {
+            if (faction == FACTION.NA2) continue; // They have per sectoral boxes
+            logger.info("Reading {}", faction.getName());
+            Catalogue c = new Catalogue();
+            c.addUnits(sectorals, faction, false);
+            logger.info("Writing JSON");
+            String factionJson = c.asJson(faction, modelSet, true);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outDir.getPath(), faction.getName())));
+            writer.append(factionJson);
+            writer.close();
+        }
+
+        logger.info("Parsing NA2 Sectorals");
+        for (SECTORAL sectoral : FACTION.NA2.getSectorals()) {
+            logger.info("Reading {}", sectoral.getName());
+
+            Catalogue c = new Catalogue();
+            c.addUnits(sectorals.get(sectoral.getId()), sectoral, false);
+            logger.info("Writing JSON");
+            String sectoralJSON = c.asJson(sectoral, modelSet, true);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outDir.getPath(), sectoral.getName())));
             writer.append(sectoralJSON);
             writer.close();
         }

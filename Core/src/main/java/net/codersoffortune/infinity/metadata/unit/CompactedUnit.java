@@ -36,6 +36,8 @@ public class CompactedUnit {
     private final ProfileOption option;
     private final String name;
 
+    private final boolean hasPrivateInformation;
+
     public CompactedUnit(int unit_idx, ProfileGroup group, Profile profile, ProfileOption option) {
         this.unit_idx = unit_idx;
         this.group = group;
@@ -52,6 +54,7 @@ public class CompactedUnit {
         weapons.addAll(profile.getWeapons().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
         skills.addAll(profile.getSkills().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
         calcPublicSkills();
+        hasPrivateInformation = skills.stream().anyMatch(x->Util.hiddenSkills.contains(x.getId()));
         equipment.addAll(profile.getEquip().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
         peripheral.addAll(profile.getPeripheral().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
 
@@ -103,6 +106,10 @@ public class CompactedUnit {
                 other.getWeapons().equals(weapons) &&
                 other.getEquipment().equals(equipment) &&
                 other.getPublicChars().equals(getPublicChars());
+    }
+
+    public boolean isHasPrivateInformation() {
+        return hasPrivateInformation;
     }
 
     public int getGroup_idx() {

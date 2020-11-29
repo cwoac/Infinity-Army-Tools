@@ -97,10 +97,13 @@ public class Util {
     // 26 chain of command
     // 120 FT:Core
     // 121 FT:Haris
-    // 125 FT: ent
+    // 125 FT:Ent
     // 181 FT:Duo
     public final static List<Integer> privateSkills =
             Arrays.asList(119,69,70,26,120,121,125,181);
+
+    public final static List<Integer> hiddenSkills =
+            Arrays.asList(119,69,70,26);
 
     /**
      * Figure out the correct name to put along the top of the model.

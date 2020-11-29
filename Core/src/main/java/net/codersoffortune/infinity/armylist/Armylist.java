@@ -10,6 +10,7 @@ import net.codersoffortune.infinity.metadata.unit.CompactedUnit;
 import net.codersoffortune.infinity.metadata.unit.ProfileItem;
 import net.codersoffortune.infinity.metadata.unit.Unit;
 import net.codersoffortune.infinity.tts.EquivalentModelSet;
+import net.codersoffortune.infinity.tts.ModelSet;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

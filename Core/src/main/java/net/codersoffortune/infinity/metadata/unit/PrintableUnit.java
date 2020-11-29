@@ -7,6 +7,7 @@ import net.codersoffortune.infinity.armylist.CombatGroup;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.FilterType;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
+import net.codersoffortune.infinity.tts.EquivalentModelSet;
 import net.codersoffortune.infinity.tts.ModelSet;
 import net.codersoffortune.infinity.tts.TTSModel;
 import org.apache.commons.csv.CSVPrinter;
@@ -21,6 +22,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -464,14 +466,19 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return String.join(",\n", ttsModels);
     }
 
-    public String asArmyJSON(int combatGroup_idx, final ModelSet ms) throws IllegalArgumentException {
+    public String asArmyJSON(int combatGroup_idx, final EquivalentModelSet ms) throws IllegalArgumentException {
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
         final List<String> ttsSilhouettes = getTTSSilhouettes();
-        final String states = String.join(",\n", ttsSilhouettes);
-        final String ttsColour = CombatGroup.getTint(combatGroup_idx);
+        final String states = StreamUtils.zipWithIndex(ttsSilhouettes.stream())
+                .map(x -> embedState(x.getValue(), x.getIndex()+2))
+                .collect(Collectors.joining("\n,"));        final String ttsColour = CombatGroup.getTint(combatGroup_idx);
         // TODO:: Better picking of model
-        final TTSModel model =  ms.getModels(getUnitID()).stream().findAny().orElseThrow(IllegalArgumentException::new);
+        final Optional<TTSModel> modelMaybe =  ms.getModels(getUnitID()).stream().findAny();
+        if( !modelMaybe.isPresent() )
+                throw new IllegalArgumentException(String.format("Unable to find models for %s",
+                            getUnitID()));
+        final TTSModel model = modelMaybe.get();
         return String.format(Database.getUnitTemplate(),
                 ttsName,
                 ttsDescription,

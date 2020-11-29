@@ -12,14 +12,21 @@
     <HBox fx:id="updateBox" spacing="5">
         <Label text="Current Version"/>
         <Label fx:id="versionLabel" text="Hello world FXML"/>
-        <Button fx:id="updateDBButton" text="Update DB" onAction="#updateClicked"/>
         <ProgressIndicator fx:id="updateDBIndicator" />
     </HBox>
     <HBox spacing="10">
-        <Label text="Update box files" />
+        <Label text="DB Maintenance" />
+        <Button fx:id="updateDBButton" text="Update DB from Army" onAction="#updateClicked"/>
+        <Button text="Dump Missing Files" onAction="#writeMissing"/>
+        <Button text="Dump Duplicate Files" onAction="#writeDuplicates"/>
+    </HBox>
+    <HBox spacing="10">
+        <Label text="Write new box files" />
         <Button fx:id="updateBoxButton" text="Write Faction Boxes" onAction="#writeBoxes"/>
     </HBox>
     <HBox spacing="10">
         <Label text="Army Code:" />
+        <TextField fx:id="armyCodeTF" prefWidth="100" />
+        <Button text="Generate" onAction="#generateArmy" />
     </HBox>
 </VBox>

@@ -77,7 +77,7 @@ public class Catalogue {
         for (Unit unit : list.getUnits()) {
             if (!useMercs && unit.isMerc()) continue;
             logger.trace("Parsing " + unit.toString());
-            for (CompactedUnit cu : unit.getAllDistinctUnits()) {
+            for (CompactedUnit cu : unit.getAllUnits()) {
                 logger.trace("Adding " + cu.toString());
                 PrintableUnit pu =cu.getPrintableUnit(filters, sectoral_idx);
                 boolean claimed = unitEquivalenceMappings.stream().anyMatch(x -> x.addUnitMaybe(pu));
@@ -185,16 +185,18 @@ public class Catalogue {
      * Generates a CSV file containing _just_ the missing base units for assigning models to groups.
      *
      * @param filename to write the csv out to
+     * @return true iff there are any missing decals
      * @throws IOException on error.
      */
-    public void toModellessCSV(final String filename, final ModelSet ms) throws IOException {
+    public boolean toModellessCSV(final String filename, final ModelSet ms) throws IOException {
         List<PrintableUnit> units = getModellessList(ms);
-        if (units.isEmpty()) return;
+        if (units.isEmpty()) return false;
 
         FileWriter fh = new FileWriter(filename);
         try (CSVPrinter out = new CSVPrinter(fh, CSVFormat.EXCEL.withHeader(CSV_HEADERS))) {
             for (PrintableUnit u : units) u.printCSVRecord(out, ms);
         }
+        return true;
     }
 
     /**
@@ -220,7 +222,8 @@ public class Catalogue {
             if (!baseUnit.isEquivalent(unit)) {
                 return false;
             }
-            if (baseUnit.functionallyEquals(unit)) {
+            if (baseUnit.functionallyEquals(unit) ||
+                    equivalentUnits.stream().anyMatch(pu->pu.functionallyEquals(unit))) {
                 // Don't bother adding it if it is the base object
                 return true;
             }
