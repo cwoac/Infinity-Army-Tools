@@ -74,7 +74,7 @@ public class MainController {
         EquivalentModelSet ems = new EquivalentModelSet(c.getMappings());
         ems.addModelSet(Database.getModelSet());
         String json = al.asJson(filters, ems);
-        BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("output/AL:%s %s.json", al.getSectoralName(), al.getArmy_name())));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("output/AL %s %s.json", al.getSectoralName(), al.getArmy_name())));
         writer.append(json);
         writer.close();
         armyCodeTF.setText("Done");

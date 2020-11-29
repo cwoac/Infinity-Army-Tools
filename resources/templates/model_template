@@ -28,9 +28,7 @@
   "HideWhenFaceDown": false,
   "Hands": false,
   "CustomMesh": %s,
-  "LuaScript": "",
-  "LuaScriptState": "",
-  "XmlUI": "",
+  %s
   "AttachedDecals": %s,
   "States": {
     %s

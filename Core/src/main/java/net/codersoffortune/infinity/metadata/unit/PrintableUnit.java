@@ -55,7 +55,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private final List<String> chars;
     private final String move;
     private final int ph;
-    private final int s;
+    protected final int s;
     private final boolean str;
     private final String type;
     private final int w;
@@ -368,6 +368,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     protected List<String> getTTSSilhouettes() {
 
         final String template = Database.getSilhouetteTemplates().get(s);
+        // TODO: allow disabling of addons.?
+        final String addon = Database.getAddonTemplate(s);
         final String description;
         final String side_decal;
         final String top_decal;
@@ -409,7 +411,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
             }
         }
 
-        result.add(String.format(template, description, tint, side_decal, top_decal));
+        result.add(String.format(template, description, tint, side_decal, addon, top_decal));
         return result;
     }
 
@@ -435,6 +437,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     public String asFactionJSON(final ModelSet ms) {
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
+        final String addon = Database.getAddonTemplate(s);
         final List<String> ttsSilhouettes = getTTSSilhouettes();
         final String states = StreamUtils.zipWithIndex(ttsSilhouettes.stream())
             .map(x -> embedState(x.getValue(), x.getIndex()+2))
@@ -446,6 +449,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 ttsDescription,
                 ttsColour,
                 m.getMeshes(),
+                addon,
                 m.getDecals(),
                 states)).collect(Collectors.toList());
         logger.trace(String.format("asFactionJSON for %s has %d models", this.toString(), ttsModels.size()));
@@ -455,6 +459,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     public String asEmbeddedJSON(final ModelSet ms) {
         String ttsName = getEmbeddedTTSName();
         String ttsDescription = getTTSDescription();
+        final String addon = Database.getAddonTemplate(s);
         String ttsColour = sectoral.getTint();
         Set<TTSModel> models = ms.getModels(getUnitID());
         List<String> ttsModels = models.stream().map(m -> String.format(Database.getTransmutedUnitTemplate(),
@@ -462,6 +467,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 ttsDescription,
                 ttsColour,
                 m.getMeshes(),
+                addon,
                 m.getDecals())).collect(Collectors.toList());
         return String.join(",\n", ttsModels);
     }
@@ -470,6 +476,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
         final List<String> ttsSilhouettes = getTTSSilhouettes();
+        final String addon = Database.getAddonTemplate(s);
         final String states = StreamUtils.zipWithIndex(ttsSilhouettes.stream())
                 .map(x -> embedState(x.getValue(), x.getIndex()+2))
                 .collect(Collectors.joining("\n,"));        final String ttsColour = CombatGroup.getTint(combatGroup_idx);
@@ -484,6 +491,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 ttsDescription,
                 ttsColour,
                 model.getMeshes(),
+                addon,
                 model.getDecals(),
                 states);
 

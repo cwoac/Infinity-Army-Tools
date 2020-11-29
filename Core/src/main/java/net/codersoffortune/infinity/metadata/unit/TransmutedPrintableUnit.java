@@ -45,6 +45,7 @@ public class TransmutedPrintableUnit extends PrintableUnit {
     public String asFactionJSON(final ModelSet ms) {
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
+        final String addon = Database.getAddonTemplate(s);
         final Set<String> states = new HashSet<>(getTTSSilhouettes());
         for( PrintableUnit pu : printableUnits ) {
             states.add(pu.asEmbeddedJSON(ms));
@@ -60,6 +61,7 @@ public class TransmutedPrintableUnit extends PrintableUnit {
                 ttsDescription,
                 ttsColour,
                 m.getMeshes(),
+                addon,
                 m.getDecals(),
                 stateString)).collect(Collectors.toList());
         return String.join(",\n", ttsModels);

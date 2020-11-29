@@ -41,6 +41,7 @@ public class Database {
     */
     private static String unitTemplate = "";
     private static List<String> silhouetteTemplates = new ArrayList<>();
+    private static Map<Integer, String> addonTemplates = new HashMap<>();
     private static String bagTemplate = "";
     private static String factionTemplate = "";
     private static String transmutedUnitTemplate = "";
@@ -48,6 +49,18 @@ public class Database {
     private static volatile Database dbSingleton;
     Metadata metadata;
     Map<Integer, SectoralList> sectorals;
+
+    public static Map<Integer, Integer> addonSizes = Map.of(
+            0, 25,
+            1, 25,
+            2, 25,
+            3, 40,
+            4, 55,
+            5, 40,
+            6, 40,
+            7, 55,
+            8, 70
+    );
 
     private Database() throws IOException {
         // block reflection
@@ -78,6 +91,14 @@ public class Database {
                 getResourceFileAsString("templates/S7.json"),
                 getResourceFileAsString("templates/S8.json")
         );
+
+        addonTemplates = Map.of(
+                25, getResourceFileAsString("templates/25mm_addon.json"),
+                40, getResourceFileAsString("templates/40mm_addon.json"),
+                55, getResourceFileAsString("templates/55mm_addon.json"),
+                70, getResourceFileAsString("templates/70mm_addon.json")
+        );
+
         unitTemplate = getResourceFileAsString("Templates/model_template");
         transmutedUnitTemplate = getResourceFileAsString("Templates/transmuted_model_template");
         factionTemplate = getResourceFileAsString("templates/faction_template");
@@ -96,6 +117,10 @@ public class Database {
 
     public static List<String> getSilhouetteTemplates() {
         return silhouetteTemplates;
+    }
+
+    public static String getAddonTemplate( int silhouetteSize ) {
+        return addonTemplates.get(addonSizes.get(silhouetteSize));
     }
 
     public static String getFactionTemplate() {

@@ -39,8 +39,7 @@
 "TypeIndex": 1,
 "CastShadows": true
 },
-"LuaScript": "",
-"LuaScriptState": "",
+%s
 "XmlUI": ""
 %s
 }
