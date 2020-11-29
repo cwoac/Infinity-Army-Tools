@@ -200,7 +200,7 @@ public class Database {
      * @param outputDir to write to
      * @throws IOException on error
      */
-    public void writeJson(File outputDir) throws IOException {
+    public void writeJson(File outputDir, boolean doAddons) throws IOException {
         outputDir.mkdir();
         for (FACTION faction : FACTION.values()) {
             if (faction == FACTION.NA2) continue; // They have per sectoral boxes
@@ -208,7 +208,7 @@ public class Database {
             Catalogue c = new Catalogue();
             c.addUnits(sectorals, faction, false);
             logger.info("Writing JSON");
-            String factionJson = c.asJson(faction, modelSet);
+            String factionJson = c.asJson(faction, modelSet, doAddons);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), faction.getName())));
             writer.append(factionJson);
             writer.close();
@@ -221,7 +221,7 @@ public class Database {
             Catalogue c = new Catalogue();
             c.addUnits(sectorals.get(sectoral.getId()), sectoral, false);
 
-            String sectoralJSON = c.asJson(sectoral, modelSet);
+            String sectoralJSON = c.asJson(sectoral, modelSet, doAddons);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), sectoral.getName())));
             writer.append(sectoralJSON);
             writer.close();

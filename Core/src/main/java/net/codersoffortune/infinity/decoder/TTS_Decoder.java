@@ -101,7 +101,7 @@ public class TTS_Decoder {
             logger.info("Writing CSV");
             c.toCSV(String.format("output/%s.csv", faction.name()), ms);
             logger.info("Writing JSON");
-            String factionJson = c.asJson(faction, ms);
+            String factionJson = c.asJson(faction, ms, true);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("output/%s.json", faction.getName())));
             writer.append(factionJson);
             writer.close();
@@ -163,7 +163,7 @@ public class TTS_Decoder {
                 System.out.printf("%s not found. skipping%n", csvFile);
                 continue;
             }
-            String faction_json = c.asJson(faction, ms);
+            String faction_json = c.asJson(faction, ms, true);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s.json", faction.getName())));
             writer.append(faction_json);
             writer.close();
@@ -190,7 +190,7 @@ public class TTS_Decoder {
                 System.out.printf("%s not found. skipping%n", csvFile);
                 continue;
             }
-            String faction_json = c.asJson(sectoral, ms);
+            String faction_json = c.asJson(sectoral, ms, true);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s.json", sectoral.getName())));
             writer.append(faction_json);
             writer.close();

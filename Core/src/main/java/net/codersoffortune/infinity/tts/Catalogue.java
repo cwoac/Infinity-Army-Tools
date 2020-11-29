@@ -96,7 +96,7 @@ public class Catalogue {
      * @return json representation of the catalogue
      * @throws IOException on failure
      */
-    public String asJson(FACTION faction, final ModelSet ms) throws IOException {
+    public String asJson(FACTION faction, final ModelSet ms, boolean doAddons) throws IOException {
         return asJson(faction, ms, false);
     }
 
@@ -108,12 +108,12 @@ public class Catalogue {
      * @return json representation of the catalogue
      * @throws IOException on failure
      */
-    public String asJson(FACTION faction, final ModelSet ms, boolean multiplesOnly) throws IOException {
+    public String asJson(FACTION faction, final ModelSet ms, boolean multiplesOnly, boolean doAddons) throws IOException {
         // Make sure the templates are loaded
         Database.getInstance();
         String template = faction.getTemplate();
         logger.info("Building JSON for " + faction.getName());
-        return asJsonInner(template, ms, multiplesOnly);
+        return asJsonInner(template, ms, multiplesOnly, doAddons);
     }
 
     /**
@@ -123,8 +123,8 @@ public class Catalogue {
      * @return json representation of the catalogue
      * @throws IOException on failure
      */
-    public String asJson(SECTORAL sectoral, final ModelSet ms) throws IOException {
-        return asJson(sectoral, ms, false);
+    public String asJson(SECTORAL sectoral, final ModelSet ms, boolean doAddons) throws IOException {
+        return asJson(sectoral, ms, false, doAddons);
     }
 
     /**
@@ -135,17 +135,17 @@ public class Catalogue {
      * @return json representation of the catalogue
      * @throws IOException on failure
      */
-    public String asJson(SECTORAL sectoral, final ModelSet ms, boolean multiplesOnly) throws IOException {
+    public String asJson(SECTORAL sectoral, final ModelSet ms, boolean multiplesOnly, boolean doAddons) throws IOException {
         // Make sure the templates are loaded
         Database.getInstance();
         String template = sectoral.getTemplate();
         logger.info("Building JSON for " + sectoral.getName());
-        return asJsonInner(template, ms, multiplesOnly);
+        return asJsonInner(template, ms, multiplesOnly, doAddons);
 
     }
 
 
-    private String asJsonInner(final String template, final ModelSet ms, boolean multiplesOnly) {
+    private String asJsonInner(final String template, final ModelSet ms, boolean multiplesOnly, boolean doAddons) {
         List<PrintableUnit> allUnits = new ArrayList<>();
 
         for( EquivalenceMapping equivalenceMapping : unitEquivalenceMappings) {
@@ -163,7 +163,7 @@ public class Catalogue {
 
         // sort reversed due to ordering in the bag.
         allUnits.sort(Comparator.comparing(PrintableUnit::getName).reversed());
-        List<String> units = allUnits.stream().map(u->u.asFactionJSON(ms)).collect(Collectors.toList());
+        List<String> units = allUnits.stream().map(u->u.asFactionJSON(ms, doAddons)).collect(Collectors.toList());
         String unit_list = String.join(",\n", units);
         return String.format(template, unit_list);
     }

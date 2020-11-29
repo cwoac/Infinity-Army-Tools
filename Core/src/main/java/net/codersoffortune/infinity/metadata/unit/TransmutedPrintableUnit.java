@@ -42,14 +42,14 @@ public class TransmutedPrintableUnit extends PrintableUnit {
 
 
     @Override
-    public String asFactionJSON(final ModelSet ms) {
+    public String asFactionJSON(final ModelSet ms, boolean doAddons) {
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
-        final String addon = Database.getAddonTemplate(s);
-        final Set<String> states = new HashSet<>(getTTSSilhouettes());
+        final String addon = doAddons?Database.getAddonTemplate(s):"";
+        final Set<String> states = new HashSet<>(getTTSSilhouettes(doAddons));
         for( PrintableUnit pu : printableUnits ) {
-            states.add(pu.asEmbeddedJSON(ms));
-            states.addAll(pu.getTTSSilhouettes());
+            states.add(pu.asEmbeddedJSON(ms, doAddons));
+            states.addAll(pu.getTTSSilhouettes(doAddons));
         }
         final String stateString = StreamUtils.zipWithIndex(states.stream().filter(s->!s.isEmpty()))
                 .map(x -> embedState(x.getValue(), x.getIndex()+2))

@@ -47,7 +47,7 @@ public class Decoder {
             SectoralList fl = db.getSectorals().get(list.getSectoral().getId());
             MappedFactionFilters filters = new MappedFactionFilters(fl.getFilters());
             //TODO:: Load the right modelset
-            String moo = list.asJson(filters, null);
+            String moo = list.asJson(filters, null, false);
             list.pretty_print();
         }
     }

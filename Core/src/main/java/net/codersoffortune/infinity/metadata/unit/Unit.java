@@ -79,7 +79,8 @@ public class Unit {
                                              final int option,
                                              final MappedFactionFilters filters,
                                              final EquivalentModelSet equivalentModelSet,
-                                             final SECTORAL sectoral) throws IllegalArgumentException, InvalidObjectException {
+                                             final SECTORAL sectoral,
+                                             final boolean doAddons) throws IllegalArgumentException, InvalidObjectException {
         //TODO:: Handle pilots
         Collection<CompactedUnit> compactedUnits = getPublicUnits(group, option);
         Collection<PrintableUnit> printableUnits = new ArrayList<>();
@@ -88,7 +89,7 @@ public class Unit {
         }
         return printableUnits.stream()
                 .peek(pu -> logger.trace("Converting {}", pu.getName()))
-                .map(pu -> pu.asArmyJSON(combat_group, equivalentModelSet))
+                .map(pu -> pu.asArmyJSON(combat_group, equivalentModelSet, doAddons))
                 .collect(Collectors.toList());
     }
 

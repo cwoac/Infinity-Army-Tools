@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.CheckBox?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="net.codersoffortune.infinity.gui.MainController"
       spacing="10">
@@ -14,6 +15,8 @@
         <Label text="Current Version"/>
         <Label fx:id="versionLabel" text="Hello world FXML"/>
         <ProgressIndicator fx:id="updateDBIndicator" />
+        <Label text="Enable addons?" />
+        <CheckBox fx:id="enableAddons" />
     </HBox>
     <HBox spacing="10">
         <Label text="DB Maintenance" />

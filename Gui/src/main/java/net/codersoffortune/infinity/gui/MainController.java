@@ -2,6 +2,7 @@ package net.codersoffortune.infinity.gui;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
@@ -29,6 +30,9 @@ public class MainController {
     @FXML
     private TextField armyCodeTF;
 
+    @FXML
+    private CheckBox enableAddons;
+
     public MainController() throws IOException {
     }
 
@@ -36,6 +40,7 @@ public class MainController {
     private void initialize() {
         versionLabel.setText(db.getVersion());
         updateDBIndicator.setVisible(false);
+        enableAddons.setSelected(false);
     }
 
     @FXML
@@ -49,7 +54,7 @@ public class MainController {
 
     @FXML
     public void writeBoxes(Event e) throws IOException {
-        db.writeJson(new File("output"));
+        db.writeJson(new File("output"), enableAddons.isSelected());
     }
 
     @FXML
@@ -73,7 +78,7 @@ public class MainController {
         c.addUnits(sl, al.getSectoral(), false);
         EquivalentModelSet ems = new EquivalentModelSet(c.getMappings());
         ems.addModelSet(Database.getModelSet());
-        String json = al.asJson(filters, ems);
+        String json = al.asJson(filters, ems, enableAddons.isSelected());
         BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("output/AL %s %s.json", al.getSectoralName(), al.getArmy_name())));
         writer.append(json);
         writer.close();
