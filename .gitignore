@@ -31,3 +31,5 @@ target/
 output/
 Core/resources/
 Gui/resources/
+missing/
+duplicates/
