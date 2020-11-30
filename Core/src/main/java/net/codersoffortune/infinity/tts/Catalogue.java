@@ -97,7 +97,7 @@ public class Catalogue {
      * @throws IOException on failure
      */
     public String asJson(FACTION faction, final ModelSet ms, boolean doAddons) throws IOException {
-        return asJson(faction, ms, false);
+        return asJson(faction, ms, false, doAddons);
     }
 
     /**

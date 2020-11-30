@@ -377,7 +377,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
         if (flags.getImpersonisation() > 1) {
             //has IMP1
-            result.add(String.format(template,"IMP-1 (discover -6)",IMP_TINTS.get(1),"", IMP_DECALS.get(1)));
+            result.add(String.format(template,"IMP-1 (discover -6)",IMP_TINTS.get(1),"",addon, IMP_DECALS.get(1)));
         }
 
         if (flags.isCamo()) {
