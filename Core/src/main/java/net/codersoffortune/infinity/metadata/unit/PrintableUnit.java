@@ -136,12 +136,23 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     }
 
     /**
+     * Handle profile options which augment the model name (usually FTO versions).
+     * @param a first unit name to compare
+     * @param b second unit name to compare
+     * @return true iff a==b or a is b+something (or vice versa).
+     */
+    private static boolean nameRoughlyMatches(final String a, final String b) {
+        if (a.equals(b)) return true;
+        return (a.startsWith(b) || b.startsWith(a));
+    }
+
+    /**
      * Compares two units to see if they are visibily the same (i.e. can use the same mesh+decals)
      * @param that to compare against
      * @return true if they look the same
      */
     public boolean isEquivalent(PrintableUnit that) {
-        return name.equals(that.name) &&
+        return nameRoughlyMatches(name, that.name) &&
                 visible_equipment.equals(that.visible_equipment) &&
                 visible_weapons.equals(that.visible_weapons) &&
                 visible_skills.equals(that.visible_skills) &&
@@ -375,18 +386,11 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         final String tint;
         List<String> result = new ArrayList<>();
 
-        if (flags.getImpersonisation() > 1) {
-            //has IMP1
-            result.add(String.format(template,"IMP-1 (discover -6)",IMP_TINTS.get(1),"",addon, IMP_DECALS.get(1)));
-        }
+
 
         if (flags.isCamo()) {
             int mimetism = flags.getMimetism();
-            if (mimetism != 0) {
-                description = String.format("Camouflage (%d) S%d", mimetism, s);
-            } else {
-                description = String.format("Camouflage S%d", s);
-            }
+            description = String.format("Camouflage (%d) S%d", mimetism, s);
             side_decal = CAMO_DECALS.get(mimetism);
             top_decal = "";
             tint = sectoral.getTint();
@@ -408,6 +412,11 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 top_decal = "";
                 tint = sectoral.getTint();
             }
+        }
+
+        if (flags.getImpersonisation() > 1) {
+            //has IMP1
+            result.add(String.format(template,"IMP-1 (discover -6)",IMP_TINTS.get(1),"",addon, IMP_DECALS.get(1)));
         }
 
         result.add(String.format(template, description, tint, side_decal, addon, top_decal));
@@ -451,6 +460,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 addon,
                 m.getDecals(),
                 states)).collect(Collectors.toList());
+        assert(! ttsModels.isEmpty());
         logger.trace(String.format("asFactionJSON for %s has %d models", this.toString(), ttsModels.size()));
         return String.join(",\n", ttsModels);
     }

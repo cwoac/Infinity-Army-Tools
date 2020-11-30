@@ -22,6 +22,7 @@
         <Label text="DB Maintenance" />
         <Button text="Update DB from Army" onAction="#updateClicked"/>
         <Button text="Dump Missing Files" onAction="#writeMissing"/>
+        <Button text="Load Missing Files" onAction="#readMissing" />
         <Button text="Dump Duplicate Files" onAction="#writeDuplicates"/>
     </HBox>
     <HBox spacing="10">

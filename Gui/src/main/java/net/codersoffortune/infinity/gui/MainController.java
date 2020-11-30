@@ -65,6 +65,12 @@ public class MainController {
     }
 
     @FXML
+    public void readMissing(Event e) throws IOException {
+        // TODO:: report outcome.
+        db.readMissing(new File("missing"));
+    }
+
+    @FXML
     public void writeDuplicates(Event e) throws IOException {
         db.writeDuplicates(new File("duplicates"));
     }

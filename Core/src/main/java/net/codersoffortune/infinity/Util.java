@@ -127,11 +127,16 @@ public class Util {
      */
     public static final List<Integer> interestingWeapons = Arrays.asList(
         1, // AK Kanone
+        12, // BSG
+        15, // HRMC
+        28, // LSG
+        44, // HSG
         50, // Adhesive launcher
         70, // Assault Pistol
         14, // Blitzen
         18, // chain rifle
         80, // chain colt
+        81, // VulkSG
         201, // EM grenade launcher
         82, // Flammenspeer
         194, // gren launcher

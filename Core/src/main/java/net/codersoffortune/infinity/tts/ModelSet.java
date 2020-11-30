@@ -178,8 +178,9 @@ public class ModelSet {
     }
 
 
-    public void readCSV(String filename) throws IOException {
-        FileReader fh = new FileReader(filename);
+
+    public void readCSV(File file) throws IOException {
+        FileReader fh = new FileReader(file);
         Iterable<CSVRecord> rows = CSVFormat.EXCEL
                 .withHeader(CSV_HEADERS)
                 .withFirstRecordAsHeader().parse(fh);

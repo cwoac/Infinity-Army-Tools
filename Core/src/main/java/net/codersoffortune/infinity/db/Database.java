@@ -7,6 +7,7 @@ import net.codersoffortune.infinity.metadata.Metadata;
 import net.codersoffortune.infinity.metadata.SectoralList;
 import net.codersoffortune.infinity.metadata.unit.Unit;
 import net.codersoffortune.infinity.tts.Catalogue;
+import net.codersoffortune.infinity.tts.EquivalentModelSet;
 import net.codersoffortune.infinity.tts.ModelSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,6 +16,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -207,8 +209,10 @@ public class Database {
             logger.info("Reading {}", faction.getName());
             Catalogue c = new Catalogue();
             c.addUnits(sectorals, faction, false);
+            EquivalentModelSet ems = new EquivalentModelSet(c.getMappings());
+            ems.addModelSet(modelSet);
             logger.info("Writing JSON");
-            String factionJson = c.asJson(faction, modelSet, doAddons);
+            String factionJson = c.asJson(faction, ems, doAddons);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), faction.getName())));
             writer.append(factionJson);
             writer.close();
@@ -220,8 +224,10 @@ public class Database {
 
             Catalogue c = new Catalogue();
             c.addUnits(sectorals.get(sectoral.getId()), sectoral, false);
+            EquivalentModelSet ems = new EquivalentModelSet(c.getMappings());
+            ems.addModelSet(modelSet);
 
-            String sectoralJSON = c.asJson(sectoral, modelSet, doAddons);
+            String sectoralJSON = c.asJson(sectoral, ems, doAddons);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), sectoral.getName())));
             writer.append(sectoralJSON);
             writer.close();
@@ -244,7 +250,7 @@ public class Database {
             logger.info("Reading {}", faction.getName());
             Catalogue c = new Catalogue();
             c.addUnits(sectorals, faction, false);
-            anyMissing |= c.toModellessCSV(String.format("output/%s missing.csv", faction.name()), modelSet);
+            anyMissing |= c.toModellessCSV(String.format("%s/%s missing.csv", outDir.getPath(), faction.name()), modelSet);
         }
 
         logger.info("Parsing NA2 Sectorals");
@@ -253,9 +259,62 @@ public class Database {
 
             Catalogue c = new Catalogue();
             c.addUnits(sectorals.get(sectoral.getId()), sectoral, false);
-            anyMissing |= c.toModellessCSV(String.format("output/%s missing.csv", sectoral.name()), modelSet);
+            anyMissing |= c.toModellessCSV(String.format("%s/%s missing.csv", outDir.getPath(), sectoral.name()), modelSet);
         }
         return anyMissing;
+    }
+
+    private void readMissingFaction(File inFile, FACTION faction) throws IOException {
+        logger.info("About to parse {} as {}", inFile.getName(), faction.getName());
+        Catalogue c = new Catalogue();
+        c.addUnits(sectorals, faction, false);
+        EquivalentModelSet ems = new EquivalentModelSet(c.getMappings());
+        ems.readCSV(inFile);
+        modelSet.addModelSet(ems.expand());
+    }
+
+    private void readMissingSectoral(File inFile, SECTORAL sectoral) throws IOException {
+        logger.info("About to parse {} as {}", inFile.getName(), sectoral.getName());
+        Catalogue c = new Catalogue();
+        c.addUnits(sectorals.get(sectoral.getId()), sectoral, false);
+        EquivalentModelSet ems = new EquivalentModelSet(c.getMappings());
+        ems.readCSV(inFile);
+        modelSet.addModelSet(ems.expand());
+    }
+
+    /**
+     * Read in a bunch of CSV files, hopefully containing details of missing models
+     * @param inDir to parse
+     * @throws IOException on failure
+     */
+    public void readMissing(File inDir) throws IOException {
+       for( File file : inDir.listFiles(new FilenameFilter() {
+           @Override
+           public boolean accept(File dir, String name) {
+               return name.toLowerCase().endsWith(".csv");
+           }
+       })) {
+           // TODO:: Should probably validate this
+           final String base_name = file.getName().replaceFirst(" missing.csv","");
+           // Is it a Faction bag?
+           Optional<FACTION> factionMaybe = Arrays.stream(FACTION.values())
+                   .filter(x->x.getName().equalsIgnoreCase(base_name))
+                   .findFirst();
+           if( factionMaybe.isPresent() ) {
+               readMissingFaction(file, factionMaybe.get());
+               continue;
+           }
+           // OK, maybe it is a (NA2) sectoral?
+           Optional<SECTORAL> sectoralMaybe = Arrays.stream(SECTORAL.values())
+                   .filter(x->x.getName().equalsIgnoreCase(base_name))
+                   .findFirst();
+           if( sectoralMaybe.isPresent() ) {
+               readMissingSectoral(file, sectoralMaybe.get());
+               continue;
+           }
+           logger.warn("Unable to identify what {} is.", base_name);
+       }
+       modelSet.writeFile("modelset_updated.json");
     }
 
     /**

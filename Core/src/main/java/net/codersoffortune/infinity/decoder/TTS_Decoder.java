@@ -156,13 +156,13 @@ public class TTS_Decoder {
             c.addUnits(db.getSectorals(), faction, useMercs);
             EquivalentModelSet ms = new EquivalentModelSet(c.getMappings());
             // Yes this will fail first time. You need to make this file yourself!
-            try {
-                ms.readCSV(csvFile);
-            } catch (IOException e) {
-                // yes this is nasty. sorry.
-                System.out.printf("%s not found. skipping%n", csvFile);
-                continue;
-            }
+//            try {
+//                ms.readCSV(csvFile);
+//            } catch (IOException e) {
+//                // yes this is nasty. sorry.
+//                System.out.printf("%s not found. skipping%n", csvFile);
+//                continue;
+//            }
             String faction_json = c.asJson(faction, ms, true);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s.json", faction.getName())));
             writer.append(faction_json);
@@ -183,13 +183,13 @@ public class TTS_Decoder {
             c.addUnits(db.getSectorals().get(sectoral.getId()), sectoral, useMercs);
             EquivalentModelSet ms = new EquivalentModelSet(c.getMappings());
             // Yes this will fail first time. You need to make this file yourself!
-            try {
-                ms.readCSV(csvFile);
-            } catch (IOException e) {
-                // yes this is nasty. sorry.
-                System.out.printf("%s not found. skipping%n", csvFile);
-                continue;
-            }
+//            try {
+//                ms.readCSV(csvFile);
+//            } catch (IOException e) {
+//                // yes this is nasty. sorry.
+//                System.out.printf("%s not found. skipping%n", csvFile);
+//                continue;
+//            }
             String faction_json = c.asJson(sectoral, ms, true);
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s.json", sectoral.getName())));
             writer.append(faction_json);
