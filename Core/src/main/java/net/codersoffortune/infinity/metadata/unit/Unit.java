@@ -106,16 +106,19 @@ public class Unit {
      * @return true iff the first profile of this group has transmutation
      */
     private boolean hasTransmutation(final ProfileGroup group) {
-        // TODO:: Is this the only value for transmutation?
-        return group.getProfiles().get(0).getSkills().stream()
-                .anyMatch(s->s.getId()==246);
+        // 246 > Transmutation
+        // 205 > AI Motorcycle
+        Profile profile = group.getProfiles().get(0);
+        return profile.getSkills().stream()
+                .anyMatch(s->s.getId()==246) ||
+                profile.getEquip().stream()
+                .anyMatch(s->s.getId()==205);
     }
 
     public Collection<CompactedUnit> getAllUnits() {
         Collection<CompactedUnit> result = new ArrayList<>();
         for( ProfileGroup group: profileGroups) {
             if( group.getProfiles().size() > 1 && hasTransmutation(group) ) {
-                // TODO::zondnauts
                 result.addAll(group.getOptions().stream()
                         .map(o -> new TransmutedCompactedUnit(ID, group, group.getProfiles(), o))
                         .collect(Collectors.toList()));
