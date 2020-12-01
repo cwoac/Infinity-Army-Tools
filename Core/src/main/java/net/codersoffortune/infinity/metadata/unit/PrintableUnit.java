@@ -376,7 +376,16 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
             -6, "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/"
     );
 
-    protected List<String> getTTSSilhouettes(boolean doAddons) {
+
+
+
+        protected List<String> getTTSSilhouettes(boolean doAddons) {
+            return getTTSSilhouettes(doAddons, -1);
+        }
+
+
+        protected List<String> getTTSSilhouettes(boolean doAddons, int sizeSkip) {
+
 
         final String template = Database.getSilhouetteTemplates().get(s);
         final String addon = doAddons?Database.getAddonTemplate(s):"";
@@ -407,6 +416,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 top_decal = IMP_DECALS.get(0);
                 tint = IMP_TINTS.get(0);
             } else {
+                // Embedded case where the silhoutte does not change so we don't need dupes.
+                if (sizeSkip==s) return new ArrayList<>();
                 description = String.format("Silhouette %d", s);
                 side_decal = "";
                 top_decal = "";

@@ -73,7 +73,7 @@ public class TransmutedPrintableUnit extends PrintableUnit {
         List<String> results = new ArrayList<>();
 
         List<String> puEmbeds = pu.asEmbeddedJSON(ms, doAddons);
-        List<String> puSilhouettes = pu.getTTSSilhouettes(doAddons);
+        List<String> puSilhouettes = pu.getTTSSilhouettes(doAddons, s);
 
         Set<TTSModel> models = ms.getModels(getUnitID());
         int curEmbed = 0;
