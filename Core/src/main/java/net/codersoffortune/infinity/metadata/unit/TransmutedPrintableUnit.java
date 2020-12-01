@@ -5,6 +5,7 @@ import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.tts.ModelSet;
+import net.codersoffortune.infinity.tts.TTSModel;
 import org.apache.commons.csv.CSVPrinter;
 
 import java.io.IOException;
@@ -41,29 +42,52 @@ public class TransmutedPrintableUnit extends PrintableUnit {
 
 
 
-    @Override
-    public String asFactionJSON(final ModelSet ms, boolean doAddons) {
+
+    private String asFactionJSONInner(final TTSModel model, final String embeddedModel, final List<String> embeddedSilhouettes, boolean doAddons, final List<String> silhouettes) {
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
         final String addon = doAddons?Database.getAddonTemplate(s):"";
-        final Set<String> states = new HashSet<>(getTTSSilhouettes(doAddons));
-        for( PrintableUnit pu : printableUnits ) {
-            states.add(pu.asEmbeddedJSON(ms, doAddons));
-            states.addAll(pu.getTTSSilhouettes(doAddons));
-        }
-        final String stateString = StreamUtils.zipWithIndex(states.stream().filter(s->!s.isEmpty()))
+        List<String> states = new ArrayList<>(silhouettes);
+        states.add(embeddedModel);
+        states.addAll(embeddedSilhouettes);
+        String embed = StreamUtils.zipWithIndex(states.stream().filter(s->!s.isEmpty()))
                 .map(x -> embedState(x.getValue(), x.getIndex()+2))
                 .collect(Collectors.joining("\n,"));
-        //final String states = String.join(",\n", ttsSilhouettes);
         final String ttsColour = sectoral.getTint();
-        List<String> ttsModels =  ms.getModels(getUnitID()).stream().map(m -> String.format(Database.getUnitTemplate(),
+        return String.format(Database.getUnitTemplate(),
                 ttsName,
                 ttsDescription,
                 ttsColour,
-                m.getMeshes(),
+                model.getMeshes(),
                 addon,
-                m.getDecals(),
-                stateString)).collect(Collectors.toList());
-        return String.join(",\n", ttsModels);
+                model.getDecals(),
+                embed);
+    }
+
+    @Override
+    public String asFactionJSON(final ModelSet ms, boolean doAddons) {
+        assert(printableUnits.size()==1);
+        final PrintableUnit pu = printableUnits.get(0);
+
+        final List<String> silhouettes = getTTSSilhouettes(doAddons);
+        List<String> results = new ArrayList<>();
+
+        List<String> puEmbeds = pu.asEmbeddedJSON(ms, doAddons);
+        List<String> puSilhouettes = pu.getTTSSilhouettes(doAddons);
+
+        Set<TTSModel> models = ms.getModels(getUnitID());
+        int curEmbed = 0;
+
+        for( TTSModel model : models) {
+            try {
+                results.add(asFactionJSONInner(model, puEmbeds.get(curEmbed), puSilhouettes, doAddons, silhouettes));
+            } catch (IndexOutOfBoundsException e) {
+                e.printStackTrace();
+                throw e;
+            }
+            curEmbed = (curEmbed+1) % puEmbeds.size();
+        }
+
+        return String.join(",\n", results);
     }
 }

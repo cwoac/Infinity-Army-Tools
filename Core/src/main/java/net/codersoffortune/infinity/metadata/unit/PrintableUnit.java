@@ -465,20 +465,19 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return String.join(",\n", ttsModels);
     }
 
-    public String asEmbeddedJSON(final ModelSet ms, boolean doAddons) {
+    public List<String> asEmbeddedJSON(final ModelSet ms, boolean doAddons) {
         String ttsName = getEmbeddedTTSName();
         String ttsDescription = getTTSDescription();
         final String addon = doAddons?Database.getAddonTemplate(s):"";
         String ttsColour = sectoral.getTint();
         Set<TTSModel> models = ms.getModels(getUnitID());
-        List<String> ttsModels = models.stream().map(m -> String.format(Database.getTransmutedUnitTemplate(),
+        return models.stream().map(m -> String.format(Database.getTransmutedUnitTemplate(),
                 ttsName,
                 ttsDescription,
                 ttsColour,
                 m.getMeshes(),
                 addon,
                 m.getDecals())).collect(Collectors.toList());
-        return String.join(",\n", ttsModels);
     }
 
     public String asArmyJSON(int combatGroup_idx, final EquivalentModelSet ms, final boolean doAddons) throws IllegalArgumentException {

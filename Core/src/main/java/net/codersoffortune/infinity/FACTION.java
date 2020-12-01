@@ -19,7 +19,7 @@ public enum FACTION {
     Nomads(5,"Nomads", Arrays.asList(SECTORAL.Nomads, SECTORAL.Corregidor, SECTORAL.Bakunin, SECTORAL.Tunguska), "ce181f", "\"r\": 0.807843149, \"g\": 0.09411695, \"b\": 0.1215679", "http://cloud-3.steamusercontent.com/ugc/1685996137035363314/141B310D2B3842D0CA9E79901B72B0EAABB0D5C3/"),
     CombinedArmy(6,"Combined Army",Arrays.asList(SECTORAL.CA, SECTORAL.MAF, SECTORAL.Onyx, SECTORAL.Shasvastii), "813CAA", "\"r\": 0.5058824, \"g\": 0.235293388, \"b\": 0.6666667", "http://cloud-3.steamusercontent.com/ugc/1685996137035365049/68902014928ED2D5F9C276A1254260D395EE9020/"),
     Aleph(7, "Aleph",Arrays.asList(SECTORAL.Aleph, SECTORAL.OSS),"AFA7BC", "\"r\": 0.6862744, \"g\": 0.654902, \"b\": 0.737255","http://cloud-3.steamusercontent.com/ugc/1685996137035317962/5E5F36F03124D394BEC60D13FB37FED7F9360E05/"),
-    Tohaa(8, "Tohaa",new ArrayList<>(), "B9DB01","\"r\": 0.725,\"g\": 0.858,\"b\": 0.003" ,"http://cloud-3.steamusercontent.com/ugc/1685996137035406102/76F49352D56B3120175544A3E2E9656E43F8B70E/"),
+    Tohaa(8, "Tohaa",Arrays.asList(SECTORAL.Tohaa), "B9DB01","\"r\": 0.725,\"g\": 0.858,\"b\": 0.003" ,"http://cloud-3.steamusercontent.com/ugc/1685996137035406102/76F49352D56B3120175544A3E2E9656E43F8B70E/"),
     NA2(9, "Non-Aligned Armies",Arrays.asList(SECTORAL.Druze, SECTORAL.JSA, SECTORAL.Ikari, SECTORAL.Starco, SECTORAL.SpiralCorps, SECTORAL.FoCo, SECTORAL.Dahshat, SECTORAL.WiCo),"808080", "\"r\": 0.5, \"g\": 0.5, \"b\": 0.5", ""),
     O12(10, "O-12",Arrays.asList(SECTORAL.O12, SECTORAL.Starmarda), "726C96", "\"r\": 0.305881649, \"g\": 0.27843067, \"b\": 0.4666664", "http://cloud-3.steamusercontent.com/ugc/1685996137035366882/D545AFAB6DEA17368E442BD2B7E256C4E11E4751/");
 
