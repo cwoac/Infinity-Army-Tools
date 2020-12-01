@@ -33,7 +33,7 @@ public enum SIZE {
     }
 
     // TODO:: Remove this and model_template and fold into getModelTemplate
-    public String getModelCustomMesh() {
+    public String getModelCustomMesh(final String baseImage) {
         return String.format(
           "{\n" +
                   "\"MeshURL\": \"%s\",\n" +
@@ -46,7 +46,7 @@ public enum SIZE {
                   "\"CastShadows\": true\n" +
                   "}",
                 modelMesh,
-                "", // TODO:: Add diffuse URL
+                baseImage,
                 modelCollider
         );
     }

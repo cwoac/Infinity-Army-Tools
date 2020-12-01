@@ -70,7 +70,7 @@ public class TransmutedPrintableUnit extends PrintableUnit {
                 ttsName,
                 ttsDescription,
                 ttsColour,
-                SIZE.get(s).getModelCustomMesh(),
+                SIZE.get(s).getModelCustomMesh(model.getBaseImage()),
                 addon,
                 model.getDecals(),
                 embed);

@@ -251,7 +251,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
         for( TTSModel model : ms.getModels(getUnitID())) {
             unfolded.add(model.getName());
-            unfolded.add(SIZE.get(s).getModelCustomMesh());
+            unfolded.add(SIZE.get(s).getModelCustomMesh(model.getBaseImage()));
             unfolded.add(model.getDecals());
         }
         while( unfolded.size() < 15 ) unfolded.add("");
@@ -460,7 +460,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 ttsName,
                 ttsDescription,
                 ttsColour,
-                SIZE.get(s).getModelCustomMesh(),
+                SIZE.get(s).getModelCustomMesh(m.getBaseImage()),
                 addon,
                 m.getDecals(),
                 states)).collect(Collectors.toList());
@@ -479,7 +479,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 ttsName,
                 ttsDescription,
                 ttsColour,
-                SIZE.get(s).getModelCustomMesh(),
+                SIZE.get(s).getModelCustomMesh(m.getBaseImage()),
                 addon,
                 m.getDecals())).collect(Collectors.toList());
     }
@@ -502,7 +502,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 ttsName,
                 ttsDescription,
                 ttsColour,
-                SIZE.get(s).getModelCustomMesh(),
+                SIZE.get(s).getModelCustomMesh(model.getBaseImage()),
                 addon,
                 model.getDecals(),
                 states);

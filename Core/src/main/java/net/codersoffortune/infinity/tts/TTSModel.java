@@ -9,22 +9,20 @@ import java.util.regex.Pattern;
 
 public class TTSModel implements Serializable {
     private String decals;
-    private String meshes;
+    private String baseImage;
     private String name; // mostly a sanity check
 
     private Set<String> extractedDecals;
-    private Set<String> extractedMeshes;
 
     private static final Pattern decalPattern = Pattern.compile("\"ImageURL\":\"(?<url>[^\"]*)\"");
-    private static final Pattern meshPattern = Pattern.compile("\"MeshURL\":\"(?<url>[^\"]*)\"");
 
     public TTSModel() {
     }
 
-    public TTSModel(String name, String decals, String meshes) {
+    public TTSModel(String name, String decals, String baseImage) {
         this.name = name;
         setDecals(decals);
-        setMeshes(meshes);
+        setBaseImage(baseImage);
     }
 
     public String getName() {
@@ -35,13 +33,12 @@ public class TTSModel implements Serializable {
         this.name = name;
     }
 
-    public String getMeshes() {
-        return meshes;
+    public String getBaseImage() {
+        return baseImage;
     }
 
-    public void setMeshes(String meshes) {
-        this.meshes = meshes;
-        this.extractedMeshes = extractMeshes(meshes);
+    public void setBaseImage(String baseImage) {
+        this.baseImage = baseImage;
     }
 
     public String getDecals() {
@@ -62,14 +59,6 @@ public class TTSModel implements Serializable {
         return result;
     }
 
-    private static Set<String> extractMeshes(String meshes) {
-        Set<String> result = new HashSet<>();
-        Matcher m = meshPattern.matcher(meshes);
-        while( m.find() ) {
-            result.add(m.group("url"));
-        }
-        return result;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -77,11 +66,11 @@ public class TTSModel implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         TTSModel ttsModel = (TTSModel) o;
         return Objects.equals(extractedDecals, ttsModel.extractedDecals) &&
-                Objects.equals(extractedMeshes, ttsModel.extractedMeshes);
+               Objects.equals(baseImage, ttsModel.baseImage) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(extractedDecals, extractedMeshes);
+        return Objects.hash(extractedDecals, baseImage);
     }
 }
