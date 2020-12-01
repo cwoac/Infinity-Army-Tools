@@ -1,6 +1,7 @@
 package net.codersoffortune.infinity.metadata.unit;
 
 import com.codepoetics.protonpack.StreamUtils;
+import com.google.inject.internal.util.Sets;
 import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
@@ -11,6 +12,7 @@ import org.apache.commons.csv.CSVPrinter;
 import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -47,9 +49,18 @@ public class TransmutedPrintableUnit extends PrintableUnit {
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
         final String addon = doAddons?Database.getAddonTemplate(s):"";
-        List<String> states = new ArrayList<>(silhouettes);
-        states.add(embeddedModel);
-        states.addAll(embeddedSilhouettes);
+        List<String> states = new ArrayList<>();
+        // There are two types here - if the silhouette size changes, we want active -> active sil -> inactive -> inactive sil
+        // but if it doesn't, then we want active -> inactive -> sil
+        boolean silChange = !silhouettes.containsAll(embeddedSilhouettes);
+        if (silChange) {
+            states.addAll(silhouettes);
+            states.add(embeddedModel);
+            states.addAll(embeddedSilhouettes);
+        } else {
+            states.add(embeddedModel);
+            states.addAll(silhouettes);
+        }
         String embed = StreamUtils.zipWithIndex(states.stream().filter(s->!s.isEmpty()))
                 .map(x -> embedState(x.getValue(), x.getIndex()+2))
                 .collect(Collectors.joining("\n,"));
@@ -73,7 +84,7 @@ public class TransmutedPrintableUnit extends PrintableUnit {
         List<String> results = new ArrayList<>();
 
         List<String> puEmbeds = pu.asEmbeddedJSON(ms, doAddons);
-        List<String> puSilhouettes = pu.getTTSSilhouettes(doAddons, s);
+        List<String> puSilhouettes = pu.getTTSSilhouettes(doAddons);
 
         Set<TTSModel> models = ms.getModels(getUnitID());
         int curEmbed = 0;
