@@ -42,10 +42,10 @@ public class Database {
        Obviously, if you call the getters before getInstance has ever been called then you will get blanks.
     */
     private static String unitTemplate = "";
-    private static List<String> silhouetteTemplates = new ArrayList<>();
     private static Map<Integer, String> addonTemplates = new HashMap<>();
     private static String bagTemplate = "";
     private static String factionTemplate = "";
+    private static String meshTemplate = "";
     private static String transmutedUnitTemplate = "";
     private static ModelSet modelSet = null;
     private static volatile Database dbSingleton;
@@ -78,22 +78,6 @@ public class Database {
             sectorals.put(id, SectoralList.load(String.valueOf(id)));
         }
 
-        /* A little note on S0. Technically, this is SX, which is the 3mm high version of the silhouette.
-           However, the only units which have SX on their profile are the seed embryos, which are all Sx2,
-           so S0 is S2 scaled to 3mm high.
-         */
-        silhouetteTemplates = Arrays.asList(
-                getResourceFileAsString("templates/S0.json"),
-                getResourceFileAsString("templates/S1.json"),
-                getResourceFileAsString("templates/S2.json"),
-                getResourceFileAsString("templates/S3.json"),
-                getResourceFileAsString("templates/S4.json"),
-                getResourceFileAsString("templates/S5.json"),
-                getResourceFileAsString("templates/S6.json"),
-                getResourceFileAsString("templates/S7.json"),
-                getResourceFileAsString("templates/S8.json")
-        );
-
         addonTemplates = Map.of(
                 25, getResourceFileAsString("templates/25mm_addon.json"),
                 40, getResourceFileAsString("templates/40mm_addon.json"),
@@ -101,6 +85,7 @@ public class Database {
                 70, getResourceFileAsString("templates/70mm_addon.json")
         );
 
+        meshTemplate = getResourceFileAsString("Templates/mesh_template.json");
         unitTemplate = getResourceFileAsString("Templates/model_template");
         transmutedUnitTemplate = getResourceFileAsString("Templates/transmuted_model_template");
         factionTemplate = getResourceFileAsString("templates/faction_template");
@@ -113,12 +98,10 @@ public class Database {
         return bagTemplate;
     }
 
+    public static String getMeshTemplate() { return meshTemplate; }
+
     public static String getUnitTemplate() {
         return unitTemplate;
-    }
-
-    public static List<String> getSilhouetteTemplates() {
-        return silhouetteTemplates;
     }
 
     public static String getAddonTemplate( int silhouetteSize ) {

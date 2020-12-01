@@ -2,6 +2,7 @@ package net.codersoffortune.infinity.metadata.unit;
 
 import com.codepoetics.protonpack.StreamUtils;
 import net.codersoffortune.infinity.SECTORAL;
+import net.codersoffortune.infinity.SIZE;
 import net.codersoffortune.infinity.Util;
 import net.codersoffortune.infinity.armylist.CombatGroup;
 import net.codersoffortune.infinity.db.Database;
@@ -380,14 +381,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
 
         protected List<String> getTTSSilhouettes(boolean doAddons) {
-            return getTTSSilhouettes(doAddons, -1);
-        }
-
-
-        protected List<String> getTTSSilhouettes(boolean doAddons, int sizeSkip) {
-
-
-        final String template = Database.getSilhouetteTemplates().get(s);
+        //final String template = Database.getSilhouetteTemplates().get(s);
+        final String template = SIZE.get(s).getSilhouetteTemplate();
         final String addon = doAddons?Database.getAddonTemplate(s):"";
         final String description;
         final String side_decal;
@@ -416,8 +411,6 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 top_decal = IMP_DECALS.get(0);
                 tint = IMP_TINTS.get(0);
             } else {
-                // Embedded case where the silhoutte does not change so we don't need dupes.
-                if (sizeSkip==s) return new ArrayList<>();
                 description = String.format("Silhouette %d", s);
                 side_decal = "";
                 top_decal = "";
