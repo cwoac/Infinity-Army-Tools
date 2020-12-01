@@ -31,10 +31,6 @@ public class ID_Analyst {
             ms.readJson(bag);
         }
 
-        Map<UnitID, Set<TTSModel>> hmmm = new HashMap<>();
-        for( Map.Entry<UnitID, Set<TTSModel>> entry : ms.getModels().entrySet() ) {
-            if( entry.getKey().getUnit_idx() == 36) hmmm.put(entry.getKey(), entry.getValue());
-        }
 
         Catalogue c  = new Catalogue();
         c.addUnits(db.getSectorals(), FACTION.NA2, false);

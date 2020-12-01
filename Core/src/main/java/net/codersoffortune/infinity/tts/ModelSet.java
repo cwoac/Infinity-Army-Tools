@@ -244,10 +244,6 @@ public class ModelSet {
                 default:
                     break;
             }
-            if ((faction == FACTION.PanOceania && unitIdx == 22)) {
-
-                continue;
-            }
             String decals = "";
             if (child.has("AttachedDecals")) {
                 // Models which are just a token (e.g. seed embryos) may not have extra decals.

@@ -52,7 +52,7 @@ public class Database {
     Metadata metadata;
     Map<Integer, SectoralList> sectorals;
 
-    public static Map<Integer, Integer> addonSizes = Map.of(
+    public static final Map<Integer, Integer> addonSizes = Map.of(
             0, 25,
             1, 25,
             2, 25,
@@ -271,12 +271,7 @@ public class Database {
      * @throws IOException on failure
      */
     public void readMissing(File inDir) throws IOException {
-       for( File file : inDir.listFiles(new FilenameFilter() {
-           @Override
-           public boolean accept(File dir, String name) {
-               return name.toLowerCase().endsWith(".csv");
-           }
-       })) {
+       for( File file : inDir.listFiles((dir, name) -> name.toLowerCase().endsWith(".csv"))) {
            // TODO:: Should probably validate this
            final String base_name = file.getName().replaceFirst(" missing.csv","");
            // Is it a Faction bag?
