@@ -3,6 +3,7 @@ package net.codersoffortune.infinity.metadata.unit;
 import com.codepoetics.protonpack.StreamUtils;
 import com.google.inject.internal.util.Sets;
 import net.codersoffortune.infinity.SECTORAL;
+import net.codersoffortune.infinity.SIZE;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.tts.ModelSet;
@@ -69,7 +70,7 @@ public class TransmutedPrintableUnit extends PrintableUnit {
                 ttsName,
                 ttsDescription,
                 ttsColour,
-                model.getMeshes(),
+                SIZE.get(s).getModelCustomMesh(),
                 addon,
                 model.getDecals(),
                 embed);

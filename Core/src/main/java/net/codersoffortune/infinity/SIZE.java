@@ -32,6 +32,25 @@ public enum SIZE {
         this.silhouetteCollider = silhouetteCollider;
     }
 
+    // TODO:: Remove this and model_template and fold into getModelTemplate
+    public String getModelCustomMesh() {
+        return String.format(
+          "{\n" +
+                  "\"MeshURL\": \"%s\",\n" +
+                  "\"DiffuseURL\": \"%s\",\n" +
+                  "\"NormalURL\": \"\",\n" +
+                  "\"ColliderURL\": \"%s\",\n" +
+                  "\"Convex\": true,\n" +
+                  "\"MaterialIndex\": 3,\n" +
+                  "\"TypeIndex\": 1,\n" +
+                  "\"CastShadows\": true\n" +
+                  "}",
+                modelMesh,
+                "", // TODO:: Add diffuse URL
+                modelCollider
+        );
+    }
+
     public String getModelTemplate() {
         return String.format(Database.getMeshTemplate(),
                 scale,
