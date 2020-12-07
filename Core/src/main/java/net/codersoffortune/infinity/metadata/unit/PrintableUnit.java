@@ -381,7 +381,6 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
 
         protected List<String> getTTSSilhouettes(boolean doAddons) {
-        //final String template = Database.getSilhouetteTemplates().get(s);
         final String template = SIZE.get(s).getSilhouetteTemplate();
         final String addon = doAddons?Database.getAddonTemplate(s):"";
         final String description;
