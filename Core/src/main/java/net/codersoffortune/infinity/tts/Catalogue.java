@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
  */
 public class Catalogue {
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger(Catalogue.class);
 
     public static final String[] CSV_HEADERS = new String[]{"sectoral", "unit", "group", "profile", "option", "name", "weapons", "equip",
             "meshName1", "decals1", "meshes1",

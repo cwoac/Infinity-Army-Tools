@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TTS_Decoder {
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger(TTS_Decoder.class);
 
     //private final static String test_list = "ZQpwYW5vY2VhbmlhASCBLAIBCQABAQEAAAEBAQAAAQEDAAABAQIAAAEBBQAAAQEIAAABAQkAAAEBBgAADAEBAAIEAITGAQUAAITAAQIAAA0BBQAADAEBAA==";
     // lsit 2 : gr8Kb3BlcmF0aW9ucwEggSwCAQoAgLcBBAAAgLcBAgAAgLcBBQAAegEDAACGFQEBAACEpwECAABtAQkAAG0BBAAAglMBAQAAglMBAQACBQCCUQEBAACCUQEBAAA7AQUAAIRqAQEAAIJQAQEA

@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
  * Like a @{link RegularCompactedUnit}, but with all the strings expanded.
  */
 public class PrintableUnit implements Comparable<PrintableUnit> {
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger(PrintableUnit.class);
 
     private final List<String> weapons;
     private final List<String> skills;

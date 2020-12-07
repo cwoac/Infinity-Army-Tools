@@ -20,6 +20,7 @@ public class Weapon {
     private String saving;
     private List<String> properties;
     private Map<String, RangeBand> distance;
+    private String profile;
 
     public Map<String, RangeBand> getDistance() {
         return distance;
@@ -110,5 +111,13 @@ public class Weapon {
 
     public void setWiki(String wiki) {
         this.wiki = wiki;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 }

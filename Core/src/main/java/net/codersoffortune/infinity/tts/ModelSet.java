@@ -39,7 +39,7 @@ import java.util.regex.Pattern;
 import static net.codersoffortune.infinity.tts.Catalogue.CSV_HEADERS;
 
 public class ModelSet {
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger(ModelSet.class);
 
     private static final ObjectMapper SORTED_MAPPER = new ObjectMapper();
 
