@@ -2,6 +2,7 @@ package net.codersoffortune.infinity.metadata.unit;
 
 import com.codepoetics.protonpack.StreamUtils;
 import net.codersoffortune.infinity.SECTORAL;
+import net.codersoffortune.infinity.SIZE;
 import net.codersoffortune.infinity.Util;
 import net.codersoffortune.infinity.armylist.CombatGroup;
 import net.codersoffortune.infinity.db.Database;
@@ -250,7 +251,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
         for( TTSModel model : ms.getModels(getUnitID())) {
             unfolded.add(model.getName());
-            unfolded.add(model.getMeshes());
+            unfolded.add(SIZE.get(s).getModelCustomMesh(model.getBaseImage()));
             unfolded.add(model.getDecals());
         }
         while( unfolded.size() < 15 ) unfolded.add("");
@@ -380,14 +381,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
 
         protected List<String> getTTSSilhouettes(boolean doAddons) {
-            return getTTSSilhouettes(doAddons, -1);
-        }
-
-
-        protected List<String> getTTSSilhouettes(boolean doAddons, int sizeSkip) {
-
-
-        final String template = Database.getSilhouetteTemplates().get(s);
+        final String template = SIZE.get(s).getSilhouetteTemplate();
         final String addon = doAddons?Database.getAddonTemplate(s):"";
         final String description;
         final String side_decal;
@@ -416,8 +410,6 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 top_decal = IMP_DECALS.get(0);
                 tint = IMP_TINTS.get(0);
             } else {
-                // Embedded case where the silhoutte does not change so we don't need dupes.
-                if (sizeSkip==s) return new ArrayList<>();
                 description = String.format("Silhouette %d", s);
                 side_decal = "";
                 top_decal = "";
@@ -461,13 +453,12 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         final String states = StreamUtils.zipWithIndex(ttsSilhouettes.stream())
             .map(x -> embedState(x.getValue(), x.getIndex()+2))
             .collect(Collectors.joining("\n,"));
-        //final String states = String.join(",\n", ttsSilhouettes);
         final String ttsColour = sectoral.getTint();
         List<String> ttsModels = ms.getModels(getUnitID()).stream().map(m -> String.format(Database.getUnitTemplate(),
                 ttsName,
                 ttsDescription,
                 ttsColour,
-                m.getMeshes(),
+                SIZE.get(s).getModelCustomMesh(m.getBaseImage()),
                 addon,
                 m.getDecals(),
                 states)).collect(Collectors.toList());
@@ -486,7 +477,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 ttsName,
                 ttsDescription,
                 ttsColour,
-                m.getMeshes(),
+                SIZE.get(s).getModelCustomMesh(m.getBaseImage()),
                 addon,
                 m.getDecals())).collect(Collectors.toList());
     }
@@ -509,7 +500,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 ttsName,
                 ttsDescription,
                 ttsColour,
-                model.getMeshes(),
+                SIZE.get(s).getModelCustomMesh(model.getBaseImage()),
                 addon,
                 model.getDecals(),
                 states);

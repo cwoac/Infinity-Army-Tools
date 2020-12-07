@@ -54,7 +54,7 @@ public class EquivalentModelSet extends ModelSet {
     public ModelSet expand() {
         ModelSet ms = new ModelSet();
         // First add the explicit models.
-        models.forEach((key, value) -> ms.addModels(key, value));
+        models.forEach(ms::addModels);
         for(Catalogue.EquivalenceMapping mapping : equivalenceMappings) {
             // Do we have a model for this one?
             Optional<UnitID> maybeUnitID = mapping.getAllUnits().stream()

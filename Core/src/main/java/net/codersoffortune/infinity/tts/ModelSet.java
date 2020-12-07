@@ -142,8 +142,8 @@ public class ModelSet {
             if (!loadAll && models.containsKey(unitID)) continue;
             String name = child.get("Nickname").asText();
             String decals = child.get("AttachedDecals").toString();
-            String meshes = child.get("CustomMesh").toString();
-            TTSModel model = new TTSModel(name, decals, meshes);
+            String baseImage = child.get("DiffuseURL").toString();
+            TTSModel model = new TTSModel(name, decals, baseImage);
             addModel(unitID, model);
         }
     }
@@ -243,10 +243,6 @@ public class ModelSet {
                     if (greeks.contains(unitIdx)) continue;
                 default:
                     break;
-            }
-            if ((faction == FACTION.PanOceania && unitIdx == 22)) {
-
-                continue;
             }
             String decals = "";
             if (child.has("AttachedDecals")) {
