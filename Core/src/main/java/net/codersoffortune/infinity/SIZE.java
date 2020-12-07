@@ -50,19 +50,6 @@ public enum SIZE {
         );
     }
 
-    public String getModelTemplate() {
-        return String.format(Database.getMeshTemplate(),
-                scale,
-                "%s", // name
-                "%s", // colour
-                modelMesh,
-                "%s", // side decal
-                modelCollider,
-                "%s", // addon
-                "%s" // top decal
-                );
-    }
-
     public String getSilhouetteTemplate() {
         return String.format(Database.getMeshTemplate(),
                 scale,
