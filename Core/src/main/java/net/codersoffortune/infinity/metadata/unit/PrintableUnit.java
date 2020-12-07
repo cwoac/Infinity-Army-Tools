@@ -454,7 +454,6 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         final String states = StreamUtils.zipWithIndex(ttsSilhouettes.stream())
             .map(x -> embedState(x.getValue(), x.getIndex()+2))
             .collect(Collectors.joining("\n,"));
-        //final String states = String.join(",\n", ttsSilhouettes);
         final String ttsColour = sectoral.getTint();
         List<String> ttsModels = ms.getModels(getUnitID()).stream().map(m -> String.format(Database.getUnitTemplate(),
                 ttsName,

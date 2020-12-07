@@ -32,7 +32,6 @@ public enum SIZE {
         this.silhouetteCollider = silhouetteCollider;
     }
 
-    // TODO:: Remove this and model_template and fold into getModelTemplate
     public String getModelCustomMesh(final String baseImage) {
         return String.format(
           "{\n" +
