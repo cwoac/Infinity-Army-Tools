@@ -7,7 +7,7 @@ public enum SIZE {
            However, the only units which have SX on their profile are the seed embryos, which are all Sx2,
            so S0 is S2 scaled to 3mm high.
      */
-    S0("0.075","http://cloud-3.steamusercontent.com/ugc/925928630318913338/E7DA6223E51BEF6492FBDDDD7C2074898E601180/","http://cloud-3.steamusercontent.com/ugc/1012689924693058630/D75278D5B13CD7E5C35A47F605461D582CD8566C/","http://cloud-3.steamusercontent.com/ugc/929303676573608759/7BD92CCD59122AA034293F6D291C3B4227CF46CC/","http://cloud-3.steamusercontent.com/ugc/1012689924693138917/E38A0C14F29D566E6BDBD3158410F7FBB5996ABB/"),
+    SX("0.075","http://cloud-3.steamusercontent.com/ugc/925928630318913338/E7DA6223E51BEF6492FBDDDD7C2074898E601180/","http://cloud-3.steamusercontent.com/ugc/1012689924693058630/D75278D5B13CD7E5C35A47F605461D582CD8566C/","http://cloud-3.steamusercontent.com/ugc/929303676573608759/7BD92CCD59122AA034293F6D291C3B4227CF46CC/","http://cloud-3.steamusercontent.com/ugc/1012689924693138917/E38A0C14F29D566E6BDBD3158410F7FBB5996ABB/"),
     S1("1.0","http://cloud-3.steamusercontent.com/ugc/925928630318913338/E7DA6223E51BEF6492FBDDDD7C2074898E601180/","http://cloud-3.steamusercontent.com/ugc/1012689924693058630/D75278D5B13CD7E5C35A47F605461D582CD8566C/","http://cloud-3.steamusercontent.com/ugc/929303943738459799/16AB5E3A7C708780DD20C78B550CFEB920C689AD/","http://cloud-3.steamusercontent.com/ugc/1012689924693133830/24D30F0275DCE70611D7EAA9298DBE02405E36E5/"),
     S2("1.0","http://cloud-3.steamusercontent.com/ugc/925928630318913338/E7DA6223E51BEF6492FBDDDD7C2074898E601180/","http://cloud-3.steamusercontent.com/ugc/1012689924693058630/D75278D5B13CD7E5C35A47F605461D582CD8566C/","http://cloud-3.steamusercontent.com/ugc/929303676573608759/7BD92CCD59122AA034293F6D291C3B4227CF46CC/","http://cloud-3.steamusercontent.com/ugc/1012689924693138917/E38A0C14F29D566E6BDBD3158410F7FBB5996ABB/"),
     S3("1.0","http://cloud-3.steamusercontent.com/ugc/925928630319000946/59207F2FCCEED4402B0E7406A59BFC34D1B1C687/","http://cloud-3.steamusercontent.com/ugc/1012689924693058973/F7E8C214C78B0CC828710C7097D7F64DA6C0F0F7/","http://cloud-3.steamusercontent.com/ugc/929303676573608371/35B6115843155E46391551B0AC37D029EF9F3C63/","http://cloud-3.steamusercontent.com/ugc/1012689924693139824/21CD80D311A1DBEDC440F18367ACFA41039C0315/"),
@@ -65,7 +65,7 @@ public enum SIZE {
 
     public static SIZE get(int value) throws IndexOutOfBoundsException {
         switch (value) {
-            case 0: return S0;
+            case 0: return SX;
             case 1: return S1;
             case 2: return S2;
             case 3: return S3;

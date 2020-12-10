@@ -1,14 +1,12 @@
 package net.codersoffortune.infinity.metadata.unit;
 
 import com.codepoetics.protonpack.StreamUtils;
-import com.google.inject.internal.util.Sets;
 import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.SIZE;
 import net.codersoffortune.infinity.armylist.CombatGroup;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.tts.EquivalentModelSet;
-import net.codersoffortune.infinity.tts.Model;
 import net.codersoffortune.infinity.tts.ModelSet;
 import net.codersoffortune.infinity.tts.TTSModel;
 import org.apache.commons.csv.CSVPrinter;
@@ -16,8 +14,6 @@ import org.apache.commons.csv.CSVPrinter;
 import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -49,7 +45,7 @@ public class TransmutedPrintableUnit extends PrintableUnit {
 
 
 
-    private String asFactionJSONInner(final TTSModel model, final String embeddedModel, final List<String> embeddedSilhouettes, boolean doAddons, final List<String> silhouettes, final String colour) {
+    private String asJSONInner(final TTSModel model, final String embeddedModel, final List<String> embeddedSilhouettes, boolean doAddons, final List<String> silhouettes, final String colour) {
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
         final String addon = doAddons?Database.getAddonTemplate(s):"";
@@ -78,7 +74,7 @@ public class TransmutedPrintableUnit extends PrintableUnit {
                 embed);
     }
 
-    private String asFaction(final ModelSet ms, boolean doAddons, String colour) {
+    private String asJSON(final ModelSet ms, boolean doAddons, String colour) {
         assert(printableUnits.size()==1);
         final PrintableUnit pu = printableUnits.get(0);
 
@@ -93,7 +89,7 @@ public class TransmutedPrintableUnit extends PrintableUnit {
 
         for( TTSModel model : models) {
             try {
-                results.add(asFactionJSONInner(model, puEmbeds.get(curEmbed), puSilhouettes, doAddons, silhouettes, colour));
+                results.add(asJSONInner(model, puEmbeds.get(curEmbed), puSilhouettes, doAddons, silhouettes, colour));
             } catch (IndexOutOfBoundsException e) {
                 e.printStackTrace();
                 throw e;
@@ -107,11 +103,11 @@ public class TransmutedPrintableUnit extends PrintableUnit {
 
     @Override
     public String asFactionJSON(final ModelSet ms, boolean doAddons) {
-        return asFaction(ms, doAddons, sectoral.getTint());
+        return asJSON(ms, doAddons, sectoral.getTint());
     }
 
     @Override
     public String asArmyJSON(int combatGroup_idx, final EquivalentModelSet ms, final boolean doAddons) throws IllegalArgumentException {
-        return asFaction(ms, doAddons, CombatGroup.getTint(combatGroup_idx));
+        return asJSON(ms, doAddons, CombatGroup.getTint(combatGroup_idx));
     }
 }
