@@ -1,0 +1,29 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 0,"posY": 0,"posZ": 0,
+    "rotX": 0,"rotY": 0,"rotZ": 0,
+    "scaleX": 1, "scaleY": 1, "scaleZ": 1
+  },
+  "Nickname": "%s",
+  "Description": "%s",
+  "GMNotes": "",
+  "ColorDiffuse": { %s },
+  "Locked": false,
+  "Grid": true,
+  "Snap": true,
+  "IgnoreFoW": false,
+  "MeasureMovement": false,
+  "DragSelectable": true,
+  "Autoraise": true,
+  "Sticky": true,
+  "Tooltip": true,
+  "GridProjection": false,
+  "HideWhenFaceDown": false,
+  "Hands": false,
+  %s
+  "CustomMesh": %s,
+  "States": {
+    %s
+  }
+}

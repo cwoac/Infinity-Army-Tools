@@ -31,8 +31,22 @@ import java.util.stream.Collectors;
  * Like a @{link RegularCompactedUnit}, but with all the strings expanded.
  */
 public class PrintableUnit implements Comparable<PrintableUnit> {
+    public static final List<String> IMP_DECALS = List.of(
+            ",\"AttachedDecals\": [{\"Transform\": {\"posX\": -0.00541555043,\"posY\": 1.6975,\"posZ\": 0.00176222192,\"rotX\": 89.98022,\"rotY\": 0.0138618117,\"rotZ\": 0.0,\"scaleX\": 0.909090936,\"scaleY\": 0.909090936,\"scaleZ\": 0.9090909},\"CustomDecal\": {\"Name\": \"IMP-2\",\"ImageURL\": \"http://cloud-3.steamusercontent.com/ugc/859479043234200757/7E194DA057B6FABED18662C5F2A0B6F77E6A05B2/\",\"Size\": 1.0}}]",
+            ",\"AttachedDecals\": [{\"Transform\": {\"posX\": 0.00342403026,\"posY\": 1.6975,\"posZ\": 0.00270367065,\"rotX\": 89.98022,\"rotY\": 0.0137606515,\"rotZ\": 0.0,\"scaleX\": 0.909090936,\"scaleY\": 0.909090936,\"scaleZ\": 0.9090909},\"CustomDecal\": {\"Name\": \"IMP-1\",\"ImageURL\": \"http://cloud-3.steamusercontent.com/ugc/859479043234200062/5F360301D5BA8909AA375577B8EC34D98D0F90E4/\",\"Size\": 1.0}}]"
+    );
+    public static final List<String> IMP_TINTS = List.of(
+            "\"r\": 0.8901961,\"g\": 0.5882353,\"b\": 0.58431375",
+            "\"r\": 0.545097947,\"g\": 0.819607854,\"b\": 0.9254902"
+    );
+    public static final Map<Integer, String> CAMO_DECALS = Map.of(
+            0, "http://cloud-3.steamusercontent.com/ugc/1548633241857020838/CDE48FB1F62CB3A31810F9077CAC176EFB735038/",
+            -3, "http://cloud-3.steamusercontent.com/ugc/859478426278216451/A4FDA4E7168D2F62C477AB5CA1DBE0FF0776D640/",
+            -6, "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/"
+    );
     private static final Logger logger = LogManager.getLogger(PrintableUnit.class);
-
+    protected final SECTORAL sectoral;
+    protected final int s;
     private final List<String> weapons;
     private final List<String> skills;
     private final List<String> equip;
@@ -41,14 +55,12 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private final Set<String> visible_equipment = new HashSet<>();
     private final Set<String> visible_skills = new HashSet<>();
     private final UnitFlags flags;
-    protected final SECTORAL sectoral;
     private final int unit_idx;
     private final int group_idx;
     private final int option_idx;
     private final int profile_idx;
     private final String name;
     private final String profile_name;
-
     private final int arm;
     private final int bs;
     private final int bts;
@@ -56,7 +68,6 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private final List<String> chars;
     private final String move;
     private final int ph;
-    protected final int s;
     private final boolean str;
     private final String type;
     private final int w;
@@ -64,7 +75,60 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private final String notes;
     private final String distinguisher;
 
+    public PrintableUnit(MappedFactionFilters filters, CompactedUnit src, SECTORAL sectoral) throws InvalidObjectException {
+        weapons = src.getWeapons().stream().map(x -> x.toString(filters, FilterType.weapons)).collect(Collectors.toList());
+        visible_weapons.addAll(src.getWeapons().stream()
+                .filter(x -> isVisibleWeapon(x.getId()))
+                .map(x -> x.toString(filters, FilterType.weapons))
+                .collect(Collectors.toList()));
+        skills = src.getPublicSkills().stream().map(x -> x.toString(filters, FilterType.skills)).collect(Collectors.toList());
+        visible_skills.addAll(src.getPublicSkills().stream()
+                .filter(x -> isVisibleSkill(x.getId()))
+                .map(x -> x.toString(filters, FilterType.skills))
+                .collect(Collectors.toList()));
+        equip = src.getEquipment().stream().map(x -> x.toString(filters, FilterType.equip)).collect(Collectors.toList());
+        visible_equipment.addAll(src.getEquipment().stream()
+                .filter(x -> isVisibleEquipment(x.getId()))
+                .map(x -> x.toString(filters, FilterType.equip))
+                .collect(Collectors.toList()));
+        peripheral = src.getPeripheral().stream().map(x -> x.toString(filters, FilterType.peripheral)).collect(Collectors.toList());
+        // Name. Name _should_ be easy. For almost everyone it is the option name
+        // However, for a few characters who exist as multiple units (in different armours), this is not usefully the case.
+        profile_name = src.getProfile().getName();
+        name = Util.getName(src.getUnit_idx(), src.getProfile_idx(), profile_name, src.getName());
 
+        this.sectoral = sectoral;
+        unit_idx = src.getUnit_idx();
+        group_idx = src.getGroup_idx();
+        option_idx = src.getOption_idx();
+        profile_idx = src.getProfile_idx();
+        arm = src.getProfile().getArm();
+        bs = src.getProfile().getBs();
+        bts = src.getProfile().getBts();
+        cc = src.getProfile().getCc();
+        chars = src.getPublicChars().stream().map(x -> filters.getItem(FilterType.chars, x).getName()).collect(Collectors.toList());
+        move = src.getProfile().getMove().stream().map(Util::formatDistance).map(String::valueOf).collect(Collectors.joining("-"));
+        ph = src.getProfile().getPh();
+        s = src.getProfile().getS();
+        str = src.getProfile().isStr();
+        type = filters.getItem(FilterType.type, src.getProfile().getType()).getName();
+        w = src.getProfile().getW();
+        wip = src.getProfile().getWip();
+        notes = src.getProfile().getNotes();
+        flags = new UnitFlags(src);
+
+
+        // Is the weapon interesting?
+        List<ProfileItem> interestingWeapons = src.getInterestingWeapons(filters);
+        List<String> interestingStuff = getInterestingStuff(src, filters);
+        boolean shortenWeapons = interestingWeapons.size() > 1;
+        interestingWeapons.stream()
+                .map(w -> w.toString(filters, FilterType.weapons, shortenWeapons))
+                .forEach(interestingStuff::add);
+
+        distinguisher = String.join(", ", interestingStuff);
+
+    }
 
     /**
      * A visible weapon is one which would be on the actual model and distinguishable from another weapon.
@@ -76,7 +140,6 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return !Util.invisibleWeapons.contains(w);
     }
 
-
     /**
      * A visible piece of equipment is one which might be put on the model.
      *
@@ -87,13 +150,44 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return Util.visibleEquipment.contains(e);
     }
 
+    private static boolean isVisibleSkill(int s) {
+        return Util.visibleSkills.contains(s);
+    }
+
+    /**
+     * Handle profile options which augment the model name (usually FTO versions).
+     *
+     * @param a first unit name to compare
+     * @param b second unit name to compare
+     * @return true iff a==b or a is b+something (or vice versa).
+     */
+    private static boolean nameRoughlyMatches(final String a, final String b) {
+        if (a.equals(b)) return true;
+        return (a.startsWith(b) || b.startsWith(a));
+    }
+
+    protected static String colouriseChar(final String characteristic) {
+        switch (characteristic) {
+            case "Regular":
+                return "[AAFFAA]Regular[-]";
+            case "Irregular":
+                return "[FFFFAA]Irregular[-]";
+            case "Impetuous":
+                return "[FFAAAA]Impetuous[-]";
+            default:
+                return characteristic;
+        }
+    }
+
+    protected static String embedState(final String state, long index) {
+        return String.format("\"%d\" : %s", index, state);
+    }
+
     @Override
     public String toString() {
         return String.format("PrintableUnit{%d:%d:%d %s}",
                 unit_idx, group_idx, option_idx, name);
     }
-
-    private static boolean isVisibleSkill(int s) { return Util.visibleSkills.contains(s); }
 
     @Override
     public boolean equals(Object o) {
@@ -111,11 +205,12 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
      * Are these two units the same (ignoring unitID).
      * This is mostly relevant for auxbots and the like where multiple units will have the same
      * addon option
+     *
      * @param that to compare against
      * @return true iff they are the same
      */
     public boolean functionallyEquals(final PrintableUnit that) {
-        return  arm == that.arm &&
+        return arm == that.arm &&
                 bs == that.bs &&
                 bts == that.bts &&
                 cc == that.cc &&
@@ -137,18 +232,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     }
 
     /**
-     * Handle profile options which augment the model name (usually FTO versions).
-     * @param a first unit name to compare
-     * @param b second unit name to compare
-     * @return true iff a==b or a is b+something (or vice versa).
-     */
-    private static boolean nameRoughlyMatches(final String a, final String b) {
-        if (a.equals(b)) return true;
-        return (a.startsWith(b) || b.startsWith(a));
-    }
-
-    /**
      * Compares two units to see if they are visibily the same (i.e. can use the same mesh+decals)
+     *
      * @param that to compare against
      * @return true if they look the same
      */
@@ -191,70 +276,15 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return results;
     }
 
-    public PrintableUnit(MappedFactionFilters filters, CompactedUnit src, SECTORAL sectoral) throws InvalidObjectException {
-        weapons = src.getWeapons().stream().map(x -> x.toString(filters, FilterType.weapons)).collect(Collectors.toList());
-        visible_weapons.addAll(src.getWeapons().stream()
-                .filter(x -> isVisibleWeapon(x.getId()))
-                .map(x -> x.toString(filters, FilterType.weapons))
-                .collect(Collectors.toList()));
-        skills = src.getPublicSkills().stream().map(x -> x.toString(filters, FilterType.skills)).collect(Collectors.toList());
-        visible_skills.addAll(src.getPublicSkills().stream()
-                .filter(x -> isVisibleSkill(x.getId()))
-                .map(x -> x.toString(filters, FilterType.skills))
-                .collect(Collectors.toList()));
-        equip = src.getEquipment().stream().map(x -> x.toString(filters, FilterType.equip)).collect(Collectors.toList());
-        visible_equipment.addAll(src.getEquipment().stream()
-                .filter(x -> isVisibleEquipment(x.getId()))
-                .map(x -> x.toString(filters, FilterType.equip))
-                .collect(Collectors.toList()));
-        peripheral = src.getPeripheral().stream().map(x -> x.toString(filters, FilterType.peripheral)).collect(Collectors.toList());
-        // Name. Name _should_ be easy. For almost everyone it is the option name
-        // However, for a few characters who exist as multiple units (in different armours), this is not usefully the case.
-        profile_name = src.getProfile().getName();
-        name = Util.getName(src.getUnit_idx(), profile_name, src.getName());
-
-        this.sectoral = sectoral;
-        unit_idx = src.getUnit_idx();
-        group_idx = src.getGroup_idx();
-        option_idx = src.getOption_idx();
-        profile_idx = src.getProfile_idx();
-        arm = src.getProfile().getArm();
-        bs = src.getProfile().getBs();
-        bts = src.getProfile().getBts();
-        cc = src.getProfile().getCc();
-        chars = src.getPublicChars().stream().map(x -> filters.getItem(FilterType.chars, x).getName()).collect(Collectors.toList());
-        move = src.getProfile().getMove().stream().map(Util::formatDistance).map(String::valueOf).collect(Collectors.joining("-"));
-        ph = src.getProfile().getPh();
-        s = src.getProfile().getS();
-        str = src.getProfile().isStr();
-        type = filters.getItem(FilterType.type, src.getProfile().getType()).getName();
-        w = src.getProfile().getW();
-        wip = src.getProfile().getWip();
-        notes = src.getProfile().getNotes();
-        flags = new UnitFlags(src);
-
-
-        // Is the weapon interesting?
-        List<ProfileItem> interestingWeapons = src.getInterestingWeapons(filters);
-        List<String> interestingStuff = getInterestingStuff(src, filters);
-        boolean shortenWeapons = interestingWeapons.size() > 1;
-        interestingWeapons.stream()
-                .map(w->w.toString(filters, FilterType.weapons, shortenWeapons))
-                .forEach(interestingStuff::add);
-
-        distinguisher = String.join(", ", interestingStuff);
-
-    }
-
     public void printCSVRecord(CSVPrinter out, final ModelSet ms) throws IOException {
         List<String> unfolded = new ArrayList<>();
 
-        for( TTSModel model : ms.getModels(getUnitID())) {
+        for (TTSModel model : ms.getModels(getUnitID())) {
             unfolded.add(model.getName());
             unfolded.add(SIZE.get(s).getModelCustomMesh(model.getBaseImage()));
             unfolded.add(model.getDecals());
         }
-        while( unfolded.size() < 15 ) unfolded.add("");
+        while (unfolded.size() < 15) unfolded.add("");
 
 
         out.printRecord(
@@ -281,19 +311,6 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 unfolded.get(12),
                 unfolded.get(13),
                 unfolded.get(14));
-    }
-
-    protected static String colouriseChar(final String characteristic) {
-        switch (characteristic) {
-            case "Regular":
-                return "[AAFFAA]Regular[-]";
-            case "Irregular":
-                return "[FFFFAA]Irregular[-]";
-            case "Impetuous":
-                return "[FFAAAA]Impetuous[-]";
-            default:
-                return characteristic;
-        }
     }
 
     protected String getTTSDescription() {
@@ -337,7 +354,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
             result.append(String.format("[B]W[/B]: %d\\n", w));
         }
         result.append(String.format("[B]S[/B]: %d\\n", s));
-        if( !weapons.isEmpty()) {
+        if (!weapons.isEmpty()) {
             result.append("[ffdddd][sub]----------Weapons---------\\n[/sub]\\n");
             result.append(String.format("%s[-]\\n", String.join(" ● ", weapons)));
         }
@@ -356,39 +373,14 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
     }
 
-    protected static String embedState(final String state, long index) {
-        return String.format("\"%d\" : %s", index, state);
-    }
-
-
-    public static final List<String> IMP_DECALS = List.of(
-            ",\"AttachedDecals\": [{\"Transform\": {\"posX\": -0.00541555043,\"posY\": 1.6975,\"posZ\": 0.00176222192,\"rotX\": 89.98022,\"rotY\": 0.0138618117,\"rotZ\": 0.0,\"scaleX\": 0.909090936,\"scaleY\": 0.909090936,\"scaleZ\": 0.9090909},\"CustomDecal\": {\"Name\": \"IMP-2\",\"ImageURL\": \"http://cloud-3.steamusercontent.com/ugc/859479043234200757/7E194DA057B6FABED18662C5F2A0B6F77E6A05B2/\",\"Size\": 1.0}}]",
-            ",\"AttachedDecals\": [{\"Transform\": {\"posX\": 0.00342403026,\"posY\": 1.6975,\"posZ\": 0.00270367065,\"rotX\": 89.98022,\"rotY\": 0.0137606515,\"rotZ\": 0.0,\"scaleX\": 0.909090936,\"scaleY\": 0.909090936,\"scaleZ\": 0.9090909},\"CustomDecal\": {\"Name\": \"IMP-1\",\"ImageURL\": \"http://cloud-3.steamusercontent.com/ugc/859479043234200062/5F360301D5BA8909AA375577B8EC34D98D0F90E4/\",\"Size\": 1.0}}]"
-    );
-
-    public static final List<String> IMP_TINTS = List.of(
-      "\"r\": 0.8901961,\"g\": 0.5882353,\"b\": 0.58431375",
-      "\"r\": 0.545097947,\"g\": 0.819607854,\"b\": 0.9254902"
-    );
-
-    public static final Map<Integer, String> CAMO_DECALS = Map.of(
-            0, "http://cloud-3.steamusercontent.com/ugc/1548633241857020838/CDE48FB1F62CB3A31810F9077CAC176EFB735038/",
-            -3, "http://cloud-3.steamusercontent.com/ugc/859478426278216451/A4FDA4E7168D2F62C477AB5CA1DBE0FF0776D640/",
-            -6, "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/"
-    );
-
-
-
-
-        protected List<String> getTTSSilhouettes(boolean doAddons) {
+    protected List<String> getTTSSilhouettes(boolean doAddons) {
         final String template = SIZE.get(s).getSilhouetteTemplate();
-        final String addon = doAddons?Database.getAddonTemplate(s):"";
+        final String addon = doAddons ? Database.getAddonTemplate(s) : "";
         final String description;
         final String side_decal;
         final String top_decal;
         final String tint;
         List<String> result = new ArrayList<>();
-
 
 
         if (flags.isCamo()) {
@@ -403,7 +395,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                However in that case IMP2 is pointless so don't bother.
                Also, if you have IMP2, don't bother with a normal sil.
              */
-            if (flags.getImpersonisation() > 0 ) {
+            if (flags.getImpersonisation() > 0) {
                 // has IMP2
                 description = "IMP-2";
                 side_decal = "";
@@ -417,12 +409,14 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
             }
         }
 
+        result.add(String.format(template, description, tint, side_decal, addon, top_decal));
+
         if (flags.getImpersonisation() > 1) {
             //has IMP1
-            result.add(String.format(template,"IMP-1 (discover -6)",IMP_TINTS.get(1),"",addon, IMP_DECALS.get(1)));
+            result.add(String.format(template, "IMP-1 (discover -6)", IMP_TINTS.get(1), "", addon, IMP_DECALS.get(1)));
         }
 
-        result.add(String.format(template, description, tint, side_decal, addon, top_decal));
+
         return result;
     }
 
@@ -443,16 +437,41 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     }
 
 
+    private boolean isSeedEmbryo() {
+        return unit_idx == 512 && profile_idx == 1;
+    }
+
+    public String asJSONSEED(final ModelSet ms, boolean doAddons, final String colour) {
+        final String ttsName = getTTSName();
+        final String ttsDescription = getTTSDescription();
+        final String addon = doAddons ? Database.getAddonTemplate(s) : "";
+        final List<String> ttsSilhouettes = getTTSSilhouettes(doAddons);
+        final String states = StreamUtils.zipWithIndex(ttsSilhouettes.stream())
+                .map(x -> embedState(x.getValue(), x.getIndex() + 2))
+                .collect(Collectors.joining("\n,"));
+        List<String> ttsModels = ms.getModels(getUnitID()).stream().map(m -> String.format(Database.getSeedTemplate(),
+                ttsName,
+                ttsDescription,
+                colour,
+                addon,
+                SIZE.get(s).getModelCustomMesh("http://cloud-3.steamusercontent.com/ugc/1493460530059543413/1BBD4277E7D53F68CD6D38EA521EB04CD699CFD5/"),
+                states)).collect(Collectors.toList());
+        assert (!ttsModels.isEmpty());
+        logger.trace(String.format("asFactionJSON for %s has %d models", this.toString(), ttsModels.size()));
+        return String.join(",\n", ttsModels);
+    }
 
 
     public String asFactionJSON(final ModelSet ms, boolean doAddons) {
+        if( isSeedEmbryo() ) return asJSONSEED(ms, doAddons, sectoral.getTint());
+
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
-        final String addon = doAddons?Database.getAddonTemplate(s):"";
+        final String addon = doAddons ? Database.getAddonTemplate(s) : "";
         final List<String> ttsSilhouettes = getTTSSilhouettes(doAddons);
         final String states = StreamUtils.zipWithIndex(ttsSilhouettes.stream())
-            .map(x -> embedState(x.getValue(), x.getIndex()+2))
-            .collect(Collectors.joining("\n,"));
+                .map(x -> embedState(x.getValue(), x.getIndex() + 2))
+                .collect(Collectors.joining("\n,"));
         final String ttsColour = sectoral.getTint();
         List<String> ttsModels = ms.getModels(getUnitID()).stream().map(m -> String.format(Database.getUnitTemplate(),
                 ttsName,
@@ -462,7 +481,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 addon,
                 m.getDecals(),
                 states)).collect(Collectors.toList());
-        assert(! ttsModels.isEmpty());
+        assert (!ttsModels.isEmpty());
         logger.trace(String.format("asFactionJSON for %s has %d models", this.toString(), ttsModels.size()));
         return String.join(",\n", ttsModels);
     }
@@ -470,7 +489,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     public List<String> asEmbeddedJSON(final ModelSet ms, boolean doAddons) {
         String ttsName = getEmbeddedTTSName();
         String ttsDescription = getTTSDescription();
-        final String addon = doAddons?Database.getAddonTemplate(s):"";
+        final String addon = doAddons ? Database.getAddonTemplate(s) : "";
         String ttsColour = sectoral.getTint();
         Set<TTSModel> models = ms.getModels(getUnitID());
         return models.stream().map(m -> String.format(Database.getTransmutedUnitTemplate(),
@@ -483,18 +502,21 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     }
 
     public String asArmyJSON(int combatGroup_idx, final EquivalentModelSet ms, final boolean doAddons) throws IllegalArgumentException {
+        if( isSeedEmbryo() ) return asJSONSEED(ms, doAddons, CombatGroup.getTint(combatGroup_idx));
+
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
         final List<String> ttsSilhouettes = getTTSSilhouettes(doAddons);
-        final String addon = doAddons?Database.getAddonTemplate(s):"";
+        final String addon = doAddons ? Database.getAddonTemplate(s) : "";
         final String states = StreamUtils.zipWithIndex(ttsSilhouettes.stream())
-                .map(x -> embedState(x.getValue(), x.getIndex()+2))
-                .collect(Collectors.joining("\n,"));        final String ttsColour = CombatGroup.getTint(combatGroup_idx);
+                .map(x -> embedState(x.getValue(), x.getIndex() + 2))
+                .collect(Collectors.joining("\n,"));
+        final String ttsColour = CombatGroup.getTint(combatGroup_idx);
         // TODO:: Better picking of model
-        final Optional<TTSModel> modelMaybe =  ms.getModels(getUnitID()).stream().findAny();
-        if(modelMaybe.isEmpty())
-                throw new IllegalArgumentException(String.format("Unable to find models for %s",
-                            getUnitID()));
+        final Optional<TTSModel> modelMaybe = ms.getModels(getUnitID()).stream().findAny();
+        if (modelMaybe.isEmpty())
+            throw new IllegalArgumentException(String.format("Unable to find models for %s",
+                    getUnitID()));
         final TTSModel model = modelMaybe.get();
         return String.format(Database.getUnitTemplate(),
                 ttsName,

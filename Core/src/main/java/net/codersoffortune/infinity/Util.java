@@ -110,14 +110,20 @@ public class Util {
      * Figure out the correct name to put along the top of the model.
      * This is _almost_ always the unit name.
      * When it isn't, it is _usually_ the profile name.
-     * Except when it is both.
+     * Except when it is both. Or if it depends on the profile ID
      * @param unitId ID of the unit
+     * @param profileId ID of the profile
      * @param profileName the name of the current profile
      * @param unitName the name of the current unit
      * @return The correct name for the model
      */
-    public static String getName(int unitId, final String profileName, final String unitName) {
+    public static String getName(int unitId, int profileId, final String profileName, final String unitName) {
+        // seed soldiers
+        if (unitId == 512 || unitId == 513) {
+            return profileId==1 ? profileName : unitName;
+        }
         if( nameEdgeCases.contains(unitId) ) return profileName;
+
         if( unitId == 155 ) return String.format("%s (%s)", unitName, profileName); // Su Jian
         return unitName;
     }

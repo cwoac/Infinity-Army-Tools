@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.InvalidObjectException;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -108,11 +109,21 @@ public class Unit {
     private boolean hasTransmutation(final ProfileGroup group) {
         // 246 > Transmutation
         // 205 > AI Motorcycle
+        // 66 > seed embryo
         Profile profile = group.getProfiles().get(0);
         return profile.getSkills().stream()
-                .anyMatch(s->s.getId()==246) ||
+                .anyMatch(s->(s.getId()==246 || s.getId()==66)) ||
                 profile.getEquip().stream()
                 .anyMatch(s->s.getId()==205);
+    }
+
+    private boolean isSeedSoldier(final ProfileGroup group) {
+        Profile profile = group.getProfiles().get(0);
+        // 512 == seed soldier
+        return getID() == 512;
+        // 66 -> seed embryo
+//        return profile.getSkills().stream()
+//                        .anyMatch(s->s.getId()==66);
     }
 
     public Collection<CompactedUnit> getAllUnits() {
@@ -172,10 +183,22 @@ public class Unit {
         if (profiles.isEmpty()) {
             throw new IllegalArgumentException("Asked for Profile group with no profile");
         }
+
+        CompactedUnit unit = null;
         if (profiles.size() > 1) {
-            System.out.println("moo");
+            if ( isSeedSoldier(pg) ) {
+                unit = new CompactedUnit(getID(), pg, profiles.get(1), po);
+            } else if( hasTransmutation(pg) ) {
+                unit = new TransmutedCompactedUnit(getID(), pg, pg.getProfiles(), po);
+            } else {
+                throw new InvalidParameterException(String.format("Unit %d / %d has multiple profiles but lacks transmutation?",
+                        getID(),
+                        group
+                        ));
+            }
+        } else {
+            unit = new CompactedUnit(getID(), pg, profiles.get(0), po);
         }
-        CompactedUnit unit = new CompactedUnit(getID(), pg, profiles.get(0), po);
 
         result.add(unit);
         // now check for included elements.
@@ -183,6 +206,9 @@ public class Unit {
             Collection<CompactedUnit> includedUnit = getUnits(pi.getGroup(), pi.getOption());
             for (int i = 0; i < pi.getQ(); i++)
                 result.addAll(includedUnit);
+        }
+        if (isSeedSoldier(pg)) {
+            result.add(new CompactedUnit(getID(), pg, profiles.get(0), po));
         }
         return result;
     }

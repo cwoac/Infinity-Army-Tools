@@ -44,6 +44,7 @@ public class Database {
     private static String factionTemplate = "";
     private static String meshTemplate = "";
     private static String transmutedUnitTemplate = "";
+    private static String seedTemplate = "";
     private static ModelSet modelSet = null;
     private static volatile Database dbSingleton;
     Metadata metadata;
@@ -84,6 +85,7 @@ public class Database {
 
         meshTemplate = getResourceFileAsString("Templates/mesh_template.json");
         unitTemplate = getResourceFileAsString("Templates/model_template");
+        seedTemplate = getResourceFileAsString("Templates/seed_embryo_template.json");
         transmutedUnitTemplate = getResourceFileAsString("Templates/transmuted_model_template");
         factionTemplate = getResourceFileAsString("templates/faction_template");
         bagTemplate = getResourceFileAsString("templates/bag_template");
@@ -97,9 +99,9 @@ public class Database {
 
     public static String getMeshTemplate() { return meshTemplate; }
 
-    public static String getUnitTemplate() {
-        return unitTemplate;
-    }
+    public static String getUnitTemplate() { return unitTemplate; }
+
+    public static String getSeedTemplate() { return seedTemplate; }
 
     public static String getAddonTemplate( int silhouetteSize ) {
         return addonTemplates.get(addonSizes.get(silhouetteSize));
