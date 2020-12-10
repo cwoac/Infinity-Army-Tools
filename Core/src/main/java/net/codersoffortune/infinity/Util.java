@@ -285,6 +285,15 @@ public class Util {
             FilterType.skills, SkillAbbreviations
     );
 
+    /**
+     * Return whether this unit is one which will have a seed state
+     * @param unit_idx the unit to check
+     * @return true iff it is a seed embryo unit
+     */
+    public static boolean hasSeedState(int unit_idx) {
+        return unit_idx==512 || unit_idx == 513;
+    }
+
 //    public static final List<Integer> boringSkills = Arrays.asList(
 //            161, // forward deployment
 //            242 // triangulated fire
