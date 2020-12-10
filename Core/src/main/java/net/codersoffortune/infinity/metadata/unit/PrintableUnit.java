@@ -374,8 +374,15 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     }
 
     protected List<String> getTTSSilhouettes(boolean doAddons) {
-        final String template = SIZE.get(s).getSilhouetteTemplate();
-        final String addon = doAddons ? Database.getAddonTemplate(s) : "";
+        if (isSeedEmbryo()) {
+            return getTTSSilhouettes(doAddons, 2);
+        }
+        return getTTSSilhouettes(doAddons, s);
+    }
+
+    private List<String> getTTSSilhouettes(boolean doAddons, int silhouette) {
+        final String template = SIZE.get(silhouette).getSilhouetteTemplate();
+        final String addon = doAddons ? Database.getAddonTemplate(silhouette) : "";
         final String description;
         final String side_decal;
         final String top_decal;
@@ -385,7 +392,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
         if (flags.isCamo()) {
             int mimetism = flags.getMimetism();
-            description = String.format("Camouflage (%d) S%d", mimetism, s);
+            description = String.format("Camouflage (%d) S%d", mimetism, silhouette);
             side_decal = CAMO_DECALS.get(mimetism);
             top_decal = "";
             tint = sectoral.getTint();
@@ -402,7 +409,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 top_decal = IMP_DECALS.get(0);
                 tint = IMP_TINTS.get(0);
             } else {
-                description = String.format("Silhouette %d", s);
+                description = String.format("Silhouette %d", silhouette);
                 side_decal = "";
                 top_decal = "";
                 tint = sectoral.getTint();
