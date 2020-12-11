@@ -195,7 +195,7 @@ public class Database {
             ems.addModelSet(modelSet);
             logger.info("Writing JSON");
             String factionJson = c.asJson(faction, ems, doAddons);
-            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), faction.getName())));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), faction.getName()), StandardCharsets.UTF_8));
             writer.append(factionJson);
             writer.close();
         }
@@ -210,7 +210,7 @@ public class Database {
             ems.addModelSet(modelSet);
 
             String sectoralJSON = c.asJson(sectoral, ems, doAddons);
-            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), sectoral.getName())));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), sectoral.getName()), StandardCharsets.UTF_8));
             writer.append(sectoralJSON);
             writer.close();
         }
