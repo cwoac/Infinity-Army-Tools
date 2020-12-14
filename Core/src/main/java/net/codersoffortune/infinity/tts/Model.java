@@ -51,7 +51,7 @@ public class Model {
         Map<Integer, List<TTSModel>> profile_map = group_map.get(profile_idx);
         if (!profile_map.containsKey(option_idx))
             profile_map.put(option_idx, new ArrayList<>());
-        profile_map.get(option_idx).add(new TTSModel(modelName, decals, meshes));
+        profile_map.get(option_idx).add(new DecalBlockModel(modelName, decals, meshes));
     }
 
     public int getFaction() {

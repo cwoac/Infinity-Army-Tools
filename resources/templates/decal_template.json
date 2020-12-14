@@ -1,0 +1,26 @@
+[
+  {
+    "Transform": {
+      "posX": %f, "posY": %f, "posZ": 0,
+      "rotX": 0, "rotY": 270, "rotZ": 0,
+      "scaleX": %f, "scaleY": %f, "scaleZ": 1
+    },
+    "CustomDecal": {
+      "Name": "2",
+      "ImageURL": "%s",
+      "Size": 1
+    }
+  },
+  {
+    "Transform": {
+      "posX": %f, "posY": %f, "posZ": 0,
+      "rotX": 0, "rotY": 90, "rotZ": 0,
+      "scaleX": %f, "scaleY": %f, "scaleZ": 1
+    },
+    "CustomDecal": {
+      "Name": "2",
+      "ImageURL": "%s",
+      "Size": 1
+    }
+  }
+]
