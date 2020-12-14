@@ -18,6 +18,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class MainController {
     private Database db = Database.getInstance();
@@ -86,7 +88,8 @@ public class MainController {
         EquivalentModelSet ems = new EquivalentModelSet(c.getMappings());
         ems.addModelSet(Database.getModelSet());
         String json = al.asJson(filters, ems, enableAddons.isSelected());
-        BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("output/AL %s %s.json", al.getSectoralName(), al.getArmy_name()),  StandardCharsets.UTF_8));
+        Files.createDirectories(Paths.get("army lists"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("army lists/AL %s %s.json", al.getSectoralName(), al.getArmy_name()),  StandardCharsets.UTF_8));
         writer.append(json);
         writer.close();
         armyCodeTF.setText("Done");
