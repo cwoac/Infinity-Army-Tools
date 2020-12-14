@@ -108,7 +108,7 @@ public class TransmutedPrintableUnit extends PrintableUnit {
     }
 
     @Override
-    public String asArmyJSON(int combatGroup_idx, final EquivalentModelSet ms, final boolean doAddons) throws IllegalArgumentException {
-        return asJSON(ms, doAddons, CombatGroup.getTint(combatGroup_idx));
+    public String asArmyJSON(CombatGroup combatGroup, final EquivalentModelSet ms, final boolean doAddons) throws IllegalArgumentException {
+        return asJSON(ms, doAddons, combatGroup.getTint());
     }
 }

@@ -1,6 +1,7 @@
 package net.codersoffortune.infinity.metadata.unit;
 
 import net.codersoffortune.infinity.SECTORAL;
+import net.codersoffortune.infinity.armylist.CombatGroup;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.tts.EquivalentModelSet;
 import org.apache.logging.log4j.LogManager;
@@ -75,7 +76,7 @@ public class Unit {
      * @return collection of strings, one per model.
      * @throws IllegalArgumentException on error.
      */
-    public Collection<String> getUnitsForTTS(final int combat_group,
+    public Collection<String> getUnitsForTTS(final CombatGroup combatGroup,
                                              final int group,
                                              final int option,
                                              final MappedFactionFilters filters,
@@ -90,7 +91,7 @@ public class Unit {
         }
         return printableUnits.stream()
                 .peek(pu -> logger.trace("Converting {}", pu.getName()))
-                .map(pu -> pu.asArmyJSON(combat_group, equivalentModelSet, doAddons))
+                .map(pu -> pu.asArmyJSON(combatGroup, equivalentModelSet, doAddons))
                 .collect(Collectors.toList());
     }
 

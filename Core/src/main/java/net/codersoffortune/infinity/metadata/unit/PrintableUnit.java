@@ -509,8 +509,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 m.getDecals())).collect(Collectors.toList());
     }
 
-    public String asArmyJSON(int combatGroup_idx, final EquivalentModelSet ms, final boolean doAddons) throws IllegalArgumentException {
-        if( isSeedEmbryo() ) return asJSONSEED(ms, doAddons, CombatGroup.getTint(combatGroup_idx));
+    public String asArmyJSON(CombatGroup combatGroup, final EquivalentModelSet ms, final boolean doAddons) throws IllegalArgumentException {
+        if( isSeedEmbryo() ) return asJSONSEED(ms, doAddons, combatGroup.getTint());
 
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
@@ -519,7 +519,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         final String states = StreamUtils.zipWithIndex(ttsSilhouettes.stream())
                 .map(x -> embedState(x.getValue(), x.getIndex() + 2))
                 .collect(Collectors.joining("\n,"));
-        final String ttsColour = CombatGroup.getTint(combatGroup_idx);
+        final String ttsColour = combatGroup.getTint();
         // TODO:: Better picking of model
         final Optional<TTSModel> modelMaybe = ms.getModels(getUnitID()).stream().findAny();
         if (modelMaybe.isEmpty())

@@ -70,7 +70,7 @@ public class Armylist {
         // how many combat groups?
         int combat_group_count = readVLI(dataBuffer);
         for (int i = 0; i < combat_group_count; i++) {
-            result.addCombatGroup(CombatGroup.fromCode(dataBuffer));
+            result.addCombatGroup(CombatGroup.fromCode(dataBuffer, result.getSectoral()));
         }
         return result;
     }
@@ -144,7 +144,7 @@ public class Armylist {
                 Optional<Unit> maybeUnit = db.getUnitName(cgm.getId(), getSectoral());
                 if (maybeUnit.isEmpty()) continue;
                 Unit unit = maybeUnit.get();
-                units.addAll(unit.getUnitsForTTS(cg.getGroup_number(), cgm.getGroup(), cgm.getOption(), filters, equivalentModelSet, sectoral, doAddons));
+                units.addAll(unit.getUnitsForTTS(cg, cgm.getGroup(), cgm.getOption(), filters, equivalentModelSet, sectoral, doAddons));
             }
         }
 

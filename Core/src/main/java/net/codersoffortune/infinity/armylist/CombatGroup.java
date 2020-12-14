@@ -1,5 +1,7 @@
 package net.codersoffortune.infinity.armylist;
 
+import net.codersoffortune.infinity.SECTORAL;
+
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,18 +9,19 @@ import java.util.List;
 public class CombatGroup {
     private int group_number;
     private final List<CombatGroupMember> members = new ArrayList<>();
+    private SECTORAL sectoral;
 
-    public static String getTint(int group_number) {
+    public String getTint() {
         switch( group_number ) {
             case 1:
-                return "\"r\": 0.121568627,\n    \"g\": 0.52941176,\n    \"b\": 1.0";
+                return sectoral.getTint();
             case 2:
-                return "\"r\": 0.854901969,\n    \"g\": 0.09803913,\n    \"b\": 0.0941175446";
+                return sectoral.getSecondaryTint();
         }
         throw new IllegalArgumentException("N4 only allows for 2 combat groups!");
     }
 
-    public static CombatGroup fromCode(ByteBuffer data) {
+    public static CombatGroup fromCode(ByteBuffer data, SECTORAL sectoral) {
         CombatGroup result = new CombatGroup();
         // first off, who are we?
         result.setGroup_number(Armylist.readVLI(data));
@@ -27,6 +30,7 @@ public class CombatGroup {
         for (int i = 0; i < group_size; i++) {
             result.addMember(CombatGroupMember.fromCode(data));
         }
+        result.setSectoral(sectoral);
         return result;
     }
 
@@ -49,5 +53,13 @@ public class CombatGroup {
 
     public List<CombatGroupMember> getMembers() {
         return members;
+    }
+
+    public SECTORAL getSectoral() {
+        return sectoral;
+    }
+
+    public void setSectoral(SECTORAL sectoral) {
+        this.sectoral = sectoral;
     }
 }
