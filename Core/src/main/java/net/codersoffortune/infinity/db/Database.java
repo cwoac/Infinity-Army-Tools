@@ -45,6 +45,7 @@ public class Database {
     private static String meshTemplate = "";
     private static String transmutedUnitTemplate = "";
     private static String seedTemplate = "";
+    private static String decalTemplate = "";
     private static ModelSet modelSet = null;
     private static volatile Database dbSingleton;
     Metadata metadata;
@@ -90,7 +91,7 @@ public class Database {
         factionTemplate = getResourceFileAsString("templates/faction_template");
         bagTemplate = getResourceFileAsString("templates/bag_template");
         modelSet = new ModelSet("resources/model catalogue.json");
-
+        decalTemplate = getResourceFileAsString("templates/decal_template.json");
     }
 
     public static String getBagTemplate() {
@@ -151,6 +152,10 @@ public class Database {
         }
 
         return getInstance();
+    }
+
+    public static String getDecalTemplate() {
+        return decalTemplate;
     }
 
     public Metadata getMetadata() {

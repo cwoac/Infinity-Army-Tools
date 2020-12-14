@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.metadata.FactionList;
 import net.codersoffortune.infinity.metadata.unit.PrintableUnit;
@@ -18,11 +19,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +44,9 @@ public class ModelSet {
 
     static {
         SORTED_MAPPER.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
+        final SimpleModule simpleModule = new SimpleModule();
+        simpleModule.addDeserializer(TTSModel.class, new TTSModelDeserializer());
+        SORTED_MAPPER.registerModule(simpleModule);
     }
 
     final Map<UnitID, Set<TTSModel>> models = new HashMap<>();
@@ -70,27 +72,27 @@ public class ModelSet {
         if (name.isEmpty()) return result;
         String decals = row.get("decals1");
         String meshes = row.get("meshes1");
-        result.add(new TTSModel(name, meshes, decals));
+        result.add(new DecalBlockModel(name, meshes, decals));
         name = row.get("meshName2");
         if (name.isEmpty()) return result;
         decals = row.get("decals2");
         meshes = row.get("meshes2");
-        result.add(new TTSModel(name, meshes, decals));
+        result.add(new DecalBlockModel(name, meshes, decals));
         name = row.get("meshName3");
         if (name.isEmpty()) return result;
         decals = row.get("decals3");
         meshes = row.get("meshes3");
-        result.add(new TTSModel(name, meshes, decals));
+        result.add(new DecalBlockModel(name, meshes, decals));
         name = row.get("meshName4");
         if (name.isEmpty()) return result;
         decals = row.get("decals4");
         meshes = row.get("meshes4");
-        result.add(new TTSModel(name, meshes, decals));
+        result.add(new DecalBlockModel(name, meshes, decals));
         name = row.get("meshName5");
         if (name.isEmpty()) return result;
         decals = row.get("decals5");
         meshes = row.get("meshes5");
-        result.add(new TTSModel(name, meshes, decals));
+        result.add(new DecalBlockModel(name, meshes, decals));
         return result;
     }
 
@@ -132,8 +134,9 @@ public class ModelSet {
         readJsonInner(jn, true);
     }
 
-    private void readJsonInner(final JsonNode jn, boolean loadAll) {
+    private void readJsonInner(final JsonNode jn, boolean loadAll) throws JsonProcessingException {
         JsonNode contents = jn.findPath("ContainedObjects");
+        TTSModel model;
         for (JsonNode child : contents) {
             String[] descLines = child.get("Description").asText().split("\n");
             String code = descLines[descLines.length - 1];
@@ -141,9 +144,29 @@ public class ModelSet {
             // If we are only searching for missing models, don't grab one we already have.
             if (!loadAll && models.containsKey(unitID)) continue;
             String name = child.get("Nickname").asText();
-            String decals = child.get("AttachedDecals").toString();
             String baseImage = child.get("DiffuseURL").toString();
-            TTSModel model = new TTSModel(name, decals, baseImage);
+            if (child.has("front")) {
+                FrontBackModel frontBackModel = new FrontBackModel();
+                frontBackModel.setName(name);
+                frontBackModel.setBaseImage(baseImage);
+
+                Decal front = SORTED_MAPPER.treeToValue(child.get("front"), Decal.class);
+                frontBackModel.setFront(front);
+
+                if (child.has("back")) {
+                    Decal back = SORTED_MAPPER.treeToValue(child.get("back"), Decal.class);
+                    frontBackModel.setBack(back);
+                } else {
+                    // only front image
+                    frontBackModel.setBack(front);
+                }
+
+                model = frontBackModel;
+            } else {
+                // old style
+                String decals = child.get("AttachedDecals").toString();
+                model = new DecalBlockModel(name, decals, baseImage);
+            }
             addModel(unitID, model);
         }
     }
@@ -251,7 +274,7 @@ public class ModelSet {
             }
 
             String meshes = child.get("CustomMesh").toString();
-            addModelOld(factionList, faction.getId(), unitIdx, optionIdx, new TTSModel(name, decals, meshes));
+            addModelOld(factionList, faction.getId(), unitIdx, optionIdx, new DecalBlockModel(name, decals, meshes));
         }
     }
 

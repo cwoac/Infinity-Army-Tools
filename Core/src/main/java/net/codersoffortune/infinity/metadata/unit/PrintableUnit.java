@@ -8,6 +8,7 @@ import net.codersoffortune.infinity.armylist.CombatGroup;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.FilterType;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
+import net.codersoffortune.infinity.tts.DecalBlockModel;
 import net.codersoffortune.infinity.tts.EquivalentModelSet;
 import net.codersoffortune.infinity.tts.ModelSet;
 import net.codersoffortune.infinity.tts.TTSModel;
