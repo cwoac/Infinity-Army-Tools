@@ -1,6 +1,7 @@
 package net.codersoffortune.infinity.db;
 
 import net.codersoffortune.infinity.FACTION;
+import net.codersoffortune.infinity.GAME;
 import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.metadata.Faction;
 import net.codersoffortune.infinity.metadata.Metadata;
@@ -30,7 +31,6 @@ import java.util.Optional;
 public class Database {
     private static final Logger logger = LogManager.getLogger(Database.class);
 
-    private final static String METADATA_URL = "https://api.corvusbelli.com/army/infinity/en/metadata";
     private final static String FACTION_URL_FORMAT = "https://api.corvusbelli.com/army/units/en/%d";
     /*
        Templates loaded from the resource.
@@ -48,7 +48,8 @@ public class Database {
     private static String decalTemplate = "";
     private static ModelSet modelSet = null;
     private static volatile Database dbSingleton;
-    Metadata metadata;
+    private static Map<GAME, Metadata> metadataMap;
+
     Map<Integer, SectoralList> sectorals;
 
     public static final Map<Integer, Integer> addonSizes = Map.of(
@@ -69,12 +70,15 @@ public class Database {
             throw new RuntimeException("Don't try and create Database directly");
         }
 
-        metadata = Metadata.loadMetadata();
+        metadataMap = Metadata.loadMetadata();
         sectorals = new HashMap<>();
-        for (Faction f : metadata.getFactions()) {
-            int id = f.getID();
-            if (id == 901) continue; // NA2 doesn't have a vanilla option
-            sectorals.put(id, SectoralList.load(String.valueOf(id)));
+        for( GAME game : GAME.values()) {
+            for (Faction f : metadataMap.get(game).getFactions()) {
+                int id = f.getID();
+                if (id == 901) continue; // NA2 doesn't have a vanilla option
+                if (id == 10000) continue; // C1 doesn't have a vanilla option
+                sectorals.put(id, SectoralList.load(String.valueOf(id)));
+            }
         }
 
         addonTemplates = Map.of(
@@ -140,13 +144,15 @@ public class Database {
             if (dbSingleton != null) {
                 dbSingleton = null;
             }
-            logger.info("Updating metadata");
-            BufferedInputStream in = new BufferedInputStream(new URL(METADATA_URL).openStream());
+            for( GAME game: GAME.values()) {
+                logger.info("Updating metadata for {}", game.getName());
+                BufferedInputStream in = new BufferedInputStream(new URL(game.getMetadataURL()).openStream());
+                Files.copy(in, Paths.get(game.getMetadataFile()), StandardCopyOption.REPLACE_EXISTING);
 
-            Files.copy(in, Paths.get("resources/metadata.json"), StandardCopyOption.REPLACE_EXISTING);
+            }
             for (SECTORAL s : SECTORAL.values()) {
                 logger.info("Updating {}", s.getName());
-                in = new BufferedInputStream(new URL(String.format(FACTION_URL_FORMAT, s.getId())).openStream());
+                BufferedInputStream in = new BufferedInputStream(new URL(String.format(FACTION_URL_FORMAT, s.getId())).openStream());
                 Files.copy(in, Paths.get(String.format("resources/%d.json", s.getId())), StandardCopyOption.REPLACE_EXISTING);
             }
         }
@@ -158,13 +164,13 @@ public class Database {
         return decalTemplate;
     }
 
-    public Metadata getMetadata() {
-        return metadata;
+    public Metadata getMetadata(GAME game) {
+        return metadataMap.get(game);
     }
 
-    public void setMetadata(Metadata metadata) {
-        this.metadata = metadata;
-    }
+//    public void setMetadata(Metadata metadata) {
+//        this.metadata = metadata;
+//    }
 
     public Map<Integer, SectoralList> getSectorals() {
         return sectorals;
@@ -192,7 +198,7 @@ public class Database {
     public void writeJson(File outputDir, boolean doAddons) throws IOException {
         outputDir.mkdir();
         for (FACTION faction : FACTION.values()) {
-            if (faction == FACTION.NA2) continue; // They have per sectoral boxes
+            if (faction.isContainerOnly()) continue; // They have per sectoral boxes
             logger.info("Reading {}", faction.getName());
             Catalogue c = new Catalogue();
             c.addUnits(sectorals, faction, false);
@@ -205,19 +211,23 @@ public class Database {
             writer.close();
         }
 
-        logger.info("Parsing NA2 Sectorals");
-        for (SECTORAL sectoral : FACTION.NA2.getSectorals()) {
-            System.out.printf("Reading %s%n", sectoral.getName());
+        logger.info("Parsing container sectorals");
+        for(FACTION faction : FACTION.values()) {
+            if( !faction.isContainerOnly()) continue;
+            logger.info("Parsing {}", faction.getName());
+            for (SECTORAL sectoral : faction.getSectorals()) {
+                System.out.printf("Reading %s%n", sectoral.getName());
 
-            Catalogue c = new Catalogue();
-            c.addUnits(sectorals.get(sectoral.getId()), sectoral, false);
-            EquivalentModelSet ems = new EquivalentModelSet(c.getMappings());
-            ems.addModelSet(modelSet);
+                Catalogue c = new Catalogue();
+                c.addUnits(sectorals.get(sectoral.getId()), sectoral, false);
+                EquivalentModelSet ems = new EquivalentModelSet(c.getMappings());
+                ems.addModelSet(modelSet);
 
-            String sectoralJSON = c.asJson(sectoral, ems, doAddons);
-            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), sectoral.getName()), StandardCharsets.UTF_8));
-            writer.append(sectoralJSON);
-            writer.close();
+                String sectoralJSON = c.asJson(sectoral, ems, doAddons);
+                BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), sectoral.getName()), StandardCharsets.UTF_8));
+                writer.append(sectoralJSON);
+                writer.close();
+            }
         }
     }
 
@@ -233,21 +243,27 @@ public class Database {
         boolean anyMissing = false;
 
         for (FACTION faction : FACTION.values()) {
-            if (faction == FACTION.NA2) continue; // They have per sectoral boxes
+            if (faction.isContainerOnly()) continue; // They have per sectoral boxes
             logger.info("Reading {}", faction.getName());
             Catalogue c = new Catalogue();
             c.addUnits(sectorals, faction, false);
             anyMissing |= c.toModellessCSV(String.format("%s/%s missing.csv", outDir.getPath(), faction.name()), modelSet);
         }
 
-        logger.info("Parsing NA2 Sectorals");
-        for (SECTORAL sectoral : FACTION.NA2.getSectorals()) {
-            System.out.printf("Reading %s%n", sectoral.getName());
+        logger.info("Parsing container Sectorals");
+        for( FACTION faction : FACTION.values()) {
+            if (!faction.isContainerOnly()) continue;
+            logger.info("Handling {}", faction.getName());
+            for (SECTORAL sectoral : faction.getSectorals()) {
+                System.out.printf("Reading %s%n", sectoral.getName());
 
-            Catalogue c = new Catalogue();
-            c.addUnits(sectorals.get(sectoral.getId()), sectoral, false);
-            anyMissing |= c.toModellessCSV(String.format("%s/%s missing.csv", outDir.getPath(), sectoral.name()), modelSet);
+                Catalogue c = new Catalogue();
+                c.addUnits(sectorals.get(sectoral.getId()), sectoral, false);
+                anyMissing |= c.toModellessCSV(String.format("%s/%s missing.csv", outDir.getPath(), sectoral.name()), modelSet);
+            }
         }
+
+
         return anyMissing;
     }
 
@@ -308,7 +324,7 @@ public class Database {
     public void writeDuplicates(File outDir) throws IOException {
         outDir.mkdir();
         for (FACTION faction : FACTION.values()) {
-            if (faction == FACTION.NA2) continue; // They have per sectoral boxes
+            if (faction.isContainerOnly()) continue; // They have per sectoral boxes
             logger.info("Reading {}", faction.getName());
             Catalogue c = new Catalogue();
             c.addUnits(sectorals, faction, false);
@@ -319,17 +335,21 @@ public class Database {
             writer.close();
         }
 
-        logger.info("Parsing NA2 Sectorals");
-        for (SECTORAL sectoral : FACTION.NA2.getSectorals()) {
-            logger.info("Reading {}", sectoral.getName());
+        logger.info("Parsing container sectorals");
+        for( FACTION faction : FACTION.values()) {
+            if(!faction.isContainerOnly()) continue;
+            logger.info("Parsing {}", faction.getName());
+            for (SECTORAL sectoral : faction.getSectorals()) {
+                logger.info("Reading {}", sectoral.getName());
 
-            Catalogue c = new Catalogue();
-            c.addUnits(sectorals.get(sectoral.getId()), sectoral, false);
-            logger.info("Writing JSON");
-            String sectoralJSON = c.asJson(sectoral, modelSet, true);
-            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outDir.getPath(), sectoral.getName())));
-            writer.append(sectoralJSON);
-            writer.close();
+                Catalogue c = new Catalogue();
+                c.addUnits(sectorals.get(sectoral.getId()), sectoral, false);
+                logger.info("Writing JSON");
+                String sectoralJSON = c.asJson(sectoral, modelSet, true);
+                BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outDir.getPath(), sectoral.getName())));
+                writer.append(sectoralJSON);
+                writer.close();
+            }
         }
     }
 }

@@ -1,9 +1,11 @@
 package net.codersoffortune.infinity.armylist;
 
+import net.codersoffortune.infinity.GAME;
 import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.Equipment;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
+import net.codersoffortune.infinity.metadata.Metadata;
 import net.codersoffortune.infinity.metadata.Skill;
 import net.codersoffortune.infinity.metadata.Weapon;
 import net.codersoffortune.infinity.metadata.unit.CompactedUnit;
@@ -22,6 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Armylist {
+    private GAME game;
     private String army_code;
     private SECTORAL sectoral;
     private String sectoralName;
@@ -48,7 +51,7 @@ public class Armylist {
         result.setArmy_code(armyCode);
         // who are we playing as?
         result.setSectoral(readVLI(dataBuffer));
-
+        result.setGame(result.getSectoral().getGame());
         // Not sure why they embed the faction name as well, but *shrug*
         //int faction_length = dataBuffer.get() & 0xffffff;
         int faction_length = readVLI(dataBuffer);
@@ -77,9 +80,10 @@ public class Armylist {
 
     public void pretty_print() throws IOException {
         Database db = Database.getInstance();
-        List<Weapon> weapons = db.getMetadata().getWeapons();
-        List<Skill> skills = db.getMetadata().getSkills();
-        List<Equipment> equipment = db.getMetadata().getEquips();
+        Metadata metadata = db.getMetadata(game);
+        List<Weapon> weapons = metadata.getWeapons();
+        List<Skill> skills = metadata.getSkills();
+        List<Equipment> equipment = metadata.getEquips();
 
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("CODE: %s\n", army_code));
@@ -209,5 +213,13 @@ public class Armylist {
 
     public void setArmy_code(String army_code) {
         this.army_code = army_code;
+    }
+
+    public GAME getGame() {
+        return game;
+    }
+
+    public void setGame(GAME game) {
+        this.game = game;
     }
 }

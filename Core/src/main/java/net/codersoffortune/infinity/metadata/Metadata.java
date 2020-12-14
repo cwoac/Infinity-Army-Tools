@@ -1,11 +1,15 @@
 package net.codersoffortune.infinity.metadata;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.codersoffortune.infinity.GAME;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Metadata {
     private List<Faction> factions;
@@ -43,9 +47,13 @@ public class Metadata {
         setBooty(booty);
     }
 
-    public static Metadata loadMetadata() throws IOException {
+    public static Map<GAME, Metadata> loadMetadata() throws IOException {
+        Map<GAME, Metadata> result = new HashMap<>();
         ObjectMapper om = new ObjectMapper();
-        return om.readValue(new File("resources/metadata.json"), Metadata.class);
+        for ( GAME game : GAME.values()) {
+            result.put(game, om.readValue(new File(game.getMetadataFile()), Metadata.class));
+        }
+        return result;
 
     }
 

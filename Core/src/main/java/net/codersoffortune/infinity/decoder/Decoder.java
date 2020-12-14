@@ -39,11 +39,12 @@ public class Decoder {
     public static void main(String[] args) throws IOException {
         //preload the db
         Database db = Database.getInstance();
-        Metadata m = db.getMetadata();
+
 
 
         for (String code : testcodes) {
             Armylist list = Armylist.fromArmyCode(code);
+            Metadata m = db.getMetadata(list.getGame());
             SectoralList fl = db.getSectorals().get(list.getSectoral().getId());
             MappedFactionFilters filters = new MappedFactionFilters(fl.getFilters());
             //TODO:: Load the right modelset

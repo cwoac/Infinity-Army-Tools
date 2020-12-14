@@ -46,8 +46,12 @@ public enum SECTORAL {
     Dahshat(908, "Dahshat Company", 9, "D1D1B2", "\"r\": 0.819,\"g\": 0.819,\"b\": 0.698", "\"r\": 0.41,\"g\": 0.41,\"b\": 0.35", "http://cloud-3.steamusercontent.com/ugc/1685996137035395355/A616304EACFBBF0F873B68E42A47B5E13DB5351D/"),
     WiCo(909, "White Company", 9, "537771", "\"r\": 0.325,\"g\": 0.466,\"b\": 0.443", "\"r\": 0.16,\"g\": 0.23,\"b\": 0.23", "http://cloud-3.steamusercontent.com/ugc/1685996137035407416/40CDC721303D235A54E4DF01E6F157E6B67A9DE0/"),
     O12(1001, "O-12", 10, null, null, null, null),
-    Starmarda(1002, "Starmada, Bureau Aegis Naval Police Department", 10, null, null, null, null);
-
+    Starmarda(1002, "Starmada, Bureau Aegis Naval Police Department", 10, null, null, null, null),
+    //CODEONE(10000, "Code One", 100)
+    C1PanO(10101, "PanOceania (C1)", 10000, "00B0F2", "\"r\": 0.0, \"g\": 0.6901961, \"b\": 0.9490196", "\"r\": 0.0, \"g\": 0.35, \"b\": 0.47", "http://cloud-3.steamusercontent.com/ugc/1685996137035355524/04967D96ACBEBB645E5FA5F365BB6D7AEBCC06CC/"),
+    C1YuJing(10201, "Yu Jing (C1)", 10000, "FF9000", "\"r\": 1.0, \"g\": 0.5647059, \"b\": 0.0", "\"r\": 0.5, \"g\": 0.23, \"b\": 0.0", "http://cloud-3.steamusercontent.com/ugc/1685996137035358127/F98F9BDC03079C010366C6239DF43D8CABA5BFCE/"),
+    C1CA(10601, "Combined Army (C1)", 10000, "813CAA", "\"r\": 0.5058824, \"g\": 0.235293388, \"b\": 0.6666667", "\"r\": 0.25, \"g\": 0.12, \"b\": 0.33", "http://cloud-3.steamusercontent.com/ugc/1685996137035365049/68902014928ED2D5F9C276A1254260D395EE9020/"),
+    C1O12(11001, "O-12 (C1)", 10000, "726C96", "\"r\": 0.305881649, \"g\": 0.27843067, \"b\": 0.4666664", "\"r\": 0.15, \"g\": 0.14, \"b\": 0.23", "http://cloud-3.steamusercontent.com/ugc/1685996137035366882/D545AFAB6DEA17368E442BD2B7E256C4E11E4751/");
     private final int id;
     private final String name;
     private final int parent;
@@ -121,4 +125,13 @@ public enum SECTORAL {
         );
     }
 
+    /**
+     * Which game (N4/C1) is this sectoral associated with?
+     * May in the future need to add this as a parameter, but for now we can just go on ID value
+     * @return the Game this is for.
+     */
+    public GAME getGame() {
+        if (this.id > 10000) return GAME.CODE_ONE;
+        return GAME.N4;
+    }
 }
