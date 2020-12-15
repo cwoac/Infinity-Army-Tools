@@ -89,7 +89,7 @@ public class Database {
         );
 
         meshTemplate = getResourceFileAsString("Templates/mesh_template.json");
-        unitTemplate = getResourceFileAsString("Templates/model_template");
+        unitTemplate = getResourceFileAsString("Templates/unit_template.json");
         seedTemplate = getResourceFileAsString("Templates/seed_embryo_template.json");
         transmutedUnitTemplate = getResourceFileAsString("Templates/transmuted_model_template");
         factionTemplate = getResourceFileAsString("templates/faction_template");
