@@ -42,8 +42,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     );
     public static final Map<Integer, String> CAMO_DECALS = Map.of(
             0, "http://cloud-3.steamusercontent.com/ugc/1548633241857020838/CDE48FB1F62CB3A31810F9077CAC176EFB735038/",
-            -3, "http://cloud-3.steamusercontent.com/ugc/859478426278216451/A4FDA4E7168D2F62C477AB5CA1DBE0FF0776D640/",
-            -6, "http://cloud-3.steamusercontent.com/ugc/859478426278214079/BFA0CAEAE34C30E5A87F6FB2595C59417DCFFE27/"
+            -3, "http://cloud-3.steamusercontent.com/ugc/1548633241857039726/50A33C60C9951B10DF741450AC64AB37F5C90E02/",
+            -6, "http://cloud-3.steamusercontent.com/ugc/1764818232299713869/2973E82C5ACAA5E3BF53545F1FB47C14695BADB8/"
     );
     private static final Logger logger = LogManager.getLogger(PrintableUnit.class);
     protected final SECTORAL sectoral;
