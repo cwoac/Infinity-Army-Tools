@@ -21,7 +21,7 @@ public enum FACTION {
     Tohaa(8, "Tohaa", false, Arrays.asList(SECTORAL.Tohaa), "B9DB01", "\"r\": 0.725,\"g\": 0.858,\"b\": 0.003", "\"r\": 0.36,\"g\": 0.43,\"b\": 0.0", "http://cloud-3.steamusercontent.com/ugc/1685996137035368420/FC12BD8A21823CB5F973B0F148A5915719A006D4/"),
     NA2(9, "Non-Aligned Armies", true, Arrays.asList(SECTORAL.Druze, SECTORAL.JSA, SECTORAL.Ikari, SECTORAL.Starco, SECTORAL.SpiralCorps, SECTORAL.FoCo, SECTORAL.Dahshat, SECTORAL.WiCo), "808080", "\"r\": 0.5, \"g\": 0.5, \"b\": 0.5", "\"r\": 0.25, \"g\": 0.25, \"b\": 0.25", ""),
     O12(10, "O-12", false, Arrays.asList(SECTORAL.O12, SECTORAL.Starmarda), "726C96", "\"r\": 0.305881649, \"g\": 0.27843067, \"b\": 0.4666664", "\"r\": 0.15, \"g\": 0.14, \"b\": 0.23", "http://cloud-3.steamusercontent.com/ugc/1685996137035366882/D545AFAB6DEA17368E442BD2B7E256C4E11E4751/"),
-    CodeOne(10000, "Code One", true, Arrays.asList(SECTORAL.C1PanO, SECTORAL.C1YuJing, SECTORAL.C1CA, SECTORAL.C1O12), "", "", "", "");
+    CodeOne(10000, "Code One", true, Arrays.asList(SECTORAL.C1PanO, SECTORAL.C1YuJing, SECTORAL.C1CA, SECTORAL.C1O12, SECTORAL.C1Ariadna, SECTORAL.C1Nomads), "", "", "", "");
 
     private final int id;
     private final String name;
