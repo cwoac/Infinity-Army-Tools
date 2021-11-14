@@ -1,7 +1,10 @@
 package net.codersoffortune.infinity.metadata.unit;
 
 import net.codersoffortune.infinity.SECTORAL;
+import net.codersoffortune.infinity.Util;
 import net.codersoffortune.infinity.armylist.CombatGroup;
+import net.codersoffortune.infinity.collection.VisibleItem;
+import net.codersoffortune.infinity.metadata.FilterType;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.tts.EquivalentModelSet;
 import org.apache.logging.log4j.LogManager;
@@ -142,6 +145,26 @@ public class Unit {
                 );
             }
         }
+        return result;
+    }
+
+    /**
+     * Get a list of the weapons available to this unit which may be represented on a model.
+     * @return a list of items that are plausibly visible on a model
+     */
+    public Collection<VisibleItem> getVisibleWeapons(MappedFactionFilters mappedFactionFilters) {
+        Collection<VisibleItem> result = new ArrayList<>();
+        // We could iterate over all options / profiles, but the filters seem to have everything
+        result.addAll(filters.get("weapons").stream().filter(it -> !Util.invisibleWeapons.contains(it))
+                        .map(it -> new VisibleItem(it, FilterType.weapons))
+                        .peek(it -> it.setMappedFactionFilters(mappedFactionFilters))
+                        .collect(Collectors.toList()));
+       /*
+        for (ProfileGroup group : profileGroups) {
+            group.getProfiles().forEach(
+
+            );
+        }*/
         return result;
     }
 

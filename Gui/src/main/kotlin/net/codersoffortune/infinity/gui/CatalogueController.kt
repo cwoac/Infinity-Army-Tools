@@ -5,8 +5,9 @@ import javafx.scene.control.ChoiceBox
 import javafx.scene.control.ListView
 import net.codersoffortune.infinity.SECTORAL
 import net.codersoffortune.infinity.collection.ModelCollection
-import net.codersoffortune.infinity.collection.PhysicalModel
+import net.codersoffortune.infinity.collection.VisibleItem
 import net.codersoffortune.infinity.db.Database
+import net.codersoffortune.infinity.metadata.MappedFactionFilters
 import net.codersoffortune.infinity.metadata.SectoralList
 import net.codersoffortune.infinity.metadata.unit.Unit
 
@@ -24,7 +25,7 @@ class CatalogueController {
     private lateinit var unitListView: ListView<Unit>
 
     @FXML
-    private lateinit var profileListView: ListView<PhysicalModel>
+    private lateinit var profileListView: ListView<VisibleItem>
 
     @FXML
     fun initialize() {
@@ -46,7 +47,11 @@ class CatalogueController {
 
     private fun populateProfileList() {
         profileListView.items.clear()
-        modelCollection.modelMap[currentUnit]?.let { profileListView.items.addAll(it) }
+        val filters = sectoralList.mappedFilters
+        var visibleWeapons = unitListView.items[currentUnit].getVisibleWeapons(filters)
+        profileListView.items.addAll(visibleWeapons)
+        //modelCollection.modelMap[currentUnit]?.let { profileListView.items.addAll(it) }
+
     }
 
 }
