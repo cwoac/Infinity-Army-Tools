@@ -1,5 +1,6 @@
 package net.codersoffortune.infinity.gui;
 
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -93,5 +94,9 @@ public class MainController {
         writer.append(json);
         writer.close();
         armyCodeTF.setText("Done");
+    }
+
+    public void catalogEdit(ActionEvent actionEvent) throws IOException {
+        InfinityToolsGui.switchWindow("Catalogue");
     }
 }
