@@ -2,6 +2,7 @@ package net.codersoffortune.infinity.metadata;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import net.codersoffortune.infinity.collection.PhysicalModel;
 import net.codersoffortune.infinity.metadata.specops.Specops;
 import net.codersoffortune.infinity.metadata.specops.SpecopsNestedItem;
 import net.codersoffortune.infinity.metadata.specops.SpecopsNestedItemDeserializer;
@@ -15,6 +16,7 @@ import java.util.Optional;
 public class SectoralList {
     private String version;
     private List<Unit> units;
+
     private FactionFilters filters;
     private List<Resume> resume;
     private List<Fireteam> fireteams; // TODO:: Is this ever used?

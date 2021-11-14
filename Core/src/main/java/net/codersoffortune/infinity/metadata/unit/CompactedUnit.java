@@ -2,6 +2,7 @@ package net.codersoffortune.infinity.metadata.unit;
 
 import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.Util;
+import net.codersoffortune.infinity.collection.VisibleItem;
 import net.codersoffortune.infinity.metadata.FilterType;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 
@@ -202,6 +203,15 @@ public class CompactedUnit {
                 .sorted(Comparator.comparing(ProfileItem::getOrder))
                 .forEach(result::add);
 
+        return result;
+    }
+
+    public List<VisibleItem> getVisibleItems() {
+        List<VisibleItem> result = new ArrayList<>();
+        result.addAll(weapons.stream()
+                        .filter(it -> !Util.invisibleWeapons.contains(it))
+                        .map(it -> new VisibleItem(it, FilterType.weapons))
+                        .collect(Collectors.toList()));
         return result;
     }
 

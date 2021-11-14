@@ -4,7 +4,7 @@ import net.codersoffortune.infinity.metadata.FilterType
 import net.codersoffortune.infinity.metadata.unit.ProfileItem
 
 @Serializable
-class Item(val type: FilterType) {
+class VisibleItem(val type: FilterType) {
     var id : Int = 0
     constructor(profileItem: ProfileItem, type: FilterType) : this(type){
         id = profileItem.id

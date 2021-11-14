@@ -3,6 +3,8 @@ package net.codersoffortune.infinity.db;
 import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.GAME;
 import net.codersoffortune.infinity.SECTORAL;
+import net.codersoffortune.infinity.collection.ModelCollection;
+import net.codersoffortune.infinity.collection.PhysicalModel;
 import net.codersoffortune.infinity.metadata.Faction;
 import net.codersoffortune.infinity.metadata.Metadata;
 import net.codersoffortune.infinity.metadata.SectoralList;
@@ -23,10 +25,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class Database {
     private static final Logger logger = LogManager.getLogger(Database.class);
@@ -49,6 +48,7 @@ public class Database {
     private static ModelSet modelSet = null;
     private static volatile Database dbSingleton;
     private static Map<GAME, Metadata> metadataMap;
+    private static ModelCollection physicalModels;
 
     Map<Integer, SectoralList> sectorals;
 
@@ -96,6 +96,8 @@ public class Database {
         bagTemplate = getResourceFileAsString("templates/bag_template");
         modelSet = new ModelSet("resources/model catalogue.json");
         decalTemplate = getResourceFileAsString("templates/decal_template.json");
+
+        physicalModels = ModelCollection.Companion.load(getResourceFileAsString("physical_models.json"));
     }
 
     public static String getBagTemplate() {
@@ -117,6 +119,8 @@ public class Database {
     }
 
     public static ModelSet getModelSet() { return modelSet; }
+
+    public static ModelCollection getPhysicalModels() { return physicalModels; }
 
     private static String getResourceFileAsString(String fileName) throws IOException {
         return Files.readString(new File("resources/" + fileName).toPath(), StandardCharsets.UTF_8);
