@@ -9,6 +9,7 @@ plugins {
     id("org.openjfx.javafxplugin")
     id("net.codersoffortune.infinity.java-conventions")
     kotlin("jvm")
+    kotlin("plugin.serialization")
 }
 
 

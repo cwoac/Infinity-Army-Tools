@@ -79,6 +79,13 @@ public enum SECTORAL {
         return null;
     }
 
+    public static SECTORAL getByName(final String name) {
+        for (SECTORAL s : values()) {
+            if (s.name.equalsIgnoreCase(name)) return s;
+        }
+        return null;
+    }
+
     public int getId() {
         return id;
     }
