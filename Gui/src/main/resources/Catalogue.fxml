@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="net.codersoffortune.infinity.gui.CatalogueController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.codersoffortune.infinity.gui.CatalogueController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+  <tabs>
+    <Tab text="Miniatures">
+      <content>
+        <VBox spacing="10">
+          <HBox spacing="5">
+            <Label text="Faction" />
+            <ChoiceBox fx:id="factionChoiceBox" prefWidth="150.0" />
+          </HBox>
+        </VBox>
+      </content>
+    </Tab>
+    <Tab text="SKU">
+      <content>
+        <VBox spacing="10">
+        </VBox>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>
 </AnchorPane>
