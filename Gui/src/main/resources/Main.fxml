@@ -28,6 +28,8 @@
     <HBox spacing="10">
         <Label text="Write new box files" />
         <Button text="Write Faction Boxes" onAction="#writeBoxes"/>
+        <Label text="Catalog Editor" />
+        <Button text="Open Editor" onAction="#catalogEdit" />
     </HBox>
     <HBox spacing="10">
         <Label text="Army Code:" />
