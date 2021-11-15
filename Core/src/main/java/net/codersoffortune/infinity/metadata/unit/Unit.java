@@ -152,19 +152,23 @@ public class Unit {
      * Get a list of the weapons available to this unit which may be represented on a model.
      * @return a list of items that are plausibly visible on a model
      */
-    public Collection<VisibleItem> getVisibleWeapons(MappedFactionFilters mappedFactionFilters) {
+    public Collection<VisibleItem> getVisibleWeapons() {
         Collection<VisibleItem> result = new ArrayList<>();
         // We could iterate over all options / profiles, but the filters seem to have everything
         result.addAll(filters.get("weapons").stream().filter(it -> !Util.invisibleWeapons.contains(it))
                         .map(it -> new VisibleItem(it, FilterType.weapons))
-                        .peek(it -> it.setMappedFactionFilters(mappedFactionFilters))
                         .collect(Collectors.toList()));
-       /*
-        for (ProfileGroup group : profileGroups) {
-            group.getProfiles().forEach(
 
-            );
-        }*/
+        return result;
+    }
+
+    public Collection<VisibleItem> getVisibleSkills() {
+        Collection<VisibleItem> result = new ArrayList<>();
+        // We could iterate over all options / profiles, but the filters seem to have everything
+        result.addAll(filters.get("skills").stream().filter(Util.physicalModelSkills::contains)
+                .map(it -> new VisibleItem(it, FilterType.skills))
+                .collect(Collectors.toList()));
+
         return result;
     }
 

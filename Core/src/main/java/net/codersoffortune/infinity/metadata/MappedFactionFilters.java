@@ -13,10 +13,26 @@ import java.util.stream.Stream;
 public class MappedFactionFilters {
     private final EnumMap<FilterType, Map<Integer, FilterItem>> data = new EnumMap<>(FilterType.class);
 
-    public MappedFactionFilters(final FactionFilters filters) {
+    public MappedFactionFilters() {
         // initialise the maps
         Stream.of(FilterType.values()).forEach(x -> data.put(x, new HashMap<>()));
+    }
 
+    public MappedFactionFilters(final FactionFilters filters) {
+        super();
+        addFromFilters(filters);
+    }
+
+    private void addOneType(final FilterType type, final Map<Integer, FilterItem> values) {
+        Map<Integer, FilterItem> target = data.get(type);
+        values.keySet().stream().forEach(it->target.putIfAbsent(it, values.get(it)));
+    }
+
+    public void addFromMappedFilters(final MappedFactionFilters filters) {
+        Stream.of(FilterType.values()).forEach(x -> addOneType(x, filters.data.get(x)));
+    }
+
+    public void addFromFilters(final FactionFilters filters) {
         filters.getAmmunition().forEach(x -> data.get(FilterType.ammunition).put(x.getId(), x));
         filters.getWeapons().forEach(x -> data.get(FilterType.weapons).put(x.getId(), x));
         filters.getType().forEach(x -> data.get(FilterType.type).put(x.getId(), x));

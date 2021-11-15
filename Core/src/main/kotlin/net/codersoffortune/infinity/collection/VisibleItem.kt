@@ -17,11 +17,13 @@ class VisibleItem(val type: FilterType, @Transient var mappedFactionFilters: Map
     }
 
     override fun toString() : String {
-        mappedFactionFilters?.let {
-            return String.format(mappedFactionFilters!!.getItem(type,id).name)
-        }
-        //result.append(filters.getItem(type, getId()).getName());
-        // Fallback in case we haven't set the filters.
-        return String.format("%s %u", type, id)
+        return UniversalFilters.data.getItem(type,id).name
+        //return String.format(CatalogueController.filters.getItem(type,id).name)
+//        mappedFactionFilters?.let {
+//            return String.format(mappedFactionFilters!!.getItem(type,id).name)
+//        }
+//        //result.append(filters.getItem(type, getId()).getName());
+//        // Fallback in case we haven't set the filters.
+//        return String.format("%s %u", type, id)
     }
 }
