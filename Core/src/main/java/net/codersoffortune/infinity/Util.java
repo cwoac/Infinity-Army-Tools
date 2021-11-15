@@ -3,11 +3,9 @@ package net.codersoffortune.infinity;
 import net.codersoffortune.infinity.metadata.FilterType;
 
 import java.text.DecimalFormat;
-import java.util.AbstractMap;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+import static java.util.Map.entry;
 
 /**
  * Private class for all things hardcoded, utility and otherwise "don't quite have a home".
@@ -79,8 +77,21 @@ public class Util {
      */
     public static final List<Integer> visibleSkills = Collections.singletonList(255);
 
-    // Names
+    // Quite a few weapons look the same.
+    public static final Set<Set<Integer>> visiblyEquivalentWeapons = Set.of(
+            // Sniper Rifles
+            Set.of(12,72,98,99,116,117,129,144,156),
+            // Shotguns
+            Set.of(17,18,65,66,78,79,139,140,160,161),
+            // Marksman rifles
+            Set.of(9,71,81,91,92,125,142),
+            // combi
+            Set.of(19,28,70,151),
+            // rifles
+            Set.of(11,22,121,143,155)
+    );
 
+    // Names
     public static final List<Integer> nameEdgeCases = Arrays.asList(
             20, // Joan
             42, // Joan
