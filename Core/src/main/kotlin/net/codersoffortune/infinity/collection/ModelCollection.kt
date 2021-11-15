@@ -3,21 +3,30 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import net.codersoffortune.infinity.FACTION
+import java.io.File
 
 @Serializable
-data class ModelCollection(val modelMap: MutableMap<Int, MutableList<PhysicalModel>>) {
+// TODO: replace first element of map with Faction.
+data class ModelCollection(val modelMap: MutableMap<Int,MutableMap<Int, MutableList<PhysicalModel>>>) {
 
-    fun addSku(sku: Sku) {
-        sku.models.forEach{addModel(it)}
+    fun addSku(faction: FACTION, sku: Sku) {
+        sku.models.forEach{addModel(faction, it)}
     }
 
-    fun addModel(physicalModel: PhysicalModel) {
+    fun addModel(faction: FACTION, physicalModel: PhysicalModel) {
         val unitId : Int = physicalModel.id
-        if(!modelMap.containsKey(unitId)) {
-            modelMap[unitId] = mutableListOf()
-            modelMap[unitId]?.add(physicalModel)
-        }
+        val factionId : Int = faction.id
+        modelMap.getOrPut(factionId) { mutableMapOf()}.getOrPut(unitId) { mutableListOf()}.add(physicalModel)
+    }
 
+    fun getModels(faction:FACTION, unitIdx: Int) : MutableList<PhysicalModel>? {
+        return modelMap[faction.id]?.get(unitIdx)
+    }
+
+    fun save() {
+        val repr = Json.encodeToString(this)
+        File("resources/physical_models.json").writeText(repr)
     }
 
     companion object {

@@ -77,6 +77,17 @@ public class Util {
      */
     public static final List<Integer> visibleSkills = Collections.singletonList(255);
 
+    /** Subtly different (I think) from visibleSkills are physicalModelSkills. These are used by CB in descriptors
+     * of the model, and either tend to be reflected in incidental details (bags) or poses (e.g. the hacker hands)
+     *
+     * 49 engineer
+     * 53 doctor
+     * 59 forward observer
+     * 64 paramedic
+     * 1000 hacker
+     */
+    public static final List<Integer> physicalModelSkills = Arrays.asList(49, 53,59, 64, 1000);
+
     // Quite a few weapons look the same.
     public static final Set<Set<Integer>> visiblyEquivalentWeapons = Set.of(
             // Sniper Rifles
