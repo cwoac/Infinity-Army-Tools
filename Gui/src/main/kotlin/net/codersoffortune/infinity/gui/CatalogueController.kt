@@ -1,13 +1,14 @@
 package net.codersoffortune.infinity.gui
 
 import javafx.fxml.FXML
+import javafx.scene.control.Button
 import javafx.scene.control.ChoiceBox
 import javafx.scene.control.ListView
 import net.codersoffortune.infinity.SECTORAL
 import net.codersoffortune.infinity.collection.ModelCollection
+import net.codersoffortune.infinity.collection.PhysicalModel
 import net.codersoffortune.infinity.collection.VisibleItem
 import net.codersoffortune.infinity.db.Database
-import net.codersoffortune.infinity.metadata.MappedFactionFilters
 import net.codersoffortune.infinity.metadata.SectoralList
 import net.codersoffortune.infinity.metadata.unit.Unit
 
@@ -25,7 +26,16 @@ class CatalogueController {
     private lateinit var unitListView: ListView<Unit>
 
     @FXML
-    private lateinit var profileListView: ListView<VisibleItem>
+    private lateinit var existingModelsListView: ListView<PhysicalModel>
+
+    @FXML
+    private lateinit var weaponOptionsListView: ListView<VisibleItem>
+
+    @FXML
+    private lateinit var skillOptionsListView: ListView<VisibleItem>
+
+    @FXML
+    private lateinit var addButton: Button
 
     @FXML
     fun initialize() {
@@ -36,8 +46,18 @@ class CatalogueController {
         }
         unitListView.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
             currentUnit = newValue as Int
-            populateProfileList()
+            populateOptionLists()
         }
+
+        // add new model button
+        addButton.setOnAction { _ ->
+            addPhysicalModel()
+        }
+    }
+
+
+    private fun addPhysicalModel() {
+
     }
 
     private fun populateUnitList() {
@@ -45,11 +65,11 @@ class CatalogueController {
         unitListView.items.addAll(sectoralList.units)
     }
 
-    private fun populateProfileList() {
-        profileListView.items.clear()
+    private fun populateOptionLists() {
+        weaponOptionsListView.items.clear()
         val filters = sectoralList.mappedFilters
         var visibleWeapons = unitListView.items[currentUnit].getVisibleWeapons(filters)
-        profileListView.items.addAll(visibleWeapons)
+        weaponOptionsListView.items.addAll(visibleWeapons)
         //modelCollection.modelMap[currentUnit]?.let { profileListView.items.addAll(it) }
 
     }

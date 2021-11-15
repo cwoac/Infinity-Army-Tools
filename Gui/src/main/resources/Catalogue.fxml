@@ -13,10 +13,18 @@
             <Label text="Faction" />
             <ChoiceBox fx:id="sectoralChoiceBox" prefWidth="150.0" />
           </HBox>
-          <HBox prefHeight="100.0" prefWidth="200.0">
+          <HBox spacing="5">
             <ListView fx:id="unitListView" />
-            <ListView fx:id="profileListView" />
+            <ListView fx:id="existingModelsListView" />
           </HBox>
+          <HBox spacing="5">
+            <ListView fx:id="weaponOptionsListView" />
+            <ListView fx:id="skillOptionsListView" />
+          </HBox>
+          <HBox spacing="5">
+            <Button fx:id="addButton" text="Add selection as model" />
+          </HBox>
+
         </VBox>
       </content>
     </Tab>
