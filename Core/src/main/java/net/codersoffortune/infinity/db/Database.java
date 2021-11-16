@@ -4,7 +4,6 @@ import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.GAME;
 import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.collection.ModelCollection;
-import net.codersoffortune.infinity.collection.PhysicalModel;
 import net.codersoffortune.infinity.metadata.Faction;
 import net.codersoffortune.infinity.metadata.Metadata;
 import net.codersoffortune.infinity.metadata.SectoralList;
@@ -15,17 +14,16 @@ import net.codersoffortune.infinity.tts.ModelSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 public class Database {
     private static final Logger logger = LogManager.getLogger(Database.class);
@@ -77,7 +75,9 @@ public class Database {
                 int id = f.getID();
                 if (id == 901) continue; // NA2 doesn't have a vanilla option
                 if (id == 10000) continue; // C1 doesn't have a vanilla option
-                sectorals.put(id, SectoralList.load(String.valueOf(id)));
+                SectoralList sl = SectoralList.load(String.valueOf(id));
+                sectorals.put(id, sl);
+                sl.getMappedFilters();
             }
         }
 

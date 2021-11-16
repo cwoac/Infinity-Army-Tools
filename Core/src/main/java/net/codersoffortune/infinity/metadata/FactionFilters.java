@@ -111,4 +111,19 @@ public class FactionFilters {
     public void setSwc(List<FilterItem> swc) {
         this.swc = swc;
     }
+
+    public List<FilterItem> getByType(final FilterType filterType) {
+        switch(filterType){
+            case peripheral: return peripheral;
+            case category: return category;
+            case ammunition: return ammunition;
+            case chars: return chars;
+            case type: return type;
+            case equip: return equip;
+            case skills: return skills;
+            case weapons: return weapons;
+            case extras: return extras;
+        }
+        throw new IllegalStateException("Shouldn't get here");
+    }
 }

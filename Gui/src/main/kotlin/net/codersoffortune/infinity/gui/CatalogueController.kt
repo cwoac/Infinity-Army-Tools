@@ -8,6 +8,7 @@ import javafx.scene.control.SelectionMode
 import net.codersoffortune.infinity.SECTORAL
 import net.codersoffortune.infinity.collection.ModelCollection
 import net.codersoffortune.infinity.collection.PhysicalModel
+import net.codersoffortune.infinity.collection.UniversalFilters
 import net.codersoffortune.infinity.collection.VisibleItem
 import net.codersoffortune.infinity.db.Database
 import net.codersoffortune.infinity.metadata.MappedFactionFilters
@@ -56,6 +57,7 @@ class CatalogueController {
 
     @FXML
     fun initialize() {
+
         sectoralChoiceBox.items.addAll(SECTORAL.values())
         sectoralChoiceBox.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
             currentSectoral = sectoralChoiceBox.items[newValue as Int]
