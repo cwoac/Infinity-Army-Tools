@@ -23,8 +23,7 @@
           </HBox>
           <HBox spacing="5">
             <Button fx:id="addButton" text="Add selection as model" />
-            <Button fx:id="saveButton" text="Save changes to memory" />
-            <Button fx:id="clearButton" text="Clear changes" />
+            <Button fx:id="deleteModelButton" text="Delete selected model(s)" />
             <Button fx:id="writeButton" text="Save changes to disk" />
             <Button fx:id="returnButton" text="Return to Main Menu" />
           </HBox>

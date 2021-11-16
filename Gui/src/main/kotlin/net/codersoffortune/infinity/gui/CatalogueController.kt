@@ -8,10 +8,8 @@ import javafx.scene.control.SelectionMode
 import net.codersoffortune.infinity.SECTORAL
 import net.codersoffortune.infinity.collection.ModelCollection
 import net.codersoffortune.infinity.collection.PhysicalModel
-import net.codersoffortune.infinity.collection.UniversalFilters
 import net.codersoffortune.infinity.collection.VisibleItem
 import net.codersoffortune.infinity.db.Database
-import net.codersoffortune.infinity.metadata.MappedFactionFilters
 import net.codersoffortune.infinity.metadata.SectoralList
 import net.codersoffortune.infinity.metadata.unit.Unit
 
@@ -44,16 +42,13 @@ class CatalogueController {
     private lateinit var addButton: Button
 
     @FXML
-    private lateinit var clearButton: Button
-
-    @FXML
-    private lateinit var saveButton: Button
-
-    @FXML
     private lateinit var writeButton: Button
 
     @FXML
     private lateinit var returnButton: Button
+
+    @FXML
+    private lateinit var deleteModelButton: Button
 
     @FXML
     fun initialize() {
@@ -72,21 +67,16 @@ class CatalogueController {
         // Can't quite figure out how to set this from the fxml
         weaponOptionsListView.selectionModel.selectionMode = SelectionMode.MULTIPLE
         skillOptionsListView.selectionModel.selectionMode = SelectionMode.MULTIPLE
+        existingModelsListView.selectionModel.selectionMode = SelectionMode.MULTIPLE
 
         // add new model button
         addButton.setOnAction {
             addPhysicalModel()
         }
 
-        // abort changes
-        clearButton.setOnAction {
-            currentModels = mutableListOf()
-            populateModelList()
-        }
-
-        // save changes to (in memory) database
-        saveButton.setOnAction {
-            saveNewModels()
+        // remove model button
+        deleteModelButton.setOnAction {
+            removePhysicalModel()
         }
 
         // write saved changes to disk
@@ -95,7 +85,6 @@ class CatalogueController {
         }
 
         // go back to main menu
-        // TODO:: add confirm if we have unwritten changes
         returnButton.setOnAction {
             InfinityToolsGui.switchWindow("Main")
         }
@@ -103,7 +92,7 @@ class CatalogueController {
 
 
     private fun addPhysicalModel() {
-        currentModels.add(
+        modelCollection.addModel(currentSectoral.parent,
             PhysicalModel(
                 sectoralList.units[currentUnit].isc,
                 currentUnit,
@@ -116,17 +105,21 @@ class CatalogueController {
         populateModelList()
     }
 
-    private fun saveNewModels() {
-        currentModels.forEach { modelCollection.addModel(currentSectoral.parent, it) }
-        changeUnit()
+    private fun removePhysicalModel() {
+        existingModelsListView.selectionModel.selectedItems.forEach {
+            modelCollection.removeModel(currentSectoral.parent, it)
+            existingModelsListView.items.remove(it)
+        }
     }
 
     private fun changeSectoral() {
         sectoralList = database.sectorals[currentSectoral.id]!!
         unitListView.items.clear()
         unitListView.items.addAll(sectoralList.units)
-        currentUnit = 0
-        changeUnit()
+        currentUnit = -1
+        currentModels = mutableListOf()
+        weaponOptionsListView.items.clear()
+        skillOptionsListView.items.clear()
     }
 
     private fun changeUnit() {
