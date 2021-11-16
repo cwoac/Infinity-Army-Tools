@@ -17,7 +17,7 @@ class VisibleItem(val type: FilterType, @Transient var mappedFactionFilters: Map
     }
 
     override fun toString() : String {
-        return UniversalFilters.data.getItem(type,id).name
+        return MappedFactionFilters.getFromAll(type, id).name
         //return String.format(CatalogueController.filters.getItem(type,id).name)
 //        mappedFactionFilters?.let {
 //            return String.format(mappedFactionFilters!!.getItem(type,id).name)
