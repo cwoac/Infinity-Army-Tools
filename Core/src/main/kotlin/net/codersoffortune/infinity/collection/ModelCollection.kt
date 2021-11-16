@@ -20,6 +20,12 @@ data class ModelCollection(val modelMap: MutableMap<Int,MutableMap<Int, MutableL
         modelMap.getOrPut(factionId) { mutableMapOf()}.getOrPut(unitId) { mutableListOf()}.add(physicalModel)
     }
 
+    fun removeModel(faction: FACTION, physicalModel: PhysicalModel) {
+        val unitId : Int = physicalModel.id
+        val factionId : Int = faction.id
+        modelMap[factionId]?.get(unitId)?.remove(physicalModel)
+    }
+
     fun getModels(faction:FACTION, unitIdx: Int) : MutableList<PhysicalModel>? {
         return modelMap[faction.id]?.get(unitIdx)
     }
