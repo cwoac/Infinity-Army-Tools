@@ -171,6 +171,16 @@ public class Unit {
         return result;
     }
 
+    public Collection<VisibleItem> getPhysicalEquipment() {
+        Collection<VisibleItem> result = new ArrayList<>();
+        // We could iterate over all options / profiles, but the filters seem to have everything
+        result.addAll(filters.get("equipment").stream().filter(Util.modelledEquipment::contains)
+                .map(it -> new VisibleItem(it, FilterType.equip))
+                .collect(Collectors.toList()));
+
+        return result;
+    }
+
     public Collection<CompactedUnit> getPublicUnits(final int group, final int option) throws IllegalArgumentException {
         Collection<CompactedUnit> result = new ArrayList<>();
         Collection<CompactedUnit> unsortedUnits = getUnits(group, option);

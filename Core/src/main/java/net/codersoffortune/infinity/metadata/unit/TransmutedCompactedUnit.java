@@ -24,7 +24,6 @@ public class TransmutedCompactedUnit extends CompactedUnit {
      * @return a PrintableUnit interpretation of this CompactedUnit
      * @throws InvalidObjectException on failure
      */
-    @Override
     public PrintableUnit getPrintableUnit(final MappedFactionFilters filters, SECTORAL sectoral) throws InvalidObjectException {
         return new TransmutedPrintableUnit(filters, this, sectoral);
     }
