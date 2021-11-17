@@ -1,28 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.codersoffortune.infinity.gui.ModelCatalogueController">
-<VBox spacing="10">
-    <HBox spacing="5">
-        <Label text="Faction" />
-        <ChoiceBox fx:id="factionChoiceBox" prefWidth="150.0" />
-        <CheckBox fx:id="missingCheckBox" text="Show only missing models" />
-    </HBox>
-    <HBox prefHeight="300.0" spacing="5">
+<?import javafx.scene.image.ImageView?>
+<BorderPane prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="net.codersoffortune.infinity.gui.ModelCatalogueController">
+    <top>
+        <HBox spacing="10.0">
+            <Label text="Options:"/>
+            <HBox>
+                <Label text="Faction"/>
+                <ChoiceBox fx:id="factionChoiceBox" prefWidth="150.0"/>
+            </HBox>
+            <CheckBox fx:id="missingCheckBox" text="Show only missing models"/>
+            <opaqueInsets>
+                <Insets bottom="1.0"/>
+            </opaqueInsets>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </padding>
+            <BorderPane.margin>
+                <Insets/>
+            </BorderPane.margin>
+        </HBox>
+    </top>
+    <left>
         <VBox>
-            <Label text="Units" />
-            <ListView fx:id="unitListView" />
+            <Label text="Units"/>
+            <ListView fx:id="unitListView" prefHeight="499.0" prefWidth="247.0"/>
+            <opaqueInsets>
+                <Insets right="1.0"/>
+            </opaqueInsets>
+            <BorderPane.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </BorderPane.margin>
         </VBox>
-        <VBox>
-            <Label text="Distinct Profiles" />
-            <ListView fx:id="profileListView" prefWidth="300"/>
-        </VBox>
-    </HBox>
-    <HBox spacing="5">
-        <Button fx:id="returnButton" text="Return to Main Menu" />
-    </HBox>
 
-</VBox>
-</AnchorPane>
+    </left>
+    <center>
+        <BorderPane>
+            <top>
+                <VBox>
+                    <Label text="Distinct Profiles"/>
+                    <ListView fx:id="profileListView" prefHeight="208.0" prefWidth="755.0"/>
+                </VBox>
+            </top>
+            <center>
+                <GridPane>
+                    <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="2">
+                        <Label text="TTS Models"/>
+                        <ListView/>
+                    </VBox>
+                    <VBox GridPane.rowIndex="0" GridPane.columnIndex="1">
+                        <Label text="Decal"/>
+                        <TextField/>
+                    </VBox>
+                    <VBox GridPane.rowIndex="1" GridPane.columnIndex="1">
+                        <Label text="Mesh"/>
+                        <TextField/>
+                    </VBox>
+
+                    <VBox GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="2">
+                        <Label text="Front Preview"/>
+                        <ImageView />
+                    </VBox>
+                    <VBox GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.rowSpan="2">
+                        <Label text="Rear Preview"/>
+                        <ImageView />
+                    </VBox>
+                </GridPane>
+            </center>
+            <bottom>
+                <HBox>
+                    <Button text="Add model"/>
+                    <Button text="Remove current model"/>
+                </HBox>
+            </bottom>
+        </BorderPane>
+    </center>
+    <bottom>
+        <HBox prefHeight="39.0" prefWidth="1024.0" spacing="10.0" BorderPane.alignment="CENTER">
+            <Button fx:id="returnButton" text="Return to Main Menu"/>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </padding>
+        </HBox>
+    </bottom>
+</BorderPane>
