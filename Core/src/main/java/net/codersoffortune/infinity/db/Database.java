@@ -246,8 +246,7 @@ public class Database {
         outDir.mkdir();
         boolean anyMissing = false;
 
-        for (FACTION faction : FACTION.values()) {
-            if (faction.isContainerOnly()) continue; // They have per sectoral boxes
+        for (FACTION faction : FACTION.armyFactions) {
             logger.info("Reading {}", faction.getName());
             Catalogue c = new Catalogue();
             c.addUnits(sectorals, faction, false);
@@ -255,8 +254,7 @@ public class Database {
         }
 
         logger.info("Parsing container Sectorals");
-        for( FACTION faction : FACTION.values()) {
-            if (!faction.isContainerOnly()) continue;
+        for( FACTION faction : FACTION.armyFactions) {
             logger.info("Handling {}", faction.getName());
             for (SECTORAL sectoral : faction.getSectorals()) {
                 System.out.printf("Reading %s%n", sectoral.getName());

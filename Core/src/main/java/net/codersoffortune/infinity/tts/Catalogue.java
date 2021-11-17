@@ -71,15 +71,18 @@ public class Catalogue {
         }
     }
 
+    public void addUnits(FACTION faction, boolean useMercs) throws IOException {
+        addUnits(Database.getInstance().getSectorals(), faction, useMercs);
+    }
+
     public void addUnits(final SectoralList list, SECTORAL sectoral_idx, boolean useMercs) throws InvalidObjectException {
-        MappedFactionFilters filters = list.getMappedFilters();
         logger.debug("Adding Units for " + sectoral_idx.toString());
         for (Unit unit : list.getUnits()) {
             if (!useMercs && unit.isMerc()) continue;
             logger.trace("Parsing " + unit.toString());
             for (CompactedUnit cu : unit.getAllUnits()) {
                 logger.trace("Adding " + cu.toString());
-                PrintableUnit pu = cu.getPrintableUnit(filters, sectoral_idx);
+                PrintableUnit pu = cu.getPrintableUnit(sectoral_idx);
                 boolean claimed = unitEquivalenceMappings.stream().anyMatch(x -> x.addUnitMaybe(pu));
                 if (!claimed)
                     unitEquivalenceMappings.add(new EquivalenceMapping(pu));
@@ -268,5 +271,9 @@ public class Catalogue {
      */
     public List<PrintableUnit> getModellessList(final ModelSet ms) {
         return unitList.stream().filter(u->!ms.hasUnit(u.getUnitID())).collect(Collectors.toList());
+    }
+
+    public List<PrintableUnit> getModellessList() {
+        return getModellessList(Database.getModelSet());
     }
 }

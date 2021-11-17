@@ -47,6 +47,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
             -6, "http://cloud-3.steamusercontent.com/ugc/1764818232299713869/2973E82C5ACAA5E3BF53545F1FB47C14695BADB8/"
     );
     private static final Logger logger = LogManager.getLogger(PrintableUnit.class);
+    private final CompactedUnit compactedUnit;
     protected final SECTORAL sectoral;
     protected final int s;
     private final List<String> weapons;
@@ -78,6 +79,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private final String distinguisher;
 
     public PrintableUnit(MappedFactionFilters filters, final CompactedUnit src, SECTORAL sectoral) throws InvalidObjectException {
+        compactedUnit = src;
         weapons = src.getWeapons().stream().map(x -> x.toString(filters, FilterType.weapons)).collect(Collectors.toList());
         visible_weapons.addAll(src.getWeapons().stream()
                 .filter(x -> isVisibleWeapon(x.getId()))
@@ -258,6 +260,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     public int hashCode() {
         return Objects.hash(weapons, skills, equip, peripheral, unit_idx, group_idx, option_idx, profile_idx, name, arm, bs, bts, cc, chars, move, ph, s, str, type, w, wip, notes, distinguisher);
     }
+
+    public CompactedUnit getCompactedUnit() { return compactedUnit; }
 
     /**
      * Look for items which would be in the options title chunk.
