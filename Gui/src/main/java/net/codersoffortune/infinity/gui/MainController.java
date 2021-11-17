@@ -96,7 +96,11 @@ public class MainController {
         armyCodeTF.setText("Done");
     }
 
-    public void catalogEdit(ActionEvent actionEvent) throws IOException {
-        InfinityToolsGui.switchWindow("Catalogue");
+    public void ttsCatalogEdit(ActionEvent actionEvent) throws IOException {
+        InfinityToolsGui.switchWindow("ModelCatalogue");
+    }
+
+    public void physicalCatalogEdit(ActionEvent actionEvent) throws IOException {
+        InfinityToolsGui.switchWindow("PhysicalCatalogue");
     }
 }
