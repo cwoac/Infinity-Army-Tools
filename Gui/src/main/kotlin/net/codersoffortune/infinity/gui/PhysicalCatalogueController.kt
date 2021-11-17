@@ -14,7 +14,7 @@ import net.codersoffortune.infinity.metadata.SectoralList
 import net.codersoffortune.infinity.metadata.unit.Unit
 
 
-class CatalogueController {
+class PhysicalCatalogueController {
     private val database: Database = Database.getInstance()
     private val modelCollection: ModelCollection = Database.getPhysicalModels()
     private var currentSectoral: SECTORAL = SECTORAL.Aleph

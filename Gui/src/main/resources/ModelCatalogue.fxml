@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Button?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.codersoffortune.infinity.gui.ModelCatalogueController">
+<VBox spacing="10">
+    <HBox spacing="5">
+        <Label text="Faction" />
+        <ChoiceBox fx:id="factionChoiceBox" prefWidth="150.0" />
+        <CheckBox fx:id="missingCheckBox" text="Show only missing models"/>
+    </HBox>
+    <HBox spacing="5">
+        <VBox>
+            <Label text="Units" />
+            <ListView fx:id="unitListView" />
+        </VBox>
+    </HBox>
+    <HBox spacing="5">
+        <Button fx:id="returnButton" text="Return to Main Menu" />
+    </HBox>
+
+</VBox>
+</AnchorPane>
