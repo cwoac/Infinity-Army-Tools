@@ -10,7 +10,9 @@
 <?import javafx.scene.control.CheckBox?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="net.codersoffortune.infinity.gui.MainController"
-      spacing="10">
+      spacing="10"
+      prefHeight="600.0"
+      prefWidth="1024.0">
     <HBox spacing="5">
         <Label text="Current Version"/>
         <Label fx:id="versionLabel" text="Hello world FXML"/>
