@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Filter;
 import java.util.stream.Collectors;
 
 /**
@@ -27,7 +28,7 @@ public class CompactedUnit {
     private final List<ProfileItem> peripheral = new ArrayList<>();
     private final Set<ProfileItem> publicSkills = new HashSet<>();
 
-
+    private final Unit unit;
     private final int unit_idx;
     private final int group_idx;
     private final int option_idx;
@@ -39,8 +40,9 @@ public class CompactedUnit {
 
     private final boolean hasPrivateInformation;
 
-    public CompactedUnit(int unit_idx, ProfileGroup group, Profile profile, ProfileOption option) {
-        this.unit_idx = unit_idx;
+    public CompactedUnit(Unit unit, ProfileGroup group, Profile profile, ProfileOption option) {
+        this.unit = unit;
+        this.unit_idx = unit.getID();
         this.group = group;
         this.profile = profile;
         this.option = option;
@@ -50,7 +52,7 @@ public class CompactedUnit {
         name = option.getName();
 
         // Seed embryos don't have the capabilities of their option. Delightfully.
-        if (!Util.hasSeedState(unit_idx) || profile_idx >1) {
+        if (!Util.hasSeedState(unit_idx) || profile_idx > 1) {
             weapons.addAll(option.getWeapons().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
             skills.addAll(option.getSkills().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
             equipment.addAll(option.getEquip().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
@@ -59,7 +61,7 @@ public class CompactedUnit {
         weapons.addAll(profile.getWeapons().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
         skills.addAll(profile.getSkills().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
         calcPublicSkills();
-        hasPrivateInformation = skills.stream().anyMatch(x->Util.hiddenSkills.contains(x.getId()));
+        hasPrivateInformation = skills.stream().anyMatch(x -> Util.hiddenSkills.contains(x.getId()));
         equipment.addAll(profile.getEquip().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
         peripheral.addAll(profile.getPeripheral().stream().filter(ProfileItem::isNotNull).collect(Collectors.toList()));
 
@@ -155,6 +157,9 @@ public class CompactedUnit {
         return profile;
     }
 
+    public Unit getUnit() {
+        return unit;
+    }
 
     public int getUnit_idx() {
         return unit_idx;
@@ -206,16 +211,25 @@ public class CompactedUnit {
         return result;
     }
 
-    public List<VisibleItem> getVisibleItems() {
-        List<VisibleItem> result = new ArrayList<>();
+    public Collection<VisibleItem> getVisibleItems() {
+        Collection<VisibleItem> result = new ArrayList<>();
+        result.addAll(skills.stream()
+                .filter(it -> Util.physicalModelSkills.contains(it.getId()))
+                .map(it -> new VisibleItem(it, FilterType.skills))
+                .collect(Collectors.toList()));
         result.addAll(weapons.stream()
-                        .filter(it -> !Util.invisibleWeapons.contains(it))
-                        .map(it -> new VisibleItem(it, FilterType.weapons))
-                        .collect(Collectors.toList()));
+                .filter(it -> !Util.invisibleWeapons.contains(it.getId()))
+                .map(it -> new VisibleItem(it, FilterType.weapons))
+                .collect(Collectors.toList()));
         return result;
+    }
+
+    public PrintableUnit getPrintableUnit(SECTORAL sectoral) throws InvalidObjectException {
+        return new PrintableUnit(this, sectoral);
     }
 
     public PrintableUnit getPrintableUnit(final MappedFactionFilters filters, SECTORAL sectoral) throws InvalidObjectException {
         return new PrintableUnit(filters, this, sectoral);
     }
+
 }

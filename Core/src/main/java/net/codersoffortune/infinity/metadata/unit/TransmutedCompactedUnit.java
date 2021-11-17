@@ -11,9 +11,9 @@ public class TransmutedCompactedUnit extends CompactedUnit {
 
     private final List<CompactedUnit> CompactedUnits;
 
-    public TransmutedCompactedUnit(int unit_idx, ProfileGroup group, List<Profile> profiles, ProfileOption option) {
-        super(unit_idx, group, profiles.get(0), option);
-        this.CompactedUnits = profiles.stream().map(p->new CompactedUnit(unit_idx, group, p,option)).collect(Collectors.toList());
+    public TransmutedCompactedUnit(Unit unit, ProfileGroup group, List<Profile> profiles, ProfileOption option) {
+        super(unit, group, profiles.get(0), option);
+        this.CompactedUnits = profiles.stream().map(p->new CompactedUnit(unit, group, p,option)).collect(Collectors.toList());
     }
 
 
