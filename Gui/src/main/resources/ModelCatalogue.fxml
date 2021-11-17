@@ -19,6 +19,10 @@
             <Label text="Units" />
             <ListView fx:id="unitListView" />
         </VBox>
+        <VBox>
+            <Label text="Distinct Profiles" />
+            <ListView fx:id="profileListView" />
+        </VBox>
     </HBox>
     <HBox spacing="5">
         <Button fx:id="returnButton" text="Return to Main Menu" />

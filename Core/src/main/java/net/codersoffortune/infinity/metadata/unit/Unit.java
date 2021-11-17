@@ -135,12 +135,12 @@ public class Unit {
         for( ProfileGroup group: profileGroups) {
             if( group.getProfiles().size() > 1 && hasTransmutation(group) ) {
                 result.addAll(group.getOptions().stream()
-                        .map(o -> new TransmutedCompactedUnit(ID, group, group.getProfiles(), o))
+                        .map(o -> new TransmutedCompactedUnit(this, group, group.getProfiles(), o))
                         .collect(Collectors.toList()));
             } else {
                 group.getProfiles().forEach(
                         profile -> result.addAll(group.getOptions().stream()
-                                .map(o -> new CompactedUnit(ID, group, profile, o))
+                                .map(o -> new CompactedUnit(this, group, profile, o))
                                 .collect(Collectors.toList()))
                 );
             }
@@ -185,7 +185,7 @@ public class Unit {
             ProfileGroup pg = profileGroups.stream().filter(x -> x.getId() == group).findFirst().orElseThrow(IllegalArgumentException::new);
             List<Profile> profiles = pg.getProfiles();
             for( ProfileOption po : pg.getOptions() ) {
-                CompactedUnit candidate = new CompactedUnit(getID(), pg, profiles.get(0), po);
+                CompactedUnit candidate = new CompactedUnit(this, pg, profiles.get(0), po);
                 if( candidate.publicallyEqual(compactedUnit) && candidate.hasNoPrivateInformation()) {
                     result.add(candidate);
                     break;
@@ -215,9 +215,9 @@ public class Unit {
         CompactedUnit unit = null;
         if (profiles.size() > 1) {
             if ( isSeedSoldier(pg) ) {
-                unit = new CompactedUnit(getID(), pg, profiles.get(1), po);
+                unit = new CompactedUnit(this, pg, profiles.get(1), po);
             } else if( hasTransmutation(pg) ) {
-                unit = new TransmutedCompactedUnit(getID(), pg, pg.getProfiles(), po);
+                unit = new TransmutedCompactedUnit(this, pg, pg.getProfiles(), po);
             } else {
                 throw new InvalidParameterException(String.format("Unit %d / %d has multiple profiles but lacks transmutation?",
                         getID(),
@@ -225,7 +225,7 @@ public class Unit {
                         ));
             }
         } else {
-            unit = new CompactedUnit(getID(), pg, profiles.get(0), po);
+            unit = new CompactedUnit(this, pg, profiles.get(0), po);
         }
 
         result.add(unit);
@@ -236,7 +236,7 @@ public class Unit {
                 result.addAll(includedUnit);
         }
         if (isSeedSoldier(pg)) {
-            result.add(new CompactedUnit(getID(), pg, profiles.get(0), po));
+            result.add(new CompactedUnit(this, pg, profiles.get(0), po));
         }
         return result;
     }

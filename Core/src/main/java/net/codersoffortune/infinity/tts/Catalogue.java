@@ -79,7 +79,7 @@ public class Catalogue {
             logger.trace("Parsing " + unit.toString());
             for (CompactedUnit cu : unit.getAllUnits()) {
                 logger.trace("Adding " + cu.toString());
-                PrintableUnit pu =cu.getPrintableUnit(filters, sectoral_idx);
+                PrintableUnit pu = cu.getPrintableUnit(filters, sectoral_idx);
                 boolean claimed = unitEquivalenceMappings.stream().anyMatch(x -> x.addUnitMaybe(pu));
                 if (!claimed)
                     unitEquivalenceMappings.add(new EquivalenceMapping(pu));

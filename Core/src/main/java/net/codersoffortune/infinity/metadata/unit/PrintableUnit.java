@@ -7,6 +7,7 @@ import net.codersoffortune.infinity.Util;
 import net.codersoffortune.infinity.armylist.CombatGroup;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.FilterType;
+import net.codersoffortune.infinity.metadata.GlobalMappedFactionFilters;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.tts.DecalBlockModel;
 import net.codersoffortune.infinity.tts.EquivalentModelSet;
@@ -76,7 +77,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private final String notes;
     private final String distinguisher;
 
-    public PrintableUnit(MappedFactionFilters filters, CompactedUnit src, SECTORAL sectoral) throws InvalidObjectException {
+    public PrintableUnit(MappedFactionFilters filters, final CompactedUnit src, SECTORAL sectoral) throws InvalidObjectException {
         weapons = src.getWeapons().stream().map(x -> x.toString(filters, FilterType.weapons)).collect(Collectors.toList());
         visible_weapons.addAll(src.getWeapons().stream()
                 .filter(x -> isVisibleWeapon(x.getId()))
@@ -131,6 +132,9 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
     }
 
+    public PrintableUnit(final CompactedUnit src, SECTORAL sectoral) throws InvalidObjectException {
+        this(new GlobalMappedFactionFilters(), src, sectoral);
+    }
     /**
      * A visible weapon is one which would be on the actual model and distinguishable from another weapon.
      *

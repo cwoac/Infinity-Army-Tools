@@ -6,6 +6,7 @@ import javafx.scene.control.CheckBox
 import javafx.scene.control.ChoiceBox
 import javafx.scene.control.ListView
 import net.codersoffortune.infinity.FACTION
+import net.codersoffortune.infinity.collection.GuiModel
 import net.codersoffortune.infinity.db.Database
 import net.codersoffortune.infinity.metadata.SectoralList
 import net.codersoffortune.infinity.metadata.unit.Unit
@@ -26,6 +27,9 @@ class ModelCatalogueController {
     private lateinit var unitListView: ListView<Unit>
 
     @FXML
+    private lateinit var profileListView: ListView<GuiModel>
+
+    @FXML
     private lateinit var returnButton: Button
 
     @FXML
@@ -33,6 +37,13 @@ class ModelCatalogueController {
         factionChoiceBox.items.addAll(FACTION.armyFactions)
         factionChoiceBox.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
             changeFaction(factionChoiceBox.items[newValue as Int])
+        }
+
+        unitListView.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
+            currentUnit = newValue as Int
+            // Handle the -1 call when we switch factions
+            if (currentUnit >= 0)
+                populateProfileList(unitListView.items[newValue])
         }
 
         // go back to main menu
@@ -47,7 +58,14 @@ class ModelCatalogueController {
         currentFaction = faction
         factionList = database.sectorals[currentFaction.armySectoral.id]!!
         unitListView.items.clear()
+        profileListView.items.clear()
         unitListView.items.addAll(factionList.units)
         currentUnit = -1
+    }
+
+    private fun populateProfileList(unit: Unit)
+    {
+        profileListView.items.clear()
+        profileListView.items.addAll(unit.allDistinctUnits.map { GuiModel(it, currentFaction.armySectoral) })
     }
 }
