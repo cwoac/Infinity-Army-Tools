@@ -213,6 +213,10 @@ public class CompactedUnit {
 
     public Collection<VisibleItem> getVisibleItems() {
         Collection<VisibleItem> result = new ArrayList<>();
+        result.addAll(equipment.stream()
+                .filter(it -> Util.modelledEquipment.contains(it.getId()))
+                .map(it -> new VisibleItem(it, FilterType.equip))
+                .collect(Collectors.toList()));
         result.addAll(skills.stream()
                 .filter(it -> Util.physicalModelSkills.contains(it.getId()))
                 .map(it -> new VisibleItem(it, FilterType.skills))
@@ -227,9 +231,4 @@ public class CompactedUnit {
     public PrintableUnit getPrintableUnit(SECTORAL sectoral) throws InvalidObjectException {
         return new PrintableUnit(this, sectoral);
     }
-
-    public PrintableUnit getPrintableUnit(final MappedFactionFilters filters, SECTORAL sectoral) throws InvalidObjectException {
-        return new PrintableUnit(filters, this, sectoral);
-    }
-
 }

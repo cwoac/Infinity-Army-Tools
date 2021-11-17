@@ -71,6 +71,11 @@ public class Util {
          */
     public static final List<Integer> visibleEquipment = Arrays.asList(100, 101, 106, 107, 145, 182, 205, 247);
 
+    /* So, to avoid duplicating skill based equipment, here is a seperate list.
+        TODO:: can this replace visibleEquipment because of skills?
+     */
+    public static final List<Integer> modelledEquipment = Arrays.asList(107,205);
+
     /* Very few skills are 'visible'. The main use is to enforce different models when weapons + kit would
      * suggest they are the same (i.e. hacking related stuff mostly).
      *    255 - remdriver

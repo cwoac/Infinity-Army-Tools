@@ -147,6 +147,7 @@ class PhysicalCatalogueController {
         val visibleSkills = unitListView.items[currentUnit].visibleSkills
         skillOptionsListView.items.addAll(visibleSkills)
 
+        // TODO:: Add equipment
 
     }
 
