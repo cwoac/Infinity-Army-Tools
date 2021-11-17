@@ -135,7 +135,7 @@ public class Armylist {
      *
      * @return a String!
      */
-    public String asJson(final MappedFactionFilters filters, final EquivalentModelSet equivalentModelSet, boolean doAddons) throws IOException {
+    public String asJson(final EquivalentModelSet equivalentModelSet, boolean doAddons) throws IOException {
         Database db = Database.getInstance();
 
         //if (modelSet.getFaction() != getFaction()) {
@@ -148,7 +148,7 @@ public class Armylist {
                 Optional<Unit> maybeUnit = db.getUnitName(cgm.getId(), getSectoral());
                 if (maybeUnit.isEmpty()) continue;
                 Unit unit = maybeUnit.get();
-                units.addAll(unit.getUnitsForTTS(cg, cgm.getGroup(), cgm.getOption(), filters, equivalentModelSet, sectoral, doAddons));
+                units.addAll(unit.getUnitsForTTS(cg, cgm.getGroup(), cgm.getOption(), equivalentModelSet, sectoral, doAddons));
             }
         }
 

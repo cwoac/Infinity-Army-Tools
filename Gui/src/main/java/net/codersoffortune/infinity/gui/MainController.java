@@ -83,12 +83,11 @@ public class MainController {
     public void generateArmy(Event e) throws IOException {
         Armylist al = Armylist.fromArmyCode(armyCodeTF.getText());
         SectoralList sl = db.getSectorals().get(al.getSectoral().getId());
-        MappedFactionFilters filters = new MappedFactionFilters(sl.getFilters());
         Catalogue c = new Catalogue();
         c.addUnits(sl, al.getSectoral(), false);
         EquivalentModelSet ems = new EquivalentModelSet(c.getMappings());
         ems.addModelSet(Database.getModelSet());
-        String json = al.asJson(filters, ems, enableAddons.isSelected());
+        String json = al.asJson(ems, enableAddons.isSelected());
         Files.createDirectories(Paths.get("army lists"));
         BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("army lists/AL %s %s.json", al.getSectoralName(), al.getArmy_name()),  StandardCharsets.UTF_8));
         writer.append(json);

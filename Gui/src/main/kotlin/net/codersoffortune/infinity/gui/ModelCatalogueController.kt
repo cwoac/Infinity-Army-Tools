@@ -10,6 +10,7 @@ import net.codersoffortune.infinity.collection.GuiModel
 import net.codersoffortune.infinity.db.Database
 import net.codersoffortune.infinity.metadata.SectoralList
 import net.codersoffortune.infinity.metadata.unit.Unit
+import net.codersoffortune.infinity.tts.Catalogue
 
 class ModelCatalogueController {
     private val database: Database = Database.getInstance()
@@ -46,6 +47,10 @@ class ModelCatalogueController {
                 populateProfileList(unitListView.items[newValue])
         }
 
+        missingCheckBox.selectedProperty().addListener { _ ->
+            changeFaction(currentFaction)
+        }
+
         // go back to main menu
         returnButton.setOnAction {
             InfinityToolsGui.switchWindow("Main")
@@ -59,8 +64,17 @@ class ModelCatalogueController {
         factionList = database.sectorals[currentFaction.armySectoral.id]!!
         unitListView.items.clear()
         profileListView.items.clear()
-        unitListView.items.addAll(factionList.units)
         currentUnit = -1
+        if( missingCheckBox.isSelected ) {
+            val catalogue = Catalogue()
+            catalogue.addUnits(currentFaction, false)
+            unitListView.items.addAll(
+                catalogue.modellessList.map { it.compactedUnit.unit }.distinct()
+            )
+        } else {
+            unitListView.items.addAll(factionList.units)
+        }
+
     }
 
     private fun populateProfileList(unit: Unit)

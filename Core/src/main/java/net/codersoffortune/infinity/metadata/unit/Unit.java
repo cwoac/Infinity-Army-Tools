@@ -82,7 +82,6 @@ public class Unit {
     public Collection<String> getUnitsForTTS(final CombatGroup combatGroup,
                                              final int group,
                                              final int option,
-                                             final MappedFactionFilters filters,
                                              final EquivalentModelSet equivalentModelSet,
                                              final SECTORAL sectoral,
                                              final boolean doAddons) throws IllegalArgumentException, InvalidObjectException {
@@ -90,7 +89,7 @@ public class Unit {
         Collection<CompactedUnit> compactedUnits = getPublicUnits(group, option);
         Collection<PrintableUnit> printableUnits = new ArrayList<>();
         for( CompactedUnit cu: compactedUnits){
-            printableUnits.add(cu.getPrintableUnit(filters, sectoral));
+            printableUnits.add(cu.getPrintableUnit(sectoral));
         }
         return printableUnits.stream()
                 .peek(pu -> logger.trace("Converting {}", pu.getName()))
