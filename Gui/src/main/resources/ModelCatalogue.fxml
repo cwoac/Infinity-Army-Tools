@@ -47,21 +47,22 @@
                 </VBox>
             </top>
             <center>
-                <GridPane hgap="5.0" vgap="5.0">
+                <VBox fillWidth="true">
+                <GridPane hgap="5.0" prefHeight="274.0" prefWidth="865.0" vgap="5.0">
                     <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="2">
                         <Label text="TTS Models" />
-                        <ListView />
+                        <ListView fx:id="ttsModelListView" />
                     </VBox>
                     <VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
                         <Label text="Decal" />
-                        <TextField />
+                        <TextArea wrapText="true" fx:id="decalField" prefHeight="100.0" prefWidth="228.0" />
                     </VBox>
                     <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
-                        <Label text="Mesh" />
-                        <TextField />
+                        <Label text="baseImage" />
+                        <TextArea wrapText="true" fx:id="baseImageField" prefHeight="100.0" prefWidth="228.0" />
                     </VBox>
 
-                    <VBox GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="2">
+                    <VBox prefHeight="274.0" prefWidth="76.0" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="2">
                         <Label text="Front Preview" />
                         <ImageView />
                     </VBox>
@@ -69,17 +70,18 @@
                         <Label text="Rear Preview" />
                         <ImageView />
                     </VBox>
-               <columnConstraints>
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-               </columnConstraints>
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="25" />
+                        <ColumnConstraints percentWidth="25" />
+                        <ColumnConstraints percentWidth="25" />
+                        <ColumnConstraints percentWidth="25" />
+                    </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="141.66667048136392" minHeight="48.666666666666664" prefHeight="134.66667048136392" />
-                  <RowConstraints maxHeight="224.66666666666666" minHeight="131.6666628519694" prefHeight="138.6666628519694" />
+                  <RowConstraints prefHeight="140" />
+                  <RowConstraints prefHeight="140" />
                </rowConstraints>
                 </GridPane>
+                </VBox>
             </center>
             <bottom>
                 <HBox>

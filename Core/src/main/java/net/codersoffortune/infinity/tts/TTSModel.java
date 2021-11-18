@@ -23,4 +23,9 @@ public abstract class TTSModel implements Serializable {
     }
 
     public abstract String getDecals();
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
