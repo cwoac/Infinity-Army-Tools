@@ -11,12 +11,24 @@ import net.codersoffortune.infinity.db.Database
 import net.codersoffortune.infinity.metadata.SectoralList
 import net.codersoffortune.infinity.metadata.unit.Unit
 import net.codersoffortune.infinity.tts.Catalogue
+import net.codersoffortune.infinity.tts.EquivalentModelSet
 
 class ModelCatalogueController {
     private val database: Database = Database.getInstance()
     private lateinit var currentFaction: FACTION
     private lateinit var factionList: SectoralList
     private var currentUnit: Int = -1
+
+    private var factionCatalogues: MutableMap<FACTION, Catalogue> = mutableMapOf()
+    private var factionModelSets: MutableMap<FACTION, EquivalentModelSet> = mutableMapOf()
+    init {
+        FACTION.armyFactions.forEach {
+            var result = Catalogue()
+            result.addUnits(database.sectorals,it, false)
+            factionCatalogues[it] = result
+            factionModelSets[it] = EquivalentModelSet(result.mappings)
+        }
+    }
 
     @FXML
     private lateinit var factionChoiceBox: ChoiceBox<FACTION>
@@ -65,6 +77,16 @@ class ModelCatalogueController {
         unitListView.items.clear()
         profileListView.items.clear()
         currentUnit = -1
+        /*
+        Catalogue c = new Catalogue();
+            c.addUnits(sectorals, faction, false);
+            EquivalentModelSet ems = new EquivalentModelSet(c.getMappings());
+            ems.addModelSet(modelSet);
+            logger.info("Writing JSON");
+            String factionJson = c.asJson(faction, ems, doAddons);
+            ...
+            List<String> units = allUnits.stream().map(u->u.asFactionJSON(ms, doAddons)).collect(Collectors.toList());
+         */
         if( missingCheckBox.isSelected ) {
             val catalogue = Catalogue()
             catalogue.addUnits(currentFaction, false)

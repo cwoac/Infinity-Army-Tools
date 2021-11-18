@@ -172,10 +172,6 @@ public class Database {
         return metadataMap.get(game);
     }
 
-//    public void setMetadata(Metadata metadata) {
-//        this.metadata = metadata;
-//    }
-
     public Map<Integer, SectoralList> getSectorals() {
         return sectorals;
     }
@@ -201,8 +197,7 @@ public class Database {
      */
     public void writeJson(File outputDir, boolean doAddons) throws IOException {
         outputDir.mkdir();
-        for (FACTION faction : FACTION.values()) {
-            if (faction.isContainerOnly()) continue; // They have per sectoral boxes
+        for (FACTION faction : FACTION.armyFactions) {
             logger.info("Reading {}", faction.getName());
             Catalogue c = new Catalogue();
             c.addUnits(sectorals, faction, false);
