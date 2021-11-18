@@ -3,12 +3,10 @@ package net.codersoffortune.infinity.tts;
 import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.db.Database;
-import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import net.codersoffortune.infinity.metadata.SectoralList;
 import net.codersoffortune.infinity.metadata.unit.CompactedUnit;
 import net.codersoffortune.infinity.metadata.unit.PrintableUnit;
 import net.codersoffortune.infinity.metadata.unit.Unit;
-import net.codersoffortune.infinity.metadata.unit.UnitID;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.logging.log4j.LogManager;
@@ -18,7 +16,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -61,7 +58,7 @@ public class Catalogue {
      * Builds the list of the representative units.
      */
     private void makeList() {
-        unitList = unitEquivalenceMappings.stream().map(EquivalenceMapping::getRepresentative).collect(Collectors.toList());
+        unitList = unitEquivalenceMappings.stream().map(EquivalenceMapping::getBaseUnit).collect(Collectors.toList());
         java.util.Collections.sort(unitList);
     }
 
@@ -154,14 +151,14 @@ public class Catalogue {
         for( EquivalenceMapping equivalenceMapping : unitEquivalenceMappings) {
             // Don't bother with unit groups without models
             if (!ms.hasOneOf(equivalenceMapping)) {
-                logger.warn("Unable to find models for "+equivalenceMapping.baseUnit.toString());
+                logger.warn("Unable to find models for "+equivalenceMapping.getBaseUnit().toString());
                 continue;
             }
 
             if( multiplesOnly && ms.getCountFor(equivalenceMapping)<2 ) continue;
 
-            allUnits.add(equivalenceMapping.baseUnit);
-            allUnits.addAll(equivalenceMapping.equivalentUnits);
+            allUnits.add(equivalenceMapping.getBaseUnit());
+            allUnits.addAll(equivalenceMapping.getEquivalentUnits());
         }
 
         // sort reversed due to ordering in the bag.
@@ -200,63 +197,6 @@ public class Catalogue {
             for (PrintableUnit u : units) u.printCSVRecord(out, ms);
         }
         return true;
-    }
-
-    /**
-     * Represents a set of visibly equivalent units
-     */
-    static class EquivalenceMapping {
-        private final Set<PrintableUnit> equivalentUnits = new HashSet<>();
-        private final Set<PrintableUnit> allUnits = new HashSet<>();
-        private final PrintableUnit baseUnit;
-
-        public EquivalenceMapping(PrintableUnit base) {
-            baseUnit = base;
-            allUnits.add(base);
-        }
-
-        /**
-         * Check to see if the passed unit is visibily equivalent to the ones in this mapping. If so, claim it.
-         *
-         * @param unit to consider
-         * @return true iff the unit is claimed.
-         */
-        public boolean addUnitMaybe(PrintableUnit unit) {
-            if (!baseUnit.isEquivalent(unit)) {
-                return false;
-            }
-            if (baseUnit.functionallyEquals(unit) ||
-                    equivalentUnits.stream().anyMatch(pu->pu.functionallyEquals(unit))) {
-                // Don't bother adding it if it is the base object
-                return true;
-            }
-            equivalentUnits.add(unit);
-            allUnits.add(unit);
-            return true;
-        }
-
-        public boolean contains(UnitID unitID) {
-            return allUnits.stream().anyMatch(u->u.getUnitID().equals(unitID));
-        }
-
-
-        /**
-         * Get a representative printable unit for this mapping.
-         *
-         * @return A printable unit from this mapping
-         */
-        public PrintableUnit getRepresentative() {
-            return baseUnit;
-        }
-
-        public Collection<PrintableUnit> getAllUnits() {
-            return allUnits;
-        }
-
-        public Collection<PrintableUnit> getEquivalents() {
-            return equivalentUnits;
-        }
-
     }
 
     public List<PrintableUnit> getUnitList() {

@@ -9,14 +9,14 @@ import java.util.Set;
 
 public class EquivalentModelSet extends ModelSet {
 
-    transient final Set<Catalogue.EquivalenceMapping> equivalenceMappings;
+    transient final Set<EquivalenceMapping> equivalenceMappings;
 
-    public EquivalentModelSet(Set<Catalogue.EquivalenceMapping> mappings) {
+    public EquivalentModelSet(Set<EquivalenceMapping> mappings) {
         super();
         equivalenceMappings = mappings;
     }
 
-    public Set<Catalogue.EquivalenceMapping> getEquivalenceMappings() {
+    public Set<EquivalenceMapping> getEquivalenceMappings() {
         return equivalenceMappings;
     }
 
@@ -28,11 +28,11 @@ public class EquivalentModelSet extends ModelSet {
             return models.get(unitID);
         }
         // OK, do we know some equivalents for this model?
-        Optional<Catalogue.EquivalenceMapping> maybeMapping = equivalenceMappings.stream().filter(m -> m.contains(unitID)).findFirst();
+        Optional<EquivalenceMapping> maybeMapping = equivalenceMappings.stream().filter(m -> m.contains(unitID)).findFirst();
         if (maybeMapping.isEmpty()) {
             return new HashSet<>();
         }
-        Catalogue.EquivalenceMapping mapping = maybeMapping.get();
+        EquivalenceMapping mapping = maybeMapping.get();
 
         // OK, what about the equivalents?
         Optional<UnitID> equivalent = mapping.getAllUnits().stream()
@@ -55,14 +55,14 @@ public class EquivalentModelSet extends ModelSet {
         ModelSet ms = new ModelSet();
         // First add the explicit models.
         models.forEach(ms::addModels);
-        for(Catalogue.EquivalenceMapping mapping : equivalenceMappings) {
+        for(EquivalenceMapping mapping : equivalenceMappings) {
             // Do we have a model for this one?
             Optional<UnitID> maybeUnitID = mapping.getAllUnits().stream()
                     .map(PrintableUnit::getUnitID)
                     .filter(models::containsKey)
                     .findAny();
             if (maybeUnitID.isEmpty()) {
-                System.out.printf("No model for equivalence based on %s", mapping.getRepresentative());
+                System.out.printf("No model for equivalence based on %s", mapping.getBaseUnit());
                 continue;
             }
             // OK, look up that Unit's models
@@ -70,7 +70,7 @@ public class EquivalentModelSet extends ModelSet {
             Set<TTSModel> mappingModels = models.get(mappingUnitID);
 
             // Give them a nice name
-            mappingModels.forEach(m->m.setName(mapping.getRepresentative().getTTSName()));
+            mappingModels.forEach(m->m.setName(mapping.getBaseUnit().getTTSName()));
 
             // Now add them all to ms
             mapping.getAllUnits().stream()

@@ -333,10 +333,10 @@ public class ModelSet {
      * @param mapping of UnitIDs which are equivalent
      * @return true iff at least one of unitIDs is in models.
      */
-    public boolean hasOneOf(final Catalogue.EquivalenceMapping mapping) {
+    public boolean hasOneOf(final EquivalenceMapping mapping) {
         return mapping.getAllUnits().stream().anyMatch(u -> models.containsKey(u.getUnitID()));
     }
-    public int getCountFor(final Catalogue.EquivalenceMapping mapping) {
+    public int getCountFor(final EquivalenceMapping mapping) {
         return mapping.getAllUnits().stream()
                 .map(PrintableUnit::getUnitID)
                 .filter(models::containsKey)
