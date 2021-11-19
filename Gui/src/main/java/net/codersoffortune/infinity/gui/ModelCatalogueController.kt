@@ -84,7 +84,12 @@ class ModelCatalogueController {
         }
 
         missingCheckBox.selectedProperty().addListener { _ ->
+            // force reload of the pane.
             changeFaction(currentFaction)
+        }
+
+        decalField.textProperty().addListener { _, _, _ ->
+            updateDecalImages()
         }
 
         // go back to main menu
@@ -94,15 +99,14 @@ class ModelCatalogueController {
     }
 
 
-    private fun changeFaction(faction: FACTION)
-    {
+    private fun changeFaction(faction: FACTION) {
         currentFaction = faction
         factionList = database.sectorals[currentFaction.armySectoral.id]!!
 
         currentUnit = -1
         clearUnitPane()
 
-        if( missingCheckBox.isSelected ) {
+        if (missingCheckBox.isSelected) {
             val catalogue = Catalogue()
             catalogue.addUnits(currentFaction, false)
             unitListView.items.addAll(
@@ -114,32 +118,30 @@ class ModelCatalogueController {
 
     }
 
-    private fun populateProfileList(unit: Unit)
-    {
+    private fun populateProfileList(unit: Unit) {
         clearProfilePane()
 
         profileListView.items.addAll(unit.allDistinctUnits.map { GuiModel(it, currentFaction.armySectoral) })
 
     }
 
-    private fun populateTTSList(guiUnit: GuiModel)
-    {
+    private fun populateTTSList(guiUnit: GuiModel) {
         clearTTSPane()
 
         ttsModelListView.items.addAll(modelSet.getModels(guiUnit.printableUnit.unitID))
     }
 
-    private fun populateFields(ttsModel: TTSModel)
-    {
+    private fun populateFields(ttsModel: TTSModel) {
         clearDecalPanes()
 
         decalField.text = ttsModel.decals
         baseImageField.text = ttsModel.baseImage
+        updateDecalImages()
+    }
 
+    private fun updateDecalImages() {
         val decals = DecalBlock(decalField.text).getDecals()
         val decalImages = decals.map { Image(it.getImageStream(), 100.0, 250.0, true, false) }.toList()
-
-
 
         if (decalImages.isNotEmpty()) {
             frontImage.image = decalImages[0]
