@@ -35,6 +35,7 @@ missing/
 duplicates/
 out/
 army lists/
+cache
 
 # no gradle files
 .gradle

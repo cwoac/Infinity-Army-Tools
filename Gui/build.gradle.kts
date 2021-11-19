@@ -21,6 +21,9 @@ dependencies {
     implementation("com.akathist.maven.plugins.launch4j:launch4j-maven-plugin:1.7.25")
     implementation(project(":Core"))
     implementation(kotlin("stdlib-jdk8"))
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
+    implementation("io.ktor:ktor-client-core:1.6.5")
+    implementation("io.ktor:ktor-client-cio:1.6.5")
 }
 
 description = "Gui"

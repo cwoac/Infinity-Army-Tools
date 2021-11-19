@@ -1,17 +1,20 @@
 package net.codersoffortune.infinity.gui
 
+
 import javafx.fxml.FXML
 import javafx.scene.control.*
+import javafx.scene.image.Image
+import javafx.scene.image.ImageView
+import net.codersoffortune.infinity.DecalBlock
 import net.codersoffortune.infinity.FACTION
 import net.codersoffortune.infinity.collection.GuiModel
 import net.codersoffortune.infinity.db.Database
 import net.codersoffortune.infinity.metadata.SectoralList
-import net.codersoffortune.infinity.metadata.unit.CompactedUnit
 import net.codersoffortune.infinity.metadata.unit.Unit
 import net.codersoffortune.infinity.tts.Catalogue
-import net.codersoffortune.infinity.tts.EquivalentModelSet
 import net.codersoffortune.infinity.tts.ModelSet
 import net.codersoffortune.infinity.tts.TTSModel
+
 
 class ModelCatalogueController {
     private val database: Database = Database.getInstance()
@@ -21,16 +24,6 @@ class ModelCatalogueController {
     private var currentProfile: Int = -1
     private var currentModel: Int = -1
 
-    private var factionCatalogues: MutableMap<FACTION, Catalogue> = mutableMapOf()
-    private var factionModelSets: MutableMap<FACTION, EquivalentModelSet> = mutableMapOf()
-    init {
-        FACTION.armyFactions.forEach {
-            var result = Catalogue()
-            result.addUnits(database.sectorals,it, false)
-            factionCatalogues[it] = result
-            factionModelSets[it] = EquivalentModelSet(result.mappings)
-        }
-    }
     private var modelSet = ModelSet("resources/model catalogue.json")
 
     @FXML
@@ -56,6 +49,12 @@ class ModelCatalogueController {
 
     @FXML
     private lateinit var baseImageField: TextArea
+
+    @FXML
+    private lateinit var frontImage: ImageView
+
+    @FXML
+    private lateinit var rearImage: ImageView
 
     @FXML
     fun initialize() {
@@ -99,19 +98,10 @@ class ModelCatalogueController {
     {
         currentFaction = faction
         factionList = database.sectorals[currentFaction.armySectoral.id]!!
-        unitListView.items.clear()
-        profileListView.items.clear()
+
         currentUnit = -1
-        /*
-        Catalogue c = new Catalogue();
-            c.addUnits(sectorals, faction, false);
-            EquivalentModelSet ems = new EquivalentModelSet(c.getMappings());
-            ems.addModelSet(modelSet);
-            logger.info("Writing JSON");
-            String factionJson = c.asJson(faction, ems, doAddons);
-            ...
-            List<String> units = allUnits.stream().map(u->u.asFactionJSON(ms, doAddons)).collect(Collectors.toList());
-         */
+        clearUnitPane()
+
         if( missingCheckBox.isSelected ) {
             val catalogue = Catalogue()
             catalogue.addUnits(currentFaction, false)
@@ -126,19 +116,60 @@ class ModelCatalogueController {
 
     private fun populateProfileList(unit: Unit)
     {
-        profileListView.items.clear()
+        clearProfilePane()
+
         profileListView.items.addAll(unit.allDistinctUnits.map { GuiModel(it, currentFaction.armySectoral) })
+
     }
 
     private fun populateTTSList(guiUnit: GuiModel)
     {
-        ttsModelListView.items.clear()
+        clearTTSPane()
+
         ttsModelListView.items.addAll(modelSet.getModels(guiUnit.printableUnit.unitID))
     }
 
     private fun populateFields(ttsModel: TTSModel)
     {
+        clearDecalPanes()
+
         decalField.text = ttsModel.decals
         baseImageField.text = ttsModel.baseImage
+
+        val decals = DecalBlock(decalField.text).getDecals()
+        val decalImages = decals.map { Image(it.getImageStream(), 100.0, 250.0, true, false) }.toList()
+
+
+
+        if (decalImages.isNotEmpty()) {
+            frontImage.image = decalImages[0]
+            if (decalImages.size > 1) {
+                rearImage.image = decalImages[1]
+            }
+        }
+    }
+
+    private fun clearUnitPane() {
+        currentProfile = -1
+        unitListView.items.clear()
+        clearProfilePane()
+    }
+
+    private fun clearProfilePane() {
+        currentModel = -1
+        profileListView.items.clear()
+        clearTTSPane()
+    }
+
+    private fun clearTTSPane() {
+        ttsModelListView.items.clear()
+        clearDecalPanes()
+    }
+
+    private fun clearDecalPanes() {
+        frontImage.image = null
+        rearImage.image = null
+        decalField.text = ""
+        baseImageField.text = ""
     }
 }

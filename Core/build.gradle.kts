@@ -21,6 +21,8 @@ dependencies {
     implementation("com.codepoetics:protonpack:1.16")
     implementation("org.codehaus.mojo:exec-maven-plugin:3.0.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
+    implementation("io.ktor:ktor-client-core:1.6.5")
+    implementation("io.ktor:ktor-client-cio:1.6.5")
 }
 
 description = "Core"
