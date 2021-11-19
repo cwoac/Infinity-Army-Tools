@@ -1,4 +1,4 @@
-package net.codersoffortune.infinity.tts;
+package net.codersoffortune.infinity;
 
 import net.codersoffortune.infinity.metadata.unit.PrintableUnit
 import net.codersoffortune.infinity.metadata.unit.UnitID

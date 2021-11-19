@@ -2,6 +2,7 @@ package net.codersoffortune.infinity.tts;
 
 import net.codersoffortune.infinity.metadata.unit.PrintableUnit;
 import net.codersoffortune.infinity.metadata.unit.UnitID;
+import net.codersoffortune.infinity.EquivalenceMapping;
 
 import java.util.HashSet;
 import java.util.Optional;

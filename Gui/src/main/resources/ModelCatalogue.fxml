@@ -64,11 +64,11 @@
 
                     <VBox prefHeight="274.0" prefWidth="76.0" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="2">
                         <Label text="Front Preview" />
-                        <ImageView />
+                        <ImageView fx:id="frontImage"/>
                     </VBox>
                     <VBox GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.rowSpan="2">
                         <Label text="Rear Preview" />
-                        <ImageView />
+                        <ImageView fx:id="rearImage"/>
                     </VBox>
                     <columnConstraints>
                         <ColumnConstraints percentWidth="25" />
