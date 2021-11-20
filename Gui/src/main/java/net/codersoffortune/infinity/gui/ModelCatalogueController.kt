@@ -1,6 +1,7 @@
 package net.codersoffortune.infinity.gui
 
 
+import javafx.application.Platform
 import javafx.fxml.FXML
 import javafx.scene.control.*
 import javafx.scene.image.Image
@@ -12,6 +13,7 @@ import net.codersoffortune.infinity.db.Database
 import net.codersoffortune.infinity.metadata.SectoralList
 import net.codersoffortune.infinity.metadata.unit.Unit
 import net.codersoffortune.infinity.tts.Catalogue
+import net.codersoffortune.infinity.tts.DecalBlockModel
 import net.codersoffortune.infinity.tts.ModelSet
 import net.codersoffortune.infinity.tts.TTSModel
 
@@ -106,6 +108,10 @@ class ModelCatalogueController {
         removeModelButton.setOnAction {
             removeModel()
         }
+
+        addModelButton.setOnAction {
+            addModel()
+        }
     }
 
 
@@ -158,6 +164,20 @@ class ModelCatalogueController {
             if (decalImages.size > 1) {
                 rearImage.image = decalImages[1]
             }
+        }
+    }
+
+    private fun addModel() {
+        // make sure we have a profile to add to
+        if (currentProfile < 0 ) return
+        modelSet.addModel(profileListView.items[currentProfile].printableUnit.unitID,
+                          DecalBlockModel(profileListView.items[currentProfile].toString(),"",""))
+
+        val newIdx = ttsModelListView.items.size
+        Platform.runLater {
+            ttsModelListView.scrollTo(newIdx)
+            ttsModelListView.selectionModel.select(newIdx)
+            populateTTSList(profileListView.items[currentProfile])
         }
     }
 
