@@ -57,6 +57,12 @@ class ModelCatalogueController {
     private lateinit var rearImage: ImageView
 
     @FXML
+    private lateinit var addModelButton: Button
+
+    @FXML
+    private lateinit var removeModelButton: Button
+
+    @FXML
     fun initialize() {
         factionChoiceBox.items.addAll(FACTION.armyFactions)
         factionChoiceBox.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
@@ -95,6 +101,10 @@ class ModelCatalogueController {
         // go back to main menu
         returnButton.setOnAction {
             InfinityToolsGui.switchWindow("Main")
+        }
+
+        removeModelButton.setOnAction {
+            removeModel()
         }
     }
 
@@ -149,6 +159,16 @@ class ModelCatalogueController {
                 rearImage.image = decalImages[1]
             }
         }
+    }
+
+    private fun removeModel() {
+        // Can't remove anything if nothing is selected
+        if( ttsModelListView.selectionModel.isEmpty ) return
+        modelSet.removeModel(profileListView.items[currentProfile].printableUnit.unitID, ttsModelListView.selectionModel.selectedItem)
+        // now reload this model
+        populateTTSList(profileListView.items[currentProfile])
+
+
     }
 
     private fun clearUnitPane() {
