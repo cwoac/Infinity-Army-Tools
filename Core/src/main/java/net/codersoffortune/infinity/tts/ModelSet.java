@@ -172,13 +172,13 @@ public class ModelSet {
         }
     }
 
-    protected void addModel(UnitID unitID, TTSModel model) {
+    public void addModel(UnitID unitID, TTSModel model) {
         if (!models.containsKey(unitID))
             models.put(unitID, new HashSet<>());
         models.get(unitID).add(model);
     }
 
-    protected void addModels(UnitID unitID, Collection<TTSModel> newModels) {
+    public void addModels(UnitID unitID, Collection<TTSModel> newModels) {
         logger.trace("Adding {} models for {}", newModels.size(), unitID);
         try {
             if (!models.containsKey(unitID)) {
@@ -190,6 +190,19 @@ public class ModelSet {
             e.printStackTrace();
             throw (e);
         }
+    }
+
+    public void removeModel(UnitID unitID, TTSModel model) {
+        if( !models.containsKey(unitID)) {
+            logger.warn("Asked to remove model for unit {} which is not in catalogue", unitID);
+            return;
+        }
+        if( !models.get(unitID).contains(model) ) {
+            logger.warn("Asked to remove model {} from unit it is not a member of.", model);
+            return;
+        }
+        logger.trace("Removing model {} from unit {}", model, unitID);
+        models.get(unitID).remove(model);
     }
 
     /**

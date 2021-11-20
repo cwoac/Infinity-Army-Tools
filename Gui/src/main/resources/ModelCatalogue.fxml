@@ -85,8 +85,8 @@
             </center>
             <bottom>
                 <HBox>
-                    <Button text="Add model" />
-                    <Button text="Remove current model" />
+                    <Button text="Add model" fx:id="addModelButton" />
+                    <Button text="Remove current model" fx:id="removeModelButton" />
                 </HBox>
             </bottom>
         </BorderPane>
