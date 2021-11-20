@@ -2,6 +2,8 @@ package net.codersoffortune.infinity
 
 /**
  * A block of text representing the whole decal for TTS
+ *
+ * TODO:: merge with DecalBlockModel
  */
 data class DecalBlock(val decal: String) {
     private val decalRegex: Regex = """"ImageURL":"([^"]*)"""".toRegex()

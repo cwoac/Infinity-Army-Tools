@@ -87,6 +87,7 @@
                 <HBox>
                     <Button text="Add model" fx:id="addModelButton" />
                     <Button text="Remove current model" fx:id="removeModelButton" />
+                    <Button text="Save changes" fx:id="saveModelButton" />
                 </HBox>
             </bottom>
         </BorderPane>
