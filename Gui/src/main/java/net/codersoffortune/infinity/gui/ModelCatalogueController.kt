@@ -20,13 +20,15 @@ import net.codersoffortune.infinity.tts.TTSModel
 
 class ModelCatalogueController {
     private val database: Database = Database.getInstance()
+    // TODO: should be a static somewhere. Or in Database instance?
+    private val modelSetFileName = "resources/model catalogue.json"
     private lateinit var currentFaction: FACTION
     private lateinit var factionList: SectoralList
     private var currentUnit: Int = -1
     private var currentProfile: Int = -1
     private var currentModel: Int = -1
 
-    private var modelSet = ModelSet("resources/model catalogue.json")
+    private var modelSet = ModelSet(modelSetFileName)
 
     @FXML
     private lateinit var factionChoiceBox: ChoiceBox<FACTION>
@@ -63,6 +65,9 @@ class ModelCatalogueController {
 
     @FXML
     private lateinit var removeModelButton: Button
+
+    @FXML
+    private lateinit var saveModelButton: Button
 
     @FXML
     fun initialize() {
@@ -111,6 +116,10 @@ class ModelCatalogueController {
 
         addModelButton.setOnAction {
             addModel()
+        }
+
+        saveModelButton.setOnAction {
+            saveModels()
         }
     }
 
@@ -187,9 +196,12 @@ class ModelCatalogueController {
         modelSet.removeModel(profileListView.items[currentProfile].printableUnit.unitID, ttsModelListView.selectionModel.selectedItem)
         // now reload this model
         populateTTSList(profileListView.items[currentProfile])
-
-
     }
+
+    private fun saveModels() {
+        modelSet.writeFile(modelSetFileName)
+    }
+
 
     private fun clearUnitPane() {
         currentProfile = -1
