@@ -24,9 +24,27 @@ class ModelCatalogueController {
     private val modelSetFileName = "resources/model catalogue.json"
     private lateinit var currentFaction: FACTION
     private lateinit var factionList: SectoralList
-    private var currentUnit: Int = -1
-    private var currentProfile: Int = -1
-    private var currentModel: Int = -1
+
+    private var currentUnitIdx: Int = -1
+        set(value) {
+            currentUnit = if (value>0) unitListView.items[value] else null
+            field = value
+        }
+    private var currentUnit: Unit? = null
+
+    private var currentProfileIdx: Int = -1
+        set(value) {
+            currentProfile = if (value>0) profileListView.items[value] else null
+            field = value
+        }
+    private var currentProfile: GuiModel? = null
+
+    private var currentModelIdx: Int = -1
+        set(value) {
+            currentModel = if (value>0) ttsModelListView.items[value] else null
+            field = value
+        }
+    private var currentModel: TTSModel? = null
 
     private var modelSet = ModelSet(modelSetFileName)
 
@@ -77,23 +95,23 @@ class ModelCatalogueController {
         }
 
         unitListView.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
-            currentUnit = newValue as Int
+            currentUnitIdx = newValue as Int
             // Handle the -1 call when we switch factions
-            if (currentUnit >= 0)
-                populateProfileList(unitListView.items[newValue])
+            if (currentUnitIdx >= 0)
+                populateProfileList()
         }
 
         profileListView.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
-            currentProfile = newValue as Int
+            currentProfileIdx = newValue as Int
             // Handle the -1 call when we switch factions
-            if (currentProfile >= 0)
-                populateTTSList(profileListView.items[newValue])
+            if (currentProfileIdx >= 0)
+                populateTTSList()
         }
 
         ttsModelListView.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
-            currentModel = newValue as Int
-            if (currentModel >= 0)
-                populateFields(ttsModelListView.items[currentModel])
+            currentModelIdx = newValue as Int
+            if (currentModelIdx >= 0)
+                populateFields()
         }
 
         missingCheckBox.selectedProperty().addListener { _ ->
@@ -128,7 +146,7 @@ class ModelCatalogueController {
         currentFaction = faction
         factionList = database.sectorals[currentFaction.armySectoral.id]!!
 
-        currentUnit = -1
+        currentUnitIdx = -1
         clearUnitPane()
 
         if (missingCheckBox.isSelected) {
@@ -143,24 +161,24 @@ class ModelCatalogueController {
 
     }
 
-    private fun populateProfileList(unit: Unit) {
+    private fun populateProfileList() {
         clearProfilePane()
 
-        profileListView.items.addAll(unit.allDistinctUnits.map { GuiModel(it, currentFaction.armySectoral) })
-
+        currentUnit?.allDistinctUnits?.let { profileListView.items.addAll(it.map { GuiModel(it, currentFaction.armySectoral) }) }
     }
 
-    private fun populateTTSList(guiUnit: GuiModel) {
+    private fun populateTTSList() {
         clearTTSPane()
-
-        ttsModelListView.items.addAll(modelSet.getModels(guiUnit.printableUnit.unitID))
+        currentProfile?.let {
+            ttsModelListView.items.addAll(modelSet.getModels(currentProfile?.printableUnit!!.unitID))
+        }
     }
 
-    private fun populateFields(ttsModel: TTSModel) {
+    private fun populateFields() {
         clearDecalPanes()
 
-        decalField.text = ttsModel.decals
-        baseImageField.text = ttsModel.baseImage
+        decalField.text = currentModel?.decals
+        baseImageField.text = currentModel?.baseImage
         updateDecalImages()
     }
 
@@ -178,24 +196,34 @@ class ModelCatalogueController {
 
     private fun addModel() {
         // make sure we have a profile to add to
-        if (currentProfile < 0 ) return
-        modelSet.addModel(profileListView.items[currentProfile].printableUnit.unitID,
-                          DecalBlockModel(profileListView.items[currentProfile].toString(),"",""))
+        currentProfile?.let {
+            modelSet.addModel(
+                currentProfile!!.printableUnit.unitID,
+                DecalBlockModel(currentProfile!!.toString(), "", "")
+            )
 
-        val newIdx = ttsModelListView.items.size
-        Platform.runLater {
-            ttsModelListView.scrollTo(newIdx)
-            ttsModelListView.selectionModel.select(newIdx)
-            populateTTSList(profileListView.items[currentProfile])
+            currentProfileIdx = ttsModelListView.items.size
+
+            Platform.runLater {
+                ttsModelListView.scrollTo(currentProfileIdx)
+                ttsModelListView.selectionModel.select(currentProfileIdx)
+
+                populateTTSList()
+            }
         }
     }
 
     private fun removeModel() {
         // Can't remove anything if nothing is selected
         if( ttsModelListView.selectionModel.isEmpty ) return
-        modelSet.removeModel(profileListView.items[currentProfile].printableUnit.unitID, ttsModelListView.selectionModel.selectedItem)
-        // now reload this model
-        populateTTSList(profileListView.items[currentProfile])
+        currentProfile?.let {
+            modelSet.removeModel(
+                currentProfile!!.printableUnit.unitID,
+                ttsModelListView.selectionModel.selectedItem
+            )
+            // now reload this model
+            populateTTSList()
+        }
     }
 
     private fun saveModels() {
@@ -204,13 +232,13 @@ class ModelCatalogueController {
 
 
     private fun clearUnitPane() {
-        currentProfile = -1
+        currentProfileIdx = -1
         unitListView.items.clear()
         clearProfilePane()
     }
 
     private fun clearProfilePane() {
-        currentModel = -1
+        currentModelIdx = -1
         profileListView.items.clear()
         clearTTSPane()
     }
