@@ -6,6 +6,8 @@ import javafx.fxml.FXML
 import javafx.scene.control.*
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.SerializationException
 import net.codersoffortune.infinity.DecalBlock
 import net.codersoffortune.infinity.FACTION
 import net.codersoffortune.infinity.collection.GuiModel
@@ -27,21 +29,21 @@ class ModelCatalogueController {
 
     private var currentUnitIdx: Int = -1
         set(value) {
-            currentUnit = if (value>0) unitListView.items[value] else null
+            currentUnit = if (value>=0) unitListView.items[value] else null
             field = value
         }
     private var currentUnit: Unit? = null
 
     private var currentProfileIdx: Int = -1
         set(value) {
-            currentProfile = if (value>0) profileListView.items[value] else null
+            currentProfile = if (value>=0) profileListView.items[value] else null
             field = value
         }
     private var currentProfile: GuiModel? = null
 
     private var currentModelIdx: Int = -1
         set(value) {
-            currentModel = if (value>0) ttsModelListView.items[value] else null
+            currentModel = if (value>=0) ttsModelListView.items[value] else null
             field = value
         }
     private var currentModel: TTSModel? = null
@@ -119,8 +121,17 @@ class ModelCatalogueController {
             changeFaction(currentFaction)
         }
 
-        decalField.textProperty().addListener { _, _, _ ->
-            updateDecalImages()
+//        decalField.textProperty().addListener { _, _, _ ->
+        decalField.focusedProperty().addListener {_, _, newValue ->
+            // only fire on de-focus
+            if (!newValue)
+                updateDecalText()
+        }
+
+        baseImageField.focusedProperty().addListener {_, _, newValue ->
+            // only fire on de-focus
+            if (!newValue)
+                updateDecalText()
         }
 
         // go back to main menu
@@ -182,6 +193,29 @@ class ModelCatalogueController {
         updateDecalImages()
     }
 
+    // Called when decal text field has been changed
+    private fun updateDecalText() {
+        currentModel?.let {
+            try {
+                currentModel!!.decals = Json.parseToJsonElement(decalField.text).toString()
+                decalField.text = currentModel!!.decals
+            } catch (_ : SerializationException) {
+                // TODO: Kotlin logging.
+                currentModel!!.decals = decalField.text
+            }
+            try {
+                currentModel!!.baseImage = Json.parseToJsonElement(baseImageField.text).toString()
+                baseImageField.text = currentModel!!.baseImage
+            } catch (_ : SerializationException) {
+                currentModel!!.baseImage = baseImageField.text
+            }
+        }
+
+        // TODO:: Some form of validation here?
+        updateDecalImages()
+    }
+
+    // called when we may need to display new decal images
     private fun updateDecalImages() {
         val decals = DecalBlock(decalField.text).getDecals()
         val decalImages = decals.map { Image(it.getImageStream(), 100.0, 250.0, true, false) }.toList()
@@ -197,18 +231,21 @@ class ModelCatalogueController {
     private fun addModel() {
         // make sure we have a profile to add to
         currentProfile?.let {
+            // First be sure to save any changes to the current model (if applicable)
+            updateDecalText()
+
             modelSet.addModel(
                 currentProfile!!.printableUnit.unitID,
                 DecalBlockModel(currentProfile!!.toString(), "", "")
             )
 
-            currentProfileIdx = ttsModelListView.items.size
+
 
             Platform.runLater {
+                populateTTSList()
+                currentModelIdx = ttsModelListView.items.size - 1
                 ttsModelListView.scrollTo(currentProfileIdx)
                 ttsModelListView.selectionModel.select(currentProfileIdx)
-
-                populateTTSList()
             }
         }
     }
@@ -216,14 +253,17 @@ class ModelCatalogueController {
     private fun removeModel() {
         // Can't remove anything if nothing is selected
         if( ttsModelListView.selectionModel.isEmpty ) return
-        currentProfile?.let {
-            modelSet.removeModel(
-                currentProfile!!.printableUnit.unitID,
-                ttsModelListView.selectionModel.selectedItem
-            )
-            // now reload this model
-            populateTTSList()
-        }
+        if( currentProfile == null ) return;
+        modelSet.removeModel(
+            currentProfile!!.printableUnit.unitID,
+            ttsModelListView.selectionModel.selectedItem
+        )
+
+        currentModelIdx = -1
+
+        // now reload this model
+        populateTTSList()
+
     }
 
     private fun saveModels() {

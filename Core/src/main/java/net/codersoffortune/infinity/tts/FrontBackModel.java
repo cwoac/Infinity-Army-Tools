@@ -1,6 +1,7 @@
 package net.codersoffortune.infinity.tts;
 
 import net.codersoffortune.infinity.db.Database;
+import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.Objects;
 
@@ -47,6 +48,11 @@ public class FrontBackModel extends TTSModel {
                 b.getX_scale(),
                 b.getScale(),
                 b.getUrl());
+    }
+
+    @Override
+    public void setDecals(String newDecals) {
+        throw new NotImplementedException();
     }
 
     @Override

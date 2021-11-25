@@ -78,7 +78,7 @@ public class Catalogue {
         for (Unit unit : list.getUnits()) {
             if (!useMercs && unit.isMerc()) continue;
             logger.trace("Parsing " + unit.toString());
-            for (CompactedUnit cu : unit.getAllUnits()) {
+            for (CompactedUnit cu : unit.getAllDistinctUnits()) {
                 logger.trace("Adding " + cu.toString());
                 PrintableUnit pu = cu.getPrintableUnit(sectoral_idx);
                 boolean claimed = unitEquivalenceMappings.stream().anyMatch(x -> x.addUnitMaybe(pu));
