@@ -29,15 +29,37 @@ class ModelCatalogueController {
 
     private var currentUnitIdx: Int = -1
         set(value) {
+            // Do we need to do anything?
+            if( value == currentUnitIdx ) return;
+
+            // put any changes into the modelset before removing them.
+            // Have to call updateDecalText as this listener will fire _before_ the field loses focus
+            if( currentModelIdx > -1 ) {
+                updateDecalText()
+                saveChanges()
+            }
             currentUnit = if (value>=0) unitListView.items[value] else null
             field = value
+            if (value >= 0)
+                populateProfileList()
         }
     private var currentUnit: Unit? = null
 
     private var currentProfileIdx: Int = -1
         set(value) {
+            // Do we need to do anything?
+            if( value == currentProfileIdx ) return;
+
+            // put any changes into the modelset before removing them.
+            // Have to call updateDecalText as this listener will fire _before_ the field loses focus
+            if( currentModelIdx > -1 ) {
+                updateDecalText()
+                saveChanges()
+            }
             currentProfile = if (value>=0) profileListView.items[value] else null
             field = value
+            if (currentProfileIdx >= 0)
+                populateTTSList()
         }
     private var currentProfile: GuiModel? = null
 
@@ -45,6 +67,8 @@ class ModelCatalogueController {
         set(value) {
             currentModel = if (value>=0) ttsModelListView.items[value] else null
             field = value
+            if (currentModelIdx >= 0)
+                populateFields()
         }
     private var currentModel: TTSModel? = null
 
@@ -98,26 +122,14 @@ class ModelCatalogueController {
 
         unitListView.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
             currentUnitIdx = newValue as Int
-            // Handle the -1 call when we switch factions
-            if (currentUnitIdx >= 0)
-                populateProfileList()
         }
 
         profileListView.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
-            // put any changes into the modelset before removing them.
-            // Have to call updateDecalText as this listener will fire _before_ the field loses focus
-            updateDecalText()
-            saveChanges()
             currentProfileIdx = newValue as Int
-            // Handle the -1 call when we switch factions
-            if (currentProfileIdx >= 0)
-                populateTTSList()
         }
 
         ttsModelListView.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
             currentModelIdx = newValue as Int
-            if (currentModelIdx >= 0)
-                populateFields()
         }
 
         missingCheckBox.selectedProperty().addListener { _ ->
@@ -175,19 +187,30 @@ class ModelCatalogueController {
         } else {
             unitListView.items.addAll(factionList.units)
         }
+        if (unitListView.items.isNotEmpty()) {
+            unitListView.selectionModel.select(0)
+            currentUnitIdx = 0
+        }
 
     }
 
     private fun populateProfileList() {
         clearProfilePane()
-
         currentUnit?.allDistinctUnits?.let { profileListView.items.addAll(it.map { GuiModel(it, currentFaction.armySectoral) }) }
+        if (profileListView.items.isNotEmpty()) {
+            profileListView.selectionModel.select(0)
+            currentProfileIdx = 0
+        }
     }
 
     private fun populateTTSList() {
         clearTTSPane()
         currentProfile?.let {
             ttsModelListView.items.addAll(modelSet.getModels(currentProfile?.printableUnit!!.unitID))
+        }
+        if (ttsModelListView.items.isNotEmpty()) {
+            ttsModelListView.selectionModel.select(0)
+            currentModelIdx = 0
         }
     }
 
