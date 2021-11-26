@@ -104,6 +104,10 @@ class ModelCatalogueController {
         }
 
         profileListView.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
+            // put any changes into the modelset before removing them.
+            // Have to call updateDecalText as this listener will fire _before_ the field loses focus
+            updateDecalText()
+            saveChanges()
             currentProfileIdx = newValue as Int
             // Handle the -1 call when we switch factions
             if (currentProfileIdx >= 0)
@@ -121,7 +125,6 @@ class ModelCatalogueController {
             changeFaction(currentFaction)
         }
 
-//        decalField.textProperty().addListener { _, _, _ ->
         decalField.focusedProperty().addListener {_, _, newValue ->
             // only fire on de-focus
             if (!newValue)
@@ -148,17 +151,20 @@ class ModelCatalogueController {
         }
 
         saveModelButton.setOnAction {
-            saveModels()
+            writeModelSetToDisk()
         }
     }
 
 
     private fun changeFaction(faction: FACTION) {
+        clearUnitPane()
+        currentUnitIdx = -1
+
         currentFaction = faction
         factionList = database.sectorals[currentFaction.armySectoral.id]!!
 
-        currentUnitIdx = -1
-        clearUnitPane()
+
+
 
         if (missingCheckBox.isSelected) {
             val catalogue = Catalogue()
@@ -186,11 +192,24 @@ class ModelCatalogueController {
     }
 
     private fun populateFields() {
+
         clearDecalPanes()
 
         decalField.text = currentModel?.decals
         baseImageField.text = currentModel?.baseImage
         updateDecalImages()
+    }
+
+    /**
+     * Update the modelset with a (potentially) changed set of TTSModels
+     */
+    private fun saveChanges() {
+        currentProfile?.let {
+            modelSet.setModels(
+                currentProfile!!.printableUnit.unitID,
+                ttsModelListView.items
+            )
+        }
     }
 
     // Called when decal text field has been changed
@@ -199,20 +218,20 @@ class ModelCatalogueController {
             try {
                 currentModel!!.decals = Json.parseToJsonElement(decalField.text).toString()
                 decalField.text = currentModel!!.decals
-            } catch (_ : SerializationException) {
+            } catch (_: SerializationException) {
                 // TODO: Kotlin logging.
                 currentModel!!.decals = decalField.text
             }
             try {
                 currentModel!!.baseImage = Json.parseToJsonElement(baseImageField.text).toString()
                 baseImageField.text = currentModel!!.baseImage
-            } catch (_ : SerializationException) {
+            } catch (_: SerializationException) {
                 currentModel!!.baseImage = baseImageField.text
             }
-        }
 
-        // TODO:: Some form of validation here?
-        updateDecalImages()
+            // TODO:: Some form of validation here?
+            updateDecalImages()
+        }
     }
 
     // called when we may need to display new decal images
@@ -231,15 +250,10 @@ class ModelCatalogueController {
     private fun addModel() {
         // make sure we have a profile to add to
         currentProfile?.let {
-            // First be sure to save any changes to the current model (if applicable)
-            updateDecalText()
-
             modelSet.addModel(
                 currentProfile!!.printableUnit.unitID,
                 DecalBlockModel(currentProfile!!.toString(), "", "")
             )
-
-
 
             Platform.runLater {
                 populateTTSList()
@@ -254,38 +268,44 @@ class ModelCatalogueController {
         // Can't remove anything if nothing is selected
         if( ttsModelListView.selectionModel.isEmpty ) return
         if( currentProfile == null ) return;
-        modelSet.removeModel(
-            currentProfile!!.printableUnit.unitID,
+
+        // remove selected model
+        ttsModelListView.items.remove(
             ttsModelListView.selectionModel.selectedItem
         )
 
+        // update the database with the new set of models.
+        saveChanges()
+
         currentModelIdx = -1
 
-        // now reload this model
+        // now reload this model. Should be a no-op
         populateTTSList()
-
     }
 
-    private fun saveModels() {
+    private fun writeModelSetToDisk() {
         modelSet.writeFile(modelSetFileName)
+        Alert(Alert.AlertType.INFORMATION, "Catalogue updated.").show()
     }
 
 
     private fun clearUnitPane() {
+        clearProfilePane()
+
         currentProfileIdx = -1
         unitListView.items.clear()
-        clearProfilePane()
     }
 
     private fun clearProfilePane() {
+        clearTTSPane()
+
         currentModelIdx = -1
         profileListView.items.clear()
-        clearTTSPane()
     }
 
     private fun clearTTSPane() {
-        ttsModelListView.items.clear()
         clearDecalPanes()
+        ttsModelListView.items.clear()
     }
 
     private fun clearDecalPanes() {
