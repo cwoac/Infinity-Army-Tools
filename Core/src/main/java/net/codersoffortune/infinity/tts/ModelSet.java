@@ -24,6 +24,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -105,7 +106,7 @@ public class ModelSet {
      */
     public void writeFile(final String filename) throws IOException {
         String output = toJson();
-        BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(filename, Charset.forName("UTF-8")));
         writer.append(output);
         writer.flush();
         writer.close();
@@ -173,6 +174,7 @@ public class ModelSet {
     }
 
     public void addModel(UnitID unitID, TTSModel model) {
+        logger.trace("Adding a model to {}", unitID);
         if (!models.containsKey(unitID))
             models.put(unitID, new HashSet<>());
         models.get(unitID).add(model);
@@ -190,6 +192,16 @@ public class ModelSet {
             e.printStackTrace();
             throw (e);
         }
+    }
+
+    /**
+     * Replace the models for a given unitID with the supplied set.
+     * @param unitID to change
+     * @param newModels to associate with that unit
+     */
+    public void setModels(UnitID unitID, Collection<TTSModel> newModels) {
+        logger.trace("Setting {} models for {}", newModels.size(), unitID);
+        models.put(unitID, new HashSet<>(newModels));
     }
 
     public void removeModel(UnitID unitID, TTSModel model) {
