@@ -205,7 +205,7 @@ public class Database {
             ems.addModelSet(modelSet);
             logger.info("Writing JSON");
             String factionJson = c.asJson(faction, ems, doAddons);
-            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), faction.getName()), StandardCharsets.UTF_8));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s_hmm.json", outputDir.getPath(), faction.getName())));
             writer.append(factionJson);
             writer.close();
         }
