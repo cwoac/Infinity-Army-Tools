@@ -30,6 +30,12 @@ description = "Core"
 sourceSets.main {
     java.srcDirs("src/main/java", "src/main/kotlin")
 }
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
 repositories {
     mavenCentral()
 }
