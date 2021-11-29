@@ -3,10 +3,7 @@ package net.codersoffortune.infinity.gui;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import net.codersoffortune.infinity.armylist.Armylist;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
@@ -49,16 +46,23 @@ public class MainController {
 
     @FXML
     public void updateClicked(Event e) throws IOException {
-        versionLabel.setText("Updating");
+        String curVersion = db.getVersion();
         updateDBIndicator.setVisible(true);
         db = Database.updateAll();
-        versionLabel.setText("Updated");
+        String newVersion = db.getVersion();
+        versionLabel.setText(newVersion);
         updateDBIndicator.setVisible(false);
+
+        new Alert(Alert.AlertType.INFORMATION,
+                String.format("DB updated from %s to %s", curVersion, newVersion)).show();
+
     }
 
     @FXML
     public void writeBoxes(Event e) throws IOException {
         db.writeJson(new File("output"), enableAddons.isSelected());
+        new Alert(Alert.AlertType.INFORMATION,
+                "Files written to output/").show();
     }
 
     @FXML
