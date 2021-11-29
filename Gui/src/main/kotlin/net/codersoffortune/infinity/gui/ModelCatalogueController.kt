@@ -31,7 +31,7 @@ class ModelCatalogueController {
     private var currentUnitIdx: Int = -1
         set(value) {
             // Do we need to do anything?
-            if( value == currentUnitIdx ) return;
+            if( value == currentUnitIdx ) return
 
             // put any changes into the modelset before removing them.
             // Have to call updateDecalText as this listener will fire _before_ the field loses focus
@@ -49,7 +49,7 @@ class ModelCatalogueController {
     private var currentProfileIdx: Int = -1
         set(value) {
             // Do we need to do anything?
-            if( value == currentProfileIdx ) return;
+            if( value == currentProfileIdx ) return
 
             // put any changes into the modelset before removing them.
             // Have to call updateDecalText as this listener will fire _before_ the field loses focus
@@ -211,7 +211,7 @@ class ModelCatalogueController {
 
     private fun populateProfileList() {
         clearProfilePane()
-        currentUnit?.allDistinctUnits?.let { profileListView.items.addAll(it.map { GuiModel(it, currentFaction.armySectoral) }) }
+        currentUnit?.allDistinctUnits?.let { profileListView.items.addAll(it.map { jt -> GuiModel(jt, currentFaction.armySectoral) }) }
         if (profileListView.items.isNotEmpty()) {
             profileListView.selectionModel.select(0)
             currentProfileIdx = 0
@@ -220,9 +220,10 @@ class ModelCatalogueController {
 
     private fun populateTTSList() {
         clearTTSPane()
-        currentProfile?.let {
-            ttsModelListView.items.addAll(modelSet.getModels(currentProfile?.printableUnit!!.unitID))
+        currentProfile?.printableUnits?.forEach {
+            ttsModelListView.items.addAll(modelSet.getModels(it.unitID))
         }
+
         if (ttsModelListView.items.isNotEmpty()) {
             ttsModelListView.selectionModel.select(0)
             currentModelIdx = 0
@@ -288,10 +289,12 @@ class ModelCatalogueController {
     private fun addModel() {
         // make sure we have a profile to add to
         currentProfile?.let {
-            modelSet.addModel(
-                currentProfile!!.printableUnit.unitID,
-                DecalBlockModel(currentProfile!!.toString(), "", "")
-            )
+            currentProfile?.printableUnits?.forEach {
+                modelSet.addModel(
+                    it.unitID,
+                    DecalBlockModel(it.toString(), "", "")
+                )
+            }
 
             Platform.runLater {
                 populateTTSList()
@@ -305,7 +308,7 @@ class ModelCatalogueController {
     private fun removeModel() {
         // Can't remove anything if nothing is selected
         if( ttsModelListView.selectionModel.isEmpty ) return
-        if( currentProfile == null ) return;
+        if( currentProfile == null ) return
 
         // remove selected model
         ttsModelListView.items.remove(
