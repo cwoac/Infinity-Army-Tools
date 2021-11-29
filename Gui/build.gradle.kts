@@ -8,6 +8,7 @@ plugins {
     java
     id("org.openjfx.javafxplugin")
     id("net.codersoffortune.infinity.java-conventions")
+    id("edu.sc.seis.launch4j")
     kotlin("jvm")
     kotlin("plugin.serialization")
 }
@@ -32,6 +33,18 @@ javafx {
     version = "15.0.1"
     modules("javafx.controls", "javafx.fxml")
 }
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+launch4j {
+    mainClassName = "net.codersoffortune.infinity.gui.Entrypoint"
+    outfile = "InfinityArmyTools.exe"
+    headerType = "gui"
+}
+
 repositories {
     mavenCentral()
 }
