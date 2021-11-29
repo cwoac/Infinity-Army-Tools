@@ -14,6 +14,7 @@
                 <ChoiceBox fx:id="factionChoiceBox" prefWidth="150.0" />
             </HBox>
             <CheckBox fx:id="missingCheckBox" text="Show only missing models" />
+            <CheckBox fx:id="mercCheckBox" text="Show Soldiers of Fortune" />
             <opaqueInsets>
                 <Insets bottom="1.0" />
             </opaqueInsets>
