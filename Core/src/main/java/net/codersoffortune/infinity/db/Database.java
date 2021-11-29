@@ -203,9 +203,9 @@ public class Database {
             c.addUnits(sectorals, faction, false);
             EquivalentModelSet ems = new EquivalentModelSet(c.getMappings());
             ems.addModelSet(modelSet);
-            logger.info("Writing JSON");
+            logger.info("Writing JSON for {}", faction.getName());
             String factionJson = c.asJson(faction, ems, doAddons);
-            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s_hmm.json", outputDir.getPath(), faction.getName())));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), faction.getName()), StandardCharsets.UTF_8));
             writer.append(factionJson);
             writer.close();
         }
@@ -213,7 +213,7 @@ public class Database {
         logger.info("Parsing container sectorals");
         for(FACTION faction : FACTION.values()) {
             if( !faction.isContainerOnly()) continue;
-            logger.info("Parsing {}", faction.getName());
+            logger.info("Parsing sectoral {}", faction.getName());
             for (SECTORAL sectoral : faction.getSectorals()) {
                 System.out.printf("Reading %s%n", sectoral.getName());
 
@@ -223,6 +223,7 @@ public class Database {
                 ems.addModelSet(modelSet);
 
                 String sectoralJSON = c.asJson(sectoral, ems, doAddons);
+                logger.info("Writing sectoral json for {}", sectoral.getName());
                 BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), sectoral.getName()), StandardCharsets.UTF_8));
                 writer.append(sectoralJSON);
                 writer.close();
@@ -325,9 +326,9 @@ public class Database {
             logger.info("Reading {}", faction.getName());
             Catalogue c = new Catalogue();
             c.addUnits(sectorals, faction, false);
-            logger.info("Writing JSON");
+            logger.info("Writing duplicate JSON for {}", faction.getName());
             String factionJson = c.asJson(faction, modelSet, true);
-            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outDir.getPath(), faction.getName())));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outDir.getPath(), faction.getName()), StandardCharsets.UTF_8));
             writer.append(factionJson);
             writer.close();
         }
@@ -341,9 +342,9 @@ public class Database {
 
                 Catalogue c = new Catalogue();
                 c.addUnits(sectorals.get(sectoral.getId()), sectoral, false);
-                logger.info("Writing JSON");
+                logger.info("Writing duplicate JSON for {}", sectoral.getName());
                 String sectoralJSON = c.asJson(sectoral, modelSet, true);
-                BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outDir.getPath(), sectoral.getName())));
+                BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outDir.getPath(), sectoral.getName()), StandardCharsets.UTF_8));
                 writer.append(sectoralJSON);
                 writer.close();
             }
