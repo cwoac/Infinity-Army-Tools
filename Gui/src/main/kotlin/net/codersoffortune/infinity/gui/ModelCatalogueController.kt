@@ -18,6 +18,7 @@ import net.codersoffortune.infinity.tts.Catalogue
 import net.codersoffortune.infinity.tts.DecalBlockModel
 import net.codersoffortune.infinity.tts.ModelSet
 import net.codersoffortune.infinity.tts.TTSModel
+import kotlin.streams.toList
 
 
 class ModelCatalogueController {
@@ -81,6 +82,9 @@ class ModelCatalogueController {
     private lateinit var missingCheckBox: CheckBox
 
     @FXML
+    private lateinit var mercCheckBox: CheckBox
+
+    @FXML
     private lateinit var unitListView: ListView<Unit>
 
     @FXML
@@ -137,6 +141,11 @@ class ModelCatalogueController {
             changeFaction(currentFaction)
         }
 
+        mercCheckBox.selectedProperty().addListener { _ ->
+            // force reload of the pane.
+            changeFaction(currentFaction)
+        }
+
         decalField.focusedProperty().addListener {_, _, newValue ->
             // only fire on de-focus
             if (!newValue)
@@ -175,19 +184,25 @@ class ModelCatalogueController {
         currentFaction = faction
         factionList = database.sectorals[currentFaction.armySectoral.id]!!
 
-
-
-
         if (missingCheckBox.isSelected) {
             val catalogue = Catalogue()
-            catalogue.addUnits(currentFaction, false)
+            catalogue.addUnits(currentFaction, mercCheckBox.isSelected)
             unitListView.items.addAll(
                 catalogue.modellessList.map { it.compactedUnit.unit }.distinct()
             )
         } else {
-            unitListView.items.addAll(factionList.units)
+            if (mercCheckBox.isSelected) {
+                unitListView.items.addAll(factionList.units)
+            }
+            else {
+                // exclude units over 10000 as they are mercs
+                unitListView.items.addAll(
+                    factionList.units.stream().filter { it.id < 10000 }.toList()
+                )
+            }
         }
         if (unitListView.items.isNotEmpty()) {
+            unitListView.items.sortBy { it.id }
             unitListView.selectionModel.select(0)
             currentUnitIdx = 0
         }
