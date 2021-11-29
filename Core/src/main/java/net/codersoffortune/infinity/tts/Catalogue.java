@@ -39,15 +39,6 @@ public class Catalogue {
             "meshName5", "decals5", "meshes5",
     };
 
-//
-//    public Map<String, Collection<String>> getEquivalences() {
-//        Map<String, Collection<String>> results = new HashMap<>();
-//        unitEquivalenceMappings.stream().filter(m -> !m.getEquivalents().isEmpty())
-//                .forEach(u -> results.put(u.getRepresentative().toString(),
-//                        u.getEquivalents().stream().map(PrintableUnit::toString).collect(Collectors.toList())));
-//        return results;
-//    }
-
     private final Set<EquivalenceMapping> unitEquivalenceMappings = new HashSet<>();
     private List<PrintableUnit> unitList = new ArrayList<>();
 
@@ -152,7 +143,7 @@ public class Catalogue {
         for( EquivalenceMapping equivalenceMapping : unitEquivalenceMappings) {
             // Don't bother with unit groups without models
             if (!ms.hasOneOf(equivalenceMapping)) {
-                logger.warn("Unable to find models for "+equivalenceMapping.getBaseUnit().toString());
+                logger.warn("Unable to find models for "+ equivalenceMapping.getBaseUnit());
                 continue;
             }
 
