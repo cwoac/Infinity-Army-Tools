@@ -192,8 +192,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
     @Override
     public String toString() {
-        return String.format("PrintableUnit{%d:%d:%d %s}",
-                unit_idx, group_idx, option_idx, name);
+        return String.format("PU{%d:%d:%d:%d %s}",
+                unit_idx, group_idx, profile_idx, option_idx, name);
     }
 
     @Override
