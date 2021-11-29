@@ -116,7 +116,9 @@ public class Util {
             53, // Sheskiin
             1503, // Sheskiin
             143, // TZE
-            165 // TZE
+            165, // TZE
+            1565, // Motorized Bounty Hunter
+            1566 // ITS Motorized Bounty Hunter
     );
 
     // 119 - lt
