@@ -54,28 +54,31 @@
                         <Label text="TTS Models" />
                         <ListView fx:id="ttsModelListView" />
                     </VBox>
-                    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.rowSpan="2">
+                        <Label text="baseImage" />
+                        <TextArea wrapText="true" fx:id="baseImageField" prefHeight="100.0" prefWidth="228.0" />
+                        <ImageView fx:id="baseImage" />
+                    </VBox>
+
+                    <VBox GridPane.columnIndex="2" GridPane.rowIndex="0">
                         <Label text="Decal" />
                         <TextArea wrapText="true" fx:id="decalField" prefHeight="100.0" prefWidth="228.0" />
                     </VBox>
-                    <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
-                        <Label text="baseImage" />
-                        <TextArea wrapText="true" fx:id="baseImageField" prefHeight="100.0" prefWidth="228.0" />
-                    </VBox>
 
-                    <VBox prefHeight="274.0" prefWidth="76.0" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="2">
+                    <VBox prefHeight="274.0" prefWidth="76.0" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.rowSpan="2">
                         <Label text="Front Preview" />
                         <ImageView fx:id="frontImage"/>
                     </VBox>
-                    <VBox GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.rowSpan="2">
+                    <VBox GridPane.columnIndex="4" GridPane.rowIndex="0" GridPane.rowSpan="2">
                         <Label text="Rear Preview" />
                         <ImageView fx:id="rearImage"/>
                     </VBox>
                     <columnConstraints>
-                        <ColumnConstraints percentWidth="25" />
-                        <ColumnConstraints percentWidth="25" />
-                        <ColumnConstraints percentWidth="25" />
-                        <ColumnConstraints percentWidth="25" />
+                        <ColumnConstraints percentWidth="20" />
+                        <ColumnConstraints percentWidth="20" />
+                        <ColumnConstraints percentWidth="20" />
+                        <ColumnConstraints percentWidth="20" />
+                        <ColumnConstraints percentWidth="20" />
                     </columnConstraints>
                <rowConstraints>
                   <RowConstraints prefHeight="140" />
