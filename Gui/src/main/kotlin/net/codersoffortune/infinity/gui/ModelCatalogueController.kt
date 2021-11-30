@@ -8,7 +8,6 @@ import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.SerializationException
-import net.codersoffortune.infinity.Decal
 import net.codersoffortune.infinity.DecalBlock
 import net.codersoffortune.infinity.FACTION
 import net.codersoffortune.infinity.collection.GuiModel
@@ -108,9 +107,6 @@ class ModelCatalogueController {
 
     @FXML
     private lateinit var rearImage: ImageView
-
-    @FXML
-    private lateinit var baseImage: ImageView
 
     @FXML
     private lateinit var addModelButton: Button
@@ -288,10 +284,6 @@ class ModelCatalogueController {
                 rearImage.image = decalImages[1]
             }
         }
-
-        val baseDecal = Decal(baseImageField.text)
-        baseImage.image = Image(baseDecal.getImageStream(), 100.0, 250.0, true, false)
-
     }
 
     private fun addModel() {
