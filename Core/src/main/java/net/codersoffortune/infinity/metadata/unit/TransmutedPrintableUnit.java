@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
 public class TransmutedPrintableUnit extends PrintableUnit {
     private final List<PrintableUnit> printableUnits = new ArrayList<>();
 
-    public TransmutedPrintableUnit(MappedFactionFilters filters, TransmutedCompactedUnit src, SECTORAL sectoral) throws InvalidObjectException {
-        super(filters, src, sectoral);
+    public TransmutedPrintableUnit(TransmutedCompactedUnit src, SECTORAL sectoral) throws InvalidObjectException {
+        super(src, sectoral);
         boolean skipped = false;
         for( CompactedUnit cu : src.getCompactedUnits()) {
             // The first one gets folded into this.
@@ -31,7 +31,7 @@ public class TransmutedPrintableUnit extends PrintableUnit {
                 skipped = true;
                 continue;
             }
-            printableUnits.add(new PrintableUnit(filters, cu, sectoral));
+            printableUnits.add(new PrintableUnit(cu, sectoral));
         }
     }
 
