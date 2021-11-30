@@ -53,12 +53,12 @@
                 <VBox fillWidth="true">
                     <GridPane hgap="5.0" prefHeight="274.0" prefWidth="865.0" vgap="5.0">
                         <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
-                            <Label text="TTS Models"/>
-                            <ListView fx:id="ttsModelListView"/>
+                            <Label text="Forms"/>
+                            <ListView fx:id="formListView" />
                         </VBox>
                         <VBox GridPane.columnIndex="0" GridPane.rowIndex="1">
-                            <Label text="Forms"/>
-                            <TextArea fx:id="formListView" wrapText="true"/>
+                            <Label text="TTS Models"/>
+                            <ListView fx:id="ttsModelListView"/>
                         </VBox>
                         <VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
                             <Label text="Decal"/>

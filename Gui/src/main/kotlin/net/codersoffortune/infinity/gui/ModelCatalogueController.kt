@@ -13,6 +13,7 @@ import net.codersoffortune.infinity.FACTION
 import net.codersoffortune.infinity.collection.GuiModel
 import net.codersoffortune.infinity.db.Database
 import net.codersoffortune.infinity.metadata.SectoralList
+import net.codersoffortune.infinity.metadata.unit.PrintableUnit
 import net.codersoffortune.infinity.metadata.unit.Unit
 import net.codersoffortune.infinity.tts.Catalogue
 import net.codersoffortune.infinity.tts.DecalBlockModel
@@ -23,6 +24,7 @@ import kotlin.streams.toList
 
 class ModelCatalogueController {
     private val database: Database = Database.getInstance()
+
     // TODO: should be a static somewhere. Or in Database instance?
     private val modelSetFileName = "resources/model catalogue.json"
     private lateinit var currentFaction: FACTION
@@ -31,15 +33,15 @@ class ModelCatalogueController {
     private var currentUnitIdx: Int = -1
         set(value) {
             // Do we need to do anything?
-            if( value == currentUnitIdx ) return
+            if (value == currentUnitIdx) return
 
             // put any changes into the modelset before removing them.
             // Have to call updateDecalText as this listener will fire _before_ the field loses focus
-            if( currentModelIdx > -1 ) {
+            if (currentModelIdx > -1) {
                 updateDecalText()
                 saveChanges()
             }
-            currentUnit = if (value>=0) unitListView.items[value] else null
+            currentUnit = if (value >= 0) unitListView.items[value] else null
             field = value
             if (value >= 0)
                 populateProfileList()
@@ -49,24 +51,33 @@ class ModelCatalogueController {
     private var currentProfileIdx: Int = -1
         set(value) {
             // Do we need to do anything?
-            if( value == currentProfileIdx ) return
+            if (value == currentProfileIdx) return
 
             // put any changes into the modelset before removing them.
             // Have to call updateDecalText as this listener will fire _before_ the field loses focus
-            if( currentModelIdx > -1 ) {
+            if (currentModelIdx > -1) {
                 updateDecalText()
                 saveChanges()
             }
-            currentProfile = if (value>=0) profileListView.items[value] else null
+            currentProfile = if (value >= 0) profileListView.items[value] else null
             field = value
             if (currentProfileIdx >= 0)
-                populateTTSList()
+                populateFormList()
         }
     private var currentProfile: GuiModel? = null
 
+    private var currentFormIdx: Int = -1
+        set(value) {
+            currentForm = if (value >= 0) formListView.items[value] else null
+            field = value
+            if (currentFormIdx >= 0)
+                populateTTSList()
+        }
+    private var currentForm: PrintableUnit? = null
+
     private var currentModelIdx: Int = -1
         set(value) {
-            currentModel = if (value>=0) ttsModelListView.items[value] else null
+            currentModel = if (value >= 0) ttsModelListView.items[value] else null
             field = value
             if (currentModelIdx >= 0)
                 populateFields()
@@ -91,10 +102,11 @@ class ModelCatalogueController {
     private lateinit var profileListView: ListView<GuiModel>
 
     @FXML
-    private lateinit var ttsModelListView: ListView<TTSModel>
+    private lateinit var formListView: ListView<PrintableUnit>
 
     @FXML
-    private lateinit var formListView: ListView<TTSModel>
+    private lateinit var ttsModelListView: ListView<TTSModel>
+
 
     @FXML
     private lateinit var returnButton: Button
@@ -135,6 +147,10 @@ class ModelCatalogueController {
             currentProfileIdx = newValue as Int
         }
 
+        formListView.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
+            currentFormIdx = newValue as Int
+        }
+
         ttsModelListView.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
             currentModelIdx = newValue as Int
         }
@@ -149,13 +165,13 @@ class ModelCatalogueController {
             changeFaction(currentFaction)
         }
 
-        decalField.focusedProperty().addListener {_, _, newValue ->
+        decalField.focusedProperty().addListener { _, _, newValue ->
             // only fire on de-focus
             if (!newValue)
                 updateDecalText()
         }
 
-        baseImageField.focusedProperty().addListener {_, _, newValue ->
+        baseImageField.focusedProperty().addListener { _, _, newValue ->
             // only fire on de-focus
             if (!newValue)
                 updateDecalText()
@@ -196,8 +212,7 @@ class ModelCatalogueController {
         } else {
             if (mercCheckBox.isSelected) {
                 unitListView.items.addAll(factionList.units)
-            }
-            else {
+            } else {
                 // exclude units over 10000 as they are mercs
                 unitListView.items.addAll(
                     factionList.units.stream().filter { it.id < 10000 }.toList()
@@ -214,17 +229,40 @@ class ModelCatalogueController {
 
     private fun populateProfileList() {
         clearProfilePane()
-        currentUnit?.allDistinctUnits?.let { profileListView.items.addAll(it.map { jt -> GuiModel(jt, currentFaction.armySectoral) }) }
+        currentUnit?.allDistinctUnits?.let {
+            profileListView.items.addAll(it.map { jt ->
+                GuiModel(
+                    jt,
+                    currentFaction.armySectoral
+                )
+            })
+        }
         if (profileListView.items.isNotEmpty()) {
             profileListView.selectionModel.select(0)
             currentProfileIdx = 0
         }
     }
 
+    /**
+     * When we change profile, get a list of all the associated printable units.
+     * Only really relevant for transmutable models tbh.
+     */
+    private fun populateFormList() {
+        clearFormPane()
+        currentProfile?.let {
+            formListView.items.addAll(currentProfile!!.printableUnits)
+        }
+
+        if (formListView.items.isNotEmpty()) {
+            formListView.selectionModel.select(0)
+            currentFormIdx = 0
+        }
+    }
+
     private fun populateTTSList() {
         clearTTSPane()
-        currentProfile?.printableUnits?.forEach {
-            ttsModelListView.items.addAll(modelSet.getModels(it.unitID))
+        currentForm?.let {
+            ttsModelListView.items.addAll(modelSet.getModels(currentForm!!.unitID))
         }
 
         if (ttsModelListView.items.isNotEmpty()) {
@@ -291,27 +329,23 @@ class ModelCatalogueController {
 
     private fun addModel() {
         // make sure we have a profile to add to
-        currentProfile?.let {
-            currentProfile?.printableUnits?.forEach {
-                modelSet.addModel(
-                    it.unitID,
-                    DecalBlockModel(it.toString(), "", "")
-                )
-            }
+        currentForm?.let {
+            modelSet.addModel(currentForm!!.unitID, DecalBlockModel(currentForm!!.toString(), "", ""))
+        }
 
-            Platform.runLater {
-                populateTTSList()
-                currentModelIdx = ttsModelListView.items.size - 1
-                ttsModelListView.scrollTo(currentProfileIdx)
-                ttsModelListView.selectionModel.select(currentProfileIdx)
-            }
+        Platform.runLater {
+            populateTTSList()
+            currentModelIdx = ttsModelListView.items.size - 1
+            ttsModelListView.scrollTo(currentProfileIdx)
+            ttsModelListView.selectionModel.select(currentProfileIdx)
         }
     }
 
+
     private fun removeModel() {
         // Can't remove anything if nothing is selected
-        if( ttsModelListView.selectionModel.isEmpty ) return
-        if( currentProfile == null ) return
+        if (ttsModelListView.selectionModel.isEmpty) return
+        if (currentProfile == null) return
 
         // remove selected model
         ttsModelListView.items.remove(
@@ -341,10 +375,17 @@ class ModelCatalogueController {
     }
 
     private fun clearProfilePane() {
+        clearFormPane()
+
+        currentFormIdx = -1
+        profileListView.items.clear()
+    }
+
+    private fun clearFormPane() {
         clearTTSPane()
 
         currentModelIdx = -1
-        profileListView.items.clear()
+        formListView.items.clear()
     }
 
     private fun clearTTSPane() {
