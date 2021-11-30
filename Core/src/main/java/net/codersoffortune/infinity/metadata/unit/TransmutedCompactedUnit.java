@@ -19,13 +19,12 @@ public class TransmutedCompactedUnit extends CompactedUnit {
 
     /**
      * Factory function to generate a printable version of this unit.
-     * @param filters to translate with
      * @param sectoral to mark this as belonging to
      * @return a PrintableUnit interpretation of this CompactedUnit
      * @throws InvalidObjectException on failure
      */
-    public PrintableUnit getPrintableUnit(final MappedFactionFilters filters, SECTORAL sectoral) throws InvalidObjectException {
-        return new TransmutedPrintableUnit(filters, this, sectoral);
+    public PrintableUnit getPrintableUnit( SECTORAL sectoral) throws InvalidObjectException {
+        return new TransmutedPrintableUnit(this, sectoral);
     }
 
     public List<CompactedUnit> getCompactedUnits() {
