@@ -5,36 +5,38 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.codersoffortune.infinity.gui.ModelCatalogueController">
+<BorderPane prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="net.codersoffortune.infinity.gui.ModelCatalogueController">
     <top>
         <HBox spacing="10.0">
-            <Label text="Options:" />
+            <Label text="Options:"/>
             <HBox>
-                <Label text="Faction" />
-                <ChoiceBox fx:id="factionChoiceBox" prefWidth="150.0" />
+                <Label text="Faction"/>
+                <ChoiceBox fx:id="factionChoiceBox" prefWidth="150.0"/>
             </HBox>
-            <CheckBox fx:id="missingCheckBox" text="Show only missing models" />
-            <CheckBox fx:id="mercCheckBox" text="Show Soldiers of Fortune" />
+            <CheckBox fx:id="missingCheckBox" text="Show only missing models"/>
+            <CheckBox fx:id="mercCheckBox" text="Show Soldiers of Fortune"/>
             <opaqueInsets>
-                <Insets bottom="1.0" />
+                <Insets bottom="1.0"/>
             </opaqueInsets>
             <padding>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
             </padding>
             <BorderPane.margin>
-                <Insets />
+                <Insets/>
             </BorderPane.margin>
         </HBox>
     </top>
     <left>
         <VBox>
-            <Label text="Units" />
-            <ListView fx:id="unitListView" prefHeight="499.0" prefWidth="247.0" />
+            <Label text="Units"/>
+            <ListView fx:id="unitListView" prefHeight="499.0" prefWidth="247.0"/>
             <opaqueInsets>
-                <Insets right="1.0" />
+                <Insets right="1.0"/>
             </opaqueInsets>
             <BorderPane.margin>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
             </BorderPane.margin>
         </VBox>
 
@@ -43,61 +45,69 @@
         <BorderPane>
             <top>
                 <VBox>
-                    <Label text="Distinct Profiles" />
-                    <ListView fx:id="profileListView" prefHeight="208.0" prefWidth="755.0" />
+                    <Label text="Distinct Profiles"/>
+                    <ListView fx:id="profileListView" prefHeight="208.0" prefWidth="755.0"/>
                 </VBox>
             </top>
             <center>
                 <VBox fillWidth="true">
-                <GridPane hgap="5.0" prefHeight="274.0" prefWidth="865.0" vgap="5.0">
-                    <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="2">
-                        <Label text="TTS Models" />
-                        <ListView fx:id="ttsModelListView" />
-                    </VBox>
-                    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
-                        <Label text="Decal" />
-                        <TextArea wrapText="true" fx:id="decalField" prefHeight="100.0" prefWidth="228.0" />
-                    </VBox>
-                    <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
-                        <Label text="baseImage" />
-                        <TextArea wrapText="true" fx:id="baseImageField" prefHeight="100.0" prefWidth="228.0" />
-                    </VBox>
+                    <GridPane hgap="5.0" prefHeight="274.0" prefWidth="865.0" vgap="5.0">
+                        <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+                            <Label text="TTS Models"/>
+                            <ListView fx:id="ttsModelListView"/>
+                        </VBox>
+                        <VBox GridPane.columnIndex="0" GridPane.rowIndex="1">
+                            <Label text="Forms"/>
+                            <TextArea fx:id="formListView" wrapText="true"/>
+                        </VBox>
+                        <VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
+                            <Label text="Decal"/>
+                            <TextArea fx:id="decalField" wrapText="true"/>
+                        </VBox>
+                        <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <Label text="baseImage"/>
+                            <TextArea fx:id="baseImageField" wrapText="true"/>
+                        </VBox>
 
-                    <VBox prefHeight="274.0" prefWidth="76.0" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="2">
-                        <Label text="Front Preview" />
-                        <ImageView fx:id="frontImage"/>
-                    </VBox>
-                    <VBox GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.rowSpan="2">
-                        <Label text="Rear Preview" />
-                        <ImageView fx:id="rearImage"/>
-                    </VBox>
-                    <columnConstraints>
-                        <ColumnConstraints percentWidth="25" />
-                        <ColumnConstraints percentWidth="25" />
-                        <ColumnConstraints percentWidth="25" />
-                        <ColumnConstraints percentWidth="25" />
-                    </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints prefHeight="140" />
-                  <RowConstraints prefHeight="140" />
-               </rowConstraints>
-                </GridPane>
+                        <VBox prefHeight="274.0" prefWidth="76.0" GridPane.columnIndex="2" GridPane.rowIndex="0"
+                              GridPane.rowSpan="2">
+                            <Label text="Form Front Preview"/>
+                            <ImageView fx:id="frontImage"/>
+                        </VBox>
+                        <VBox GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.rowSpan="2">
+                            <Label text="Form Rear Preview"/>
+                            <ImageView fx:id="rearImage"/>
+                        </VBox>
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="25"/>
+                            <ColumnConstraints percentWidth="25"/>
+                            <ColumnConstraints percentWidth="25"/>
+                            <ColumnConstraints percentWidth="25"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints percentHeight="50"/>
+                            <RowConstraints percentHeight="50"/>
+                        </rowConstraints>
+                    </GridPane>
                 </VBox>
             </center>
             <bottom>
-                <HBox>
-                    <Button text="Add model" fx:id="addModelButton" />
-                    <Button text="Remove current model" fx:id="removeModelButton" />
-                    <Button text="Save changes" fx:id="saveModelButton" />
+                <HBox spacing="5.0">
+                    <Button fx:id="addModelButton" text="Add model"/>
+                    <Button fx:id="removeModelButton" text="Remove current model"/>
+                    <Button fx:id="saveModelButton" text="Save changes"/>
+                    <BorderPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                    </BorderPane.margin>
                 </HBox>
             </bottom>
         </BorderPane>
     </center>
     <bottom>
         <HBox prefHeight="39.0" prefWidth="1024.0" spacing="10.0" BorderPane.alignment="CENTER">
-            <Button fx:id="returnButton" text="Return to Main Menu" />
+            <Button fx:id="returnButton" text="Return to Main Menu"/>
             <padding>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
             </padding>
         </HBox>
     </bottom>

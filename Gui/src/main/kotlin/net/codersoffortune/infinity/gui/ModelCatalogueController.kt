@@ -94,6 +94,9 @@ class ModelCatalogueController {
     private lateinit var ttsModelListView: ListView<TTSModel>
 
     @FXML
+    private lateinit var formListView: ListView<TTSModel>
+
+    @FXML
     private lateinit var returnButton: Button
 
     @FXML
