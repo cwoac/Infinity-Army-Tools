@@ -350,6 +350,8 @@ public class Util {
 //
 //    );
 
+    public static final int sapperProfileOffset = 10;
+
 
     // Distances
     private static boolean inInches = true;

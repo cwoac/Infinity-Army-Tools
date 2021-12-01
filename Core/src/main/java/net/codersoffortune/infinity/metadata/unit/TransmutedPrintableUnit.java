@@ -14,9 +14,7 @@ import org.apache.commons.csv.CSVPrinter;
 
 import java.io.IOException;
 import java.io.InvalidObjectException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TransmutedPrintableUnit extends PrintableUnit {
@@ -46,7 +44,7 @@ public class TransmutedPrintableUnit extends PrintableUnit {
 
 
 
-    private String asJSONInner(final TTSModel model, final String embeddedModel, final List<String> embeddedSilhouettes, boolean doAddons, final List<String> silhouettes, final String colour) {
+    private String asJSONInner(final TTSModel model, final String embeddedModel, final Collection<String> embeddedSilhouettes, boolean doAddons, final List<String> silhouettes, final String colour) {
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
         final String addon = doAddons?Database.getAddonTemplate(s):"";
@@ -76,14 +74,16 @@ public class TransmutedPrintableUnit extends PrintableUnit {
     }
 
     private String asJSON(final ModelSet ms, boolean doAddons, String colour) {
-        assert(printableUnits.size()==1);
-        final PrintableUnit pu = printableUnits.get(0);
-
         final List<String> silhouettes = getTTSSilhouettes(doAddons);
         List<String> results = new ArrayList<>();
+        List<String> puEmbeds = new ArrayList<>();
+        Collection<String> puSilhouettes = new HashSet<>();
 
-        List<String> puEmbeds = pu.asEmbeddedJSON(ms, doAddons);
-        List<String> puSilhouettes = pu.getTTSSilhouettes(doAddons);
+        printableUnits.forEach(pu -> {
+            puEmbeds.addAll(pu.asEmbeddedJSON(ms, doAddons));
+            puSilhouettes.addAll(pu.getTTSSilhouettes(doAddons));
+        });
+
 
         Set<TTSModel> models = ms.getModels(getUnitID());
         int curEmbed = 0;
