@@ -552,7 +552,7 @@
   "UnitID{s:101;u:21;g:1;p:1;o:4}" : [ {
     "baseImage" : "http://cloud-3.steamusercontent.com/ugc/1257016010464936729/84F38BEF1B23ED3177DAECB13E81D17C16DA4F6A/",
     "name" : "[00B0F2]REGULAR[-]MULTISniperRifle",
-    "decals" : "[{\"Transform\":{\"posX\":-0.017812252,\"posY\":0.84273684,\"posZ\":0.03326273,\"rotX\":0,\"rotY\":90,\"rotZ\":0,\"scaleX\":1.1469909,\"scaleY\":1.46410048,\"scaleZ\":1.4641006},\"CustomDecal\":{\"Name\":\"Regular2\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241622023294971/817DE8237F3D7D5419B0B29C0E9BBA46834DB8E6/\",\"Size\":1}},{\"Transform\":{\"posX\":0.0178122576,\"posY\":0.8334779,\"posZ\":-0.0243563056,\"rotX\":1.3118796e-06,\"rotY\":270,\"rotZ\":-3.51779317e-06,\"scaleX\":1.14699113,\"scaleY\":1.4641012,\"scaleZ\":1.46410155},\"CustomDecal\":{\"Name\":\"Regular2\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241622023294971/817DE8237F3D7D5419B0B29C0E9BBA46834DB8E6/\",\"Size\":1}}]"
+    "decals" : "[{\"Transform\":{\"posX\":-0.017812252,\"posY\":0.898493767,\"posZ\":0.0335168839,\"rotX\":0,\"rotY\":90,\"rotZ\":0,\"scaleX\":1.31852853,\"scaleY\":1.570248,\"scaleZ\":1.57024825},\"CustomDecal\":{\"Name\":\"Regular4\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241622023302138/BE59E0726F9001B1FC0747DCE2FBDC665F6C1B0A/\",\"Size\":0.975}},{\"Transform\":{\"posX\":0.0178122632,\"posY\":0.898493767,\"posZ\":-0.0391235352,\"rotX\":1.3118796e-06,\"rotY\":270,\"rotZ\":-3.51779317e-06,\"scaleX\":1.31852877,\"scaleY\":1.57024944,\"scaleZ\":1.57025015},\"CustomDecal\":{\"Name\":\"Regular4\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241622023302138/BE59E0726F9001B1FC0747DCE2FBDC665F6C1B0A/\",\"Size\":0.975}}]"
   } ],
   "UnitID{s:101;u:21;g:1;p:1;o:5}" : [ {
     "baseImage" : "http://cloud-3.steamusercontent.com/ugc/1257016010464936729/84F38BEF1B23ED3177DAECB13E81D17C16DA4F6A/",
@@ -568,6 +568,11 @@
     "baseImage" : "http://cloud-3.steamusercontent.com/ugc/1257016010464936729/84F38BEF1B23ED3177DAECB13E81D17C16DA4F6A/",
     "name" : "[00B0F2]REGULAR[-]Paramedic,CombiRifle",
     "decals" : "[{\"Transform\":{\"posX\":-0.017812252,\"posY\":0.898493767,\"posZ\":0.0335168839,\"rotX\":0,\"rotY\":90,\"rotZ\":0,\"scaleX\":1.31852853,\"scaleY\":1.570248,\"scaleZ\":1.57024825},\"CustomDecal\":{\"Name\":\"Regular4\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241622023302138/BE59E0726F9001B1FC0747DCE2FBDC665F6C1B0A/\",\"Size\":0.975}},{\"Transform\":{\"posX\":0.0178122632,\"posY\":0.898493767,\"posZ\":-0.0391235352,\"rotX\":1.3118796e-06,\"rotY\":270,\"rotZ\":-3.51779317e-06,\"scaleX\":1.31852877,\"scaleY\":1.57024944,\"scaleZ\":1.57025015},\"CustomDecal\":{\"Name\":\"Regular4\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241622023302138/BE59E0726F9001B1FC0747DCE2FBDC665F6C1B0A/\",\"Size\":0.975}}]"
+  } ],
+  "UnitID{s:101;u:21;g:1;p:11;o:4}" : [ {
+    "baseImage" : "http://cloud-3.steamusercontent.com/ugc/1257016010464936729/84F38BEF1B23ED3177DAECB13E81D17C16DA4F6A/",
+    "name" : "PU{21:1:11:4 REGULAR (foxhole)}",
+    "decals" : "[{\"Transform\":{\"posX\":-0.017812252,\"posY\":0.84273684,\"posZ\":0.03326273,\"rotX\":0,\"rotY\":90,\"rotZ\":0,\"scaleX\":1.1469909,\"scaleY\":1.46410048,\"scaleZ\":1.4641006},\"CustomDecal\":{\"Name\":\"Regular2\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241622023294971/817DE8237F3D7D5419B0B29C0E9BBA46834DB8E6/\",\"Size\":1}},{\"Transform\":{\"posX\":0.0178122576,\"posY\":0.8334779,\"posZ\":-0.0243563056,\"rotX\":1.3118796e-06,\"rotY\":270,\"rotZ\":-3.51779317e-06,\"scaleX\":1.14699113,\"scaleY\":1.4641012,\"scaleZ\":1.46410155},\"CustomDecal\":{\"Name\":\"Regular2\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241622023294971/817DE8237F3D7D5419B0B29C0E9BBA46834DB8E6/\",\"Size\":1}}]"
   } ],
   "UnitID{s:101;u:22;g:1;p:1;o:1}" : [ {
     "baseImage" : "http://cloud-3.steamusercontent.com/ugc/1257016010464896963/CD582966AD964AC58762318E6A04A2ACC449A461/",
@@ -2570,6 +2575,11 @@
     "name" : "[007B25]MOBLOT[-]HeavyMachineGun",
     "decals" : "[{\"Transform\":{\"posX\":-0.017812252,\"posY\":0.847736835,\"posZ\":0.24075222,\"rotX\":0.0,\"rotY\":90.0,\"rotZ\":0.0,\"scaleX\":1.4557339,\"scaleY\":1.49338233,\"scaleZ\":1.49338245},\"CustomDecal\":{\"Name\":\"Moblot5\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/957467920322225454/115AE88FA9185D08DAE7A96ED1138836FAA62039/\",\"Size\":1.02}},{\"Transform\":{\"posX\":0.0178123116,\"posY\":0.8477371,\"posZ\":-0.222233772,\"rotX\":1.30286526E-06,\"rotY\":270.0,\"rotZ\":-3.5268074E-06,\"scaleX\":1.45573413,\"scaleY\":1.493383,\"scaleZ\":1.49338341},\"CustomDecal\":{\"Name\":\"Moblot5\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/957467920322225454/115AE88FA9185D08DAE7A96ED1138836FAA62039/\",\"Size\":1.02}}]"
   } ],
+  "UnitID{s:301;u:233;g:1;p:11;o:12}" : [ {
+    "baseImage" : "http://cloud-3.steamusercontent.com/ugc/957467920322023589/CE950E8CC50F99CFDD4EC68F02CA30B8FB51C021/",
+    "name" : "PU{233:1:11:12 MOBLOT (foxhole)}",
+    "decals" : "[{\"Transform\":{\"posX\":-0.017812252,\"posY\":0.847736835,\"posZ\":0.24075222,\"rotX\":0.0,\"rotY\":90.0,\"rotZ\":0.0,\"scaleX\":1.4557339,\"scaleY\":1.49338233,\"scaleZ\":1.49338245},\"CustomDecal\":{\"Name\":\"Moblot5\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/957467920322225454/115AE88FA9185D08DAE7A96ED1138836FAA62039/\",\"Size\":1.02}},{\"Transform\":{\"posX\":0.0178123116,\"posY\":0.8477371,\"posZ\":-0.222233772,\"rotX\":1.30286526E-06,\"rotY\":270.0,\"rotZ\":-3.5268074E-06,\"scaleX\":1.45573413,\"scaleY\":1.493383,\"scaleZ\":1.49338341},\"CustomDecal\":{\"Name\":\"Moblot5\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/957467920322225454/115AE88FA9185D08DAE7A96ED1138836FAA62039/\",\"Size\":1.02}}]"
+  } ],
   "UnitID{s:301;u:234;g:1;p:1;o:2}" : [ {
     "baseImage" : "http://cloud-3.steamusercontent.com/ugc/957467920322252418/5BF3F566F20D1F29E80DB6C8E0FD26F919859630/",
     "name" : "[007B25]VETERANKAZAK[-]APHeavyMachineGun",
@@ -2917,17 +2927,27 @@
   "UnitID{s:301;u:249;g:1;p:1;o:5}" : [ {
     "baseImage" : "http://cloud-3.steamusercontent.com/ugc/963097554832361689/4D189F80FF5936F7A66CA72392B04B2284B82433/",
     "name" : "[007B25]ZOUAVE[-]HeavyMachineGun",
-    "decals" : "[{\"Transform\":{\"posX\":-0.017812252,\"posY\":0.6799784,\"posZ\":-0.0138778687,\"rotX\":0.0,\"rotY\":90.0,\"rotZ\":0.0,\"scaleX\":1.55105913,\"scaleY\":1.13300037,\"scaleZ\":1.13300049},\"CustomDecal\":{\"Name\":\"Zouave3\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/963097554832355842/CD853064B4A95364219D7FB9DEC8E39EB9B73B0B/\",\"Size\":1.03}},{\"Transform\":{\"posX\":0.0178122371,\"posY\":0.6802788,\"posZ\":0.0601741076,\"rotX\":1.58042121E-06,\"rotY\":270.0,\"rotZ\":-3.24925168E-06,\"scaleX\":1.5510596,\"scaleY\":1.13300109,\"scaleZ\":1.13300145},\"CustomDecal\":{\"Name\":\"Zouave3\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/963097554832355842/CD853064B4A95364219D7FB9DEC8E39EB9B73B0B/\",\"Size\":1.03}},{\"Transform\":{\"posX\":-0.1636804,\"posY\":0.13499999,\"posZ\":-0.311917156,\"rotX\":90.0,\"rotY\":90.02067,\"rotZ\":0.0,\"scaleX\":0.21762909,\"scaleY\":0.2176292,\"scaleZ\":0.217629164},\"CustomDecal\":{\"Name\":\"sapper\",\"ImageURL\":\"http://i.imgur.com/GHfsA8G.png\",\"Size\":1.0}}]"
+    "decals" : "[{\"Transform\":{\"posX\":-0.0178123489,\"posY\":0.904299259,\"posZ\":-0.053959012,\"rotX\":1.54537349E-06,\"rotY\":89.9995956,\"rotZ\":3.28430565E-06,\"scaleX\":0.993915,\"scaleY\":1.59440589,\"scaleZ\":1.59440613},\"CustomDecal\":{\"Name\":\"Briscard5\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/963097554830453142/66D2C474537664CAED642568E6E09D95289D4F0D/\",\"Size\":0.99}},{\"Transform\":{\"posX\":0.0178122371,\"posY\":0.9042988,\"posZ\":0.07247734,\"rotX\":1.3118796E-06,\"rotY\":270.0,\"rotZ\":-3.51779317E-06,\"scaleX\":0.99391526,\"scaleY\":1.59440732,\"scaleZ\":1.594408},\"CustomDecal\":{\"Name\":\"Briscard5\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/963097554830453142/66D2C474537664CAED642568E6E09D95289D4F0D/\",\"Size\":0.99}}]"
   } ],
   "UnitID{s:301;u:249;g:1;p:1;o:6}" : [ {
     "baseImage" : "http://cloud-3.steamusercontent.com/ugc/963097554832361689/4D189F80FF5936F7A66CA72392B04B2284B82433/",
     "name" : "[007B25]ZOUAVE[-]SniperRifle",
-    "decals" : "[{\"Transform\":{\"posX\":-0.017812252,\"posY\":0.7431791,\"posZ\":0.03211707,\"rotX\":0.0,\"rotY\":90.0,\"rotZ\":0.0,\"scaleX\":1.64293468,\"scaleY\":1.25235033,\"scaleZ\":1.25235045},\"CustomDecal\":{\"Name\":\"Zouave2\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/963097554832348549/CECB511429CB4F7ED47E90EECC4B9D634E77B9DD/\",\"Size\":1.035}},{\"Transform\":{\"posX\":0.0178122483,\"posY\":0.743178844,\"posZ\":0.0141789913,\"rotX\":1.21643973E-06,\"rotY\":270.0,\"rotZ\":6.04611159E-06,\"scaleX\":1.64293516,\"scaleY\":1.252351,\"scaleZ\":1.2523514},\"CustomDecal\":{\"Name\":\"Zouave2\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/963097554832348549/CECB511429CB4F7ED47E90EECC4B9D634E77B9DD/\",\"Size\":1.035}},{\"Transform\":{\"posX\":-0.162067667,\"posY\":0.135,\"posZ\":-0.3158558,\"rotX\":90.0,\"rotY\":90.0261459,\"rotZ\":0.0,\"scaleX\":0.21762906,\"scaleY\":0.21762915,\"scaleZ\":0.21762915},\"CustomDecal\":{\"Name\":\"sapper\",\"ImageURL\":\"http://i.imgur.com/GHfsA8G.png\",\"Size\":1.0}}]"
+    "decals" : "[{\"Transform\":{\"posX\":-0.0178123489,\"posY\":0.904299259,\"posZ\":-0.053959012,\"rotX\":1.54537349E-06,\"rotY\":89.9995956,\"rotZ\":3.28430565E-06,\"scaleX\":0.993915,\"scaleY\":1.59440589,\"scaleZ\":1.59440613},\"CustomDecal\":{\"Name\":\"Briscard5\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/963097554830453142/66D2C474537664CAED642568E6E09D95289D4F0D/\",\"Size\":0.99}},{\"Transform\":{\"posX\":0.0178122371,\"posY\":0.9042988,\"posZ\":0.07247734,\"rotX\":1.3118796E-06,\"rotY\":270.0,\"rotZ\":-3.51779317E-06,\"scaleX\":0.99391526,\"scaleY\":1.59440732,\"scaleZ\":1.594408},\"CustomDecal\":{\"Name\":\"Briscard5\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/963097554830453142/66D2C474537664CAED642568E6E09D95289D4F0D/\",\"Size\":0.99}}]"
   } ],
   "UnitID{s:301;u:249;g:1;p:1;o:7}" : [ {
     "baseImage" : "http://cloud-3.steamusercontent.com/ugc/963097554832361689/4D189F80FF5936F7A66CA72392B04B2284B82433/",
     "name" : "[007B25]ZOUAVE[-]Paramedic,Rfl,Pnzrf,AssaultPst",
     "decals" : "[{\"Transform\":{\"posX\":-0.0178123489,\"posY\":0.904299259,\"posZ\":-0.053959012,\"rotX\":1.54537349E-06,\"rotY\":89.9995956,\"rotZ\":3.28430565E-06,\"scaleX\":0.993915,\"scaleY\":1.59440589,\"scaleZ\":1.59440613},\"CustomDecal\":{\"Name\":\"Briscard5\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/963097554830453142/66D2C474537664CAED642568E6E09D95289D4F0D/\",\"Size\":0.99}},{\"Transform\":{\"posX\":0.0178122371,\"posY\":0.9042988,\"posZ\":0.07247734,\"rotX\":1.3118796E-06,\"rotY\":270.0,\"rotZ\":-3.51779317E-06,\"scaleX\":0.99391526,\"scaleY\":1.59440732,\"scaleZ\":1.594408},\"CustomDecal\":{\"Name\":\"Briscard5\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/963097554830453142/66D2C474537664CAED642568E6E09D95289D4F0D/\",\"Size\":0.99}}]"
+  } ],
+  "UnitID{s:301;u:249;g:1;p:11;o:5}" : [ {
+    "baseImage" : "http://cloud-3.steamusercontent.com/ugc/963097554832361689/4D189F80FF5936F7A66CA72392B04B2284B82433/",
+    "name" : "PU{249:1:11:5 ZOUAVE (foxhole)}",
+    "decals" : "[{\"Transform\":{\"posX\":-0.017812252,\"posY\":0.6799784,\"posZ\":-0.0138778687,\"rotX\":0.0,\"rotY\":90.0,\"rotZ\":0.0,\"scaleX\":1.55105913,\"scaleY\":1.13300037,\"scaleZ\":1.13300049},\"CustomDecal\":{\"Name\":\"Zouave3\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/963097554832355842/CD853064B4A95364219D7FB9DEC8E39EB9B73B0B/\",\"Size\":1.03}},{\"Transform\":{\"posX\":0.0178122371,\"posY\":0.6802788,\"posZ\":0.0601741076,\"rotX\":1.58042121E-06,\"rotY\":270.0,\"rotZ\":-3.24925168E-06,\"scaleX\":1.5510596,\"scaleY\":1.13300109,\"scaleZ\":1.13300145},\"CustomDecal\":{\"Name\":\"Zouave3\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/963097554832355842/CD853064B4A95364219D7FB9DEC8E39EB9B73B0B/\",\"Size\":1.03}},{\"Transform\":{\"posX\":-0.1636804,\"posY\":0.13499999,\"posZ\":-0.311917156,\"rotX\":90.0,\"rotY\":90.02067,\"rotZ\":0.0,\"scaleX\":0.21762909,\"scaleY\":0.2176292,\"scaleZ\":0.217629164},\"CustomDecal\":{\"Name\":\"sapper\",\"ImageURL\":\"http://i.imgur.com/GHfsA8G.png\",\"Size\":1.0}}]"
+  } ],
+  "UnitID{s:301;u:249;g:1;p:11;o:6}" : [ {
+    "baseImage" : "http://cloud-3.steamusercontent.com/ugc/963097554832361689/4D189F80FF5936F7A66CA72392B04B2284B82433/",
+    "name" : "PU{249:1:11:6 ZOUAVE (foxhole)}",
+    "decals" : "[{\"Transform\":{\"posX\":-0.017812252,\"posY\":0.7431791,\"posZ\":0.03211707,\"rotX\":0.0,\"rotY\":90.0,\"rotZ\":0.0,\"scaleX\":1.64293468,\"scaleY\":1.25235033,\"scaleZ\":1.25235045},\"CustomDecal\":{\"Name\":\"Zouave2\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/963097554832348549/CECB511429CB4F7ED47E90EECC4B9D634E77B9DD/\",\"Size\":1.035}},{\"Transform\":{\"posX\":0.0178122483,\"posY\":0.743178844,\"posZ\":0.0141789913,\"rotX\":1.21643973E-06,\"rotY\":270.0,\"rotZ\":6.04611159E-06,\"scaleX\":1.64293516,\"scaleY\":1.252351,\"scaleZ\":1.2523514},\"CustomDecal\":{\"Name\":\"Zouave2\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/963097554832348549/CECB511429CB4F7ED47E90EECC4B9D634E77B9DD/\",\"Size\":1.035}},{\"Transform\":{\"posX\":-0.162067667,\"posY\":0.135,\"posZ\":-0.3158558,\"rotX\":90.0,\"rotY\":90.0261459,\"rotZ\":0.0,\"scaleX\":0.21762906,\"scaleY\":0.21762915,\"scaleZ\":0.21762915},\"CustomDecal\":{\"Name\":\"sapper\",\"ImageURL\":\"http://i.imgur.com/GHfsA8G.png\",\"Size\":1.0}}]"
   } ],
   "UnitID{s:301;u:250;g:1;p:1;o:2}" : [ {
     "baseImage" : "http://cloud-3.steamusercontent.com/ugc/952958633888663167/1CC5C6C12EE354E2FDA75857CB19C63070BE4524/",
@@ -5971,7 +5991,7 @@
   } ],
   "UnitID{s:601;u:514;g:1;p:1;o:1}" : [ {
     "baseImage" : "http://cloud-3.steamusercontent.com/ugc/925931154587424509/707A6C4F363C19D1B38CAFB5B67BB6439FDE1E49/",
-    "name" : "[813CAA]HAIDUK[-]",
+    "name" : "PU{514:1:1:1 HAIDUK}",
     "decals" : "[{\"Transform\":{\"posX\":-0.017812252,\"posY\":0.651769757,\"posZ\":0.14289397,\"rotX\":0.0,\"rotY\":90.0,\"rotZ\":0.0,\"scaleX\":1.72451651,\"scaleY\":1.10000038,\"scaleZ\":1.1000005},\"CustomDecal\":{\"Name\":\"Haiduk\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/925931154587413076/B63F8DB36D27663EEB0674C449A86D7723567CCA/\",\"Size\":1.0}},{\"Transform\":{\"posX\":0.0178122744,\"posY\":0.6332514,\"posZ\":-0.08324736,\"rotX\":1.58042121E-6,\"rotY\":270.0,\"rotZ\":-3.24925168E-6,\"scaleX\":1.724517,\"scaleY\":1.1000011,\"scaleZ\":1.10000145},\"CustomDecal\":{\"Name\":\"Haiduk\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/925931154587413076/B63F8DB36D27663EEB0674C449A86D7723567CCA/\",\"Size\":1.0}}]"
   } ],
   "UnitID{s:603;u:514;g:1;p:1;o:2}" : [ {
@@ -5982,6 +6002,21 @@
   "UnitID{s:603;u:514;g:1;p:1;o:3}" : [ {
     "baseImage" : "http://cloud-3.steamusercontent.com/ugc/925931154587424509/707A6C4F363C19D1B38CAFB5B67BB6439FDE1E49/",
     "name" : "[813CAA]HAIDUK[-]MULTISniperRifle",
+    "decals" : "[{\"Transform\":{\"posX\":-0.0178121869,\"posY\":1.00704575,\"posZ\":0.0833032355,\"rotX\":1.06721707E-7,\"rotY\":89.9999847,\"rotZ\":2.15693355,\"scaleX\":1.22524774,\"scaleY\":1.99999976,\"scaleZ\":1.99999988},\"CustomDecal\":{\"Name\":\"1\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/1019447475848806971/50C465D39DBDC1B1CA4EA3CF856BDBE1B858B9D0/\",\"Size\":2.0}},{\"Transform\":{\"posX\":0.0178126413,\"posY\":1.00726819,\"posZ\":-0.07975023,\"rotX\":0.0,\"rotY\":270.0,\"rotZ\":5.22774553,\"scaleX\":1.2252475,\"scaleY\":1.99999928,\"scaleZ\":1.99999917},\"CustomDecal\":{\"Name\":\"1\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/1019447475848806971/50C465D39DBDC1B1CA4EA3CF856BDBE1B858B9D0/\",\"Size\":2.0}}]"
+  } ],
+  "UnitID{s:601;u:514;g:1;p:11;o:1}" : [ {
+    "baseImage" : "http://cloud-3.steamusercontent.com/ugc/925931154587424509/707A6C4F363C19D1B38CAFB5B67BB6439FDE1E49/",
+    "name" : "PU{514:1:11:1 HAIDUK (foxhole)}",
+    "decals" : "[{\"Transform\":{\"posX\":-0.017812252,\"posY\":0.651769757,\"posZ\":0.14289397,\"rotX\":0.0,\"rotY\":90.0,\"rotZ\":0.0,\"scaleX\":1.72451651,\"scaleY\":1.10000038,\"scaleZ\":1.1000005},\"CustomDecal\":{\"Name\":\"Haiduk\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/925931154587413076/B63F8DB36D27663EEB0674C449A86D7723567CCA/\",\"Size\":1.0}},{\"Transform\":{\"posX\":0.0178122744,\"posY\":0.6332514,\"posZ\":-0.08324736,\"rotX\":1.58042121E-6,\"rotY\":270.0,\"rotZ\":-3.24925168E-6,\"scaleX\":1.724517,\"scaleY\":1.1000011,\"scaleZ\":1.10000145},\"CustomDecal\":{\"Name\":\"Haiduk\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/925931154587413076/B63F8DB36D27663EEB0674C449A86D7723567CCA/\",\"Size\":1.0}}]"
+  } ],
+  "UnitID{s:601;u:514;g:1;p:11;o:2}" : [ {
+    "baseImage" : "http://cloud-3.steamusercontent.com/ugc/925931154587424509/707A6C4F363C19D1B38CAFB5B67BB6439FDE1E49/",
+    "name" : "PU{514:1:11:2 HAIDUK (foxhole)}",
+    "decals" : "[{\"Transform\":{\"posX\":-0.017812252,\"posY\":0.651769757,\"posZ\":0.14289397,\"rotX\":0.0,\"rotY\":90.0,\"rotZ\":0.0,\"scaleX\":1.72451651,\"scaleY\":1.10000038,\"scaleZ\":1.1000005},\"CustomDecal\":{\"Name\":\"Haiduk\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/925931154587413076/B63F8DB36D27663EEB0674C449A86D7723567CCA/\",\"Size\":1.0}},{\"Transform\":{\"posX\":0.0178122744,\"posY\":0.6332514,\"posZ\":-0.08324736,\"rotX\":1.58042121E-6,\"rotY\":270.0,\"rotZ\":-3.24925168E-6,\"scaleX\":1.724517,\"scaleY\":1.1000011,\"scaleZ\":1.10000145},\"CustomDecal\":{\"Name\":\"Haiduk\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/925931154587413076/B63F8DB36D27663EEB0674C449A86D7723567CCA/\",\"Size\":1.0}}]"
+  } ],
+  "UnitID{s:601;u:514;g:1;p:11;o:3}" : [ {
+    "baseImage" : "http://cloud-3.steamusercontent.com/ugc/925931154587424509/707A6C4F363C19D1B38CAFB5B67BB6439FDE1E49/",
+    "name" : "PU{514:1:11:3 HAIDUK (foxhole)}",
     "decals" : "[{\"Transform\":{\"posX\":-0.0178121869,\"posY\":1.00704575,\"posZ\":0.0833032355,\"rotX\":1.06721707E-7,\"rotY\":89.9999847,\"rotZ\":2.15693355,\"scaleX\":1.22524774,\"scaleY\":1.99999976,\"scaleZ\":1.99999988},\"CustomDecal\":{\"Name\":\"1\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/1019447475848806971/50C465D39DBDC1B1CA4EA3CF856BDBE1B858B9D0/\",\"Size\":2.0}},{\"Transform\":{\"posX\":0.0178126413,\"posY\":1.00726819,\"posZ\":-0.07975023,\"rotX\":0.0,\"rotY\":270.0,\"rotZ\":5.22774553,\"scaleX\":1.2252475,\"scaleY\":1.99999928,\"scaleZ\":1.99999917},\"CustomDecal\":{\"Name\":\"1\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/1019447475848806971/50C465D39DBDC1B1CA4EA3CF856BDBE1B858B9D0/\",\"Size\":2.0}}]"
   } ],
   "UnitID{s:601;u:516;g:1;p:1;o:1}" : [ {
@@ -7078,12 +7113,12 @@
   } ],
   "UnitID{s:801;u:660;g:1;p:1;o:2283}" : [ {
     "baseImage" : "http://cloud-3.steamusercontent.com/ugc/1493460530052612146/A32B1039AA7415CAB5A0166DC0A56F4503BBB370/",
-    "name" : "[B9DB01]NIKOUL[-]VIRALSniperRifle",
-    "decals" : "[{\"Transform\":{\"posX\":0.0178122073,\"posY\":0.567405343,\"posZ\":0.170838952,\"rotX\":1.58042121E-06,\"rotY\":270.0,\"rotZ\":-3.24925168E-06,\"scaleX\":1.97379351,\"scaleY\":0.900000334,\"scaleZ\":0.900000453},\"CustomDecal\":{\"Name\":\"Nikoul\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241932571618830/2FFE6E451DFC78F29016FAA098191CAAC4485FA2/\",\"Size\":0.99}},{\"Transform\":{\"posX\":-0.0178122818,\"posY\":0.5581457,\"posZ\":-0.115283191,\"rotX\":-1.39326016E-06,\"rotY\":90.00001,\"rotZ\":-3.4364125E-06,\"scaleX\":1.973794,\"scaleY\":0.900001049,\"scaleZ\":0.9000014},\"CustomDecal\":{\"Name\":\"Nikoul\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241932571618830/2FFE6E451DFC78F29016FAA098191CAAC4485FA2/\",\"Size\":0.99}}]"
+    "name" : "PU{660:1:12:2283 NIKOUL (foxhole)}",
+    "decals" : "[{\"Transform\":{\"posX\":-0.017812252,\"posY\":0.9048414,\"posZ\":0.0196905136,\"rotX\":0.0,\"rotY\":90.0,\"rotZ\":0.0,\"scaleX\":0.555668354,\"scaleY\":1.59440589,\"scaleZ\":1.59440613},\"CustomDecal\":{\"Name\":\"Nikoul2\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241932577846638/FDE6A9153DFA3C5BC9E8B05BF73D49F9D665F854/\",\"Size\":0.99}},{\"Transform\":{\"posX\":0.0178122483,\"posY\":0.8955817,\"posZ\":0.0173473358,\"rotX\":1.3118796E-06,\"rotY\":270.0,\"rotZ\":-3.51779317E-06,\"scaleX\":0.5556685,\"scaleY\":1.59440732,\"scaleZ\":1.594408},\"CustomDecal\":{\"Name\":\"Nikoul2\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241932577846638/FDE6A9153DFA3C5BC9E8B05BF73D49F9D665F854/\",\"Size\":0.99}}]"
   } ],
   "UnitID{s:801;u:660;g:1;p:1;o:2284}" : [ {
     "baseImage" : "http://cloud-3.steamusercontent.com/ugc/1493460530052612146/A32B1039AA7415CAB5A0166DC0A56F4503BBB370/",
-    "name" : "[B9DB01]NIKOUL[-]VIRALSniperRifle",
+    "name" : "PU{660:1:11:2284 NIKOUL (foxhole)}",
     "decals" : "[{\"Transform\":{\"posX\":0.0178122073,\"posY\":0.567405343,\"posZ\":0.170838952,\"rotX\":1.58042121E-06,\"rotY\":270.0,\"rotZ\":-3.24925168E-06,\"scaleX\":1.97379351,\"scaleY\":0.900000334,\"scaleZ\":0.900000453},\"CustomDecal\":{\"Name\":\"Nikoul\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241932571618830/2FFE6E451DFC78F29016FAA098191CAAC4485FA2/\",\"Size\":0.99}},{\"Transform\":{\"posX\":-0.0178122818,\"posY\":0.5581457,\"posZ\":-0.115283191,\"rotX\":-1.39326016E-06,\"rotY\":90.00001,\"rotZ\":-3.4364125E-06,\"scaleX\":1.973794,\"scaleY\":0.900001049,\"scaleZ\":0.9000014},\"CustomDecal\":{\"Name\":\"Nikoul\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241932571618830/2FFE6E451DFC78F29016FAA098191CAAC4485FA2/\",\"Size\":0.99}}]"
   } ],
   "UnitID{s:801;u:660;g:1;p:2;o:2283}" : [ {
@@ -7094,6 +7129,26 @@
   "UnitID{s:801;u:660;g:1;p:2;o:2284}" : [ {
     "baseImage" : "http://cloud-3.steamusercontent.com/ugc/1493460530052612146/A32B1039AA7415CAB5A0166DC0A56F4503BBB370/",
     "name" : "[B9DB01]NIKOUL[-]VIRALSniperRifle",
+    "decals" : "[{\"Transform\":{\"posX\":-0.017812252,\"posY\":0.9048414,\"posZ\":0.0196905136,\"rotX\":0.0,\"rotY\":90.0,\"rotZ\":0.0,\"scaleX\":0.555668354,\"scaleY\":1.59440589,\"scaleZ\":1.59440613},\"CustomDecal\":{\"Name\":\"Nikoul2\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241932577846638/FDE6A9153DFA3C5BC9E8B05BF73D49F9D665F854/\",\"Size\":0.99}},{\"Transform\":{\"posX\":0.0178122483,\"posY\":0.8955817,\"posZ\":0.0173473358,\"rotX\":1.3118796E-06,\"rotY\":270.0,\"rotZ\":-3.51779317E-06,\"scaleX\":0.5556685,\"scaleY\":1.59440732,\"scaleZ\":1.594408},\"CustomDecal\":{\"Name\":\"Nikoul2\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241932577846638/FDE6A9153DFA3C5BC9E8B05BF73D49F9D665F854/\",\"Size\":0.99}}]"
+  } ],
+  "UnitID{s:801;u:660;g:1;p:11;o:2283}" : [ {
+    "baseImage" : "http://cloud-3.steamusercontent.com/ugc/1493460530052612146/A32B1039AA7415CAB5A0166DC0A56F4503BBB370/",
+    "name" : "PU{660:1:11:2283 NIKOUL (foxhole)}",
+    "decals" : "[{\"Transform\":{\"posX\":0.0178122073,\"posY\":0.567405343,\"posZ\":0.170838952,\"rotX\":1.58042121E-06,\"rotY\":270.0,\"rotZ\":-3.24925168E-06,\"scaleX\":1.97379351,\"scaleY\":0.900000334,\"scaleZ\":0.900000453},\"CustomDecal\":{\"Name\":\"Nikoul\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241932571618830/2FFE6E451DFC78F29016FAA098191CAAC4485FA2/\",\"Size\":0.99}},{\"Transform\":{\"posX\":-0.0178122818,\"posY\":0.5581457,\"posZ\":-0.115283191,\"rotX\":-1.39326016E-06,\"rotY\":90.00001,\"rotZ\":-3.4364125E-06,\"scaleX\":1.973794,\"scaleY\":0.900001049,\"scaleZ\":0.9000014},\"CustomDecal\":{\"Name\":\"Nikoul\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241932571618830/2FFE6E451DFC78F29016FAA098191CAAC4485FA2/\",\"Size\":0.99}}]"
+  } ],
+  "UnitID{s:801;u:660;g:1;p:11;o:2284}" : [ {
+    "baseImage" : "http://cloud-3.steamusercontent.com/ugc/1493460530052612146/A32B1039AA7415CAB5A0166DC0A56F4503BBB370/",
+    "name" : "PU{660:1:11:2284 NIKOUL (foxhole)}",
+    "decals" : "[{\"Transform\":{\"posX\":0.0178122073,\"posY\":0.567405343,\"posZ\":0.170838952,\"rotX\":1.58042121E-06,\"rotY\":270.0,\"rotZ\":-3.24925168E-06,\"scaleX\":1.97379351,\"scaleY\":0.900000334,\"scaleZ\":0.900000453},\"CustomDecal\":{\"Name\":\"Nikoul\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241932571618830/2FFE6E451DFC78F29016FAA098191CAAC4485FA2/\",\"Size\":0.99}},{\"Transform\":{\"posX\":-0.0178122818,\"posY\":0.5581457,\"posZ\":-0.115283191,\"rotX\":-1.39326016E-06,\"rotY\":90.00001,\"rotZ\":-3.4364125E-06,\"scaleX\":1.973794,\"scaleY\":0.900001049,\"scaleZ\":0.9000014},\"CustomDecal\":{\"Name\":\"Nikoul\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241932571618830/2FFE6E451DFC78F29016FAA098191CAAC4485FA2/\",\"Size\":0.99}}]"
+  } ],
+  "UnitID{s:801;u:660;g:1;p:12;o:2283}" : [ {
+    "baseImage" : "http://cloud-3.steamusercontent.com/ugc/1493460530052612146/A32B1039AA7415CAB5A0166DC0A56F4503BBB370/",
+    "name" : "PU{660:1:12:2283 NIKOUL (foxhole)}",
+    "decals" : "[{\"Transform\":{\"posX\":0.0178122073,\"posY\":0.567405343,\"posZ\":0.170838952,\"rotX\":1.58042121E-06,\"rotY\":270.0,\"rotZ\":-3.24925168E-06,\"scaleX\":1.97379351,\"scaleY\":0.900000334,\"scaleZ\":0.900000453},\"CustomDecal\":{\"Name\":\"Nikoul\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241932571618830/2FFE6E451DFC78F29016FAA098191CAAC4485FA2/\",\"Size\":0.99}},{\"Transform\":{\"posX\":-0.0178122818,\"posY\":0.5581457,\"posZ\":-0.115283191,\"rotX\":-1.39326016E-06,\"rotY\":90.00001,\"rotZ\":-3.4364125E-06,\"scaleX\":1.973794,\"scaleY\":0.900001049,\"scaleZ\":0.9000014},\"CustomDecal\":{\"Name\":\"Nikoul\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241932571618830/2FFE6E451DFC78F29016FAA098191CAAC4485FA2/\",\"Size\":0.99}}]"
+  } ],
+  "UnitID{s:801;u:660;g:1;p:12;o:2284}" : [ {
+    "baseImage" : "http://cloud-3.steamusercontent.com/ugc/1493460530052612146/A32B1039AA7415CAB5A0166DC0A56F4503BBB370/",
+    "name" : "PU{660:1:12:2284 NIKOUL (foxhole)}",
     "decals" : "[{\"Transform\":{\"posX\":0.0178122073,\"posY\":0.567405343,\"posZ\":0.170838952,\"rotX\":1.58042121E-06,\"rotY\":270.0,\"rotZ\":-3.24925168E-06,\"scaleX\":1.97379351,\"scaleY\":0.900000334,\"scaleZ\":0.900000453},\"CustomDecal\":{\"Name\":\"Nikoul\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241932571618830/2FFE6E451DFC78F29016FAA098191CAAC4485FA2/\",\"Size\":0.99}},{\"Transform\":{\"posX\":-0.0178122818,\"posY\":0.5581457,\"posZ\":-0.115283191,\"rotX\":-1.39326016E-06,\"rotY\":90.00001,\"rotZ\":-3.4364125E-06,\"scaleX\":1.973794,\"scaleY\":0.900001049,\"scaleZ\":0.9000014},\"CustomDecal\":{\"Name\":\"Nikoul\",\"ImageURL\":\"http://cloud-3.steamusercontent.com/ugc/866241932571618830/2FFE6E451DFC78F29016FAA098191CAAC4485FA2/\",\"Size\":0.99}}]"
   } ],
   "UnitID{s:801;u:661;g:1;p:1;o:2285}" : [ {

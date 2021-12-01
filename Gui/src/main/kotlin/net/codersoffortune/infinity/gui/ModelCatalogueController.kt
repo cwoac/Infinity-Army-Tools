@@ -68,6 +68,13 @@ class ModelCatalogueController {
 
     private var currentFormIdx: Int = -1
         set(value) {
+            // put any changes into the modelset before removing them.
+            // Have to call updateDecalText as this listener will fire _before_ the field loses focus
+            if (currentModelIdx > -1) {
+                updateDecalText()
+                saveChanges()
+            }
+
             currentForm = if (value >= 0) formListView.items[value] else null
             field = value
             if (currentFormIdx >= 0)
@@ -201,23 +208,21 @@ class ModelCatalogueController {
         currentUnitIdx = -1
 
         currentFaction = faction
+
+        val catalogue = Catalogue()
+        catalogue.addUnits(currentFaction, mercCheckBox.isSelected)
+
         factionList = database.sectorals[currentFaction.armySectoral.id]!!
 
         if (missingCheckBox.isSelected) {
-            val catalogue = Catalogue()
-            catalogue.addUnits(currentFaction, mercCheckBox.isSelected)
+
             unitListView.items.addAll(
                 catalogue.modellessList.map { it.compactedUnit.unit }.distinct()
             )
         } else {
-            if (mercCheckBox.isSelected) {
-                unitListView.items.addAll(factionList.units)
-            } else {
-                // exclude units over 10000 as they are mercs
-                unitListView.items.addAll(
-                    factionList.units.stream().filter { it.id < 10000 }.toList()
-                )
-            }
+            unitListView.items.addAll(
+                catalogue.unitList.map { it.compactedUnit.unit }.distinct()
+            )
         }
         if (unitListView.items.isNotEmpty()) {
             unitListView.items.sortBy { it.id }
@@ -286,7 +291,7 @@ class ModelCatalogueController {
     private fun saveChanges() {
         currentProfile?.let {
             modelSet.setModels(
-                currentProfile!!.printableUnit.unitID,
+                currentForm!!.unitID,
                 ttsModelListView.items
             )
         }
@@ -336,8 +341,8 @@ class ModelCatalogueController {
         Platform.runLater {
             populateTTSList()
             currentModelIdx = ttsModelListView.items.size - 1
-            ttsModelListView.scrollTo(currentProfileIdx)
-            ttsModelListView.selectionModel.select(currentProfileIdx)
+            ttsModelListView.scrollTo(currentModelIdx)
+            ttsModelListView.selectionModel.select(currentModelIdx)
         }
     }
 

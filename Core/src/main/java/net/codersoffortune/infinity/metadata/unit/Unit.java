@@ -12,10 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.InvalidObjectException;
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Unit {
@@ -35,8 +32,8 @@ public class Unit {
 
     @Override
     public String toString() {
-        return String.format("Unit{%d: %s}",ID,
-                (iscAbbr==null)?isc:iscAbbr);
+        return String.format("Unit{%d: %s}", ID,
+                (iscAbbr == null) ? isc : iscAbbr);
     }
 
     /**
@@ -63,6 +60,7 @@ public class Unit {
 
     /**
      * Irritatingly merc status is simply denoted by having a unit ID over 10k.
+     *
      * @return whether this unit is a merc.
      */
     public boolean isMerc() {
@@ -72,9 +70,8 @@ public class Unit {
     /**
      * Get the units as a collection of json strings suitible for importing into TTS
      *
-     * @param group    profile group selected (usually 1)
-     * @param option   profile choice selected
-     * @param filters  Needed for mapping types, orders as they are stored in the faction data not meta data?
+     * @param group              profile group selected (usually 1)
+     * @param option             profile choice selected
      * @param equivalentModelSet the set of availiable models.
      * @return collection of strings, one per model.
      * @throws IllegalArgumentException on error.
@@ -88,7 +85,7 @@ public class Unit {
         //TODO:: Handle pilots
         Collection<CompactedUnit> compactedUnits = getPublicUnits(group, option);
         Collection<PrintableUnit> printableUnits = new ArrayList<>();
-        for( CompactedUnit cu: compactedUnits){
+        for (CompactedUnit cu : compactedUnits) {
             printableUnits.add(cu.getPrintableUnit(sectoral));
         }
         return printableUnits.stream()
@@ -100,12 +97,15 @@ public class Unit {
     public Collection<CompactedUnit> getAllDistinctUnits() {
         Collection<CompactedUnit> source = getAllUnits();
         Collection<CompactedUnit> result = new ArrayList<>();
-        source.forEach(s->{if(result.stream().noneMatch(r-> r.publicallyEqual(s)))result.add(s);});
+        source.forEach(s -> {
+            if (result.stream().noneMatch(r -> r.publicallyEqual(s))) result.add(s);
+        });
         return result;
     }
 
     /**
      * Returns whether this profile group is a transmuter or not.
+     *
      * @param group to check
      * @return true iff the first profile of this group has transmutation
      */
@@ -115,9 +115,9 @@ public class Unit {
         // 66 > seed embryo
         Profile profile = group.getProfiles().get(0);
         return profile.getSkills().stream()
-                .anyMatch(s->(s.getId()==246 || s.getId()==66)) ||
+                .anyMatch(s -> (s.getId() == 246 || s.getId() == 66)) ||
                 profile.getEquip().stream()
-                .anyMatch(s->s.getId()==205);
+                        .anyMatch(s -> s.getId() == 205);
     }
 
     private boolean isSeedSoldier(final ProfileGroup group) {
@@ -125,23 +125,50 @@ public class Unit {
         // 512 == seed soldier
         return getID() == 512;
         // 66 -> seed embryo
-//        return profile.getSkills().stream()
-//                        .anyMatch(s->s.getId()==66);
+    }
+
+    /**
+     * Check if an option has sapper. Have to check both the group and the option (curse you moblots!)
+     *
+     * @param group  the group to check
+     * @param option the option to check
+     * @return true iff we have the sapper skill
+     */
+    private boolean isSapper(final ProfileGroup group, final ProfileOption option) {
+        return group.getProfiles().stream().anyMatch(it -> it.getSkills().stream().anyMatch(s -> s.getId() == 89))
+                || option.getSkills().stream()
+                .anyMatch(s -> s.getId() == 89);
+    }
+
+    /**
+     * Inner helper function to generate the correct CompactedUnit for a given group/option pairing.
+     *
+     * @param pg the group to generate for
+     * @param po the option to generate for
+     * @return a CompactedUnit representing that group/option of this unit.
+     */
+    private List<CompactedUnit> getCompactedUnits(final ProfileGroup pg, final ProfileOption po) {
+        final List<Profile> ps = pg.getProfiles();
+
+        // Sappers get double profiles. Yay!
+        if (isSapper(pg, po)) {
+            return Arrays.asList(new TransmutedCompactedUnit(this, pg, getSapperProfileList(pg), po));
+        }
+        // Note that having transmutation makes no sense _unless_ there are multiple profiles to transmute to.
+        // But some units have multiple profiles without transmute (e.g. bikes and riders).
+        if (ps.size() > 1 && hasTransmutation(pg)) {
+            return Arrays.asList(new TransmutedCompactedUnit(this, pg, pg.getProfiles(), po));
+        }
+
+        // Just a boring unit(s)
+        return ps.stream().map(p -> new CompactedUnit(this, pg, p, po)).collect(Collectors.toList());
     }
 
     public Collection<CompactedUnit> getAllUnits() {
         Collection<CompactedUnit> result = new ArrayList<>();
-        for( ProfileGroup group: profileGroups) {
-            if( group.getProfiles().size() > 1 && hasTransmutation(group) ) {
-                result.addAll(group.getOptions().stream()
-                        .map(o -> new TransmutedCompactedUnit(this, group, group.getProfiles(), o))
-                        .collect(Collectors.toList()));
-            } else {
-                group.getProfiles().forEach(
-                        profile -> result.addAll(group.getOptions().stream()
-                                .map(o -> new CompactedUnit(this, group, profile, o))
-                                .collect(Collectors.toList()))
-                );
+        for (ProfileGroup group : profileGroups) {
+            for (ProfileOption option : group.getOptions()) {
+                result.addAll(getCompactedUnits(group, option));
             }
         }
         return result;
@@ -149,14 +176,15 @@ public class Unit {
 
     /**
      * Get a list of the weapons available to this unit which may be represented on a model.
+     *
      * @return a list of items that are plausibly visible on a model
      */
     public Collection<VisibleItem> getVisibleWeapons() {
         Collection<VisibleItem> result = new ArrayList<>();
         // We could iterate over all options / profiles, but the filters seem to have everything
         result.addAll(filters.get("weapons").stream().filter(it -> !Util.invisibleWeapons.contains(it))
-                        .map(it -> new VisibleItem(it, FilterType.weapons))
-                        .collect(Collectors.toList()));
+                .map(it -> new VisibleItem(it, FilterType.weapons))
+                .collect(Collectors.toList()));
 
         return result;
     }
@@ -184,8 +212,8 @@ public class Unit {
     public Collection<CompactedUnit> getPublicUnits(final int group, final int option) throws IllegalArgumentException {
         Collection<CompactedUnit> result = new ArrayList<>();
         Collection<CompactedUnit> unsortedUnits = getUnits(group, option);
-        for(CompactedUnit compactedUnit : unsortedUnits) {
-            if(compactedUnit.hasNoPrivateInformation()) {
+        for (CompactedUnit compactedUnit : unsortedUnits) {
+            if (compactedUnit.hasNoPrivateInformation()) {
                 // Easy!
                 result.add(compactedUnit);
                 continue;
@@ -193,9 +221,9 @@ public class Unit {
             // Ah. Need to find the public version of this.
             ProfileGroup pg = profileGroups.stream().filter(x -> x.getId() == group).findFirst().orElseThrow(IllegalArgumentException::new);
             List<Profile> profiles = pg.getProfiles();
-            for( ProfileOption po : pg.getOptions() ) {
+            for (ProfileOption po : pg.getOptions()) {
                 CompactedUnit candidate = new CompactedUnit(this, pg, profiles.get(0), po);
-                if( candidate.publicallyEqual(compactedUnit) && candidate.hasNoPrivateInformation()) {
+                if (candidate.publicallyEqual(compactedUnit) && candidate.hasNoPrivateInformation()) {
                     result.add(candidate);
                     break;
                 }
@@ -223,18 +251,28 @@ public class Unit {
 
         CompactedUnit unit = null;
         if (profiles.size() > 1) {
-            if ( isSeedSoldier(pg) ) {
+            if (isSeedSoldier(pg)) {
                 unit = new CompactedUnit(this, pg, profiles.get(1), po);
-            } else if( hasTransmutation(pg) ) {
-                unit = new TransmutedCompactedUnit(this, pg, pg.getProfiles(), po);
+            } else if (hasTransmutation(pg)) {
+                if (isSapper(pg, po)) {
+                    // Going to ignore the case of sapper Seed Soldiers as they don't exist!
+                    // This code is for (I think) only the nikoul.
+                    unit = new TransmutedCompactedUnit(this, pg, getSapperProfileList(pg), po);
+                } else {
+                    unit = new TransmutedCompactedUnit(this, pg, pg.getProfiles(), po);
+                }
             } else {
                 throw new InvalidParameterException(String.format("Unit %d / %d has multiple profiles but lacks transmutation?",
                         getID(),
                         group
-                        ));
+                ));
             }
         } else {
-            unit = new CompactedUnit(this, pg, profiles.get(0), po);
+            if (isSapper(pg, po)) {
+                unit = new TransmutedCompactedUnit(this, pg, getSapperProfileList(pg), po);
+            } else {
+                unit = new CompactedUnit(this, pg, profiles.get(0), po);
+            }
         }
 
         result.add(unit);
@@ -244,6 +282,8 @@ public class Unit {
             for (int i = 0; i < pi.getQ(); i++)
                 result.addAll(includedUnit);
         }
+
+        // So your opponent can't tell what your seed soldier is, it is stored as a different unit.
         if (isSeedSoldier(pg)) {
             result.add(new CompactedUnit(this, pg, profiles.get(0), po));
         }
@@ -336,5 +376,25 @@ public class Unit {
 
     public void setSlug(String slug) {
         this.slug = slug;
+    }
+
+    /**
+     * In order to track sapper decals, we need to generate custom profiles for the foxhole state.
+     *
+     * @param pg group to generate the new profiles from
+     * @return a list of profiles, both normal and sapper versions
+     */
+    private static List<Profile> getSapperProfileList(final ProfileGroup pg) {
+        // first grab all the normal profiles
+        List<Profile> profileList = pg.getProfiles().stream()
+                .filter(it -> it.getId() < Util.sapperProfileOffset)
+                .collect(Collectors.toList());
+        // now clone them, adding 10 to their ID and setting silhouette to 3
+        // But don't clone sapper profiles!
+        profileList.addAll(pg.getProfiles().stream()
+                .filter(it -> it.getId() < Util.sapperProfileOffset)
+                .map(Profile::sapperCopy)
+                .collect(Collectors.toList()));
+        return profileList;
     }
 }

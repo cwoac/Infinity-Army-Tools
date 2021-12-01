@@ -192,8 +192,9 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
     @Override
     public String toString() {
+        String outName = profile_idx >= Util.sapperProfileOffset ? name + " (foxhole)" : name;
         return String.format("PU{%d:%d:%d:%d %s}",
-                unit_idx, group_idx, profile_idx, option_idx, name);
+                unit_idx, group_idx, profile_idx, option_idx, outName);
     }
 
     @Override
