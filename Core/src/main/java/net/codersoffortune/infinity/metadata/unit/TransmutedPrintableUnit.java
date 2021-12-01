@@ -44,7 +44,7 @@ public class TransmutedPrintableUnit extends PrintableUnit {
 
 
 
-    private String asJSONInner(final TTSModel model, final String embeddedModel, final Collection<String> embeddedSilhouettes, boolean doAddons, final List<String> silhouettes, final String colour) {
+    private String asJSONInner(final TTSModel model, final Collection<String> embeddedModels, final Collection<String> embeddedSilhouettes, boolean doAddons, final List<String> silhouettes, final String colour) {
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
         final String addon = doAddons?Database.getAddonTemplate(s):"";
@@ -54,10 +54,11 @@ public class TransmutedPrintableUnit extends PrintableUnit {
         boolean silChange = !silhouettes.containsAll(embeddedSilhouettes);
         if (silChange) {
             states.addAll(silhouettes);
-            states.add(embeddedModel);
-            states.addAll(embeddedSilhouettes);
+            states.addAll(embeddedModels);
+            // don't include a silhouette we have already.
+            states.addAll(embeddedSilhouettes.stream().filter(e->!silhouettes.contains(e)).collect(Collectors.toList()));
         } else {
-            states.add(embeddedModel);
+            states.addAll(embeddedModels);
             states.addAll(silhouettes);
         }
         String embed = StreamUtils.zipWithIndex(states.stream().filter(s->!s.isEmpty()))
@@ -86,16 +87,20 @@ public class TransmutedPrintableUnit extends PrintableUnit {
 
 
         Set<TTSModel> models = ms.getModels(getUnitID());
-        int curEmbed = 0;
+        int curModel = 0;
 
+        // OK, so if a model has X additional decals, then for the Nth model, you need to take the X*N to X*(N+1)'th decals
+        // Yes, that is a pain.
+        assert(puEmbeds.size() == printableUnits.size() * models.size());
         for( TTSModel model : models) {
             try {
-                results.add(asJSONInner(model, puEmbeds.get(curEmbed), puSilhouettes, doAddons, silhouettes, colour));
+                Collection<String> embeds = puEmbeds.subList(printableUnits.size()*curModel,printableUnits.size()*(curModel+1));
+                results.add(asJSONInner(model, embeds, puSilhouettes, doAddons, silhouettes, colour));
             } catch (IndexOutOfBoundsException e) {
                 e.printStackTrace();
                 throw e;
             }
-            curEmbed = (curEmbed+1) % puEmbeds.size();
+            curModel += 1;
         }
 
         return String.join(",\n", results);
