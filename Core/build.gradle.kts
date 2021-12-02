@@ -27,10 +27,6 @@ dependencies {
 
 description = "Core"
 
-sourceSets.main {
-    java.srcDirs("src/main/java", "src/main/kotlin")
-}
-
 java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
@@ -39,6 +35,7 @@ java {
 repositories {
     mavenCentral()
 }
+
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions {
     jvmTarget = "11"
