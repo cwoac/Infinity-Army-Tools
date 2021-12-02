@@ -123,7 +123,8 @@ public class Unit {
     private boolean isSeedSoldier(final ProfileGroup group) {
         Profile profile = group.getProfiles().get(0);
         // 512 == seed soldier
-        return getID() == 512;
+        // 513 == cadmus
+        return getID() == 512 || getID() == 513;
         // 66 -> seed embryo
     }
 
@@ -157,6 +158,12 @@ public class Unit {
         // Note that having transmutation makes no sense _unless_ there are multiple profiles to transmute to.
         // But some units have multiple profiles without transmute (e.g. bikes and riders).
         if (ps.size() > 1 && hasTransmutation(pg)) {
+            if( Util.hasSeedState(this.ID)) {
+                return Arrays.asList(
+                        new CompactedUnit(this, pg, ps.get(0), po),
+                        new CompactedUnit(this, pg, ps.get(1), po)
+                );
+            }
             return Arrays.asList(new TransmutedCompactedUnit(this, pg, pg.getProfiles(), po));
         }
 
