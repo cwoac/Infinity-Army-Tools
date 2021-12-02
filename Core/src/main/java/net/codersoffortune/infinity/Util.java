@@ -125,15 +125,16 @@ public class Util {
     // 69 strategos l1
     // 70 strategos l2
     // 26 chain of command
+    // 207 counter intelligence
     // 120 FT:Core
     // 121 FT:Haris
     // 125 FT:Ent
     // 181 FT:Duo
     public final static List<Integer> privateSkills =
-            Arrays.asList(119,69,70,26,120,121,125,181);
+            Arrays.asList(119,69,70,26,120,121,125,181, 207);
 
     public final static List<Integer> hiddenSkills =
-            Arrays.asList(119,69,70,26);
+            Arrays.asList(119,69,70,26, 207);
 
     /**
      * Figure out the correct name to put along the top of the model.
