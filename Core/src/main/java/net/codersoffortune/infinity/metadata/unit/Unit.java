@@ -150,25 +150,32 @@ public class Unit {
      */
     private List<CompactedUnit> getCompactedUnits(final ProfileGroup pg, final ProfileOption po) {
         final List<Profile> ps = pg.getProfiles();
+        final List<CompactedUnit> result = new ArrayList<>();
 
         // Sappers get double profiles. Yay!
         if (isSapper(pg, po)) {
-            return Arrays.asList(new TransmutedCompactedUnit(this, pg, getSapperProfileList(pg), po));
-        }
-        // Note that having transmutation makes no sense _unless_ there are multiple profiles to transmute to.
-        // But some units have multiple profiles without transmute (e.g. bikes and riders).
-        if (ps.size() > 1 && hasTransmutation(pg)) {
-            if( Util.hasSeedState(this.ID)) {
-                return Arrays.asList(
-                        new CompactedUnit(this, pg, ps.get(0), po),
-                        new CompactedUnit(this, pg, ps.get(1), po)
-                );
+            result.add(new TransmutedCompactedUnit(this, pg, getSapperProfileList(pg), po));
+        } else {
+            // Note that having transmutation makes no sense _unless_ there are multiple profiles to transmute to.
+            // But some units have multiple profiles without transmute (e.g. bikes and riders).
+            if (ps.size() > 1 && hasTransmutation(pg) && !Util.hasSeedState(this.ID)) {
+                result.add(new TransmutedCompactedUnit(this, pg, pg.getProfiles(), po));
+            } else {
+                // Just a boring unit(s). Or a seed soldier.
+                ps.forEach(p -> result.add(new CompactedUnit(this, pg, p, po)));
             }
-            return Arrays.asList(new TransmutedCompactedUnit(this, pg, pg.getProfiles(), po));
         }
 
-        // Just a boring unit(s)
-        return ps.stream().map(p -> new CompactedUnit(this, pg, p, po)).collect(Collectors.toList());
+        // now check for included elements.
+        for (ProfileInclude pi : po.getIncludes()) {
+            Collection<CompactedUnit> includedUnits = getUnits(pi.getGroup(), pi.getOption());
+            // profile can have the same include multiple times.
+            for (int i = 0; i < pi.getQ(); i++) {
+                result.addAll(includedUnits);
+            }
+        }
+
+        return result;
     }
 
     public Collection<CompactedUnit> getAllUnits() {
@@ -244,57 +251,13 @@ public class Unit {
         if (group == 0) {
             return get0GroupUnits(option);
         }
-        Collection<CompactedUnit> result = new ArrayList<>();
 
         ProfileGroup pg = profileGroups.stream().filter(x -> x.getId() == group).findFirst().orElseThrow(IllegalArgumentException::new);
         // Note: technically, the unit also has a List<Options>, however this is (currently!) used only for jazz+billie and scarface+cordelia,
         // and maps directly to the options of profile1, and serves to provide the total cost of taking both of the unit.
         ProfileOption po = pg.getOptions().stream().filter(x -> x.getId() == option).findFirst().orElseThrow(IllegalArgumentException::new);
 
-        List<Profile> profiles = pg.getProfiles();
-        if (profiles.isEmpty()) {
-            throw new IllegalArgumentException("Asked for Profile group with no profile");
-        }
-
-        CompactedUnit unit = null;
-        if (profiles.size() > 1) {
-            if (isSeedSoldier(pg)) {
-                unit = new CompactedUnit(this, pg, profiles.get(1), po);
-            } else if (hasTransmutation(pg)) {
-                if (isSapper(pg, po)) {
-                    // Going to ignore the case of sapper Seed Soldiers as they don't exist!
-                    // This code is for (I think) only the nikoul.
-                    unit = new TransmutedCompactedUnit(this, pg, getSapperProfileList(pg), po);
-                } else {
-                    unit = new TransmutedCompactedUnit(this, pg, pg.getProfiles(), po);
-                }
-            } else {
-                throw new InvalidParameterException(String.format("Unit %d / %d has multiple profiles but lacks transmutation?",
-                        getID(),
-                        group
-                ));
-            }
-        } else {
-            if (isSapper(pg, po)) {
-                unit = new TransmutedCompactedUnit(this, pg, getSapperProfileList(pg), po);
-            } else {
-                unit = new CompactedUnit(this, pg, profiles.get(0), po);
-            }
-        }
-
-        result.add(unit);
-        // now check for included elements.
-        for (ProfileInclude pi : po.getIncludes()) {
-            Collection<CompactedUnit> includedUnit = getUnits(pi.getGroup(), pi.getOption());
-            for (int i = 0; i < pi.getQ(); i++)
-                result.addAll(includedUnit);
-        }
-
-        // So your opponent can't tell what your seed soldier is, it is stored as a different unit.
-        if (isSeedSoldier(pg)) {
-            result.add(new CompactedUnit(this, pg, profiles.get(0), po));
-        }
-        return result;
+        return getCompactedUnits(pg, po);
     }
 
     public Map<String, List<Integer>> getFilters() {
