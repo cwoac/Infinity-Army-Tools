@@ -16,6 +16,7 @@ plugins {
 
 dependencies {
     implementation("net.codersoffortune.infinity:Core:1.0.0-SNAPSHOT")
+    implementation("org.apache.logging.log4j:log4j-core:2.14.0")
     implementation("org.openjfx:javafx-controls:15.0.1")
     implementation("org.openjfx:javafx-fxml:15.0.1")
     implementation("org.apache.maven.plugins:maven-shade-plugin:3.2.4")
