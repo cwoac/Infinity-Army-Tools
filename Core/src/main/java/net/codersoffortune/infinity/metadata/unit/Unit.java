@@ -253,6 +253,11 @@ public class Unit {
                     break;
                 }
             }
+            if (result.isEmpty()) {
+                // everything either had private information or was not equal to the presented unit.
+                // so fall back on the unit itself.
+                result.add(compactedUnit);
+            }
         }
 
         return result;

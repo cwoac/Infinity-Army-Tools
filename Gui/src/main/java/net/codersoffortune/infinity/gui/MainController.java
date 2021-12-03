@@ -85,7 +85,14 @@ public class MainController {
 
     @FXML
     public void generateArmy(Event e) throws IOException {
-        Armylist al = Armylist.fromArmyCode(armyCodeTF.getText());
+        Armylist al;
+        try {
+            al = Armylist.fromArmyCode(armyCodeTF.getText());
+        } catch (IllegalArgumentException exception) {
+            new Alert(Alert.AlertType.ERROR, "Failed to decode armylist: " + exception).show();
+            // eat the exception because FXML is a pain
+            return;
+        }
         SectoralList sl = db.getSectorals().get(al.getSectoral().getId());
         Catalogue c = new Catalogue();
         c.addUnits(sl, al.getSectoral(), false);

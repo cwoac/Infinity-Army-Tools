@@ -15,6 +15,7 @@ import net.codersoffortune.infinity.tts.EquivalentModelSet;
 import net.codersoffortune.infinity.tts.ModelSet;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -44,8 +45,15 @@ public class Armylist {
 
 
 
-    public static Armylist fromArmyCode(final String armyCode) {
-        byte[] data = Base64.getDecoder().decode(armyCode);
+    public static Armylist fromArmyCode(final String armyCode) throws IllegalArgumentException {
+        String decoded;
+        byte[] data;
+        try {
+            decoded = URLDecoder.decode(armyCode, StandardCharsets.UTF_8);
+            data = Base64.getDecoder().decode(decoded);
+        } catch (Throwable t) {
+            throw new IllegalArgumentException("Failed to decode army code");
+        }
         ByteBuffer dataBuffer = ByteBuffer.wrap(data);
         Armylist result = new Armylist();
         result.setArmy_code(armyCode);
