@@ -246,8 +246,9 @@ public class Unit {
             ProfileGroup pg = profileGroups.stream().filter(x -> x.getId() == group).findFirst().orElseThrow(IllegalArgumentException::new);
             List<Profile> profiles = pg.getProfiles();
             for (ProfileOption po : pg.getOptions()) {
+                if (po.hasPrivateInformation()) continue;
                 CompactedUnit candidate = new CompactedUnit(this, pg, profiles.get(0), po);
-                if (candidate.publicallyEqual(compactedUnit) && candidate.hasNoPrivateInformation()) {
+                if (candidate.publicallyEqual(compactedUnit)) {
                     result.add(candidate);
                     break;
                 }
