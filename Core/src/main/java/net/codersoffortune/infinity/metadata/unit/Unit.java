@@ -162,11 +162,21 @@ public class Unit {
                 result.add(new TransmutedCompactedUnit(this, pg, pg.getProfiles(), po));
             } else {
                 // Just a boring unit(s). Or a seed soldier.
-                ps.forEach(p -> result.add(new CompactedUnit(this, pg, p, po)));
+
+                // If it is a biker then the first profile is the mounted version.
+                boolean dismountedBiker = false;
+                for( Profile profile: ps) {
+                    result.add(new CompactedUnit(this, pg, profile, po, dismountedBiker));
+                    if (profile.getEquip().stream().anyMatch(pi->Util.bikes.contains(pi.getId()))) {
+                        dismountedBiker = true;
+                    }
+                }
             }
         }
 
         // now check for included elements.
+        // There is currently a bug in that the Szalamandra Squad shows as having an include when it doesn't.
+        if (ID == 420) return result;
         for (ProfileInclude pi : po.getIncludes()) {
             Collection<CompactedUnit> includedUnits = getUnits(pi.getGroup(), pi.getOption());
             // profile can have the same include multiple times.
@@ -252,7 +262,12 @@ public class Unit {
             return get0GroupUnits(option);
         }
 
-        ProfileGroup pg = profileGroups.stream().filter(x -> x.getId() == group).findFirst().orElseThrow(IllegalArgumentException::new);
+        ProfileGroup pg;
+        try {
+            pg = profileGroups.stream().filter(x -> x.getId() == group).findFirst().orElseThrow(IllegalArgumentException::new);
+        } catch (IllegalArgumentException e) {
+            throw(e);
+        }
         // Note: technically, the unit also has a List<Options>, however this is (currently!) used only for jazz+billie and scarface+cordelia,
         // and maps directly to the options of profile1, and serves to provide the total cost of taking both of the unit.
         ProfileOption po = pg.getOptions().stream().filter(x -> x.getId() == option).findFirst().orElseThrow(IllegalArgumentException::new);

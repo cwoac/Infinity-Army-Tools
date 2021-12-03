@@ -14,7 +14,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.logging.Filter;
 import java.util.stream.Collectors;
 
 /**
@@ -39,13 +38,19 @@ public class CompactedUnit {
     private final String name;
 
     private final boolean hasPrivateInformation;
+    private final boolean dismounted;
 
     public CompactedUnit(Unit unit, ProfileGroup group, Profile profile, ProfileOption option) {
+        this(unit, group, profile, option, false);
+    }
+
+    public CompactedUnit(Unit unit, ProfileGroup group, Profile profile, ProfileOption option, boolean isDismounted) {
         this.unit = unit;
         this.unit_idx = unit.getID();
         this.group = group;
         this.profile = profile;
         this.option = option;
+        this.dismounted = isDismounted;
         profile_idx = profile.getId();
         group_idx = group.getId();
         option_idx = option.getId();
@@ -88,6 +93,8 @@ public class CompactedUnit {
         // 2 - no cube, 5 = not impetuous
         return !(c == 2 || c == 5);
     }
+
+    public boolean isDismounted() { return this.dismounted; }
 
     /**
      * Checks whether to suppress a hidden information skill
