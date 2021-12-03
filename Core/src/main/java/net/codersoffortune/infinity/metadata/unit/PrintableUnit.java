@@ -99,7 +99,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         // Name. Name _should_ be easy. For almost everyone it is the option name
         // However, for a few characters who exist as multiple units (in different armours), this is not usefully the case.
         profile_name = src.getProfile().getName();
-        name = Util.getName(src.getUnit_idx(), src.getProfile_idx(), profile_name, src.getName());
+        name = Util.getName(src.getUnit_idx(), src.getProfile_idx(), profile_name, src.getName(), src.isDismounted());
 
         this.sectoral = sectoral;
         unit_idx = src.getUnit_idx();

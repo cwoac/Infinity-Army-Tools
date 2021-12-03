@@ -1,6 +1,9 @@
 package net.codersoffortune.infinity;
 
+import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.FilterType;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.text.DecimalFormat;
 import java.util.*;
@@ -13,6 +16,7 @@ import static java.util.Map.entry;
  * The name is an in-joke.
  */
 public class Util {
+    private static final Logger logger = LogManager.getLogger(Util.class);
 
 
     // Visible properties
@@ -116,9 +120,7 @@ public class Util {
             53, // Sheskiin
             1503, // Sheskiin
             143, // TZE
-            165, // TZE
-            1565, // Motorized Bounty Hunter
-            1566 // ITS Motorized Bounty Hunter
+            165 // TZE
     );
 
     // 119 - lt
@@ -136,6 +138,9 @@ public class Util {
     public final static List<Integer> hiddenSkills =
             Arrays.asList(119,69,70,26, 207);
 
+    public final static List<Integer> bikes =
+            Arrays.asList(107, 205);
+
     /**
      * Figure out the correct name to put along the top of the model.
      * This is _almost_ always the unit name.
@@ -145,12 +150,17 @@ public class Util {
      * @param profileId ID of the profile
      * @param profileName the name of the current profile
      * @param unitName the name of the current unit
+     * @param isDismounted whether the unit is a dismounted model
      * @return The correct name for the model
      */
-    public static String getName(int unitId, int profileId, final String profileName, final String unitName) {
+    public static String getName(int unitId, int profileId, final String profileName, final String unitName, final boolean isDismounted) {
         // seed soldiers
         if (unitId == 512 || unitId == 513) {
             return profileId==1 ? profileName : unitName;
+        }
+        if (isDismounted) {
+            String newName = String.format("%s (dismounted)", unitName);
+            return newName;
         }
         if( nameEdgeCases.contains(unitId) ) return profileName;
 
