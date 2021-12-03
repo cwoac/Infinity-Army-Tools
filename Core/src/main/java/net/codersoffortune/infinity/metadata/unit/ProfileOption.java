@@ -1,5 +1,6 @@
 package net.codersoffortune.infinity.metadata.unit;
 
+import net.codersoffortune.infinity.Util;
 import net.codersoffortune.infinity.metadata.Order;
 
 import java.util.List;
@@ -169,5 +170,9 @@ public class ProfileOption {
 
     public void setHabilities(List<String> habilities) {
         this.habilities = habilities;
+    }
+
+    public boolean hasPrivateInformation() {
+        return skills.stream().anyMatch(x -> Util.hiddenSkills.contains(x.getId()));
     }
 }
