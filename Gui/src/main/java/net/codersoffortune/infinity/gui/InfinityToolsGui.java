@@ -4,9 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.core.config.Configurator;
 import java.io.IOException;
 
 public class InfinityToolsGui extends Application {
@@ -29,6 +29,7 @@ public class InfinityToolsGui extends Application {
     }
 
     public static void main(String[] args) {
+        Configurator.setRootLevel(Level.DEBUG);
         launch();
     }
 
