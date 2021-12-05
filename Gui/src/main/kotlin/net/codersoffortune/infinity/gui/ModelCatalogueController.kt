@@ -273,6 +273,11 @@ class ModelCatalogueController {
         if (ttsModelListView.items.isNotEmpty()) {
             ttsModelListView.selectionModel.select(0)
             currentModelIdx = 0
+            decalField.isDisable = false
+            baseImageField.isDisable = false
+        } else {
+            decalField.isDisable = true
+            baseImageField.isDisable = true
         }
     }
 
