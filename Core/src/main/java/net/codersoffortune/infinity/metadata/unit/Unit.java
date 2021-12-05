@@ -163,13 +163,8 @@ public class Unit {
             } else {
                 // Just a boring unit(s). Or a seed soldier.
 
-                // If it is a biker then the first profile is the mounted version.
-                boolean dismountedBiker = false;
                 for( Profile profile: ps) {
-                    result.add(new CompactedUnit(this, pg, profile, po, dismountedBiker));
-                    if (profile.getEquip().stream().anyMatch(pi->Util.bikes.contains(pi.getId()))) {
-                        dismountedBiker = true;
-                    }
+                    result.add(new CompactedUnit(this, pg, profile, po));
                 }
             }
         }

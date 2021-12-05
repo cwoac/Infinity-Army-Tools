@@ -2,6 +2,7 @@ package net.codersoffortune.infinity;
 
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.FilterType;
+import net.codersoffortune.infinity.metadata.unit.CompactedUnit;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -146,26 +147,42 @@ public class Util {
      * This is _almost_ always the unit name.
      * When it isn't, it is _usually_ the profile name.
      * Except when it is both. Or if it depends on the profile ID
-     * @param unitId ID of the unit
-     * @param profileId ID of the profile
+     * Basically this is a hot mess of edge cases
+     * @param cu the compacted unit to name
      * @param profileName the name of the current profile
-     * @param unitName the name of the current unit
-     * @param isDismounted whether the unit is a dismounted model
+     * @param optionName the name of the current option
      * @return The correct name for the model
      */
-    public static String getName(int unitId, int profileId, final String profileName, final String unitName, final boolean isDismounted) {
-        // seed soldiers
-        if (unitId == 512 || unitId == 513) {
-            return profileId==1 ? profileName : unitName;
-        }
-        if (isDismounted) {
-            String newName = String.format("%s (dismounted)", unitName);
-            return newName;
-        }
-        if( nameEdgeCases.contains(unitId) ) return profileName;
+    public static String getName(final CompactedUnit cu, String profileName, final String optionName) {
+        // First the so awkward I have to basically hard code the value ones.
 
-        if( unitId == 155 ) return String.format("%s (%s)", unitName, profileName); // Su Jian
-        return unitName;
+        // seed soldiers
+        if (cu.getUnit_idx() == 512 || cu.getUnit_idx() == 513) {
+            return cu.getProfile_idx()==1 ? profileName : cu.getName();
+        }
+
+        // Su-Jian
+        if( cu.getUnit_idx() == 155 ) return String.format("%s (%s)", cu.getName(), profileName);
+
+        // 112 motorized
+        if( cu.getUnit_idx() == 1284 && cu.getProfile_idx() > 1) {
+            profileName = "DISMOUNTED";
+        }
+
+        // edge cases that explicitly require just the profile name
+        if( nameEdgeCases.contains(cu.getUnit_idx()) ) return profileName;
+
+        String result = optionName;
+        if ((cu.getProfile_idx() % Util.sapperProfileOffset) > 1) {
+            result = result + " (" + profileName + ")";
+        }
+
+        // sappers
+        if (cu.isFoxhole()) {
+            return String.format("%s (foxhole)", result);
+        }
+
+        return result;
     }
 
     /**

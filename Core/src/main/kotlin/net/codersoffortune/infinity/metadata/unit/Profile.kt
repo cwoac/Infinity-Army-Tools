@@ -53,7 +53,7 @@ data class Profile(
             type,
             w,
             wip,
-            name + " (foxhole)",
+            name,
             notes,
             skills,
             peripheral

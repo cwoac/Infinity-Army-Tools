@@ -61,7 +61,6 @@ public class Armylist {
         result.setSectoral(readVLI(dataBuffer));
         result.setGame(result.getSectoral().getGame());
         // Not sure why they embed the faction name as well, but *shrug*
-        //int faction_length = dataBuffer.get() & 0xffffff;
         int faction_length = readVLI(dataBuffer);
         byte[] faction_name_data = new byte[faction_length];
         dataBuffer.get(faction_name_data, 0, faction_length);
@@ -135,7 +134,7 @@ public class Armylist {
                 }
             }
         }
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 
     /**
@@ -145,10 +144,6 @@ public class Armylist {
      */
     public String asJson(final EquivalentModelSet equivalentModelSet, boolean doAddons) throws IOException {
         Database db = Database.getInstance();
-
-        //if (modelSet.getFaction() != getFaction()) {
-        //    throw new IllegalArgumentException("Modelset is of the wrong faction!");
-        //}
 
         List<String> units = new ArrayList<>();
         for (CombatGroup cg : getCombatGroups()) {

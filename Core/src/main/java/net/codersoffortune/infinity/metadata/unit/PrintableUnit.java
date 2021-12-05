@@ -64,6 +64,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     private final int profile_idx;
     private final String name;
     private final String profile_name;
+    private final String option_name;
     private final int arm;
     private final int bs;
     private final int bts;
@@ -99,7 +100,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         // Name. Name _should_ be easy. For almost everyone it is the option name
         // However, for a few characters who exist as multiple units (in different armours), this is not usefully the case.
         profile_name = src.getProfile().getName();
-        name = Util.getName(src.getUnit_idx(), src.getProfile_idx(), profile_name, src.getName(), src.isDismounted());
+        option_name = src.getOption().getName();
+        name = Util.getName(src, profile_name, option_name);
 
         this.sectoral = sectoral;
         unit_idx = src.getUnit_idx();
@@ -192,9 +194,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
     @Override
     public String toString() {
-        String outName = profile_idx >= Util.sapperProfileOffset ? name + " (foxhole)" : name;
         return String.format("PU{%d:%d:%d:%d %s}",
-                unit_idx, group_idx, profile_idx, option_idx, outName);
+                unit_idx, group_idx, profile_idx, option_idx, name);
     }
 
     @Override
@@ -449,10 +450,6 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return getTTSNameInner(name);
     }
 
-    protected String getEmbeddedTTSName() {
-        return getTTSNameInner(profile_name);
-    }
-
 
     private boolean isSeedEmbryo() {
         return unit_idx == 512 && profile_idx == 1;
@@ -504,7 +501,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     }
 
     public List<String> asEmbeddedJSON(final ModelSet ms, boolean doAddons) {
-        String ttsName = getEmbeddedTTSName();
+        String ttsName = getTTSName();
         String ttsDescription = getTTSDescription();
         final String addon = doAddons ? Database.getAddonTemplate(s) : "";
         String ttsColour = sectoral.getTint();
