@@ -1,6 +1,5 @@
 package net.codersoffortune.infinity.gui
 
-
 import javafx.application.Platform
 import javafx.fxml.FXML
 import javafx.scene.control.*
@@ -19,7 +18,6 @@ import net.codersoffortune.infinity.tts.Catalogue
 import net.codersoffortune.infinity.tts.DecalBlockModel
 import net.codersoffortune.infinity.tts.ModelSet
 import net.codersoffortune.infinity.tts.TTSModel
-import kotlin.streams.toList
 
 
 class ModelCatalogueController {

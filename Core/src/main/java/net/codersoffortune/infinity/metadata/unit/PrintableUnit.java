@@ -452,7 +452,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
 
     private boolean isSeedEmbryo() {
-        return unit_idx == 512 && profile_idx == 1;
+        return (unit_idx == 512 || unit_idx == 513) && profile_idx == 1;
     }
 
     public String asJSONSEED(final ModelSet ms, boolean doAddons, final String colour) {
