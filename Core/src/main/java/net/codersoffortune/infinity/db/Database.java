@@ -26,6 +26,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public class Database {
+    public final static String MODEL_CATALOGUE_FILE = "resources/model catalogue.json";
     private static final Logger logger = LogManager.getLogger(Database.class);
 
     private final static String FACTION_URL_FORMAT = "https://api.corvusbelli.com/army/units/en/%d";
@@ -94,10 +95,14 @@ public class Database {
         transmutedUnitTemplate = getResourceFileAsString("Templates/transmuted_model_template");
         factionTemplate = getResourceFileAsString("templates/faction_template");
         bagTemplate = getResourceFileAsString("templates/bag_template");
-        modelSet = new ModelSet("resources/model catalogue.json");
+        loadModelSet();
         decalTemplate = getResourceFileAsString("templates/decal_template.json");
 
         physicalModels = ModelCollection.Companion.load(getResourceFileAsString("physical_models.json"));
+    }
+
+    public void loadModelSet() throws IOException {
+        modelSet = new ModelSet(MODEL_CATALOGUE_FILE);
     }
 
     public static String getBagTemplate() {

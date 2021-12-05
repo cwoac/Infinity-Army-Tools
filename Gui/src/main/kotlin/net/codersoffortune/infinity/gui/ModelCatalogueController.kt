@@ -22,9 +22,6 @@ import net.codersoffortune.infinity.tts.TTSModel
 
 class ModelCatalogueController {
     private val database: Database = Database.getInstance()
-
-    // TODO: should be a static somewhere. Or in Database instance?
-    private val modelSetFileName = "resources/model catalogue.json"
     private lateinit var currentFaction: FACTION
     private lateinit var factionList: SectoralList
 
@@ -370,7 +367,8 @@ class ModelCatalogueController {
     }
 
     private fun writeModelSetToDisk() {
-        modelSet.writeFile(modelSetFileName)
+        modelSet.writeFile(Database.MODEL_CATALOGUE_FILE)
+        database.loadModelSet()
         Alert(Alert.AlertType.INFORMATION, "Catalogue updated.").show()
     }
 
