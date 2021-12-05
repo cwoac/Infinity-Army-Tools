@@ -86,7 +86,7 @@ class ModelCatalogueController {
         }
     private var currentModel: TTSModel? = null
 
-    private var modelSet = ModelSet(modelSetFileName)
+    private var modelSet = ModelSet(Database.MODEL_CATALOGUE_FILE)
 
     @FXML
     private lateinit var factionChoiceBox: ChoiceBox<FACTION>
