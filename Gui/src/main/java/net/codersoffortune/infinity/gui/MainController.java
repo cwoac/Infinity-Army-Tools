@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import net.codersoffortune.infinity.armylist.Armylist;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
@@ -89,7 +90,7 @@ public class MainController {
         try {
             al = Armylist.fromArmyCode(armyCodeTF.getText());
         } catch (IllegalArgumentException exception) {
-            new Alert(Alert.AlertType.ERROR, "Failed to decode armylist: " + exception).show();
+            showLongAlert(Alert.AlertType.ERROR, "Failed to decode armylist:\n" + exception.getMessage());
             // eat the exception because FXML is a pain
             return;
         }
@@ -98,7 +99,13 @@ public class MainController {
         c.addUnits(sl, al.getSectoral(), false);
         EquivalentModelSet ems = new EquivalentModelSet(c.getMappings());
         ems.addModelSet(Database.getModelSet());
-        String json = al.asJson(ems, enableAddons.isSelected());
+        String json;
+        try {
+            json = al.asJson(ems, enableAddons.isSelected());
+        } catch (IllegalArgumentException exception) {
+            showLongAlert(Alert.AlertType.ERROR, "Failed to decode army list:\n" + exception.getMessage());
+            return;
+        }
         Files.createDirectories(Paths.get("army lists"));
         BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("army lists/AL %s %s.json", al.getSectoralName(), al.getArmy_name()),  StandardCharsets.UTF_8));
         writer.append(json);
@@ -112,5 +119,15 @@ public class MainController {
 
     public void physicalCatalogEdit(ActionEvent actionEvent) throws IOException {
         InfinityToolsGui.switchWindow("PhysicalCatalogue");
+    }
+
+    public static void showLongAlert(final Alert.AlertType type, final String message) {
+        //Text text = new Text(message);
+        //text.setWrappingWidth(100);
+        Label label = new Label(message);
+        label.setWrapText(true);
+        Alert alert = new Alert(type);
+        alert.getDialogPane().setContent(label);
+        alert.show();
     }
 }

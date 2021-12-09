@@ -134,10 +134,10 @@ public class Util {
     // 125 FT:Ent
     // 181 FT:Duo
     public final static List<Integer> privateSkills =
-            Arrays.asList(119,69,70,26,120,121,125,181, 207);
+            Arrays.asList(119,26,120,121,125,181, 207);
 
     public final static List<Integer> hiddenSkills =
-            Arrays.asList(119,69,70,26, 207);
+            Arrays.asList(119, 26, 207);
 
     public final static List<Integer> bikes =
             Arrays.asList(107, 205);

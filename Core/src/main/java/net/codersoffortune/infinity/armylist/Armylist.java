@@ -46,14 +46,20 @@ public class Armylist {
 
 
     public static Armylist fromArmyCode(final String armyCode) throws IllegalArgumentException {
-        String decoded;
         byte[] data;
+
+        // So sometimes CB urlencodes the army code and sometimes it doesn't. Yay
         try {
-            decoded = URLDecoder.decode(armyCode, StandardCharsets.UTF_8);
-            data = Base64.getDecoder().decode(decoded);
-        } catch (Throwable t) {
-            throw new IllegalArgumentException("Failed to decode army code");
+            data = Base64.getDecoder().decode(armyCode);
+        } catch ( IllegalArgumentException exception) {
+            try {
+                String decoded = URLDecoder.decode(armyCode, StandardCharsets.UTF_8);
+                data = Base64.getDecoder().decode(decoded);
+            } catch (Throwable t) {
+                throw new IllegalArgumentException("Failed to decode army code");
+            }
         }
+
         ByteBuffer dataBuffer = ByteBuffer.wrap(data);
         Armylist result = new Armylist();
         result.setArmy_code(armyCode);
