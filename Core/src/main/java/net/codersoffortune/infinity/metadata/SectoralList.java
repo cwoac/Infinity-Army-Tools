@@ -2,7 +2,8 @@ package net.codersoffortune.infinity.metadata;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import net.codersoffortune.infinity.collection.PhysicalModel;
+
+import net.codersoffortune.infinity.metadata.fireteamChart.FireteamChart;
 import net.codersoffortune.infinity.metadata.specops.Specops;
 import net.codersoffortune.infinity.metadata.specops.SpecopsNestedItem;
 import net.codersoffortune.infinity.metadata.specops.SpecopsNestedItemDeserializer;
@@ -22,6 +23,7 @@ public class SectoralList {
     private List<Fireteam> fireteams; // TODO:: Is this ever used?
     private List<Relation> relations; // TODO:: Is this ever used?
     private Specops specops;
+    private FireteamChart fireteamChart;
 
     public static SectoralList load(String url) throws IOException {
         ObjectMapper om = new ObjectMapper();
@@ -93,5 +95,13 @@ public class SectoralList {
 
     public void setSpecops(Specops specops) {
         this.specops = specops;
+    }
+
+    public FireteamChart getFireteamChart() {
+        return fireteamChart;
+    }
+
+    public void setFireteamChart(FireteamChart fireteamChart) {
+        this.fireteamChart = fireteamChart;
     }
 }
