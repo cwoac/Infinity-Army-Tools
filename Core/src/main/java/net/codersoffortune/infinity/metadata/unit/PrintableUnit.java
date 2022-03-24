@@ -34,8 +34,8 @@ import java.util.stream.Collectors;
  */
 public class PrintableUnit implements Comparable<PrintableUnit> {
     public static final List<String> IMP_DECALS = List.of(
-            ",\"AttachedDecals\": [{\"Transform\": {\"posX\": -0.00541555043,\"posY\": 1.6975,\"posZ\": 0.00176222192,\"rotX\": 89.98022,\"rotY\": 0.0138618117,\"rotZ\": 0.0,\"scaleX\": 0.909090936,\"scaleY\": 0.909090936,\"scaleZ\": 0.9090909},\"CustomDecal\": {\"Name\": \"IMP-2\",\"ImageURL\": \"http://cloud-3.steamusercontent.com/ugc/859479043234200757/7E194DA057B6FABED18662C5F2A0B6F77E6A05B2/\",\"Size\": 1.0}}]",
-            ",\"AttachedDecals\": [{\"Transform\": {\"posX\": 0.00342403026,\"posY\": 1.6975,\"posZ\": 0.00270367065,\"rotX\": 89.98022,\"rotY\": 0.0137606515,\"rotZ\": 0.0,\"scaleX\": 0.909090936,\"scaleY\": 0.909090936,\"scaleZ\": 0.9090909},\"CustomDecal\": {\"Name\": \"IMP-1\",\"ImageURL\": \"http://cloud-3.steamusercontent.com/ugc/859479043234200062/5F360301D5BA8909AA375577B8EC34D98D0F90E4/\",\"Size\": 1.0}}]"
+            ",\"AttachedDecals\": [{\"Transform\": {\"posX\": -0.00541555043,\"posY\": 1.6975,\"posZ\": 0.00176222192,\"rotX\": 89.98022,\"rotY\": 0.0138618117,\"rotZ\": 0.0,\"scaleX\": 0.909090936,\"scaleY\": 0.909090936,\"scaleZ\": 0.9090909},\"CustomDecal\": {\"Name\": \"IMP-2\",\"ImageURL\": \"http://cloud-3.steamusercontent.com/ugc/1821146583276370408/2E7D29A22D3F9B48B7B7754FFA39ABA67C4EABED/\",\"Size\": 1.0}}]",
+            ",\"AttachedDecals\": [{\"Transform\": {\"posX\": 0.00342403026,\"posY\": 1.6975,\"posZ\": 0.00270367065,\"rotX\": 89.98022,\"rotY\": 0.0137606515,\"rotZ\": 0.0,\"scaleX\": 0.909090936,\"scaleY\": 0.909090936,\"scaleZ\": 0.9090909},\"CustomDecal\": {\"Name\": \"IMP-1\",\"ImageURL\": \"http://cloud-3.steamusercontent.com/ugc/1821146583276370311/16D2DC13FCB1470BA1C9A2D7B0488D45BAF937D5/\",\"Size\": 1.0}}]"
     );
     public static final List<String> IMP_TINTS = List.of(
             "\"r\": 0.8901961,\"g\": 0.5882353,\"b\": 0.58431375",
