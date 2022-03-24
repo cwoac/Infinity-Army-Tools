@@ -52,7 +52,14 @@ public class UnitFlags {
             }
             else
             {
-                impersonisation = 0;
+                // Stupid hard coding for KISS since it's a peripheral to a hacker.
+                if( unit.getUnit_idx()==965 && unit.getGroup_idx()==2) {
+                    impersonisation = 1;
+                }
+                else
+                {
+                    impersonisation = 0;
+                }
             }
         } else {
             impersonisation = 2;
