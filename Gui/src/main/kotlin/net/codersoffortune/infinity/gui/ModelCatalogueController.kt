@@ -9,6 +9,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.SerializationException
 import net.codersoffortune.infinity.DecalBlock
 import net.codersoffortune.infinity.FACTION
+import net.codersoffortune.infinity.SECTORAL
 import net.codersoffortune.infinity.collection.GuiModel
 import net.codersoffortune.infinity.db.Database
 import net.codersoffortune.infinity.metadata.SectoralList
@@ -22,7 +23,7 @@ import net.codersoffortune.infinity.tts.TTSModel
 
 class ModelCatalogueController {
     private val database: Database = Database.getInstance()
-    private lateinit var currentFaction: FACTION
+    private lateinit var currentForce: SECTORAL
     private lateinit var factionList: SectoralList
 
     private var currentUnitIdx: Int = -1
@@ -89,7 +90,7 @@ class ModelCatalogueController {
     private var modelSet = ModelSet(Database.MODEL_CATALOGUE_FILE)
 
     @FXML
-    private lateinit var factionChoiceBox: ChoiceBox<FACTION>
+    private lateinit var forceChoiceBox: ChoiceBox<SECTORAL>
 
     @FXML
     private lateinit var missingCheckBox: CheckBox
@@ -136,9 +137,9 @@ class ModelCatalogueController {
 
     @FXML
     fun initialize() {
-        factionChoiceBox.items.addAll(FACTION.armyFactions)
-        factionChoiceBox.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
-            changeFaction(factionChoiceBox.items[newValue as Int])
+        forceChoiceBox.items.addAll(SECTORAL.topLevelSectorals)
+        forceChoiceBox.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
+            changeForce(forceChoiceBox.items[newValue as Int])
         }
 
         unitListView.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
@@ -159,12 +160,12 @@ class ModelCatalogueController {
 
         missingCheckBox.selectedProperty().addListener { _ ->
             // force reload of the pane.
-            changeFaction(currentFaction)
+            changeForce(currentForce)
         }
 
         mercCheckBox.selectedProperty().addListener { _ ->
             // force reload of the pane.
-            changeFaction(currentFaction)
+            changeForce(currentForce)
         }
 
         decalField.focusedProperty().addListener { _, _, newValue ->
@@ -198,33 +199,38 @@ class ModelCatalogueController {
     }
 
 
-    private fun changeFaction(faction: FACTION) {
+    private fun changeForce(sectoral: SECTORAL) {
         clearUnitPane()
         currentUnitIdx = -1
 
-        currentFaction = faction
+        currentForce = sectoral
 
         val catalogue = Catalogue()
-        catalogue.addUnits(currentFaction, mercCheckBox.isSelected)
 
-        factionList = database.sectorals[currentFaction.armySectoral.id]!!
-
-        if (missingCheckBox.isSelected) {
-
-            unitListView.items.addAll(
-                catalogue.modellessList.map { it.compactedUnit.unit }.distinct()
-            )
+        // I don't know a nicer way of doing this. Stupid NA2
+        if( currentForce.parent == FACTION.NA2) {
+            catalogue.addUnits(database.sectorals.get(currentForce.id), currentForce, mercCheckBox.isSelected)
         } else {
-            unitListView.items.addAll(
-                catalogue.unitList.map { it.compactedUnit.unit }.distinct()
-            )
-        }
-        if (unitListView.items.isNotEmpty()) {
-            unitListView.items.sortBy { it.id }
-            unitListView.selectionModel.select(0)
-            currentUnitIdx = 0
+            catalogue.addUnits(currentForce.parent, mercCheckBox.isSelected)
         }
 
+        factionList = database.sectorals[currentForce.id]!!
+
+           if (missingCheckBox.isSelected) {
+
+               unitListView.items.addAll(
+                   catalogue.modellessList.map { it.compactedUnit.unit }.distinct()
+               )
+           } else {
+               unitListView.items.addAll(
+                   catalogue.unitList.map { it.compactedUnit.unit }.distinct()
+               )
+           }
+           if (unitListView.items.isNotEmpty()) {
+               unitListView.items.sortBy { it.id }
+               unitListView.selectionModel.select(0)
+               currentUnitIdx = 0
+           }
     }
 
     private fun populateProfileList() {
@@ -233,7 +239,7 @@ class ModelCatalogueController {
             profileListView.items.addAll(it.map { jt ->
                 GuiModel(
                     jt,
-                    currentFaction.armySectoral
+                    currentForce
                 )
             })
         }

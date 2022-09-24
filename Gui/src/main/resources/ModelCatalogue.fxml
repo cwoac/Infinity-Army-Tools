@@ -12,10 +12,10 @@
         <HBox spacing="10.0">
             <Label text="Options:"/>
             <HBox>
-                <Label text="Faction"/>
-                <ChoiceBox fx:id="factionChoiceBox" prefWidth="150.0"/>
+                <Label text="Force"/>
+                <ChoiceBox fx:id="forceChoiceBox" prefWidth="150.0"/>
             </HBox>
-            <CheckBox fx:id="missingCheckBox" text="Show only missing models"/>
+            <CheckBox fx:id="missingCheckBox" text="Show only models with missing profiles"/>
             <CheckBox fx:id="mercCheckBox" text="Show Soldiers of Fortune"/>
             <opaqueInsets>
                 <Insets bottom="1.0"/>
@@ -50,7 +50,7 @@
                 </VBox>
             </top>
             <center>
-                <VBox fillWidth="true">
+                <VBox>
                     <GridPane hgap="5.0" prefHeight="274.0" prefWidth="865.0" vgap="5.0">
                         <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
                             <Label text="Forms"/>
