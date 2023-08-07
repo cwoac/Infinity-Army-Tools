@@ -5,16 +5,18 @@ public class Faction {
     private int parent;
     private String name;
     private String slug;
+    private String discontinued;
     private String logo;
 
     public Faction() {
     }
 
-    public Faction(int ID, int parent, String name, String slug, String logo) {
+    public Faction(int ID, int parent, String name, String slug, String discontinued, String logo) {
         this.ID = ID;
         this.parent = parent;
         this.name = name;
         this.slug = slug;
+        this.discontinued = discontinued;
         this.logo = logo;
     }
 
@@ -48,6 +50,14 @@ public class Faction {
 
     public void setSlug(String slug) {
         this.slug = slug;
+    }
+
+    public String getDiscontinued() {
+        return discontinued;
+    }
+
+    public void setDiscontinued(String discontinued) {
+        this.discontinued = discontinued;
     }
 
     public String getLogo() {

@@ -17,7 +17,7 @@ import java.util.Optional;
 public class SectoralList {
     private String version;
     private List<Unit> units;
-
+    private Integer reinforcements;
     private FactionFilters filters;
     private List<Resume> resume;
     private List<Fireteam> fireteams; // TODO:: Is this ever used?
@@ -51,6 +51,14 @@ public class SectoralList {
 
     public void setUnits(List<Unit> units) {
         this.units = units;
+    }
+
+    public Integer getReinforcements() {
+        return reinforcements;
+    }
+
+    public void setReinforcements(Integer reinforcements) {
+        this.reinforcements = reinforcements;
     }
 
     public FactionFilters getFilters() {

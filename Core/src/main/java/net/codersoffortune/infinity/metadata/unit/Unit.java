@@ -29,6 +29,7 @@ public class Unit {
     private List<ProfileOption> options;
     private String slug;
     private Map<String, List<Integer>> filters;
+    private List<Integer> factions;
 
     @Override
     public String toString() {
@@ -362,6 +363,14 @@ public class Unit {
 
     public void setSlug(String slug) {
         this.slug = slug;
+    }
+
+    public List<Integer> getFactions() {
+        return factions;
+    }
+
+    public void setFactions(List<Integer> factions) {
+        this.factions = factions;
     }
 
     /**

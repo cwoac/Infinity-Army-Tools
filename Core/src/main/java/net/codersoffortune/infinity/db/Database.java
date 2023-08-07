@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -68,6 +69,8 @@ public class Database {
         if (dbSingleton != null) {
             throw new RuntimeException("Don't try and create Database directly");
         }
+
+        System.setProperty("sun.net.http.allowRestrictedHeaders", "true");
 
         metadataMap = Metadata.loadMetadata();
         sectorals = new HashMap<>();
@@ -147,7 +150,17 @@ public class Database {
         return transmutedUnitTemplate;
     }
 
+    private static BufferedInputStream getStreamForURL(String urlString) throws IOException {
+        URL url = new URL(urlString);
+        URLConnection urlConnection = url.openConnection();
+        urlConnection.setRequestProperty("Origin", "https://infinitytheuniverse.com");
+        urlConnection.setRequestProperty("Referer", "https://infinitytheuniverse.com/");
+        return new BufferedInputStream(urlConnection.getInputStream());
+    }
+
     public static Database updateAll() throws IOException {
+
+
         // reload the database
         synchronized (Database.class) {
             if (dbSingleton != null) {
@@ -155,13 +168,14 @@ public class Database {
             }
             for( GAME game: GAME.values()) {
                 logger.info("Updating metadata for {}", game.getName());
-                BufferedInputStream in = new BufferedInputStream(new URL(game.getMetadataURL()).openStream());
+
+                BufferedInputStream in = getStreamForURL(game.getMetadataURL());
                 Files.copy(in, Paths.get(game.getMetadataFile()), StandardCopyOption.REPLACE_EXISTING);
 
             }
             for (SECTORAL s : SECTORAL.values()) {
                 logger.info("Updating {}", s.getName());
-                BufferedInputStream in = new BufferedInputStream(new URL(String.format(FACTION_URL_FORMAT, s.getId())).openStream());
+                BufferedInputStream in = getStreamForURL(String.format(FACTION_URL_FORMAT, s.getId()));
                 Files.copy(in, Paths.get(String.format("resources/%d.json", s.getId())), StandardCopyOption.REPLACE_EXISTING);
             }
         }
