@@ -11,8 +11,8 @@ import java.util.stream.Stream;
  * Like FactionFilters, but has maps!
  */
 public class MappedFactionFilters {
-    private final EnumMap<FilterType, Map<String, FilterItem>> data = new EnumMap<>(FilterType.class);
-    private final static EnumMap<FilterType, Map<String, FilterItem>> allData = new EnumMap<>(FilterType.class);
+    private final EnumMap<FilterType, Map<Integer, FilterItem>> data = new EnumMap<>(FilterType.class);
+    private final static EnumMap<FilterType, Map<Integer, FilterItem>> allData = new EnumMap<>(FilterType.class);
 
     static {
         // initialise the maps
@@ -27,8 +27,8 @@ public class MappedFactionFilters {
         addFromFilters(filters);
     }
 
-    private void addOneType(final FilterType type, final Map<String, FilterItem> values) {
-        Map<String, FilterItem> target = data.get(type);
+    private void addOneType(final FilterType type, final Map<Integer, FilterItem> values) {
+        Map<Integer, FilterItem> target = data.get(type);
         values.keySet().forEach(it->target.putIfAbsent(it, values.get(it)));
 
     }

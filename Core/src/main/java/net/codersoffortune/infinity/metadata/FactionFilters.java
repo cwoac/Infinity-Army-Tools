@@ -14,7 +14,7 @@ public class FactionFilters {
     private List<FilterItem> weapons;
     private List<FilterItem> extras;
     private List<FilterItem> points;
-    private List<FilterItem> swc;
+    private List<SWCFilterItem> swc;
 
     public List<FilterItem> getExtras() {
         return extras;
@@ -104,11 +104,11 @@ public class FactionFilters {
         this.points = points;
     }
 
-    public List<FilterItem> getSwc() {
+    public List<SWCFilterItem> getSwc() {
         return swc;
     }
 
-    public void setSwc(List<FilterItem> swc) {
+    public void setSwc(List<SWCFilterItem> swc) {
         this.swc = swc;
     }
 
