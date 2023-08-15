@@ -37,6 +37,46 @@ public class Unit {
                 (iscAbbr == null) ? isc : iscAbbr);
     }
 
+
+    // TODO:: Make this global somewhere
+    private <T> boolean compareCollections(Collection<T> left, Collection<T> right) {
+        if (left==null) {
+            return right==null;
+        }
+        if (left.size()!=right.size()) {
+            return false;
+        }
+        if (left.equals(right)) {
+            return true;
+        }
+        return new HashSet<>(left).equals(new HashSet<>(right));
+    }
+
+    private boolean compareMaybeString(String left, String right){
+        if( left==null ) {
+            return right==null;
+        }
+        return left.equals(right);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Unit that = (Unit) o;
+        return ID == that.ID &&
+                idArmy == that.idArmy &&
+                compareMaybeString(isc,that.isc) &&
+                compareMaybeString(iscAbbr, that.iscAbbr) &&
+                compareMaybeString(notes, that.notes) &&
+                compareMaybeString(name, that.name) &&
+                compareMaybeString(slug, that.slug) &&
+                compareCollections(profileGroups, that.profileGroups) &&
+                compareCollections(options, that.options) &&
+                compareCollections(factions, that.factions) &&
+                filters.equals(that.filters);
+    }
+
     /**
      * Handle the special case of a unit with the selected group being 0. This represents a paired group of valued units
      * that you have to buy as pair.

@@ -25,6 +25,9 @@ public class Decoder {
 
     };*/
     private static final String[] testcodes = {
+            "gr0FYWxlcGgBIIEsAQEBAAEAhrgBAQA%3D", // maximus regular
+            "gr0FYWxlcGgBIIEsAQIBAQEAhrkBAQA%3D", // maximus reinforce
+            "gr0FYWxlcGgBIIEsAgEBAAEAhrgBAQACAQEBAIa5AQEA", // maximus both
             "gr8Kb3BlcmF0aW9ucwEggSwBAQEAgkkBAgA=",
             "g+oIc3Rhcm1hZGEDVEFHgSwCAQkAhe0BAgAAhacBBQAAhacBAQAAhacBBAAAhecBAgAAhfkBAwAAhbIBAgAAhbcBAQAAgMABAQACBgCFvQECAACFrgECAACFtQEEAACFtQEEAACGAAEGAACFuwEBAA==",
             "gMwPaW52aW5jaWJsZS1hcm15D0NvcmUgYW5kIGhhcnJpc4EsAgEJAICWAQsAAITvAQIAAITeAQMAAITeAQUAAHwBCQAAfAEBAAB8AQEAAHwBAQAAgJ8BAQACBACE6wEDAACE3AEEAACAogECAACAjgEBAA==",

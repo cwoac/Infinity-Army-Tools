@@ -20,6 +20,10 @@ import java.util.stream.Collectors;
 public class TransmutedPrintableUnit extends PrintableUnit {
     private final List<PrintableUnit> printableUnits = new ArrayList<>();
 
+    public List<PrintableUnit> getPrintableUnits() {
+        return printableUnits;
+    }
+
     public TransmutedPrintableUnit(TransmutedCompactedUnit src, SECTORAL sectoral) throws InvalidObjectException {
         super(src, sectoral);
         boolean skipped = false;

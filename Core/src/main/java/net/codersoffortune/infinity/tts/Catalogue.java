@@ -16,12 +16,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InvalidObjectException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -71,10 +66,12 @@ public class Catalogue {
             logger.trace("Parsing " + unit.toString());
             for (CompactedUnit cu : unit.getAllDistinctUnits()) {
                 logger.trace("Adding " + cu.toString());
-                PrintableUnit pu = cu.getPrintableUnit(sectoral_idx);
-                boolean claimed = unitEquivalenceMappings.stream().anyMatch(x -> x.addUnitMaybe(pu));
-                if (!claimed)
-                    unitEquivalenceMappings.add(new EquivalenceMapping(pu));
+                Collection<PrintableUnit> pus = cu.getPrintableUnits(sectoral_idx);
+                for( PrintableUnit pu : pus) {
+                    boolean claimed = unitEquivalenceMappings.stream().anyMatch(x -> x.addUnitMaybe(pu));
+                    if (!claimed)
+                        unitEquivalenceMappings.add(new EquivalenceMapping(pu));
+                }
             }
         }
         makeList();
@@ -142,8 +139,8 @@ public class Catalogue {
 
         for( EquivalenceMapping equivalenceMapping : unitEquivalenceMappings) {
             // Don't bother with unit groups without models
-            if (!ms.hasOneOf(equivalenceMapping)) {
-                logger.warn("Unable to find models for "+ equivalenceMapping.getBaseUnit());
+            if (!ms.hasOneOf(equivalenceMapping) && equivalenceMapping.getBaseUnit().getUnitID().getProfile_idx() > 1) {
+                logger.warn("Unable to find model for "+ equivalenceMapping.getBaseUnit());
                 continue;
             }
 

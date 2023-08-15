@@ -1,6 +1,7 @@
 package net.codersoffortune.infinity;
 
 import net.codersoffortune.infinity.metadata.unit.PrintableUnit
+import net.codersoffortune.infinity.metadata.unit.TransmutedPrintableUnit
 import net.codersoffortune.infinity.metadata.unit.UnitID
 
 data class EquivalenceMapping(val baseUnit : PrintableUnit) {

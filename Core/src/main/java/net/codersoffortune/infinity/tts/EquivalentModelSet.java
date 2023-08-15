@@ -7,6 +7,7 @@ import net.codersoffortune.infinity.EquivalenceMapping;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class EquivalentModelSet extends ModelSet {
 
@@ -21,6 +22,20 @@ public class EquivalentModelSet extends ModelSet {
         return equivalenceMappings;
     }
 
+
+    @Override
+    public boolean hasUnit(final UnitID unitID) {
+        // check base
+        if (models.containsKey(unitID)) {
+            return true;
+        }
+
+        // do we
+        Optional<EquivalenceMapping> maybeMapping = equivalenceMappings.stream().filter(m -> m.contains(unitID)).findFirst();
+
+        // no luck
+        return false;
+    }
 
     @Override
     public Set<TTSModel> getModels(final UnitID unitID) {
@@ -47,6 +62,28 @@ public class EquivalentModelSet extends ModelSet {
         return models.get(equivalent.get());
     }
 
+//    @Override
+//    public boolean hasOneOf(final EquivalenceMapping mapping) {
+//        for (UnitID unitID : mapping.getAllUnits().stream().map(PrintableUnit::getUnitID).collect(Collectors.toList())) {
+//            if (hasUnit(unitID)) {
+//                return true;
+//            }
+//            Optional<EquivalenceMapping> maybeMapping = equivalenceMappings.stream().filter(m -> m.contains(unitID)).findFirst();
+//            if (maybeMapping.isPresent()) {
+//                return true;
+//            }
+//            Optional<UnitID> equivalent = mapping.getAllUnits().stream()
+//                    .map(PrintableUnit::getUnitID)
+//                    .filter(this::hasUnit)
+//                    .findAny();
+//            if (equivalent.isPresent()) {
+//                return true;
+//            }
+//        }
+//
+//         // no luck.
+//        return false;
+//    }
 
     /**
      * expand the equivalences into a full model set.

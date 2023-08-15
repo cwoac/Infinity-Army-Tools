@@ -1,19 +1,20 @@
 package net.codersoffortune.infinity.metadata.unit;
 
 import net.codersoffortune.infinity.SECTORAL;
-import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 
 import java.io.InvalidObjectException;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class TransmutedCompactedUnit extends CompactedUnit {
 
-    private final List<CompactedUnit> CompactedUnits;
+    private final List<CompactedUnit> compactedUnits;
 
     public TransmutedCompactedUnit(Unit unit, ProfileGroup group, List<Profile> profiles, ProfileOption option) {
         super(unit, group, profiles.get(0), option);
-        this.CompactedUnits = profiles.stream().map(p->new CompactedUnit(unit, group, p,option)).collect(Collectors.toList());
+        this.compactedUnits = profiles.stream().map(p->new CompactedUnit(unit, group, p,option)).collect(Collectors.toList());
     }
 
 
@@ -27,7 +28,17 @@ public class TransmutedCompactedUnit extends CompactedUnit {
         return new TransmutedPrintableUnit(this, sectoral);
     }
 
+    @Override
+    public Collection<PrintableUnit> getPrintableUnits(SECTORAL sectoral) throws  InvalidObjectException {
+        HashSet<PrintableUnit> result = new HashSet<>();
+        result.add(getPrintableUnit(sectoral));
+        for (CompactedUnit compactedUnit: compactedUnits) {
+            result.add(compactedUnit.getPrintableUnit(sectoral));
+        }
+        return result;
+    }
+
     public List<CompactedUnit> getCompactedUnits() {
-        return CompactedUnits;
+        return compactedUnits;
     }
 }

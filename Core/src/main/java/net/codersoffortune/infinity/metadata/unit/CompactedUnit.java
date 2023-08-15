@@ -1,5 +1,6 @@
 package net.codersoffortune.infinity.metadata.unit;
 
+import com.google.inject.internal.util.ImmutableSet;
 import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.Util;
 import net.codersoffortune.infinity.collection.VisibleItem;
@@ -109,11 +110,26 @@ public class CompactedUnit {
         return skills;
     }
 
+    private <T> boolean compareTwoProfileListsIgnoringOrder(Collection<T> left, Collection<T> right) {
+        if (left==null) {
+            return right==null;
+        }
+        if (left.size() != right.size()) {
+            return false;
+        }
+        // likely - check with order in place
+        if(left.equals(right)) {
+            return true;
+        }
+        Set<T> lSet = new HashSet<>(left);
+        Set<T> rSet = new HashSet<>(right);
+        return lSet.equals(rSet);
+    }
     public boolean publicallyEqual(CompactedUnit other) {
-        return other.getPublicSkills().equals(getPublicSkills()) &&
-                other.getWeapons().equals(weapons) &&
-                other.getEquipment().equals(equipment) &&
-                other.getPublicChars().equals(getPublicChars());
+        return compareTwoProfileListsIgnoringOrder(getPublicSkills(), other.getPublicSkills()) &&
+                compareTwoProfileListsIgnoringOrder(other.getWeapons(),weapons) &&
+                compareTwoProfileListsIgnoringOrder(other.getEquipment(), equipment) &&
+                compareTwoProfileListsIgnoringOrder(other.getPublicChars(), getPublicChars());
     }
 
     public boolean hasNoPrivateInformation() {
@@ -231,5 +247,11 @@ public class CompactedUnit {
 
     public PrintableUnit getPrintableUnit(SECTORAL sectoral) throws InvalidObjectException {
         return new PrintableUnit(this, sectoral);
+    }
+
+    public Collection<PrintableUnit> getPrintableUnits(SECTORAL sectoral) throws  InvalidObjectException {
+        HashSet<PrintableUnit> result = new HashSet<>();
+        result.add(getPrintableUnit(sectoral));
+        return result;
     }
 }
