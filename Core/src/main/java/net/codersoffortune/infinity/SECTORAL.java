@@ -61,6 +61,7 @@ public enum SECTORAL {
     ContractedBackup(999, "Contracted Back-up", 9, "b3b2b2", "\"r\": 0.701,\"g\": 0.698,\"b\": 0.698", "\"r\": 0.35,\"g\": 0.35,\"b\": 0.35", "http://cloud-3.steamusercontent.com/ugc/2036224757711966224/5FA81C66E611EAE59ABC6A05C190ED7DCDF7A631/", true),
     O12(1001, "O-12", 10, null, null, null, null, true),
     Starmarda(1002, "Starmada, Bureau Aegis Naval Police Department", 10, null, null, null, null, false),
+    Torchlight(1003, "Torchlight Brigade", 10, null, null, null, null, false),
     TeamsGladius(1099, "Teams Gladius", 10, null, null, null, null, false),
     //CODEONE(10000, "Code One", 100)
     C1PanO(10101, "PanOceania (C1)", 10000, "00B0F2", "\"r\": 0.0, \"g\": 0.6901961, \"b\": 0.9490196", "\"r\": 0.0, \"g\": 0.35, \"b\": 0.47", "http://cloud-3.steamusercontent.com/ugc/2036224757711967272/04967D96ACBEBB645E5FA5F365BB6D7AEBCC06CC/", true),
