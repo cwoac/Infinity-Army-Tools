@@ -4,3 +4,10 @@
 
 rootProject.name = "Infinity-Army-Tools"
 include("Gui", "Core")
+
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}

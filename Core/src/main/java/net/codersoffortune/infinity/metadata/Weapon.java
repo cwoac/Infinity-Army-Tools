@@ -18,6 +18,7 @@ public class Weapon {
     private String burst;
     private String damage;
     private String saving;
+    private String savingNum;
     private List<String> properties;
     private Map<String, RangeBand> distance;
     private String profile;
@@ -45,6 +46,10 @@ public class Weapon {
     public void setSaving(String saving) {
         this.saving = saving;
     }
+
+    public String getSavingNum() { return savingNum; }
+
+    public void setSavingNum(String savingNum) { this.savingNum = savingNum; }
 
     public String getDamage() {
         return damage;

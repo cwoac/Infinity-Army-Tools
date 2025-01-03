@@ -78,7 +78,6 @@ public class Database {
             for (Faction f : metadataMap.get(game).getFactions()) {
                 int id = f.getID();
                 if (id == 901) continue; // NA2 doesn't have a vanilla option
-                if (id == 10000) continue; // C1 doesn't have a vanilla option
                 SectoralList sl = SectoralList.load(String.valueOf(id));
                 sectorals.put(id, sl);
                 sl.getMappedFilters();
