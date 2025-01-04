@@ -34,17 +34,17 @@ import java.util.stream.Collectors;
  */
 public class PrintableUnit implements Comparable<PrintableUnit> {
     public static final List<String> IMP_DECALS = List.of(
-            ",\"AttachedDecals\": [{\"Transform\": {\"posX\": -0.00541555043,\"posY\": 1.6975,\"posZ\": 0.00176222192,\"rotX\": 89.98022,\"rotY\": 0.0138618117,\"rotZ\": 0.0,\"scaleX\": 0.909090936,\"scaleY\": 0.909090936,\"scaleZ\": 0.9090909},\"CustomDecal\": {\"Name\": \"IMP-2\",\"ImageURL\": \"http://cloud-3.steamusercontent.com/ugc/1821146583276370408/2E7D29A22D3F9B48B7B7754FFA39ABA67C4EABED/\",\"Size\": 1.0}}]",
-            ",\"AttachedDecals\": [{\"Transform\": {\"posX\": 0.00342403026,\"posY\": 1.6975,\"posZ\": 0.00270367065,\"rotX\": 89.98022,\"rotY\": 0.0137606515,\"rotZ\": 0.0,\"scaleX\": 0.909090936,\"scaleY\": 0.909090936,\"scaleZ\": 0.9090909},\"CustomDecal\": {\"Name\": \"IMP-1\",\"ImageURL\": \"http://cloud-3.steamusercontent.com/ugc/1821146583276370311/16D2DC13FCB1470BA1C9A2D7B0488D45BAF937D5/\",\"Size\": 1.0}}]"
+            ",\"AttachedDecals\": [{\"Transform\": {\"posX\": -0.00541555043,\"posY\": 1.6975,\"posZ\": 0.00176222192,\"rotX\": 89.98022,\"rotY\": 0.0138618117,\"rotZ\": 0.0,\"scaleX\": 0.909090936,\"scaleY\": 0.909090936,\"scaleZ\": 0.9090909},\"CustomDecal\": {\"Name\": \"IMP-2\",\"ImageURL\": \"https://steamusercontent-a.akamaihd.net/ugc/1821146583276370408/2E7D29A22D3F9B48B7B7754FFA39ABA67C4EABED/\",\"Size\": 1.0}}]",
+            ",\"AttachedDecals\": [{\"Transform\": {\"posX\": 0.00342403026,\"posY\": 1.6975,\"posZ\": 0.00270367065,\"rotX\": 89.98022,\"rotY\": 0.0137606515,\"rotZ\": 0.0,\"scaleX\": 0.909090936,\"scaleY\": 0.909090936,\"scaleZ\": 0.9090909},\"CustomDecal\": {\"Name\": \"IMP-1\",\"ImageURL\": \"https://steamusercontent-a.akamaihd.net/ugc/1821146583276370311/16D2DC13FCB1470BA1C9A2D7B0488D45BAF937D5/\",\"Size\": 1.0}}]"
     );
     public static final List<String> IMP_TINTS = List.of(
             "\"r\": 0.8901961,\"g\": 0.5882353,\"b\": 0.58431375",
             "\"r\": 0.545097947,\"g\": 0.819607854,\"b\": 0.9254902"
     );
     public static final Map<Integer, String> CAMO_DECALS = Map.of(
-            0, "http://cloud-3.steamusercontent.com/ugc/1548633241857020838/CDE48FB1F62CB3A31810F9077CAC176EFB735038/",
-            -3, "http://cloud-3.steamusercontent.com/ugc/1548633241857039726/50A33C60C9951B10DF741450AC64AB37F5C90E02/",
-            -6, "http://cloud-3.steamusercontent.com/ugc/1764818232299713869/2973E82C5ACAA5E3BF53545F1FB47C14695BADB8/"
+            0, "https://steamusercontent-a.akamaihd.net/ugc/1548633241857020838/CDE48FB1F62CB3A31810F9077CAC176EFB735038/",
+            -3, "https://steamusercontent-a.akamaihd.net/ugc/1548633241857039726/50A33C60C9951B10DF741450AC64AB37F5C90E02/",
+            -6, "https://steamusercontent-a.akamaihd.net/ugc/1764818232299713869/2973E82C5ACAA5E3BF53545F1FB47C14695BADB8/"
     );
     private static final Logger logger = LogManager.getLogger(PrintableUnit.class);
     private final CompactedUnit compactedUnit;
@@ -468,7 +468,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 ttsDescription,
                 colour,
                 addon,
-                SIZE.get(s).getModelCustomMesh("http://cloud-3.steamusercontent.com/ugc/1493460530059543413/1BBD4277E7D53F68CD6D38EA521EB04CD699CFD5/"),
+                SIZE.get(s).getModelCustomMesh("https://steamusercontent-a.akamaihd.net/ugc/1493460530059543413/1BBD4277E7D53F68CD6D38EA521EB04CD699CFD5/"),
                 states)).collect(Collectors.toList());
         assert (!ttsModels.isEmpty());
         logger.trace(String.format("asFactionJSON for %s has %d models", this.toString(), ttsModels.size()));
