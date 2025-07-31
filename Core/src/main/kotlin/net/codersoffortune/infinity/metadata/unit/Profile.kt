@@ -48,7 +48,7 @@ data class Profile(
             includes,
             move,
             ph,
-            3,
+            if (s<3) 3 else s,
             isStr,
             type,
             w,
