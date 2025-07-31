@@ -9,7 +9,6 @@ import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.FilterType;
 import net.codersoffortune.infinity.metadata.GlobalMappedFactionFilters;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
-import net.codersoffortune.infinity.tts.DecalBlockModel;
 import net.codersoffortune.infinity.tts.EquivalentModelSet;
 import net.codersoffortune.infinity.tts.ModelSet;
 import net.codersoffortune.infinity.tts.TTSModel;
@@ -362,7 +361,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         if (str) {
             result.append(String.format("[B]STR[/B]: %d\\n", w));
         } else {
-            result.append(String.format("[B]W[/B]: %d\\n", w));
+            result.append(String.format("[B]V[/B]: %d\\n", w));
         }
         result.append(String.format("[B]S[/B]: %d\\n", s));
         if (!weapons.isEmpty()) {
@@ -471,7 +470,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 SIZE.get(s).getModelCustomMesh("https://steamusercontent-a.akamaihd.net/ugc/1493460530059543413/1BBD4277E7D53F68CD6D38EA521EB04CD699CFD5/"),
                 states)).collect(Collectors.toList());
         assert (!ttsModels.isEmpty());
-        logger.trace(String.format("asFactionJSON for %s has %d models", this.toString(), ttsModels.size()));
+        logger.trace(String.format("asFactionJSON for %s has %d models", this, ttsModels.size()));
         return String.join(",\n", ttsModels);
     }
 
@@ -496,7 +495,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 m.getDecals(),
                 states)).collect(Collectors.toList());
         assert (!ttsModels.isEmpty());
-        logger.trace(String.format("asFactionJSON for %s has %d models", this.toString(), ttsModels.size()));
+        logger.trace(String.format("asFactionJSON for %s has %d models", this, ttsModels.size()));
         return String.join(",\n", ttsModels);
     }
 
