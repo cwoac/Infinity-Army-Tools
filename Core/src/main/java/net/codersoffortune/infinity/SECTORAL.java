@@ -14,7 +14,7 @@ public enum SECTORAL {
 //    NCA(104, "Neoterran Capitaline Army", 1, null, null, null, null, false),
 //    Varuna(105, "Varuna Immediate Reaction Division", 1, null, null, null, null, false),
     Svaralheima(106, "Svalarheima's Winter Force", 1, null, null, null, null, false),
-    Ketral(107, "Kestral Colonial Force", 1, null,null,null,null, false),
+    Kestral(107, "Kestral Colonial Force", 1, null,null,null,null, false),
 
     CodeCapital(199, "Code: Capital", 1, null, null, null, null,false),
     YuJing(201, "Yu Jing", 2, null, null, null, null, true),
