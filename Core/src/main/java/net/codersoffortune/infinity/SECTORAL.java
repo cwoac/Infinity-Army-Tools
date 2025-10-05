@@ -16,7 +16,7 @@ public enum SECTORAL {
     Svaralheima(106, "Svalarheima's Winter Force", 1, null, null, null, null, false),
     Kestral(107, "Kestral Colonial Force", 1, null,null,null,null, false),
 
-    CodeCapital(199, "Code: Capital", 1, null, null, null, null,false),
+    //CodeCapital(199, "Code: Capital", 1, null, null, null, null,false),
     YuJing(201, "Yu Jing", 2, null, null, null, null, true),
     IS(202, "Imperial Service", 2, null, null, null, null, false),
     IA(204, "Invincible Army", 2, null, null, null, null, false),
