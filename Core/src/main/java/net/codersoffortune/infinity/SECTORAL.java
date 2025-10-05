@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 public enum SECTORAL {
     // Irritatingly, have to store parent as ID due to java class initialisation sequencing.
     PanO(101, "PanOceania", 1, null, null, null, null, true),
-//    Shock(102, "Shock Army of Acontecimento", 1, null, null, null, null, false),
+    Shock(102, "Shock Army of Acontecimento", 1, null, null, null, null, false),
     MO(103, "Military Orders", 1, null, null, null, null, false),
-//    NCA(104, "Neoterran Capitaline Army", 1, null, null, null, null, false),
-//    Varuna(105, "Varuna Immediate Reaction Division", 1, null, null, null, null, false),
+    NCA(104, "Neoterran Capitaline Army", 1, null, null, null, null, false),
+    Varuna(105, "Varuna Immediate Reaction Division", 1, null, null, null, null, false),
     Svaralheima(106, "Svalarheima's Winter Force", 1, null, null, null, null, false),
     Kestral(107, "Kestral Colonial Force", 1, null,null,null,null, false),
 
@@ -23,8 +23,8 @@ public enum SECTORAL {
     WhiteBanner(205, "White Banner", 2, null, null, null, null, false),
     DaebakForce(299, "Daebak Force",2, null, null, null, null, false),
     Ariadna(301, "Ariadna", 3, null, null, null, null, true),
-//    Caladonia(302, "Caledonian Highlander Army", 3, null, null, null, null, false),
-//    Merovingienne(303, "Force de Reponse Rapide Merovingienne", 3, null, null, null, null, false),
+    Caladonia(302, "Caledonian Highlander Army", 3, null, null, null, null, false),
+    Merovingienne(303, "Force de Reponse Rapide Merovingienne", 3, null, null, null, null, false),
     USAriadna(304, "USAriadna Ranger Force", 3, null, null, null, null, false),
     TAC(305, "Tartary Army Corps", 3, null, null, null, null, false),
     Kosmoflot(306, "Kosmoflot", 3, null, null, null, null, false),
@@ -54,7 +54,7 @@ public enum SECTORAL {
     Druze(902, "Druze Bayram Security", 9, "b3b2b2", "\"r\": 0.701,\"g\": 0.698,\"b\": 0.698", "\"r\": 0.35,\"g\": 0.35,\"b\": 0.35", "https://steamusercontent-a.akamaihd.net/ugc/2036224757711966224/5FA81C66E611EAE59ABC6A05C190ED7DCDF7A631/", true),
 //    JSA(903, "Japanese Secessionist Army", 9, "E52520", "\"r\": 0.898,\"g\": 0.145,\"b\": 0.125", "\"r\": 0.45,\"g\": 0.07,\"b\": 0.07", "https://steamusercontent-a.akamaihd.net/ugc/2036224757711966763/CF11A8BB790C44353C46ABC4625B6F2230BBABCE/", true),
     Ikari(904, "Ikari Company", 9, "FDC509", "\"r\": 0.992,\"g\": 0.772,\"b\": 0.035", "\"r\": 0.5,\"g\": 0.38,\"b\": 0.02", "https://steamusercontent-a.akamaihd.net/ugc/2036224757711966677/DF032843625CE57368370E7DE1C328F254197911/", true),
-//    Starco(905, "Starco Free Company of the Star", 9, "f25255", "\"r\": 0.960,\"g\": 0.145,\"b\": 0.333", "\"r\": 0.48,\"g\": 0.08,\"b\": 0.16", "https://steamusercontent-a.akamaihd.net/ugc/2036224757711967999/497FC76AF695AFA2234A7096A92D5B5E6938D6BF/", true),
+    Starco(905, "Starco Free Company of the Star", 9, "f25255", "\"r\": 0.960,\"g\": 0.145,\"b\": 0.333", "\"r\": 0.48,\"g\": 0.08,\"b\": 0.16", "https://steamusercontent-a.akamaihd.net/ugc/2036224757711967999/497FC76AF695AFA2234A7096A92D5B5E6938D6BF/", true),
 //    SpiralCorps(906, "Spiral Corps", 9, "B9DB01", "\"r\": 0.725,\"g\": 0.858,\"b\": 0.003", "\"r\": 0.37,\"g\": 0.43,\"b\": 0.001", "https://steamusercontent-a.akamaihd.net/ugc/2036224757711967793/76F49352D56B3120175544A3E2E9656E43F8B70E/", true),
 //    FoCo(907, "Foreign Company", 9, "1FB09A", "\"r\": 0.121,\"g\": 0.690,\"b\": 0.603", "\"r\": 0.06,\"g\": 0.30,\"b\": 0.30", "https://steamusercontent-a.akamaihd.net/ugc/2036224757711966400/424CB4FEF8EB63B41BA3C9CC819C28293AEB06CF/", true),
     Dahshat(908, "Dahshat Company", 9, "D1D1B2", "\"r\": 0.819,\"g\": 0.819,\"b\": 0.698", "\"r\": 0.41,\"g\": 0.41,\"b\": 0.35", "https://steamusercontent-a.akamaihd.net/ugc/2036224757711966042/A616304EACFBBF0F873B68E42A47B5E13DB5351D/", true),
