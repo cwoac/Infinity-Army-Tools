@@ -18,7 +18,7 @@ public class CombatGroup {
             case 2:
                 return sectoral.getSecondaryTint();
         }
-        throw new IllegalArgumentException("N4 only allows for 2 combat groups!");
+        throw new IllegalArgumentException("N5 only allows for 2 combat groups!");
     }
 
     public static CombatGroup fromCode(ByteBuffer data, SECTORAL sectoral) {

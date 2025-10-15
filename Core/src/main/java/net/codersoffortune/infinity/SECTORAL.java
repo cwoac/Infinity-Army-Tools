@@ -15,8 +15,7 @@ public enum SECTORAL {
     Varuna(105, "Varuna Immediate Reaction Division", 1, null, null, null, null, false),
     Svaralheima(106, "Svalarheima's Winter Force", 1, null, null, null, null, false),
     Kestral(107, "Kestral Colonial Force", 1, null,null,null,null, false),
-
-    //CodeCapital(199, "Code: Capital", 1, null, null, null, null,false),
+    CodeCapital(199, "Code: Capital", 1, null, null, null, null,false),
     YuJing(201, "Yu Jing", 2, null, null, null, null, true),
     IS(202, "Imperial Service", 2, null, null, null, null, false),
     IA(204, "Invincible Army", 2, null, null, null, null, false),
@@ -43,6 +42,7 @@ public enum SECTORAL {
     MAF(602, "Morat Aggression Force", 6, null, null, null, null, false),
     Shasvastii(603, "Shasvastii Expeditionary Force", 6, null, null, null, null, false),
     Onyx(604, "Onyx Contact Force", 6, null, null, null, null, false),
+    NextWave(605, "Next Wave",6, null, null, null, null, false),
     ExrahComissariat(699, "The Exrah Comissariat",6, null, null, null, null, false),
     Aleph(701, "Aleph", 7, null, null, null, null, true),
     SteelPhalanx(702, "Steel Phalanx", 7, null, null, null, null, false),
@@ -171,7 +171,7 @@ public enum SECTORAL {
      */
     public GAME getGame() {
         if (this.id > 10000) return GAME.CODE_ONE;
-        return GAME.N4;
+        return GAME.N5;
     }
 
     /**

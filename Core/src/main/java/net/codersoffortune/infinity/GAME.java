@@ -1,7 +1,7 @@
 package net.codersoffortune.infinity;
 
 public enum GAME {
-    N4("infinity N4", "https://api.corvusbelli.com/army/infinity/en/metadata", "resources/metadata_n4.json"),
+    N5("infinity N5", "https://api.corvusbelli.com/army/infinity/en/metadata", "resources/metadata_n5.json"),
     CODE_ONE("Code One", "https://api.corvusbelli.com/army/codeone/en/metadata", "resources/metadata_c1.json");
 
     private final String name;
