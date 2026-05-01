@@ -19,8 +19,7 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.11.3")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.11.3")
     implementation("com.codepoetics:protonpack:1.16")
-    implementation("org.codehaus.mojo:exec-maven-plugin:3.0.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
+    api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
     implementation("io.ktor:ktor-client-core:1.6.5")
     implementation("io.ktor:ktor-client-cio:1.6.5")
 }

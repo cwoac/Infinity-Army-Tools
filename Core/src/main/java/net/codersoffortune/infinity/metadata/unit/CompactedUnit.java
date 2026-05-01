@@ -1,6 +1,5 @@
 package net.codersoffortune.infinity.metadata.unit;
 
-import com.google.inject.internal.util.ImmutableSet;
 import net.codersoffortune.infinity.SECTORAL;
 import net.codersoffortune.infinity.Util;
 import net.codersoffortune.infinity.collection.VisibleItem;
