@@ -66,7 +66,7 @@ public enum SECTORAL {
     Starmarda(1002, "Starmada, Bureau Aegis Naval Police Department", 10, null, null, null, null, false),
     Torchlight(1003, "Torchlight Brigade", 10, null, null, null, null, false),
     TeamsGladius(1099, "Teams Gladius", 10, null, null, null, null, false),
-    JSA(1101, "Japanese Secessionist Army", 11, null, null, null, null, true),
+    JSA(1101, "JSA", 11, null, null, null, null, true),
     Shinden(1102, "Shindenbutai", 11, null, null, null, null, false),
     Oban(1103, "Ōban", 11, null, null, null, null, false);
     //CODEONE(10000, "Code One", 100)
