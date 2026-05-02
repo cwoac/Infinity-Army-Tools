@@ -21,6 +21,46 @@
   "GridProjection": false,
   "HideWhenFaceDown": false,
   "Hands": false,
+  "LuaScript": "LAST_STORED_LOCATION = \"\"
+
+function onSave()
+local data_to_save = {
+lastStoredLocation = LAST_STORED_LOCATION,
+}
+return saved_data
+end
+
+function onLoad(saved_data)
+LAST_STORED_LOCATION=\"\"
+LOCKED = false
+
+if saved_data ~= \"\" and not bRefresh then
+LAST_STORED_LOCATION = loaded_data.lastStoredLocation
+end
+createMenus()
+end
+
+---------------------------------------------------------------------
+-- FNAME: createMenus
+-- DESC: Create menu for object
+---------------------------------------------------------------------
+function createMenus()
+self.clearContextMenu()
+self.addContextMenuItem(\"Store Location\", storeLocation, false)
+self.addContextMenuItem(\"Recall Location\", recallLocation, false)
+end
+
+function storeLocation()
+LAST_STORED_LOCATION = { position = self.getPosition(), rotation = self.getRotation()}
+end
+
+function recallLocation()
+if LAST_STORED_LOCATION == nil
+then return
+end
+self.setPosition(LAST_STORED_LOCATION.position)
+self.setRotation(LAST_STORED_LOCATION.rotation)
+end",
   "CustomMesh": %s,
   %s
   "AttachedDecals": %s,
