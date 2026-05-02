@@ -45,7 +45,7 @@ launch4j {
     outfile = "InfinityArmyTools.exe"
     headerType = "console"
     dontWrapJar = true
-    classpath = mutableListOf("lib/*")
+    classpath = mutableSetOf("lib/*")
 }
 
 val copyRuntimeDeps by tasks.registering(Copy::class) {
