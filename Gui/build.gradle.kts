@@ -45,9 +45,23 @@ launch4j {
     outfile = "InfinityArmyTools.exe"
     headerType = "console"
     dontWrapJar = true
+    classpath = mutableListOf("lib/*")
 }
 
+val copyRuntimeDeps by tasks.registering(Copy::class) {
+    from(configurations.runtimeClasspath)
+    into(layout.buildDirectory.dir("launch4j/lib"))
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
 
+val copyGuiJar by tasks.registering(Copy::class) {
+    from(tasks.named<Jar>("jar").flatMap { it.archiveFile })
+    into(layout.buildDirectory.dir("launch4j"))
+}
+
+tasks.named("createExe") {
+    dependsOn(copyRuntimeDeps, copyGuiJar)
+}
 
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions {
