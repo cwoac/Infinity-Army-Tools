@@ -264,6 +264,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
 
     public CompactedUnit getCompactedUnit() { return compactedUnit; }
 
+    public SECTORAL getSectoral() { return sectoral; }
+
     /**
      * Look for items which would be in the options title chunk.
      *
@@ -475,8 +477,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     }
 
 
-    public String asFactionJSON(final ModelSet ms, boolean doAddons) {
-        if( isSeedEmbryo() ) return asJSONSEED(ms, doAddons, sectoral.getTint());
+    public Optional<String> asFactionJSON(final ModelSet ms, boolean doAddons) {
+        if( isSeedEmbryo() ) return Optional.of(asJSONSEED(ms, doAddons, sectoral.getTint()));
 
         final String ttsName = getTTSName();
         final String ttsDescription = getTTSDescription();
@@ -494,9 +496,12 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 addon,
                 m.getDecals(),
                 states)).collect(Collectors.toList());
-        assert (!ttsModels.isEmpty());
+        if (ttsModels.isEmpty()) {
+            logger.debug("No models found for {}, skipping", this);
+            return Optional.empty();
+        }
         logger.trace(String.format("asFactionJSON for %s has %d models", this, ttsModels.size()));
-        return String.join(",\n", ttsModels);
+        return Optional.of(String.join(",\n", ttsModels));
     }
 
     public List<String> asEmbeddedJSON(final ModelSet ms, boolean doAddons) {

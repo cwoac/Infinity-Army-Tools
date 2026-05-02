@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class MainController {
     private Database db = Database.getInstance();
@@ -61,9 +63,14 @@ public class MainController {
 
     @FXML
     public void writeBoxes(Event e) throws IOException {
-        db.writeJson(new File("output"), enableAddons.isSelected());
-        new Alert(Alert.AlertType.INFORMATION,
-                "Files written to output/").show();
+        Map<String, Integer> skipped = db.writeJson(new File("output"), enableAddons.isSelected());
+        new Alert(Alert.AlertType.INFORMATION, "Files written to output/").show();
+        if (!skipped.isEmpty()) {
+            String summary = skipped.entrySet().stream()
+                    .map(entry -> entry.getKey() + ": " + entry.getValue() + " unit(s) skipped")
+                    .collect(Collectors.joining("\n"));
+            showLongAlert(Alert.AlertType.WARNING, "Units without models were skipped:\n" + summary);
+        }
     }
 
     @FXML

@@ -23,6 +23,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -213,7 +214,8 @@ public class Database {
      * @param outputDir to write to
      * @throws IOException on error
      */
-    public void writeJson(File outputDir, boolean doAddons) throws IOException {
+    public Map<String, Integer> writeJson(File outputDir, boolean doAddons) throws IOException {
+        Map<String, Integer> skipped = new LinkedHashMap<>();
         outputDir.mkdir();
         for (FACTION faction : FACTION.armyFactions) {
             logger.info("Reading {}", faction.getName());
@@ -226,6 +228,7 @@ public class Database {
             BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), faction.getName()), StandardCharsets.UTF_8));
             writer.append(factionJson);
             writer.close();
+            c.getSkippedCounts().forEach((k, v) -> skipped.merge(k, v, Integer::sum));
         }
 
         logger.info("Parsing container sectorals");
@@ -245,8 +248,10 @@ public class Database {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s/%s.json", outputDir.getPath(), sectoral.getName()), StandardCharsets.UTF_8));
                 writer.append(sectoralJSON);
                 writer.close();
+                c.getSkippedCounts().forEach((k, v) -> skipped.merge(k, v, Integer::sum));
             }
         }
+        return skipped;
     }
 
     /**

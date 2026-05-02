@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.Optional;
 
 /**
  * Describes the set of models needs to represent an entire faction.
@@ -36,9 +37,14 @@ public class Catalogue {
 
     private final Set<EquivalenceMapping> unitEquivalenceMappings = new HashSet<>();
     private List<PrintableUnit> unitList = new ArrayList<>();
+    private final Map<String, Integer> skippedCounts = new LinkedHashMap<>();
 
     public Set<EquivalenceMapping> getMappings() {
         return unitEquivalenceMappings;
+    }
+
+    public Map<String, Integer> getSkippedCounts() {
+        return skippedCounts;
     }
 
     /**
@@ -152,7 +158,15 @@ public class Catalogue {
 
         // sort reversed due to ordering in the bag.
         allUnits.sort(Comparator.comparing(PrintableUnit::getName).reversed());
-        List<String> units = allUnits.stream().map(u->u.asFactionJSON(ms, doAddons)).collect(Collectors.toList());
+        List<String> units = new ArrayList<>();
+        for (PrintableUnit u : allUnits) {
+            Optional<String> json = u.asFactionJSON(ms, doAddons);
+            if (json.isEmpty()) {
+                skippedCounts.merge(u.getSectoral().getName(), 1, Integer::sum);
+            } else {
+                units.add(json.get());
+            }
+        }
         String unit_list = String.join(",\n", units);
         return String.format(template, unit_list);
     }

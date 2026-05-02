@@ -11,6 +11,8 @@ import net.codersoffortune.infinity.tts.EquivalentModelSet;
 import net.codersoffortune.infinity.tts.ModelSet;
 import net.codersoffortune.infinity.tts.TTSModel;
 import org.apache.commons.csv.CSVPrinter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InvalidObjectException;
@@ -18,6 +20,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class TransmutedPrintableUnit extends PrintableUnit {
+    private static final Logger logger = LogManager.getLogger(TransmutedPrintableUnit.class);
     private final List<PrintableUnit> printableUnits = new ArrayList<>();
 
     public List<PrintableUnit> getPrintableUnits() {
@@ -78,7 +81,7 @@ public class TransmutedPrintableUnit extends PrintableUnit {
                 embed);
     }
 
-    private String asJSON(final ModelSet ms, boolean doAddons, String colour) {
+    private Optional<String> asJSON(final ModelSet ms, boolean doAddons, String colour) {
         final List<String> silhouettes = getTTSSilhouettes(doAddons);
         List<String> results = new ArrayList<>();
         List<String> puEmbeds = new ArrayList<>();
@@ -91,11 +94,14 @@ public class TransmutedPrintableUnit extends PrintableUnit {
 
 
         Set<TTSModel> models = ms.getModels(getUnitID());
+        if (models.isEmpty()) {
+            logger.debug("No models found for {}, skipping", this);
+            return Optional.empty();
+        }
         int curModel = 0;
 
         // OK, so if a model has X additional decals, then for the Nth model, you need to take the X*N to X*(N+1)'th decals
         // Yes, that is a pain.
-        assert(puEmbeds.size() == printableUnits.size() * models.size());
         for( TTSModel model : models) {
             try {
                 Collection<String> embeds = puEmbeds.subList(printableUnits.size()*curModel,printableUnits.size()*(curModel+1));
@@ -107,17 +113,17 @@ public class TransmutedPrintableUnit extends PrintableUnit {
             curModel += 1;
         }
 
-        return String.join(",\n", results);
+        return Optional.of(String.join(",\n", results));
 
     }
 
     @Override
-    public String asFactionJSON(final ModelSet ms, boolean doAddons) {
+    public Optional<String> asFactionJSON(final ModelSet ms, boolean doAddons) {
         return asJSON(ms, doAddons, sectoral.getTint());
     }
 
     @Override
     public String asArmyJSON(CombatGroup combatGroup, final EquivalentModelSet ms, final boolean doAddons) throws IllegalArgumentException {
-        return asJSON(ms, doAddons, combatGroup.getTint());
+        return asJSON(ms, doAddons, combatGroup.getTint()).orElse("");
     }
 }
