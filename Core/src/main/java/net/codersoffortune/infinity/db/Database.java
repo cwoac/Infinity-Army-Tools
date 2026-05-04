@@ -92,10 +92,10 @@ public class Database {
                 70, getResourceFileAsString("templates/70mm_addon.json")
         );
 
-        meshTemplate = getResourceFileAsString("Templates/mesh_template.json");
-        unitTemplate = getResourceFileAsString("Templates/unit_template.json");
-        seedTemplate = getResourceFileAsString("Templates/seed_embryo_template.json");
-        transmutedUnitTemplate = getResourceFileAsString("Templates/transmuted_model_template");
+        meshTemplate = getResourceFileAsString("templates/mesh_template.json");
+        unitTemplate = getResourceFileAsString("templates/unit_template.json");
+        seedTemplate = getResourceFileAsString("templates/seed_embryo_template.json");
+        transmutedUnitTemplate = getResourceFileAsString("templates/transmuted_model_template");
         factionTemplate = getResourceFileAsString("templates/faction_template");
         bagTemplate = getResourceFileAsString("templates/bag_template");
         loadModelSet();

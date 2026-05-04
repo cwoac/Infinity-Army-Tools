@@ -11,7 +11,6 @@ repositories {
 
 
 plugins {
-    java
     id("org.openjfx.javafxplugin")
     id("net.codersoffortune.infinity.java-conventions")
     id("edu.sc.seis.launch4j")
@@ -71,4 +70,10 @@ compileKotlin.kotlinOptions {
 val compileTestKotlin: KotlinCompile by tasks
 compileTestKotlin.kotlinOptions {
     jvmTarget = "11"
+}
+
+tasks.register<JavaExec>("run") {
+    mainClass.set("net.codersoffortune.infinity.gui.Entrypoint")
+    classpath = sourceSets["main"].runtimeClasspath
+    workingDir = rootProject.projectDir
 }
