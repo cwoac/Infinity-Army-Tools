@@ -20,7 +20,6 @@ class PhysicalCatalogueController {
     private var currentSectoral: SECTORAL = SECTORAL.Aleph
     private var sectoralList: SectoralList = database.sectorals[currentSectoral.id]!!
     private var currentUnit: Int = 0
-    private var currentModels: MutableList<PhysicalModel> = mutableListOf()
 
 
     @FXML
@@ -61,7 +60,7 @@ class PhysicalCatalogueController {
 
         unitListView.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
             currentUnit = newValue as Int
-            changeUnit()
+            if (currentUnit >= 0) changeUnit()
         }
 
         // Can't quite figure out how to set this from the fxml
@@ -117,13 +116,11 @@ class PhysicalCatalogueController {
         unitListView.items.clear()
         unitListView.items.addAll(sectoralList.units)
         currentUnit = -1
-        currentModels = mutableListOf()
         weaponOptionsListView.items.clear()
         skillOptionsListView.items.clear()
     }
 
     private fun changeUnit() {
-        currentModels = mutableListOf()
         populateOptionLists()
         populateModelList()
     }
@@ -135,7 +132,6 @@ class PhysicalCatalogueController {
                 it
             )
         }
-        existingModelsListView.items.addAll(currentModels)
     }
 
     private fun populateOptionLists() {
