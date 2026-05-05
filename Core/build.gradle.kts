@@ -22,6 +22,15 @@ dependencies {
     api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
     implementation("io.ktor:ktor-client-core:1.6.5")
     implementation("io.ktor:ktor-client-cio:1.6.5")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
+}
+
+tasks.test {
+    useJUnitPlatform()
+    workingDir = rootProject.projectDir
+    testLogging {
+        showStandardStreams = true
+    }
 }
 
 description = "Core"
