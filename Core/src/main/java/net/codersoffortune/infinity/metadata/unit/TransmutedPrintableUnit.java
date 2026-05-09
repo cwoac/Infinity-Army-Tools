@@ -84,35 +84,35 @@ public class TransmutedPrintableUnit extends PrintableUnit {
     private Optional<String> asJSON(final ModelSet ms, boolean doAddons, String colour) {
         final List<String> silhouettes = getTTSSilhouettes(doAddons);
         List<String> results = new ArrayList<>();
-        List<String> puEmbeds = new ArrayList<>();
         Collection<String> puSilhouettes = new HashSet<>();
-
-        printableUnits.forEach(pu -> {
-            puEmbeds.addAll(pu.asEmbeddedJSON(ms, doAddons));
-            puSilhouettes.addAll(pu.getTTSSilhouettes(doAddons));
-        });
-
+        printableUnits.forEach(pu -> puSilhouettes.addAll(pu.getTTSSilhouettes(doAddons)));
 
         Set<TTSModel> models = ms.getModels(getUnitID());
         if (models.isEmpty()) {
             logger.debug("No models found for {}, skipping", this);
             return Optional.empty();
         }
+
+        // Pre-fetch embedded model lists (may be empty for same-model profiles like Cyberplug remotes)
+        List<List<String>> perPuEmbeds = printableUnits.stream()
+                .map(pu -> pu.asEmbeddedJSON(ms, doAddons))
+                .collect(Collectors.toList());
+
         int curModel = 0;
-
-        // OK, so if a model has X additional decals, then for the Nth model, you need to take the X*N to X*(N+1)'th decals
-        // Yes, that is a pain.
-        for( TTSModel model : models) {
-            try {
-                Collection<String> embeds = puEmbeds.subList(printableUnits.size()*curModel,printableUnits.size()*(curModel+1));
-                results.add(asJSONInner(model, embeds, puSilhouettes, doAddons, silhouettes, colour));
-            } catch (IndexOutOfBoundsException e) {
-                e.printStackTrace();
-                throw e;
+        for (TTSModel model : models) {
+            List<String> embeds = new ArrayList<>();
+            for (int i = 0; i < printableUnits.size(); i++) {
+                List<String> puEmbed = perPuEmbeds.get(i);
+                if (puEmbed.isEmpty()) {
+                    // No separate catalogue entry for this profile — reuse parent's model
+                    embeds.add(printableUnits.get(i).asEmbeddedJSONWithModel(model, doAddons));
+                } else {
+                    embeds.add(puEmbed.get(curModel));
+                }
             }
-            curModel += 1;
+            results.add(asJSONInner(model, embeds, puSilhouettes, doAddons, silhouettes, colour));
+            curModel++;
         }
-
         return Optional.of(String.join(",\n", results));
 
     }

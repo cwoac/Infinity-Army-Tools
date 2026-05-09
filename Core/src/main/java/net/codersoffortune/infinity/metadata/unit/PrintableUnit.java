@@ -519,6 +519,17 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 m.getDecals())).collect(Collectors.toList());
     }
 
+    public String asEmbeddedJSONWithModel(final TTSModel model, boolean doAddons) {
+        final String addon = doAddons ? Database.getAddonTemplate(s) : "";
+        return String.format(Database.getTransmutedUnitTemplate(),
+                getTTSName(),
+                getTTSDescription(),
+                sectoral.getTint(),
+                SIZE.get(s).getModelCustomMesh(model.getBaseImage()),
+                addon,
+                model.getDecals());
+    }
+
     public String asArmyJSON(CombatGroup combatGroup, final EquivalentModelSet ms, final boolean doAddons) throws IllegalArgumentException {
         if( isSeedEmbryo() ) return asJSONSEED(ms, doAddons, combatGroup.getTint());
 
