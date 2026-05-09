@@ -8,19 +8,21 @@ import net.codersoffortune.infinity.metadata.unit.PrintableUnit;
 import net.codersoffortune.infinity.metadata.unit.Unit;
 import net.codersoffortune.infinity.tts.Catalogue;
 import net.codersoffortune.infinity.tts.DecalBlockModel;
+import net.codersoffortune.infinity.tts.EquivalentModelSet;
 import net.codersoffortune.infinity.tts.ModelSet;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UnitDebugTest {
 
     // === EDIT THESE TO DEBUG A SPECIFIC UNIT ===
-    private static final int SECTORAL_ID = 101;
-    private static final int UNIT_ID = 4;
+    private static final int SECTORAL_ID = 601;
+    private static final int UNIT_ID = 1885;//680;//
     // ===========================================
 
     private static final String FAKE_IMAGE_URL = "https://steamusercontent-a.akamaihd.net/ugc/1018702952398939866/D864D2D93070B9D71D078DABB3E58AC86AA4C2D7/";
@@ -53,23 +55,16 @@ public class UnitDebugTest {
         catalogue.addUnits(singleUnitList, sectoral, false);
 
         // Build a debug model set: real models where they exist, fake placeholder otherwise
-        ModelSet debugMs = new ModelSet();
-        debugMs.addModelSet(realMs);
+        EquivalentModelSet debugMs = new EquivalentModelSet(catalogue.getMappings());
+        //debugMs.addModelSet(realMs);
 
         System.out.println("=== PrintableUnits Generated ===");
-        for (EquivalenceMapping mapping : catalogue.getMappings()) {
-            for (PrintableUnit pu : mapping.getAllUnits()) {
-                boolean hasRealModel = realMs.hasUnit(pu.getUnitID());
-                if (!hasRealModel) {
-                    debugMs.addModel(pu.getUnitID(),
-                            new DecalBlockModel("debug_placeholder", FAKE_DECALS, FAKE_IMAGE_URL));
-                }
-                System.out.println("  " + pu);
-                System.out.println("    UnitID:        " + pu.getUnitID());
-                System.out.println("    Name:          " + pu.getName());
-                System.out.println("    Distinguisher: " + pu.getDistinguisher());
-                System.out.println("    Has real model:" + hasRealModel);
-                System.out.println();
+        Set<EquivalenceMapping> mappingSet = catalogue.getMappings();
+        for (EquivalenceMapping mapping : mappingSet) {
+            Set<PrintableUnit> unitSet = mapping.getAllUnits();
+            for (PrintableUnit pu : unitSet) {
+                debugMs.addModel(pu.getUnitID(),
+                        new DecalBlockModel("debug_placeholder", FAKE_DECALS, FAKE_IMAGE_URL));
             }
         }
 
