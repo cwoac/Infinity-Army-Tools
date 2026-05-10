@@ -1,0 +1,14 @@
+{
+  "SaveName": "",
+  "ObjectStates": [
+    {
+      "Name": "Custom_Model_Bag",
+      "Nickname": "[DA1917]Miniature Case[-]",
+      "Description": "%s",
+      "ColorDiffuse": { "r": 1.0, "g": 0.5, "b": 0.5 },
+      "ContainedObjects": [
+      %s
+      ]
+    }
+  ]
+}

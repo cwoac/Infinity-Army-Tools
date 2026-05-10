@@ -1,0 +1,23 @@
+{
+  "Name": "Custom_Model",
+  "Transform": {
+    "posX": 0, "posY": 0, "posZ": 0,
+    "scaleX": 1, "scaleY": %s, "scaleZ": 1
+  },
+  "Nickname": "%s",
+  "Description": "",
+  "ColorDiffuse": { %s },
+  "CustomMesh": {
+    "MeshURL": "%s",
+    "DiffuseURL": "%s",
+    "NormalURL": "",
+    "ColliderURL": "%s",
+    "Convex": true,
+    "MaterialIndex": 3,
+    "TypeIndex": 1,
+    "CastShadows": true
+  },
+  %s
+  "XmlUI": ""
+  %s
+}

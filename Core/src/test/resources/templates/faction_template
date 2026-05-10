@@ -1,0 +1,25 @@
+{
+  "SaveName": "",
+  "ObjectStates": [
+    {
+      "Name": "Custom_Model_Bag",
+      "Nickname": "[%s]%s[-] N5",
+      "Description": "",
+      "ColorDiffuse": {
+        %s
+      },
+      "ContainedObjects": [
+      %s
+      ],
+      "AttachedDecals": [
+        {
+          "CustomDecal": {
+            "Name": "Faction Hex",
+            "ImageURL": "%s",
+            "Size": 1.0
+          }
+        }
+      ]
+    }
+  ]
+}

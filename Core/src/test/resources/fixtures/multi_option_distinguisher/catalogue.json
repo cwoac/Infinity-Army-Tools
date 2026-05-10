@@ -1,0 +1,72 @@
+{
+  "UnitID{s:101;u:4;g:1;p:1;o:2}": [
+    {
+      "name": "Test Model",
+      "baseImage": "https://example.com/test_model.png",
+      "decals": "[]"
+    }
+  ],
+  "UnitID{s:101;u:4;g:1;p:1;o:3}": [
+    {
+      "name": "Test Model",
+      "baseImage": "https://example.com/test_model.png",
+      "decals": "[]"
+    }
+  ],
+  "UnitID{s:101;u:4;g:1;p:1;o:4}": [
+    {
+      "name": "Test Model",
+      "baseImage": "https://example.com/test_model.png",
+      "decals": "[]"
+    }
+  ],
+  "UnitID{s:101;u:4;g:1;p:1;o:5}": [
+    {
+      "name": "Test Model",
+      "baseImage": "https://example.com/test_model.png",
+      "decals": "[]"
+    }
+  ],
+  "UnitID{s:101;u:4;g:1;p:1;o:6}": [
+    {
+      "name": "Test Model",
+      "baseImage": "https://example.com/test_model.png",
+      "decals": "[]"
+    }
+  ],
+  "UnitID{s:101;u:4;g:1;p:1;o:7}": [
+    {
+      "name": "Test Model",
+      "baseImage": "https://example.com/test_model.png",
+      "decals": "[]"
+    }
+  ],
+  "UnitID{s:101;u:4;g:1;p:1;o:8}": [
+    {
+      "name": "Test Model",
+      "baseImage": "https://example.com/test_model.png",
+      "decals": "[]"
+    }
+  ],
+  "UnitID{s:101;u:4;g:1;p:1;o:9}": [
+    {
+      "name": "Test Model",
+      "baseImage": "https://example.com/test_model.png",
+      "decals": "[]"
+    }
+  ],
+  "UnitID{s:101;u:4;g:1;p:1;o:10}": [
+    {
+      "name": "Test Model",
+      "baseImage": "https://example.com/test_model.png",
+      "decals": "[]"
+    }
+  ],
+  "UnitID{s:101;u:4;g:1;p:1;o:11}": [
+    {
+      "name": "Test Model",
+      "baseImage": "https://example.com/test_model.png",
+      "decals": "[]"
+    }
+  ]
+}

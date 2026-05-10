@@ -1,0 +1,9 @@
+{
+  "UnitID{s:101;u:19;g:1;p:1;o:1}": [
+    {
+      "name": "Test Model",
+      "baseImage": "https://example.com/test_model.png",
+      "decals": "[]"
+    }
+  ]
+}
