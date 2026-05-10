@@ -1,0 +1,149 @@
+{
+  "id": 19,
+  "idArmy": 19,
+  "canonical": 101,
+  "isc": "Fugazi Dronbot",
+  "iscAbbr": null,
+  "name": "FUGAZI DRONBOTS",
+  "profileGroups": [
+    {
+      "notes": null,
+      "isc": "Fugazi Dronbot",
+      "profiles": [
+        {
+          "bts": 3,
+          "cc": 13,
+          "move": [
+            15,
+            15
+          ],
+          "notes": null,
+          "includes": [],
+          "type": 5,
+          "ava": 2,
+          "str": true,
+          "bs": 8,
+          "s": 3,
+          "equip": [
+            {
+              "id": 63,
+              "order": 1
+            }
+          ],
+          "w": 1,
+          "ph": 11,
+          "name": "FUGAZI DRONBOTS",
+          "logo": "https://assets.corvusbelli.net/army/img/logo/units/fugazi-dronbot-1-1.svg",
+          "id": 1,
+          "arm": 0,
+          "weapons": [],
+          "chars": [
+            3,
+            5,
+            21
+          ],
+          "wip": 13,
+          "skills": [
+            {
+              "id": 235,
+              "order": 1
+            },
+            {
+              "id": 84,
+              "order": 2
+            },
+            {
+              "extra": [
+                6
+              ],
+              "id": 28,
+              "order": 3
+            }
+          ],
+          "peripheral": []
+        }
+      ],
+      "options": [
+        {
+          "includes": [],
+          "minis": 1,
+          "points": 7,
+          "equip": [],
+          "name": "FUGAZI DRONBOT",
+          "disabled": false,
+          "orders": [
+            {
+              "type": "REGULAR",
+              "list": 1,
+              "total": 1
+            }
+          ],
+          "id": 1,
+          "weapons": [
+            {
+              "id": 72,
+              "order": 1
+            },
+            {
+              "extra": [
+                6
+              ],
+              "id": 71,
+              "order": 3
+            }
+          ],
+          "chars": [],
+          "swc": "0",
+          "skills": [],
+          "peripheral": []
+        }
+      ],
+      "id": 1,
+      "category": 8
+    }
+  ],
+  "options": [],
+  "slug": "fugazi-dronbot",
+  "filters": {
+    "categories": [
+      8
+    ],
+    "skills": [
+      28,
+      84,
+      235
+    ],
+    "equip": [
+      63
+    ],
+    "chars": [
+      3,
+      5,
+      21
+    ],
+    "types": [
+      5
+    ],
+    "weapons": [
+      71,
+      72
+    ],
+    "ammunition": [
+      29,
+      37
+    ]
+  },
+  "factions": [
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    902,
+    904,
+    907,
+    909
+  ]
+}

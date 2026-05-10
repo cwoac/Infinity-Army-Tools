@@ -1,0 +1,237 @@
+{
+  "id": 503,
+  "idArmy": 12,
+  "canonical": 601,
+  "isc": "Speculo Killers",
+  "iscAbbr": null,
+  "name": "SPECULO KILLERS",
+  "profileGroups": [
+    {
+      "notes": null,
+      "isc": "Speculo Killers",
+      "profiles": [
+        {
+          "bts": 0,
+          "cc": 22,
+          "move": [
+            10,
+            10
+          ],
+          "notes": null,
+          "includes": [],
+          "type": 6,
+          "ava": 1,
+          "str": false,
+          "bs": 12,
+          "s": 2,
+          "equip": [],
+          "w": 1,
+          "ph": 12,
+          "name": "SPECULO KILLERS",
+          "logo": "https://assets.corvusbelli.net/army/img/logo/units/speculo-killers-1-1.svg",
+          "id": 1,
+          "arm": 1,
+          "weapons": [],
+          "chars": [
+            1,
+            3,
+            5
+          ],
+          "wip": 14,
+          "skills": [
+            {
+              "id": 237,
+              "order": 1
+            },
+            {
+              "extra": [
+                6
+              ],
+              "id": 191,
+              "order": 3
+            },
+            {
+              "extra": [],
+              "id": 84,
+              "order": 4
+            },
+            {
+              "extra": [
+                11
+              ],
+              "id": 40,
+              "order": 5
+            },
+            {
+              "extra": [],
+              "id": 62,
+              "order": 6
+            },
+            {
+              "id": 164,
+              "order": 7
+            },
+            {
+              "extra": [
+                33
+              ],
+              "id": 58,
+              "order": 8
+            },
+            {
+              "id": 249,
+              "order": 9
+            },
+            {
+              "q": 1,
+              "id": 21,
+              "order": 10
+            }
+          ],
+          "peripheral": []
+        }
+      ],
+      "options": [
+        {
+          "includes": [],
+          "minis": 1,
+          "points": 29,
+          "equip": [],
+          "name": "SPECULO KILLER",
+          "disabled": false,
+          "orders": [
+            {
+              "type": "REGULAR",
+              "list": 1,
+              "total": 1
+            }
+          ],
+          "id": 1,
+          "weapons": [
+            {
+              "id": 33,
+              "order": 1
+            },
+            {
+              "extra": null,
+              "id": 65,
+              "order": 2
+            },
+            {
+              "extra": null,
+              "id": 45,
+              "order": 3
+            },
+            {
+              "extra": null,
+              "id": 211,
+              "order": 4
+            },
+            {
+              "extra": null,
+              "id": 9,
+              "order": 5
+            }
+          ],
+          "chars": [],
+          "swc": "1",
+          "skills": [],
+          "peripheral": []
+        },
+        {
+          "includes": [],
+          "minis": 1,
+          "points": 26,
+          "equip": [],
+          "name": "SPECULO KILLER",
+          "disabled": false,
+          "orders": [
+            {
+              "type": "REGULAR",
+              "list": 1,
+              "total": 1
+            }
+          ],
+          "id": 2,
+          "weapons": [
+            {
+              "id": 26,
+              "order": 1
+            },
+            {
+              "extra": null,
+              "id": 65,
+              "order": 2
+            },
+            {
+              "extra": null,
+              "id": 45,
+              "order": 3
+            },
+            {
+              "extra": null,
+              "id": 211,
+              "order": 4
+            },
+            {
+              "extra": null,
+              "id": 9,
+              "order": 5
+            }
+          ],
+          "chars": [],
+          "swc": "1",
+          "skills": [],
+          "peripheral": []
+        }
+      ],
+      "id": 1,
+      "category": 5
+    }
+  ],
+  "options": [],
+  "slug": "speculo-killers",
+  "filters": {
+    "categories": [
+      5
+    ],
+    "skills": [
+      21,
+      40,
+      58,
+      62,
+      84,
+      164,
+      191,
+      237,
+      249
+    ],
+    "equip": [],
+    "chars": [
+      1,
+      3,
+      5
+    ],
+    "types": [
+      6
+    ],
+    "weapons": [
+      9,
+      26,
+      33,
+      45,
+      65,
+      211
+    ],
+    "ammunition": [
+      2,
+      3,
+      21,
+      30
+    ]
+  },
+  "factions": [
+    601,
+    603
+  ]
+}

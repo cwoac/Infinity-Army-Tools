@@ -1,0 +1,334 @@
+{
+  "id": 1886,
+  "idArmy": 1886,
+  "canonical": 601,
+  "isc": "Sartroids: Puzzlers, Cyberplugged Forward Remotes",
+  "iscAbbr": null,
+  "name": "SARTROIDS: PUZZLERS, Cyberplugged Attack Remotes",
+  "profileGroups": [
+    {
+      "notes": null,
+      "isc": "Sartroids: Puzzlers, Cyberplugged Forward Remotes",
+      "profiles": [
+        {
+          "bts": 6,
+          "cc": 15,
+          "move": [
+            20,
+            5
+          ],
+          "notes": null,
+          "includes": [],
+          "type": 5,
+          "ava": 1,
+          "str": true,
+          "bs": 12,
+          "s": 5,
+          "equip": [],
+          "w": 1,
+          "ph": 10,
+          "name": "SARTROIDS: PUZZLERS - CONNECTED PROFILE",
+          "logo": "https://assets.corvusbelli.net/army/img/logo/units/sartroids-puzzlers-cyberplugged-forward-remotes-1-1.svg",
+          "id": 1,
+          "arm": 3,
+          "weapons": [],
+          "chars": [
+            21,
+            27
+          ],
+          "wip": 12,
+          "skills": [
+            {
+              "q": 1,
+              "extra": [
+                374
+              ],
+              "id": 243,
+              "order": 1
+            },
+            {
+              "q": 1,
+              "extra": [
+                7
+              ],
+              "id": 191,
+              "order": 2
+            },
+            {
+              "q": 1,
+              "id": 84,
+              "order": 3
+            },
+            {
+              "q": 1,
+              "extra": [
+                1
+              ],
+              "id": 40,
+              "order": 4
+            },
+            {
+              "q": 1,
+              "extra": [
+                23
+              ],
+              "id": 40,
+              "order": 5
+            },
+            {
+              "q": 1,
+              "extra": [
+                250
+              ],
+              "id": 47,
+              "order": 6
+            },
+            {
+              "q": 1,
+              "extra": [
+                6
+              ],
+              "id": 28,
+              "order": 7
+            }
+          ],
+          "peripheral": []
+        },
+        {
+          "bts": 6,
+          "cc": 12,
+          "move": [
+            15,
+            10
+          ],
+          "notes": null,
+          "includes": [],
+          "type": 5,
+          "ava": 1,
+          "str": true,
+          "bs": 10,
+          "s": 5,
+          "equip": [],
+          "w": 1,
+          "ph": 9,
+          "name": "SARTROIDS: PUZZLERS - AUTONOMOUS PROFILE",
+          "logo": "https://assets.corvusbelli.net/army/img/logo/units/sartroids-puzzlers-cyberplugged-forward-remotes-1-2.svg",
+          "id": 2,
+          "arm": 3,
+          "weapons": [],
+          "chars": [
+            21,
+            27
+          ],
+          "wip": 11,
+          "skills": [
+            {
+              "q": 1,
+              "extra": [
+                374
+              ],
+              "id": 243,
+              "order": 1
+            },
+            {
+              "q": 1,
+              "extra": [
+                7
+              ],
+              "id": 191,
+              "order": 2
+            },
+            {
+              "q": 1,
+              "id": 84,
+              "order": 3
+            },
+            {
+              "q": 1,
+              "extra": [
+                1
+              ],
+              "id": 40,
+              "order": 4
+            },
+            {
+              "q": 1,
+              "extra": [
+                23
+              ],
+              "id": 40,
+              "order": 5
+            },
+            {
+              "q": 1,
+              "extra": [
+                250
+              ],
+              "id": 47,
+              "order": 6
+            },
+            {
+              "q": 1,
+              "extra": [
+                6
+              ],
+              "id": 28,
+              "order": 7
+            }
+          ],
+          "peripheral": []
+        }
+      ],
+      "options": [
+        {
+          "includes": [],
+          "minis": 0,
+          "points": 13,
+          "equip": [
+            {
+              "q": 1,
+              "id": 111,
+              "order": 1
+            }
+          ],
+          "name": "PUZZLER",
+          "disabled": false,
+          "orders": [],
+          "id": 1,
+          "weapons": [
+            {
+              "id": 216,
+              "order": 1
+            },
+            {
+              "id": 23,
+              "order": 2
+            },
+            {
+              "extra": [
+                8
+              ],
+              "id": 92,
+              "order": 3
+            },
+            {
+              "extra": [
+                7
+              ],
+              "id": 71,
+              "order": 4
+            }
+          ],
+          "chars": [],
+          "swc": "0",
+          "skills": [
+            {
+              "q": 1,
+              "extra": [
+                43
+              ],
+              "id": 29,
+              "order": 1
+            }
+          ],
+          "peripheral": []
+        },
+        {
+          "includes": [],
+          "minis": 0,
+          "points": 12,
+          "equip": [
+            {
+              "q": 1,
+              "id": 111,
+              "order": 1
+            }
+          ],
+          "name": "PUZZLER",
+          "disabled": false,
+          "orders": [],
+          "id": 2,
+          "weapons": [
+            {
+              "id": 1,
+              "order": 1
+            },
+            {
+              "id": 23,
+              "order": 2
+            },
+            {
+              "extra": [
+                8
+              ],
+              "id": 92,
+              "order": 3
+            },
+            {
+              "extra": [
+                7
+              ],
+              "id": 71,
+              "order": 4
+            }
+          ],
+          "chars": [],
+          "swc": "0",
+          "skills": [
+            {
+              "q": 1,
+              "id": 238,
+              "order": 1
+            }
+          ],
+          "peripheral": []
+        }
+      ],
+      "id": 1,
+      "category": 8
+    }
+  ],
+  "options": [],
+  "slug": "sartroids-puzzlers-cyberplugged-forward-remotes",
+  "filters": {
+    "categories": [
+      8
+    ],
+    "skills": [
+      28,
+      29,
+      40,
+      47,
+      84,
+      191,
+      238,
+      243
+    ],
+    "equip": [
+      111
+    ],
+    "chars": [
+      21,
+      27
+    ],
+    "types": [
+      5
+    ],
+    "weapons": [
+      1,
+      23,
+      71,
+      92,
+      216
+    ],
+    "ammunition": [
+      14,
+      29,
+      37
+    ]
+  },
+  "factions": [
+    601,
+    605
+  ]
+}

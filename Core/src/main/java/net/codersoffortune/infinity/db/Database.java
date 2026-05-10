@@ -38,15 +38,15 @@ public class Database {
        safe to access without having to call getInstance() and have to handle an IO exception.
        Obviously, if you call the getters before getInstance has ever been called then you will get blanks.
     */
-    private static String unitTemplate = "";
-    private static Map<Integer, String> addonTemplates = new HashMap<>();
-    private static String bagTemplate = "";
-    private static String factionTemplate = "";
-    private static String meshTemplate = "";
-    private static String transmutedUnitTemplate = "";
-    private static String seedTemplate = "";
-    private static String decalTemplate = "";
-    private static ModelSet modelSet = null;
+    static String unitTemplate = "";
+    static Map<Integer, String> addonTemplates = new HashMap<>();
+    static String bagTemplate = "";
+    static String factionTemplate = "";
+    static String meshTemplate = "";
+    static String transmutedUnitTemplate = "";
+    static String seedTemplate = "";
+    static String decalTemplate = "";
+    static ModelSet modelSet = null;
     private static volatile Database dbSingleton;
     private static Map<GAME, Metadata> metadataMap;
     private static ModelCollection physicalModels;

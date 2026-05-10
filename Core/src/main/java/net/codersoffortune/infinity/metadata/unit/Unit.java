@@ -158,7 +158,7 @@ public class Unit {
         Profile profile = group.getProfiles().get(0);
         return profile.getSkills().stream()
                 .anyMatch(s -> (s.getId() == 246 || s.getId() == 66) ||
-                               (s.getId() == 273 && s.getExtra() != null && s.getExtra().contains(374))) ||
+                               (s.getId() == 243 && s.getExtra() != null && s.getExtra().contains(374))) ||
                 profile.getEquip().stream()
                         .anyMatch(s -> s.getId() == 205);
     }
@@ -434,4 +434,5 @@ public class Unit {
                 .collect(Collectors.toList()));
         return profileList;
     }
+
 }

@@ -1,0 +1,12 @@
+{
+  "Name": "Custom_Model",
+  "Nickname": "%s",
+  "Description": "%s",
+  "ColorDiffuse": { %s },
+  "CustomMesh": %s,
+  %s
+  "AttachedDecals": %s,
+  "States": {
+    %s
+  }
+}

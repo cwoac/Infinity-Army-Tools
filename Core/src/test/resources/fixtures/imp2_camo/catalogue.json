@@ -1,0 +1,16 @@
+{
+  "UnitID{s:601;u:503;g:1;p:1;o:1}": [
+    {
+      "name": "Test Model",
+      "baseImage": "https://example.com/test_model.png",
+      "decals": "[]"
+    }
+  ],
+  "UnitID{s:601;u:503;g:1;p:1;o:2}": [
+    {
+      "name": "Test Model",
+      "baseImage": "https://example.com/test_model.png",
+      "decals": "[]"
+    }
+  ]
+}
