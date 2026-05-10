@@ -34,7 +34,9 @@ public class TransmutedCompactedUnit extends CompactedUnit {
         ArrayList<PrintableUnit> result = new ArrayList<>();
         result.add(getPrintableUnit(sectoral));
         for (CompactedUnit compactedUnit: compactedUnits) {
-            result.add(compactedUnit.getPrintableUnit(sectoral));
+            if (compactedUnit.getProfile_idx() <= 1) {
+                result.add(compactedUnit.getPrintableUnit(sectoral));
+            }
         }
         return result;
     }
