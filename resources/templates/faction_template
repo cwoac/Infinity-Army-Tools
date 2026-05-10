@@ -56,7 +56,6 @@
         "TypeIndex": 6,
         "CastShadows": true
       },
-      "LuaScript": "function onObjectLeaveContainer(container, object)\r\r\n\r\n\t\t   if container.getLock() and container == self then\n     local clone = object.clone({position = {0,100,0}})\r\n\t\t        function coPause()\r\n\t\t\t            coroutine.yield(0)\r\n\t\t\t            container.putObject(clone)\r\n\t\t\t            return 1\r\n        end\r\n\t\t    startLuaCoroutine(self, 'coPause')\n    end\r\t\r\n\tend",
       "LuaScriptState": "",
       "XmlUI": "",
       "ContainedObjects": [
