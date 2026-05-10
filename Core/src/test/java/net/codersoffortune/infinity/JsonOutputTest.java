@@ -9,6 +9,8 @@ import net.codersoffortune.infinity.metadata.SectoralList;
 import net.codersoffortune.infinity.metadata.unit.CompactedUnit;
 import net.codersoffortune.infinity.metadata.unit.PrintableUnit;
 import net.codersoffortune.infinity.metadata.unit.Unit;
+import net.codersoffortune.infinity.tts.Catalogue;
+import net.codersoffortune.infinity.tts.EquivalentModelSet;
 import net.codersoffortune.infinity.tts.ModelSet;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
@@ -104,11 +106,14 @@ class JsonOutputTest {
 
         Path catFile = tempDir.resolve("catalogue.json");
         Files.writeString(catFile, testCase.getCatalogueJson());
-        ModelSet modelSet = new ModelSet(catFile.toString());
+        Catalogue catalogue = new Catalogue();
+        catalogue.addUnits(sectoralList, sectoral, false);
+        EquivalentModelSet modelSet = new EquivalentModelSet(catalogue.getMappings());
+        modelSet.readFile(catFile.toString());
 
         int cuIndex = 0;
         for (CompactedUnit cu : compactedUnits) {
-            PrintableUnit pu = new PrintableUnit(cu, sectoral); // uses GlobalMappedFactionFilters which reads allData
+            PrintableUnit pu = cu.getPrintableUnit(sectoral);
             Optional<String> result = pu.asFactionJSON(modelSet, testCase.isDoAddons());
             cuIndex++;
 
