@@ -41,6 +41,11 @@ public class TransmutedPrintableUnit extends PrintableUnit {
     }
 
     @Override
+    public String getTTSName() {
+        return getTTSNameInner(getProfileName());
+    }
+
+    @Override
     public void printCSVRecord(CSVPrinter out, final ModelSet ms) throws IOException {
         super.printCSVRecord(out, ms);
         for( PrintableUnit pu : printableUnits ) {

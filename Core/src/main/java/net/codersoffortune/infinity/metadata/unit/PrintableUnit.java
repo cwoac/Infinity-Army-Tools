@@ -439,7 +439,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return result;
     }
 
-    private String getTTSNameInner(String n) {
+    protected String getTTSNameInner(String n) {
         String result = String.format("[%s]%s[-]", sectoral.getFontTint(), n);
         if (!distinguisher.isEmpty()) {
             result += " " + distinguisher;
@@ -450,6 +450,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     public String getTTSName() {
         return getTTSNameInner(name);
     }
+
+    protected String getProfileName() { return profile_name; }
 
 
     private boolean isSeedEmbryo() {
