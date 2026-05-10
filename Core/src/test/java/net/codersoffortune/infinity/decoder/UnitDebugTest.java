@@ -63,8 +63,10 @@ public class UnitDebugTest {
         for (EquivalenceMapping mapping : mappingSet) {
             Set<PrintableUnit> unitSet = mapping.getAllUnits();
             for (PrintableUnit pu : unitSet) {
-                debugMs.addModel(pu.getUnitID(),
-                        new DecalBlockModel("debug_placeholder", FAKE_DECALS, FAKE_IMAGE_URL));
+                if (pu.getUnitID().getProfile_idx() <= 1) {
+                    debugMs.addModel(pu.getUnitID(),
+                            new DecalBlockModel("debug_placeholder", FAKE_DECALS, FAKE_IMAGE_URL));
+                }
             }
         }
 
