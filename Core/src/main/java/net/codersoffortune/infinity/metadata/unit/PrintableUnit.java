@@ -439,7 +439,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         return result;
     }
 
-    private String getTTSNameInner(String n) {
+    protected String getTTSNameInner(String n) {
         String result = String.format("[%s]%s[-]", sectoral.getFontTint(), n);
         if (!distinguisher.isEmpty()) {
             result += " " + distinguisher;
@@ -450,6 +450,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     public String getTTSName() {
         return getTTSNameInner(name);
     }
+
+    protected String getProfileName() { return profile_name; }
 
 
     private boolean isSeedEmbryo() {
@@ -517,6 +519,17 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
                 SIZE.get(s).getModelCustomMesh(m.getBaseImage()),
                 addon,
                 m.getDecals())).collect(Collectors.toList());
+    }
+
+    public String asEmbeddedJSONWithModel(final TTSModel model, boolean doAddons) {
+        final String addon = doAddons ? Database.getAddonTemplate(s) : "";
+        return String.format(Database.getTransmutedUnitTemplate(),
+                getTTSName(),
+                getTTSDescription(),
+                sectoral.getTint(),
+                SIZE.get(s).getModelCustomMesh(model.getBaseImage()),
+                addon,
+                model.getDecals());
     }
 
     public String asArmyJSON(CombatGroup combatGroup, final EquivalentModelSet ms, final boolean doAddons) throws IllegalArgumentException {

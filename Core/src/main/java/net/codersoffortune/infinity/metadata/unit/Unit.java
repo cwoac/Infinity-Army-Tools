@@ -154,7 +154,7 @@ public class Unit {
         // 246 > Transmutation
         // 205 > AI Motorcycle
         // 66 > seed embryo
-        // 273 (374) -> Peripheral (Cyberplug)
+        // 243 (374) -> Peripheral (Cyberplug)
         Profile profile = group.getProfiles().get(0);
         return profile.getSkills().stream()
                 .anyMatch(s -> (s.getId() == 246 || s.getId() == 66) ||

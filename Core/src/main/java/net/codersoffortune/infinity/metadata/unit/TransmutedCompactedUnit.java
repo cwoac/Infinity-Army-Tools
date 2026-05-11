@@ -3,6 +3,7 @@ package net.codersoffortune.infinity.metadata.unit;
 import net.codersoffortune.infinity.SECTORAL;
 
 import java.io.InvalidObjectException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -30,10 +31,12 @@ public class TransmutedCompactedUnit extends CompactedUnit {
 
     @Override
     public Collection<PrintableUnit> getPrintableUnits(SECTORAL sectoral) throws  InvalidObjectException {
-        HashSet<PrintableUnit> result = new HashSet<>();
+        ArrayList<PrintableUnit> result = new ArrayList<>();
         result.add(getPrintableUnit(sectoral));
         for (CompactedUnit compactedUnit: compactedUnits) {
-            result.add(compactedUnit.getPrintableUnit(sectoral));
+            if (compactedUnit.getProfile_idx() <= 1) {
+                result.add(compactedUnit.getPrintableUnit(sectoral));
+            }
         }
         return result;
     }
