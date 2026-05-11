@@ -106,6 +106,7 @@
     <bottom>
         <HBox prefHeight="39.0" prefWidth="1024.0" spacing="10.0" BorderPane.alignment="CENTER">
             <Button fx:id="returnButton" text="Return to Main Menu"/>
+            <Button fx:id="showOrphansButton" text="Show Orphans"/>
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
             </padding>

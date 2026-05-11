@@ -136,6 +136,9 @@ class ModelCatalogueController {
     private lateinit var saveModelButton: Button
 
     @FXML
+    private lateinit var showOrphansButton: Button
+
+    @FXML
     fun initialize() {
         forceChoiceBox.items.addAll(SECTORAL.topLevelSectorals)
         forceChoiceBox.selectionModel.selectedIndexProperty().addListener { _, _, newValue ->
@@ -196,6 +199,8 @@ class ModelCatalogueController {
         saveModelButton.setOnAction {
             writeModelSetToDisk()
         }
+
+        showOrphansButton.setOnAction { showOrphans() }
     }
 
 
@@ -410,5 +415,12 @@ class ModelCatalogueController {
         rearImage.image = null
         decalField.text = ""
         baseImageField.text = ""
+    }
+
+    private fun showOrphans() {
+        val orphans = modelSet.getOrphanedKeys(database.sectorals)
+        val message = if (orphans.isEmpty()) "No orphaned entries found."
+                      else orphans.joinToString("\n") { it.toString() }
+        Alert(Alert.AlertType.INFORMATION, message).show()
     }
 }

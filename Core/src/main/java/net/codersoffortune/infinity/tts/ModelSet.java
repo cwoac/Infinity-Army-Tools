@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import net.codersoffortune.infinity.FACTION;
 import net.codersoffortune.infinity.metadata.FactionList;
+import net.codersoffortune.infinity.metadata.SectoralList;
 import net.codersoffortune.infinity.metadata.unit.PrintableUnit;
+import net.codersoffortune.infinity.metadata.unit.ProfileGroup;
 import net.codersoffortune.infinity.metadata.unit.ProfileOption;
 import net.codersoffortune.infinity.metadata.unit.Unit;
 import net.codersoffortune.infinity.metadata.unit.UnitID;
@@ -375,5 +377,27 @@ public class ModelSet {
     public Set<TTSModel> getModels(final UnitID unitID) {
         if (hasUnit(unitID)) return models.get(unitID);
         return new HashSet<>();
+    }
+
+    public List<UnitID> getOrphanedKeys(Map<Integer, SectoralList> sectorals) {
+        List<UnitID> orphans = new ArrayList<>();
+        for (UnitID uid : models.keySet()) {
+            SectoralList sl = sectorals.get(uid.getSectoral_idx());
+            if (sl == null) { orphans.add(uid); continue; }
+            Optional<Unit> maybeUnit = sl.getUnit(uid.getUnit_idx());
+            if (maybeUnit.isEmpty()) { orphans.add(uid); continue; }
+            Unit unit = maybeUnit.get();
+            Optional<ProfileGroup> maybeGroup = unit.getProfileGroups().stream()
+                .filter(g -> g.getId() == uid.getGroup_idx()).findFirst();
+            if (maybeGroup.isEmpty()) { orphans.add(uid); continue; }
+            ProfileGroup group = maybeGroup.get();
+            boolean hasProfile = group.getProfiles().stream()
+                .anyMatch(p -> p.getId() == uid.getProfile_idx());
+            if (!hasProfile) { orphans.add(uid); continue; }
+            boolean hasOption = group.getOptions().stream()
+                .anyMatch(o -> o.getId() == uid.getOption_idx());
+            if (!hasOption) orphans.add(uid);
+        }
+        return orphans;
     }
 }
