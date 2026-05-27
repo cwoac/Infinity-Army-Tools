@@ -45,6 +45,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
             -3, "https://steamusercontent-a.akamaihd.net/ugc/1548633241857039726/50A33C60C9951B10DF741450AC64AB37F5C90E02/",
             -6, "https://steamusercontent-a.akamaihd.net/ugc/1764818232299713869/2973E82C5ACAA5E3BF53545F1FB47C14695BADB8/"
     );
+
     private static final Logger logger = LogManager.getLogger(PrintableUnit.class);
     private final CompactedUnit compactedUnit;
     protected final SECTORAL sectoral;
