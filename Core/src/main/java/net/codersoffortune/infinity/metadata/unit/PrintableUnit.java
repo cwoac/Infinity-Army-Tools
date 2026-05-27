@@ -112,7 +112,7 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
         bts = src.getProfile().getBts();
         cc = src.getProfile().getCc();
         chars = src.getPublicChars().stream().map(x -> filters.getItem(FilterType.chars, x).getName()).collect(Collectors.toList());
-        move = src.getProfile().getMove().stream().map(Util::formatDistance).map(String::valueOf).collect(Collectors.joining("-"));
+        move = src.getProfile().getMove().stream().filter(Objects::nonNull).map(Util::formatDistance).map(String::valueOf).collect(Collectors.joining("-"));
         ph = src.getProfile().getPh();
         s = src.getProfile().getS();
         str = src.getProfile().isStr();

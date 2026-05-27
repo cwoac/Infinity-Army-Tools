@@ -9,6 +9,7 @@ import net.codersoffortune.infinity.metadata.MappedFactionFilters;
 import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -153,6 +154,7 @@ public class CompactedUnit {
     }
 
     public List<Integer> getPublicChars() {
+        if (profile.getChars() == null) return Collections.emptyList();
         return profile.getChars().stream().filter(CompactedUnit::skipCharacteristic).collect(Collectors.toList());
     }
 
