@@ -1,5 +1,7 @@
 package net.codersoffortune.infinity.metadata;
 
+import java.util.List;
+
 public class Resume {
     // {"id":161,"isc":"Yáozăo","idArmy":38,"name":"YÁOZĂO","slug":"yaozao","logo":"https://assets.corvusbelli.net/army/img/logo/units/yaozao-1-1.svg","type":5,"category":8},
     private int id;
@@ -10,6 +12,7 @@ public class Resume {
     private String logo;
     private int type;
     private int category;
+    private List<Integer> chars;
 
     public int getCategory() {
         return category;
@@ -17,6 +20,14 @@ public class Resume {
 
     public void setCategory(int category) {
         this.category = category;
+    }
+
+    public List<Integer> getChars() {
+        return chars;
+    }
+
+    public void setChars(List<Integer> chars) {
+        this.chars = chars;
     }
 
     public int getType() {

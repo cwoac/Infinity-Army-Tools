@@ -61,14 +61,14 @@ public enum SECTORAL {
     WiCo(909, "White Company", 9, "537771", "\"r\": 0.325,\"g\": 0.466,\"b\": 0.443", "\"r\": 0.16,\"g\": 0.23,\"b\": 0.23", "https://steamusercontent-a.akamaihd.net/ugc/2036224757711968385/40CDC721303D235A54E4DF01E6F157E6B67A9DE0/", true),
 //    JSAContractedBackup(998, "Contracted Back-up", 9, "E52520", "\"r\": 0.898,\"g\": 0.145,\"b\": 0.125", "\"r\": 0.45,\"g\": 0.07,\"b\": 0.07", "https://steamusercontent-a.akamaihd.net/ugc/2036224757711966763/CF11A8BB790C44353C46ABC4625B6F2230BBABCE/", true),
     ContractedBackup(999, "Contracted Back-up", 9, "b3b2b2", "\"r\": 0.701,\"g\": 0.698,\"b\": 0.698", "\"r\": 0.35,\"g\": 0.35,\"b\": 0.35", "https://steamusercontent-a.akamaihd.net/ugc/2036224757711966224/5FA81C66E611EAE59ABC6A05C190ED7DCDF7A631/", true),
-//    Hayabusa(1199, "Hayabusa", 9,"E52520", "\"r\": 0.898,\"g\": 0.145,\"b\": 0.125", "\"r\": 0.45,\"g\": 0.07,\"b\": 0.07", "https://steamusercontent-a.akamaihd.net/ugc/2036224757711966763/CF11A8BB790C44353C46ABC4625B6F2230BBABCE/", true),
     O12(1001, "O-12", 10, null, null, null, null, true),
     Starmarda(1002, "Starmada, Bureau Aegis Naval Police Department", 10, null, null, null, null, false),
     Torchlight(1003, "Torchlight Brigade", 10, null, null, null, null, false),
     TeamsGladius(1099, "Teams Gladius", 10, null, null, null, null, false),
     JSA(1101, "JSA", 11, null, null, null, null, true),
     Shinden(1102, "Shindenbutai", 11, null, null, null, null, false),
-    Oban(1103, "Ōban", 11, null, null, null, null, false);
+    Oban(1103, "Ōban", 11, null, null, null, null, false),
+    Hayabusa(1199, "Hayabusa", 11, null, null, null, null, false);
     //CODEONE(10000, "Code One", 100)
 //    C1PanO(10101, "PanOceania (C1)", 10000, "00B0F2", "\"r\": 0.0, \"g\": 0.6901961, \"b\": 0.9490196", "\"r\": 0.0, \"g\": 0.35, \"b\": 0.47", "https://steamusercontent-a.akamaihd.net/ugc/2036224757711967272/04967D96ACBEBB645E5FA5F365BB6D7AEBCC06CC/", true),
 //    C1YuJing(10201, "Yu Jing (C1)", 10000, "FF9000", "\"r\": 1.0, \"g\": 0.5647059, \"b\": 0.0", "\"r\": 0.5, \"g\": 0.23, \"b\": 0.0", "https://steamusercontent-a.akamaihd.net/ugc/2036224757711968553/F98F9BDC03079C010366C6239DF43D8CABA5BFCE/", true),
