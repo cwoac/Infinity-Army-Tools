@@ -153,8 +153,9 @@ public class Database {
     private static BufferedInputStream getStreamForURL(String urlString) throws IOException {
         URL url = new URL(urlString);
         URLConnection urlConnection = url.openConnection();
-        urlConnection.setRequestProperty("Origin", "https://infinitytheuniverse.com");
-        urlConnection.setRequestProperty("Referer", "https://infinitytheuniverse.com/");
+        urlConnection.setRequestProperty("Origin", "https://infinityuniverse.com");
+        urlConnection.setRequestProperty("Referer", "https://infinityuniverse.com/");
+        urlConnection.setRequestProperty("Accept", "application/json, text/plain, */*");
         return new BufferedInputStream(urlConnection.getInputStream());
     }
 
