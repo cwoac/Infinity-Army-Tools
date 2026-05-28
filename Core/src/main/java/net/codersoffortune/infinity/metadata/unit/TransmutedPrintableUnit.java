@@ -6,6 +6,7 @@ import net.codersoffortune.infinity.SIZE;
 import net.codersoffortune.infinity.armylist.CombatGroup;
 import net.codersoffortune.infinity.db.Database;
 import net.codersoffortune.infinity.metadata.MappedFactionFilters;
+import net.codersoffortune.infinity.metadata.TransmutedNameHelper;
 import net.codersoffortune.infinity.tts.DecalBlockModel;
 import net.codersoffortune.infinity.tts.EquivalentModelSet;
 import net.codersoffortune.infinity.tts.ModelSet;
@@ -36,13 +37,13 @@ public class TransmutedPrintableUnit extends PrintableUnit {
                 skipped = true;
                 continue;
             }
-            printableUnits.add(new PrintableUnit(cu, sectoral));
+            printableUnits.add(new SecondaryTransmutedProfile(cu, sectoral, getOptionName()));
         }
     }
 
     @Override
     public String getTTSName() {
-        return getTTSNameInner(getProfileName());
+        return getTTSNameInner(TransmutedNameHelper.getName(getOptionName(), getProfileName(), getUnitIdx(), true));
     }
 
     @Override
@@ -130,5 +131,20 @@ public class TransmutedPrintableUnit extends PrintableUnit {
     @Override
     public String asArmyJSON(CombatGroup combatGroup, final EquivalentModelSet ms, final boolean doAddons) throws IllegalArgumentException {
         return asJSON(ms, doAddons, combatGroup.getTint()).orElse("");
+    }
+
+    private static class SecondaryTransmutedProfile extends PrintableUnit {
+        private final String helperName;
+
+        SecondaryTransmutedProfile(CompactedUnit cu, SECTORAL sectoral, String primaryOptionName)
+                throws InvalidObjectException {
+            super(cu, sectoral);
+            this.helperName = TransmutedNameHelper.getName(primaryOptionName, getProfileName(), getUnitIdx(), false);
+        }
+
+        @Override
+        public String getTTSName() {
+            return getTTSNameInner(helperName);
+        }
     }
 }

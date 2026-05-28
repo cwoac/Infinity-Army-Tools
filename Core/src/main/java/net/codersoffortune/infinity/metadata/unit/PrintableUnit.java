@@ -453,6 +453,8 @@ public class PrintableUnit implements Comparable<PrintableUnit> {
     }
 
     protected String getProfileName() { return profile_name; }
+    protected int getUnitIdx() { return unit_idx; }
+    protected String getOptionName() { return option_name; }
 
 
     private boolean isSeedEmbryo() {
