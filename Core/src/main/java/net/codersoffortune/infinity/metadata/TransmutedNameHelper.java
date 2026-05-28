@@ -1,6 +1,8 @@
 package net.codersoffortune.infinity.metadata;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -9,9 +11,8 @@ import java.util.List;
  */
 public class TransmutedNameHelper {
 
-    private static final List<Integer> profile1UsesUnit = Arrays.asList(
-            300,   // anaconda
-            383,   // iguana
+    // Units with symbiont armour: primary profile name = unit name; secondary = armour form
+    private static final List<Integer> symbiotArmourUnits = Arrays.asList(
             647,   // sakiel
             648,   // gao-rael
             649,   // gao-tarsos
@@ -38,50 +39,51 @@ public class TransmutedNameHelper {
             1671,  // reinf: kosuil
             1672,  // reinf: draal
             1677,  // reinf: neema
+            1848,  // switchers gruppa
+            10680  // reinf: armand
+    );
+
+    // TAG + operator units: primary profile = TAG (unit name), secondary = operator
+    private static final List<Integer> tagOperatorUnits = Arrays.asList(
+            300,   // anaconda
+            383,   // iguana
             1690,  // reinf: anaconda
             1720,  // maximus
             1721,  // reinf: maximus
-            1848,  // switchers gruppa
             1852,  // zeybek
             1904,  // tarkshya
-            10300, // reinf: anaconda (alt)
-            10680  // reinf: armand (alt)
+            10300  // reinf: anaconda (alt)
     );
 
-    private static final List<Integer> profile1UsesProfile = Arrays.asList(
-            1885,  // sartroid ranters
-            1886  // sartroid puzzlers
+    // Units where every profile has its own self-describing name
+    private static final List<Integer> selfDescribingProfileUnits = Arrays.asList(
+            1885,  // sartroids: ranters
+            1886   // sartroids: puzzlers
     );
 
-    private static final List<Integer> usesProfile = Arrays.asList(
-            300,   // anaconda operator
-            383,   // iguana operator
-            1690,  // reinf: anaconda operator
-            1720,  // operator maximus
-            1721,  // reinf: operator maximus
-            1852,  // zeybek operator
-            1885,  // sartroid ranters
-            1886,  // sartroid puzzlers
-            1904,  // tarkshya operator
-            10300  // reinf: anaconda operator (alt)
-    );
+    private static final List<Integer> profile1UsesUnit = concat(symbiotArmourUnits, tagOperatorUnits);
+    private static final List<Integer> profile1UsesProfile = selfDescribingProfileUnits;
+    private static final List<Integer> usesProfile = concat(tagOperatorUnits, selfDescribingProfileUnits);
 
-    public static String getName( String unitName,
-                           String profileName,
-                           int unit_idx,
-                           boolean primary) {
+    @SafeVarargs
+    private static <T> List<T> concat(List<T>... lists) {
+        List<T> result = new ArrayList<>();
+        for (List<T> l : lists) result.addAll(l);
+        return Collections.unmodifiableList(result);
+    }
+
+    public static String getName(String unitName,
+                                  String profileName,
+                                  int unit_idx,
+                                  boolean primary) {
         if (primary) {
-            // first profile is often different.
             if (profile1UsesUnit.contains(unit_idx)) return unitName;
             if (profile1UsesProfile.contains(unit_idx)) return profileName;
-
         } else {
             if (usesProfile.contains(unit_idx)) return profileName;
         }
         return String.format("%s - %s", unitName, profileName);
     }
 
-
-
-    private TransmutedNameHelper() {throw new UnsupportedOperationException("Do not instantiate me.");}
+    private TransmutedNameHelper() { throw new UnsupportedOperationException("Do not instantiate me."); }
 }
