@@ -1,12 +1,15 @@
 package net.codersoffortune.infinity.metadata;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+
 public class FilterItem {
     private int id;
     private String name;
     private boolean mercs;
     private String wiki;
     private String type;
-    private boolean specops;
+    @JsonAlias("specops")
+    private boolean teamops;
 
     public String getType() {
         return type;
@@ -56,11 +59,11 @@ public class FilterItem {
                 '}';
     }
 
-    public boolean isSpecops() {
-        return specops;
+    public boolean isTeamops() {
+        return teamops;
     }
 
-    public void setSpecops(boolean specops) {
-        this.specops = specops;
+    public void setTeamops(boolean teamops) {
+        this.teamops = teamops;
     }
 }

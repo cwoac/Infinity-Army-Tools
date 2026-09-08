@@ -1,12 +1,11 @@
 package net.codersoffortune.infinity.metadata;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import net.codersoffortune.infinity.metadata.fireteamChart.FireteamChart;
-import net.codersoffortune.infinity.metadata.specops.Specops;
-import net.codersoffortune.infinity.metadata.specops.SpecopsNestedItem;
-import net.codersoffortune.infinity.metadata.specops.SpecopsNestedItemDeserializer;
+import net.codersoffortune.infinity.metadata.teamops.TeamOps;
 import net.codersoffortune.infinity.metadata.unit.Unit;
 
 import java.io.File;
@@ -22,14 +21,12 @@ public class SectoralList {
     private List<Resume> resume;
     private List<Fireteam> fireteams; // TODO:: Is this ever used?
     private List<Relation> relations; // TODO:: Is this ever used?
-    private Specops specops;
+    @JsonAlias("specops")
+    private TeamOps teamops;
     private FireteamChart fireteamChart;
 
     public static SectoralList load(String url) throws IOException {
         ObjectMapper om = new ObjectMapper();
-        SimpleModule sm = new SimpleModule();
-        sm.addDeserializer(SpecopsNestedItem.class, new SpecopsNestedItemDeserializer());
-        om.registerModule(sm);
         return om.readValue(new File(String.format("resources/%s.json",url)), SectoralList.class);
     }
 
@@ -97,12 +94,12 @@ public class SectoralList {
         this.fireteams = fireteams;
     }
 
-    public Specops getSpecops() {
-        return specops;
+    public TeamOps getTeamops() {
+        return teamops;
     }
 
-    public void setSpecops(Specops specops) {
-        this.specops = specops;
+    public void setTeamops(TeamOps teamops) {
+        this.teamops = teamops;
     }
 
     public FireteamChart getFireteamChart() {

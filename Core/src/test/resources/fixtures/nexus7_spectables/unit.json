@@ -1,0 +1,796 @@
+{
+  "id": 1918,
+  "idArmy": 1918,
+  "canonical": 601,
+  "isc": "Nexus-7 Spec-Ops",
+  "iscAbbr": null,
+  "name": "NEXUS-7 SPEC-OPS",
+  "profileGroups": [
+    {
+      "id": 1,
+      "category": 4,
+      "isc": "Nexus-7 Spec-Ops",
+      "notes": null,
+      "profiles": [
+        {
+          "id": 1,
+          "arm": 2,
+          "ava": 1,
+          "bs": 12,
+          "bts": 6,
+          "cc": 17,
+          "chars": [
+            1,
+            3,
+            5
+          ],
+          "equip": [],
+          "logo": "https://assets.corvusbelli.net/army/img/logo/units/nexus-7-spec-ops-1-1.svg",
+          "weapons": [],
+          "includes": [],
+          "move": [
+            10,
+            10
+          ],
+          "ph": 11,
+          "s": 2,
+          "str": false,
+          "type": 2,
+          "w": 1,
+          "wip": 13,
+          "name": "INITIAL PROFILE",
+          "notes": null,
+          "skills": [
+            {
+              "q": 1,
+              "id": 84,
+              "order": 1
+            },
+            {
+              "q": 1,
+              "extra": [
+                1
+              ],
+              "id": 40,
+              "order": 2
+            },
+            {
+              "q": 1,
+              "id": 281,
+              "order": 3
+            },
+            {
+              "q": 1,
+              "extra": [
+                30
+              ],
+              "id": 162,
+              "order": 4
+            },
+            {
+              "q": 1,
+              "extra": [
+                6
+              ],
+              "id": 28,
+              "order": 5
+            },
+            {
+              "q": 1,
+              "extra": [
+                33
+              ],
+              "id": 58,
+              "order": 6
+            }
+          ],
+          "peripheral": []
+        },
+        {
+          "id": 2,
+          "arm": 4,
+          "ava": -1,
+          "bs": 13,
+          "bts": 9,
+          "cc": 18,
+          "chars": [
+            1,
+            3,
+            5,
+            21
+          ],
+          "equip": [],
+          "logo": "https://assets.corvusbelli.net/army/img/logo/units/nexus-7-spec-ops-1-2.svg",
+          "weapons": [],
+          "includes": [],
+          "move": [
+            15,
+            5
+          ],
+          "ph": 13,
+          "s": 2,
+          "str": false,
+          "type": 3,
+          "w": 2,
+          "wip": 13,
+          "name": "ENHANCED PROFILE",
+          "notes": null,
+          "skills": [
+            {
+              "q": 1,
+              "id": 84,
+              "order": 1
+            },
+            {
+              "q": 1,
+              "extra": [
+                1
+              ],
+              "id": 40,
+              "order": 2
+            },
+            {
+              "q": 1,
+              "extra": [
+                6
+              ],
+              "id": 28,
+              "order": 3
+            },
+            {
+              "q": 1,
+              "extra": [
+                33
+              ],
+              "id": 58,
+              "order": 4
+            }
+          ],
+          "peripheral": []
+        }
+      ],
+      "options": [
+        {
+          "id": 1,
+          "chars": [],
+          "disabled": false,
+          "equip": [],
+          "minis": 1,
+          "orders": [
+            {
+              "type": "REGULAR",
+              "list": 1,
+              "total": 1
+            }
+          ],
+          "includes": [],
+          "points": 33,
+          "swc": "1",
+          "weapons": [
+            {
+              "id": 2,
+              "order": 1
+            },
+            {
+              "id": 175,
+              "order": 2
+            },
+            {
+              "id": 17,
+              "order": 3
+            },
+            {
+              "id": 98,
+              "order": 4
+            },
+            {
+              "id": 5,
+              "order": 5
+            }
+          ],
+          "name": "NEXUS-7 ",
+          "skills": [],
+          "peripheral": []
+        },
+        {
+          "id": 2,
+          "chars": [],
+          "disabled": false,
+          "equip": [],
+          "minis": 1,
+          "orders": [
+            {
+              "type": "REGULAR",
+              "list": 1,
+              "total": 1
+            }
+          ],
+          "includes": [],
+          "points": 25,
+          "swc": "1",
+          "weapons": [
+            {
+              "extra": [
+                8
+              ],
+              "id": 89,
+              "order": 1
+            },
+            {
+              "id": 175,
+              "order": 2
+            },
+            {
+              "id": 17,
+              "order": 3
+            },
+            {
+              "id": 98,
+              "order": 4
+            },
+            {
+              "id": 5,
+              "order": 5
+            }
+          ],
+          "name": "NEXUS-7 ",
+          "skills": [],
+          "peripheral": []
+        },
+        {
+          "id": 3,
+          "chars": [],
+          "disabled": false,
+          "equip": [
+            {
+              "q": 1,
+              "id": 237,
+              "order": 1
+            }
+          ],
+          "minis": 1,
+          "orders": [
+            {
+              "type": "REGULAR",
+              "list": 1,
+              "total": 1
+            }
+          ],
+          "includes": [],
+          "points": 29,
+          "swc": "0",
+          "weapons": [
+            {
+              "id": 41,
+              "order": 1
+            },
+            {
+              "id": 175,
+              "order": 2
+            },
+            {
+              "id": 17,
+              "order": 3
+            },
+            {
+              "id": 98,
+              "order": 4
+            },
+            {
+              "id": 5,
+              "order": 5
+            }
+          ],
+          "name": "NEXUS-7 ",
+          "skills": [
+            {
+              "q": 1,
+              "id": 189,
+              "order": 1
+            }
+          ],
+          "peripheral": []
+        },
+        {
+          "id": 4,
+          "chars": [],
+          "disabled": false,
+          "equip": [
+            {
+              "q": 1,
+              "id": 100,
+              "order": 1
+            }
+          ],
+          "minis": 1,
+          "orders": [
+            {
+              "type": "REGULAR",
+              "list": 1,
+              "total": 1
+            }
+          ],
+          "includes": [],
+          "points": 32,
+          "swc": "0.5",
+          "weapons": [
+            {
+              "extra": [
+                8
+              ],
+              "id": 81,
+              "order": 1
+            },
+            {
+              "id": 175,
+              "order": 2
+            },
+            {
+              "id": 17,
+              "order": 3
+            },
+            {
+              "id": 98,
+              "order": 4
+            },
+            {
+              "id": 5,
+              "order": 5
+            }
+          ],
+          "name": "NEXUS-7 ",
+          "skills": [
+            {
+              "q": 1,
+              "id": 1000,
+              "order": 1
+            }
+          ],
+          "peripheral": []
+        },
+        {
+          "id": 5,
+          "chars": [],
+          "disabled": false,
+          "equip": [],
+          "minis": 1,
+          "orders": [
+            {
+              "type": "REGULAR",
+              "list": 1,
+              "total": 1
+            }
+          ],
+          "includes": [],
+          "points": 29,
+          "swc": "0",
+          "weapons": [
+            {
+              "id": 41,
+              "order": 1
+            },
+            {
+              "id": 175,
+              "order": 2
+            },
+            {
+              "id": 72,
+              "order": 3
+            },
+            {
+              "id": 17,
+              "order": 4
+            },
+            {
+              "id": 98,
+              "order": 5
+            },
+            {
+              "id": 5,
+              "order": 6
+            }
+          ],
+          "name": "NEXUS-7 ",
+          "skills": [
+            {
+              "q": 1,
+              "id": 59,
+              "order": 1
+            }
+          ],
+          "peripheral": []
+        },
+        {
+          "id": 6,
+          "chars": [],
+          "disabled": false,
+          "equip": [
+            {
+              "q": 1,
+              "id": 106,
+              "order": 1
+            }
+          ],
+          "minis": 1,
+          "orders": [
+            {
+              "type": "REGULAR",
+              "list": 1,
+              "total": 1
+            }
+          ],
+          "includes": [],
+          "points": 30,
+          "swc": "0",
+          "weapons": [
+            {
+              "id": 41,
+              "order": 1
+            },
+            {
+              "id": 175,
+              "order": 2
+            },
+            {
+              "id": 17,
+              "order": 3
+            },
+            {
+              "id": 98,
+              "order": 4
+            },
+            {
+              "id": 5,
+              "order": 5
+            }
+          ],
+          "name": "NEXUS-7 ",
+          "skills": [
+            {
+              "q": 1,
+              "id": 64,
+              "order": 1
+            }
+          ],
+          "peripheral": []
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "category": null,
+      "isc": "Voldron 401 SpecBots",
+      "notes": null,
+      "profiles": [
+        {
+          "id": 1,
+          "arm": 0,
+          "ava": -1,
+          "bs": 10,
+          "bts": 3,
+          "cc": 13,
+          "chars": [
+            21,
+            27
+          ],
+          "equip": [
+            {
+              "q": 1,
+              "id": 113,
+              "order": 1
+            }
+          ],
+          "logo": "https://assets.corvusbelli.net/army/img/logo/units/nexus-7-spec-ops-2-1.svg",
+          "weapons": [],
+          "includes": [],
+          "move": [
+            15,
+            10
+          ],
+          "ph": 10,
+          "s": 1,
+          "str": true,
+          "type": 5,
+          "w": 1,
+          "wip": 11,
+          "name": "VOLDRON 401 SPECBOTS",
+          "notes": null,
+          "skills": [
+            {
+              "q": 1,
+              "extra": [
+                40
+              ],
+              "id": 243,
+              "order": 1
+            },
+            {
+              "q": 1,
+              "id": 84,
+              "order": 2
+            },
+            {
+              "q": 1,
+              "extra": [
+                6
+              ],
+              "id": 28,
+              "order": 3
+            },
+            {
+              "q": 1,
+              "extra": [
+                33
+              ],
+              "id": 58,
+              "order": 4
+            }
+          ],
+          "peripheral": []
+        }
+      ],
+      "options": [
+        {
+          "id": 1,
+          "chars": [],
+          "disabled": true,
+          "equip": [],
+          "minis": 1,
+          "orders": [],
+          "includes": [],
+          "points": 6,
+          "swc": "0",
+          "weapons": [
+            {
+              "id": 145,
+              "order": 1
+            },
+            {
+              "extra": [
+                8
+              ],
+              "id": 175,
+              "order": 2
+            },
+            {
+              "extra": [
+                6
+              ],
+              "id": 71,
+              "order": 3
+            }
+          ],
+          "name": "VOLDRON 401 SPECBOT_1 ",
+          "skills": [],
+          "peripheral": []
+        },
+        {
+          "id": 2,
+          "chars": [],
+          "disabled": true,
+          "equip": [],
+          "minis": 1,
+          "orders": [],
+          "includes": [],
+          "points": 6,
+          "swc": "0",
+          "weapons": [
+            {
+              "id": 145,
+              "order": 1
+            },
+            {
+              "id": 175,
+              "order": 2
+            },
+            {
+              "id": 72,
+              "order": 3
+            },
+            {
+              "extra": [
+                6
+              ],
+              "id": 71,
+              "order": 4
+            }
+          ],
+          "name": "VOLDRON 401 SPECBOT_2",
+          "skills": [
+            {
+              "q": 1,
+              "id": 59,
+              "order": 1
+            }
+          ],
+          "peripheral": []
+        }
+      ]
+    }
+  ],
+  "options": [],
+  "spectables": {
+    "specball": {
+      "items": [
+        {
+          "attrs": [
+            {
+              "type": "weapon",
+              "id": 14
+            }
+          ]
+        },
+        {
+          "attrs": [
+            {
+              "type": "weapon",
+              "id": 111
+            }
+          ]
+        },
+        {
+          "attrs": [
+            {
+              "type": "equip",
+              "id": 241,
+              "extra": [
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "attrs": [
+            {
+              "type": "skill",
+              "id": 211
+            }
+          ]
+        }
+      ]
+    },
+    "table": {
+      "items": [
+        {
+          "attrs": [
+            {
+              "type": "stat",
+              "stat": "cc",
+              "q": 6
+            }
+          ]
+        },
+        {
+          "attrs": [
+            {
+              "type": "stat",
+              "stat": "bs",
+              "q": 1
+            }
+          ]
+        },
+        {
+          "attrs": [
+            {
+              "type": "stat",
+              "stat": "arm",
+              "q": 1
+            }
+          ]
+        },
+        {
+          "attrs": [
+            {
+              "type": "skill",
+              "id": 240,
+              "extra": [
+                7
+              ]
+            },
+            {
+              "type": "weapon",
+              "id": 9
+            }
+          ]
+        },
+        {
+          "attrs": [
+            {
+              "type": "weapon",
+              "id": 213
+            }
+          ]
+        },
+        {
+          "attrs": [
+            {
+              "type": "weapon",
+              "id": 25
+            }
+          ]
+        },
+        {
+          "attrs": [
+            {
+              "type": "skill",
+              "id": 65
+            }
+          ]
+        },
+        {
+          "attrs": [
+            {
+              "type": "equip",
+              "id": 114
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "slug": "nexus-7-spec-ops",
+  "filters": {
+    "categories": [
+      4
+    ],
+    "skills": [
+      28,
+      40,
+      58,
+      59,
+      64,
+      84,
+      162,
+      189,
+      243,
+      281,
+      1000
+    ],
+    "equip": [
+      100,
+      106,
+      113,
+      237
+    ],
+    "chars": [
+      1,
+      3,
+      5,
+      21,
+      27
+    ],
+    "types": [
+      2,
+      3,
+      5
+    ],
+    "weapons": [
+      2,
+      5,
+      17,
+      41,
+      71,
+      72,
+      81,
+      89,
+      98,
+      145,
+      175
+    ],
+    "ammunition": [
+      2,
+      3,
+      8,
+      9,
+      13,
+      14,
+      29,
+      37
+    ]
+  },
+  "factions": [
+    601,
+    604,
+    605
+  ]
+}

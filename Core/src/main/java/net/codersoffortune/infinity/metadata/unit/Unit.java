@@ -30,6 +30,7 @@ public class Unit {
     private String slug;
     private Map<String, List<Integer>> filters;
     private List<Integer> factions;
+    private Spectables spectables; // only present on some units, e.g. spec-ops operatives
 
     @Override
     public String toString() {
@@ -413,6 +414,14 @@ public class Unit {
 
     public void setFactions(List<Integer> factions) {
         this.factions = factions;
+    }
+
+    public Spectables getSpectables() {
+        return spectables;
+    }
+
+    public void setSpectables(Spectables spectables) {
+        this.spectables = spectables;
     }
 
     /**
